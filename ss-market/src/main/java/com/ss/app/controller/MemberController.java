@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hc.app.dao.UserDao;
+import com.ss.app.dao.UserDao;
 import com.ss.app.entity.CountryCode;
 import com.ss.app.entity.UserMaster;
 import com.ss.app.model.CountryCodeRepository;
@@ -30,7 +30,7 @@ import com.ss.utils.ReportGenerator;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class UserController {
+public class MemberController {
 
 	@Autowired
 	private UserDao userDao;
@@ -108,6 +108,19 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return "userListing";
+	}
+	
+	@RequestMapping(value="/member/tree",method=RequestMethod.GET)
+	public String memberTree(HttpServletRequest request,ModelMap model) {
+		try {
+			/*
+			 * Iterable<UserMaster> userList = userRepository.findAll();
+			 * model.addAttribute("userList", userList);
+			 */
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "memberTree";
 	}
 
 	@RequestMapping(value="/register",method=RequestMethod.POST)
@@ -271,4 +284,6 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}
+	
+	
 } 

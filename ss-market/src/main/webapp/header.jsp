@@ -220,41 +220,6 @@
 					href="/home"><img src="../../img/logo/logo.jpeg" alt=""
 						style="height: 100px; width: 200px;"></a></strong>
 			</div>
-			<div class="left-custom-menu-adp-wrap comment-scrollbar">
-				<nav class="sidebar-nav left-sidebar-menu-pro">
-					<ul class="metismenu" id="menu1">
-						<li>
-							<center>
-								<a aria-expanded="false"><br /> <b>Quick Lookup</b></a>
-							</center>
-						</li>
-						<li><a title="" href="/userlisting" aria-expanded="false"><span
-								class="educate-icon educate-library icon-wrap sub-icon-mg"
-								aria-hidden="true"></span> <span class="mini-click-non">Manage
-									User</span></a></li>
-						<li class="active"><a title="" href="/countryCodeListing"
-							aria-expanded="false"><span
-								class="educate-icon educate-charts icon-wrap sub-icon-mg"
-								aria-hidden="true"></span> <span class="mini-click-non">Manage
-									County Code</span></a></li>
-						<li class="active"><a title="" href="/categoryCodeListing"
-							aria-expanded="false"><span
-								class="educate-icon educate-charts icon-wrap sub-icon-mg"
-								aria-hidden="true"></span> <span class="mini-click-non">Manage
-									Category Code</span></a></li>
-						<li class="active"><a title="" href="/doctorDetailsListing"
-							aria-expanded="false"><span
-								class="educate-icon educate-charts icon-wrap sub-icon-mg"
-								aria-hidden="true"></span> <span class="mini-click-non">Manage
-									Doctor</span></a></li>		
-						<li class="active"><a title="" href="/appoinment"
-							aria-expanded="false"><span
-								class="educate-icon educate-charts icon-wrap sub-icon-mg"
-								aria-hidden="true"></span> <span class="mini-click-non">Book
-									Appointment</span></a></li>											
-					</ul>
-				</nav>
-			</div>
 		</nav>
 	</div>
 </c:if>
@@ -330,7 +295,7 @@
 </nav>
 
 <div class="footer">
-  <p>© 2020 Copyright: Loyalty System</p>
+  <p>© 2020 Copyright: SS Marketing</p>
 </div>
 
 </html>

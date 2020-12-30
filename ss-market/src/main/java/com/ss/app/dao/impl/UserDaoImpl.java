@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.hc.app.dao.UserDao;
+import com.ss.app.dao.UserDao;
 import com.ss.app.vo.UserVo;
 import com.ss.dbconnection.DBConnection;
 

@@ -15,7 +15,7 @@
 		<a href="/userlisting">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
-					<h5>Manage User</h5>
+					<h5>Manage Member</h5>
 				</div>
 				<div class="stats-icon pull-right">
 					<i class="educate-icon educate-apps"></i>
@@ -25,10 +25,10 @@
 	</div>
 
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/countryCodeListing">
+		<a href="/member/tree">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
-					<h5>Manage Country Code</h5>
+					<h5>Member Tree</h5>
 				</div>
 				<div class="stats-icon pull-right">
 					<i class="educate-icon educate-apps"></i>
