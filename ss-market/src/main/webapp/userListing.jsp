@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1"> 
 </head>
 <body> 
-				<div class="col-md-10 col-md-offset-1 row">
+				<div class="col-md-10 col-md-offset-2 row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
@@ -28,7 +28,7 @@
 										</a>
 									</td>
 									<td>
-										<a href="/user"
+										<a href="/user.jsp"
 											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
 											<span> <i class="fa fa-plus"></i> <span>Create</span>
 										</span>
@@ -64,6 +64,7 @@
 												<td>${details.name}</td> 
 												<td>${details.gender}</td>
 												<td>${details.email}</td>
+												<td>${details.phonenumber}</td>
 												<td>${details.dob}</td>
                                                 <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 

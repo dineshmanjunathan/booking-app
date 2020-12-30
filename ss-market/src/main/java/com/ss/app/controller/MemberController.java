@@ -136,7 +136,7 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "userListing";
+		return "login";
 	}
 
 	@RequestMapping(value="/user/edit",method=RequestMethod.GET)
