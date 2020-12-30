@@ -41,3 +41,18 @@ category_desc VARCHAR(50),
 create_on DATE,
 updated_on DATE
 );
+
+
+
+CREATE TABLE 
+
+select * from hibernate_sequence;(
+  ID INT  NOT NULL,
+  prefix_value varchar(12) NOT NULL,
+  next_val int NOT NULL,
+  increment int NOT NULL,
+  PRIMARY KEY (id)
+) 
+
+insert into hibernate_sequence values(1,'SS','111211','1');
+insert into hibernate_sequence values(2,'REF','1','1');

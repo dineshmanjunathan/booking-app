@@ -83,7 +83,7 @@ public class MemberController {
 		try {
 			
 			request.getSession().setAttribute("LOGGED_ON", "true");
-			request.getSession().setAttribute("USER_NAME", "Admin");
+			request.getSession().setAttribute("MEMBER_ID", user.getId());
 			return "menu";
 			/*User ab = userDao.findUser(user);  
 			if(ab != null) { 
@@ -133,12 +133,14 @@ public class MemberController {
 			BeanUtils.copyProperties(userEntity, user);
 			userRepository.save(userEntity);
 			System.out.println("Name ::"+user.getName());
-			Iterable<Member> userList = userRepository.findAll();
-			model.addAttribute("userList", userList); 
+			
+			model.addAttribute("registersuccess", "Member"+user.getId()+ "Registered Successfully ");
+			
+			//model.addAttribute("userList", userList); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "userListing";
+		return "login";
 	}
 
 	@RequestMapping(value="/user/edit",method=RequestMethod.GET)

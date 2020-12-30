@@ -208,7 +208,7 @@
 		$.ajax({
             url: "/wallet/balance",
             data: {
-                "memberId": $( "#category option:selected" ).val()
+                "memberId": session.getAttribrute("MEMBER_ID");
             },
             type: "get",
             cache: false,
