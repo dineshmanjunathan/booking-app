@@ -1,4 +1,3 @@
-<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -200,13 +199,34 @@
 </style>
 
 <script type="text/javascript">
-		$(document).ready(function() {
-	        history.pushState(null, null, location.href);
-	        window.onpopstate = function () {
-	            history.go(1);
-	        };
-	    });
-	  </script>
+	$(document).ready(function() {
+		history.pushState(null, null, location.href);
+		window.onpopstate = function() {
+			history.go(1);
+		};
+		
+		$.ajax({
+            url: "/wallet/balance",
+            data: {
+                "memberId": $( "#category option:selected" ).val()
+            },
+            type: "get",
+            cache: false,
+            success: function (data) {
+                if(data) {
+                     $("#wallet").html(data);
+                } else {
+                	 $("#wallet").html(0);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+            }
+        });
+	});
+
+
+</script>
 </head>
 
 <!-- Start Left menu area -->
@@ -228,9 +248,18 @@
 								<a aria-expanded="false"><br /> <b>Lookup</b></a>
 							</center>
 						</li>
-						<li><a title="" href="/userlisting" aria-expanded="false"><span
+						<!-- <li><a title="" href="/userlisting" aria-expanded="false"><span
 								class="educate-icon educate-library icon-wrap sub-icon-mg"
-								aria-hidden="true"></span> <span class="mini-click-non">Contact Us</span></a></li>									
+								aria-hidden="true"></span> <span class="mini-click-non">Contact Us</span></a></li>	 -->
+						<li>
+
+							<p style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">Wallet Balance</p>
+							<div class="col-md-9 col-md-offset-2 row">
+							<button style="font-size: 24px;color: black;background: #337ab7;">
+								<i class="fa fa-credit-card" id="wallet">0</i>
+							</button>
+							</div>
+						</li>
 					</ul>
 				</nav>
 			</div>
@@ -290,7 +319,8 @@
 					<c:when test="${ not empty sessionScope.LOGGED_ON}">
 						<a href="#" data-toggle="dropdown" role="button"
 							aria-expanded="false" class="nav-link dropdown-toggle"> <span
-							class="admin-name">Logged In as - &nbsp;${sessionScope.USER_NAME}</span> <i
+							class="admin-name">Logged In as -
+								&nbsp;${sessionScope.USER_NAME}</span> <i
 							class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 						</a>
 						<ul role="menu"
@@ -309,7 +339,7 @@
 </nav>
 
 <div class="footer">
-  <p>© 2020 Copyright: SS Marketing</p>
+	<p>© 2020 Copyright: SS Marketing</p>
 </div>
 
 </html>

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -136,7 +138,7 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "login";
+		return "userListing";
 	}
 
 	@RequestMapping(value="/user/edit",method=RequestMethod.GET)
@@ -284,6 +286,13 @@ public class MemberController {
 		}catch (Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("/wallet/balance")
+	public ResponseEntity<Integer> loadWallet(@RequestParam("memberId") String memberId,HttpServletRequest request,ModelMap model) { 
+		Integer balance = userRepository.getWalletBalance(memberId);
+		model.addAttribute("balance", balance);  
+		return new ResponseEntity(balance, HttpStatus.OK);
 	}
 	
 	
