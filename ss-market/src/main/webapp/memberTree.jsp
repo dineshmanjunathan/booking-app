@@ -47,7 +47,7 @@
 </head>
 <body>
 
-	<div class="col-md-10 col-md-offset-2 row">
+	<div class="col-md-10 col-md-offset-1 row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="product-payment-inner-st">
 				<ul id="myTabedu1" class="tab-review-design">

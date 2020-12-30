@@ -7,11 +7,11 @@
 <meta charset="ISO-8859-1"> 
 </head>
 <body> 
-				<div class="col-md-10 col-md-offset-2 row">
+				<div class="col-md-10 col-md-offset-1 row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Patients</a></li></center>
+								<center><li class="active"><a href="">MEMBER LIST</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -49,18 +49,12 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 										<tr> 
-											<th data-field="id">Patient Id</th>
+											<th data-field="id">Member Id</th>
 											<th data-field="name" data-editable="false">Name</th>
-											<th data-field="nric" data-editable="false">NRIC</th>
-											<th data-field="age" data-editable="false">Age</th>
 											<th data-field="gender" data-editable="false">Gender</th>
-											<th data-field="martialStatus" data-editable="false">Martial Status</th>
 											<th data-field="email" data-editable="false">Email</th>
 											<th data-field="phone">Mobile</th>
-											<th data-field="address" data-editable="false">Address</th>
 											<th data-field="dob" data-editable="false">DOB</th>
-											<th data-field="action">Action</th>
-											<th data-field="attachment">Attachment</th>
 										</tr>
 									</thead>
                                         <tbody> 
@@ -68,13 +62,8 @@
                                             <tr>
 												<td>${details.id}</td>
 												<td>${details.name}</td> 
-												<td>${details.nric}</td>
-												<td>${details.age}</td>
 												<td>${details.gender}</td>
-												<td>${details.martialStatus}</td>
 												<td>${details.email}</td>
-												<td>${details.countryCode}-${details.mobile}</td>
-												<td>${details.address}</td> 
 												<td>${details.dob}</td>
                                                 <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 

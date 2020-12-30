@@ -220,6 +220,20 @@
 					href="/home"><img src="../../img/logo/logo.jpeg" alt=""
 						style="height: 100px; width: 200px;"></a></strong>
 			</div>
+			<div class="left-custom-menu-adp-wrap comment-scrollbar">
+				<nav class="sidebar-nav left-sidebar-menu-pro">
+					<ul class="metismenu" id="menu1">
+						<li>
+							<center>
+								<a aria-expanded="false"><br /> <b>Lookup</b></a>
+							</center>
+						</li>
+						<li><a title="" href="/userlisting" aria-expanded="false"><span
+								class="educate-icon educate-library icon-wrap sub-icon-mg"
+								aria-hidden="true"></span> <span class="mini-click-non">Contact Us</span></a></li>									
+					</ul>
+				</nav>
+			</div>
 		</nav>
 	</div>
 </c:if>

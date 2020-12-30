@@ -1,6 +1,5 @@
 package com.ss.app.dao.impl;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +10,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.ss.app.dao.UserDao;
-import com.ss.app.vo.UserVo;
-import com.ss.dbconnection.DBConnection;
+import com.ss.app.vo.MemberVo;
 
 @Component
 public class UserDaoImpl implements UserDao{
@@ -21,8 +19,8 @@ public class UserDaoImpl implements UserDao{
 	static PreparedStatement ps;
 	
 	@Override	
-	public UserVo findUser(UserVo user)throws SQLException { 
-		UserVo ab = new UserVo();
+	public MemberVo findUser(MemberVo user)throws SQLException { 
+		MemberVo ab = new MemberVo();
 		ResultSet rs=null;
 		/*try { 
 			con=DBConnection.getConnection();
@@ -52,8 +50,8 @@ public class UserDaoImpl implements UserDao{
 	}
 	
 	@Override	
-	public List<UserVo> findUsers()throws SQLException{
-		List<UserVo> list = new ArrayList<>();
+	public List<MemberVo> findUsers()throws SQLException{
+		List<MemberVo> list = new ArrayList<>();
 		ResultSet rs = null;
 		/*try{
 			con = DBConnection.getConnection();

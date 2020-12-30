@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!-- Single pro tab review Start-->
-	<div class="col-md-10 col-md-offset-2 row">
+	<div class="col-md-10 col-md-offset-1 row">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="product-payment-inner-st">

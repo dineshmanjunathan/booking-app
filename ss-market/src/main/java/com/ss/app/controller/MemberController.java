@@ -8,8 +8,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperPrint;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,17 +15,19 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ss.app.dao.UserDao;
 import com.ss.app.entity.CountryCode;
-import com.ss.app.entity.UserMaster;
+import com.ss.app.entity.Member;
 import com.ss.app.model.CountryCodeRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CountryCodeVo;
-import com.ss.app.vo.UserVo;
+import com.ss.app.vo.MemberVo;
 import com.ss.utils.ReportGenerator;
 
-import org.springframework.web.servlet.ModelAndView;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 @Controller
 public class MemberController {
@@ -57,11 +57,11 @@ public class MemberController {
 	
 	@RequestMapping("/home")
 	public String home(HttpServletRequest request,ModelMap model) {
-		UserVo ab = (UserVo) request.getSession().getAttribute("USER");
+		MemberVo ab = (MemberVo) request.getSession().getAttribute("USER");
 		model.addAttribute("CURRENT_USER", ab);
 		return "home";
 	} 
-	@RequestMapping("/user")
+	@RequestMapping("/register")
 	public String user(HttpServletRequest request,ModelMap model) {
 		Iterable<CountryCode> countryCodeList = countryCodeRepository.findAll();
 		model.addAttribute("countryCodeList", countryCodeList);
@@ -77,8 +77,9 @@ public class MemberController {
 	} 
 
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String loginSubmit(HttpServletRequest request,UserVo user,ModelMap model) {
+	public String loginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
+			
 			request.getSession().setAttribute("LOGGED_ON", "true");
 			request.getSession().setAttribute("USER_NAME", "Admin");
 			return "menu";
@@ -102,7 +103,7 @@ public class MemberController {
 	@RequestMapping(value="/userlisting",method=RequestMethod.GET)
 	public String adminListingSubmit(HttpServletRequest request,ModelMap model) {
 		try {
-			Iterable<UserMaster> userList = userRepository.findAll(); 
+			Iterable<Member> userList = userRepository.findAll(); 
 			model.addAttribute("userList", userList); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -124,13 +125,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public String registerSubmit(HttpServletRequest request,UserVo user,ModelMap model) {
+	public String registerSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
-			UserMaster userEntity=new UserMaster();
+			Member userEntity=new Member();
 			BeanUtils.copyProperties(userEntity, user);
 			userRepository.save(userEntity);
 			System.out.println("Name ::"+user.getName());
-			Iterable<UserMaster> userList = userRepository.findAll();
+			Iterable<Member> userList = userRepository.findAll();
 			model.addAttribute("userList", userList); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -141,10 +142,10 @@ public class MemberController {
 	@RequestMapping(value="/user/edit",method=RequestMethod.GET)
 	public String edit(@RequestParam("user_id")String userId,HttpServletRequest request,ModelMap model) { 
 		try {
-			UserMaster user = userRepository.findById(Long.parseLong(userId)).get();
-			UserVo userVo=new UserVo();
-			BeanUtils.copyProperties(userVo, user);
-			model.addAttribute("user", userVo); 
+			Member user = userRepository.findById(userId).get();
+			MemberVo MemberVo=new MemberVo();
+			BeanUtils.copyProperties(MemberVo, user);
+			model.addAttribute("user", MemberVo); 
 			Iterable<CountryCode> countryCodeList = countryCodeRepository.findAll();
 			model.addAttribute("countryCodeList", countryCodeList);
 		} catch (Exception e) {
@@ -155,13 +156,13 @@ public class MemberController {
 	
 
 	@RequestMapping(value="/user/edit",method=RequestMethod.POST)
-	public String editSubmit(HttpServletRequest request,UserVo user,ModelMap model) {
-		UserMaster userEntity=new UserMaster();
+	public String editSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
+		Member userEntity=new Member();
 		try {
 			BeanUtils.copyProperties(userEntity, user);
 			System.out.println(userEntity.getId());
 			userRepository.save(userEntity);
-			Iterable<UserMaster> userList = userRepository.findAll();  
+			Iterable<Member> userList = userRepository.findAll();  
 			model.addAttribute("userList", userList); 
 			model.addAttribute("successMessage","Successfully Edited Admin Record"); 
 		} catch (Exception e) {
@@ -173,10 +174,10 @@ public class MemberController {
 	@RequestMapping("/user/delete")
 	public String delete(@RequestParam("user_id")String userId,HttpServletRequest request,ModelMap model) { 
 		try {
-			userRepository.deleteById(Long.parseLong(userId));
+			userRepository.deleteById(userId);
 			//userRepository.delete(user);
 			model.addAttribute("deletesuccessmessage","Deleted Successfully"); 
-			Iterable<UserMaster> userList = userRepository.findAll();
+			Iterable<Member> userList = userRepository.findAll();
 			model.addAttribute("userList", userList); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,9 +190,9 @@ public class MemberController {
 		try {
 			String user_id = request.getParameter("id");
 			//Optional<User> user=userRepository.findById(Long.parseLong(user_id));
-			userRepository.deleteById(Long.parseLong(user_id));
+			userRepository.deleteById(user_id);
 			model.addAttribute("deletesuccessmessage","Deleted Successfully"); 
-			List<UserVo> userList;
+			List<MemberVo> userList;
 			userList = userDao.findUsers();
 			model.addAttribute("userList", userList); 
 		} catch (SQLException e) {
@@ -275,7 +276,7 @@ public class MemberController {
 			JasperPrint jasperPrint = null;
 			response.setContentType("application/x-download");
 			response.setHeader("Content-Disposition", String.format("attachment; filename=" + userId +".pdf" ));
-			UserMaster user = userRepository.findById(Long.parseLong(userId)).get();
+			Member user = userRepository.findById(userId).get();
 			OutputStream out = response.getOutputStream();
 			ReportGenerator reportGenerator = new ReportGenerator();
 			jasperPrint = reportGenerator.getJasperContext(reportGenerator.getReportData(user),"templates/reg.jrxml");

@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ss.app.vo.UserVo;
+import com.ss.app.vo.MemberVo;
 
 @Service("userDao")
 public interface UserDao {
 	
-	public UserVo findUser(UserVo user)throws SQLException;
-	public List<UserVo> findUsers()throws SQLException;
+	public MemberVo findUser(MemberVo user)throws SQLException;
+	public List<MemberVo> findUsers()throws SQLException;
 
 }

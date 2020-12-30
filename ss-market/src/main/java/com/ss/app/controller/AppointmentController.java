@@ -3,7 +3,6 @@ package com.ss.app.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.app.entity.Appointment;
 import com.ss.app.entity.Category;
-import com.ss.app.entity.UserMaster;
+import com.ss.app.entity.Member;
 import com.ss.app.model.AppointmentRepository;
 import com.ss.app.model.CategoryCodeRepository;
 import com.ss.app.model.DoctorDetailsRepository;
@@ -74,13 +73,13 @@ public class AppointmentController {
 	@RequestMapping(value="/searchUser",method=RequestMethod.POST)
 	public String searchUser(HttpServletRequest request,ModelMap model) { 
 		try {
-			UserMaster user=null;
+			Member user=null;
 			String searchOption=(String)request.getParameter("searchOption");
 			String searchBy=(String)request.getParameter("searchBy");
 			if("id".equals(searchOption)){
-				user=userRepository.findById(Long.parseLong(searchBy.trim())).get();
+				user=userRepository.findById(searchBy.trim()).get();
 			}else if("mobile".equals(searchOption)){
-				user=userRepository.findByMobile(searchBy);
+				//user=userRepository.findById(searchBy);
 			}else {
 				return "redirect:user";
 			}
@@ -125,7 +124,7 @@ public class AppointmentController {
 			BeanUtils.copyProperties(appointmentVo, appointment);
 			model.addAttribute("appointment", appointmentVo); 
 			
-			Iterable<UserMaster> userList = userRepository.findAll();
+			Iterable<Member> userList = userRepository.findAll();
 			model.addAttribute("userList", userList);
 			
 		} catch (Exception e) {

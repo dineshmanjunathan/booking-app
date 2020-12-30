@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.mail.util.ByteArrayDataSource;
 
-import com.ss.app.entity.UserMaster;
+import com.ss.app.entity.Member;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -52,16 +52,13 @@ public class ReportGenerator {
         return "application/pdf";
     }
 	
-	public Map<String, Object> getReportData(UserMaster user) {
+	public Map<String, Object> getReportData(Member user) {
 		Map<String, Object> hm = new HashMap<String, Object>();
 		hm.put("name", user.getName());
 		hm.put("dob", user.getDob());
-		hm.put("age", user.getAge());
 		hm.put("gender", user.getGender());
-		hm.put("martialStatus", user.getMartialStatus());
 		hm.put("email",user.getEmail());
-		hm.put("mobile", user.getMobile());
-		hm.put("address", user.getAddress());
+		hm.put("mobile", user.getPhonenumber());
         return hm;
     }
 	
