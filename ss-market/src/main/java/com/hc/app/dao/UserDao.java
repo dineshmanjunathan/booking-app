@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.hc.app.vo.UserVo;
+import com.ss.app.vo.UserVo;
 
 @Service("userDao")
 public interface UserDao {
