@@ -260,6 +260,15 @@
 							</button>
 							</div>
 						</li>
+						<li><div class="row"></div></li>
+						<li>
+						<a title="" href="/userlisting" aria-expanded="false" style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">
+							Shopping site</a>
+						</li>
+						<li>
+						<a title="" href="/userlisting" aria-expanded="false" style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">
+							Contact Us</a>
+						</li>
 					</ul>
 				</nav>
 			</div>

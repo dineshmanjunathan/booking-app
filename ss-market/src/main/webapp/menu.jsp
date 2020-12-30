@@ -9,7 +9,7 @@
 <meta charset="ISO-8859-1">
 </head>
 <div class="col-md-10 col-md-offset-2 well row">
-	<h4>Member Management</h4>
+	<h4>Member Details</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 		<a href="/userlisting">
