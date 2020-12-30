@@ -134,7 +134,7 @@ public class MemberController {
 			userRepository.save(userEntity);
 			System.out.println("Name ::"+user.getName());
 			
-			model.addAttribute("registersuccess", "Member"+user.getId()+ "Registered Successfully ");
+			model.addAttribute("registersuccess", "Member "+user.getId()+ "Registered Successfully ");
 			
 			//model.addAttribute("userList", userList); 
 		} catch (Exception e) {
