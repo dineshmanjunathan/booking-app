@@ -1,12 +1,16 @@
 package com.ss.app.entity;
 
 import java.io.Serializable;
+import java.util.Random;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.ss.generator.DefaultMemberIDGenerator;
@@ -22,6 +26,8 @@ public class Member implements Serializable {
 			@org.hibernate.annotations.Parameter(name = "sequence_increment", value = DefaultMemberIDGenerator.defaultSsequenceIncrement) })
 	@GeneratedValue(generator = "memberid_generator")
 	private String id;
+	private String referencecode;
+	
 	private String name;
 	private String dob;
 	private String gender;
@@ -29,12 +35,8 @@ public class Member implements Serializable {
 	private String phonenumber;
 	private String password;
 	private String wallet;
+	
 
-	@GenericGenerator(name = "referencecode_generator", strategy = "com.ss.generator.DefaultReferenceCodeGenerator", parameters = {
-			@org.hibernate.annotations.Parameter(name = "sequence_prefix", value = DefaultReferenceCodeGenerator.defaultSsequencePrefix),
-			@org.hibernate.annotations.Parameter(name = "sequence_increment", value = DefaultReferenceCodeGenerator.defaultSsequenceIncrement) })
-	@GeneratedValue(generator = "referencecode_generator")
-	private String referencecode;
 
 	private String createon;
 	private String updatedon;
@@ -109,7 +111,11 @@ public class Member implements Serializable {
 	}
 
 	public void setReferencecode(String referencecode) {
-		this.referencecode = referencecode;
+		
+		Random random = new Random();
+		int randomWithNextInt = random.nextInt();
+
+		this.referencecode = "REF00"+Math.abs(randomWithNextInt);
 	}
 
 	public String getCreateon() {
