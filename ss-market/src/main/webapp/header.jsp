@@ -214,10 +214,9 @@
             cache: false,
             success: function (data) {
                 if(data) {
-                     $("#wallet").html(data);
-                } else {
-                	 $("#wallet").html(0);
-                }
+                     $("#walletWithdrawn").html(data.walletWithdrawn);
+                     $("#walletBalance").html(data.walletBalance);
+                     $("#totalEarned").html(data.walletWithdrawn + data.walletBalance);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
@@ -252,15 +251,29 @@
 								class="educate-icon educate-library icon-wrap sub-icon-mg"
 								aria-hidden="true"></span> <span class="mini-click-non">Contact Us</span></a></li>	 -->
 						<li>
-
-							<p style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">Wallet Balance</p>
+							<p style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">Total Earned</p>
 							<div class="col-md-9 col-md-offset-2 row">
 							<button style="font-size: 24px;color: black;background: #337ab7;">
-								<i class="fa fa-credit-card" id="wallet">0</i>
+								<i class="fa fa-credit-card" id="totalEarned">0</i>
 							</button>
 							</div>
 						</li>
-						<li><div class="row"></div></li>
+						<li>
+							<p style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">Balance</p>
+							<div class="col-md-9 col-md-offset-2 row">
+							<button style="font-size: 24px;color: black;background: #337ab7;">
+								<i class="fa fa-credit-card" id="walletBalance">0</i>
+							</button>
+							</div>
+						</li>
+						<li>
+							<p style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">Withdrawn</p>
+							<div class="col-md-9 col-md-offset-2 row">
+							<button style="font-size: 24px;color: black;background: #337ab7;">
+								<i class="fa fa-credit-card" id="walletWithdrawn">0</i>
+							</button>
+							</div>
+						</li>
 						<li>
 						<a title="" href="/userlisting" aria-expanded="false" style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">
 							Shopping site</a>

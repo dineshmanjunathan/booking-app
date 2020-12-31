@@ -6,14 +6,12 @@ import java.util.Random;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.ss.generator.DefaultMemberIDGenerator;
-import com.ss.generator.DefaultReferenceCodeGenerator;
 
 @Entity
 @Table(name = "t_member")
