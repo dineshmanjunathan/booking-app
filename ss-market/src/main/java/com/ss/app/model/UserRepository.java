@@ -19,7 +19,7 @@ public interface UserRepository extends CrudRepository<Member, Long>{
 	@Query(value="select walletBalance from t_member m where m.member_id=:id", nativeQuery=true)
 	Long getWalletBalance(String id);
 	
-	@Query(value="select referedby from t_member m where m.referedby=:id", nativeQuery=true)
+	@Query(value="select referencecode from t_member m where m.referencecode=:id", nativeQuery=true)
 	String checkSponserExists(String id);
 
 }

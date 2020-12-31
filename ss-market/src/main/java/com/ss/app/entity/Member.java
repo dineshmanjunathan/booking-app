@@ -25,14 +25,11 @@ public class Member implements Serializable {
 	private static final long serialVersionUID = -7187348510206952329L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
 	@GenericGenerator(name = "memberid_generator", strategy = "com.ss.generator.DefaultMemberIDGenerator", parameters = {
 			@org.hibernate.annotations.Parameter(name = "sequence_prefix", value = DefaultMemberIDGenerator.defaultSsequencePrefix),
 			@org.hibernate.annotations.Parameter(name = "sequence_increment", value = DefaultMemberIDGenerator.defaultSsequenceIncrement) })
 	@GeneratedValue(generator = "memberid_generator")
-	private String member_id;
+	private String id;
 	private String name;
 	private Date dob;
 	private String gender;
@@ -47,18 +44,13 @@ public class Member implements Serializable {
 	private Date updatedon = new Date(millis);
 	private String referedby;
 		
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public String getMember_id() {
-		return member_id;
-	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
+	
 	public String getName() {
 		return name;
 	}

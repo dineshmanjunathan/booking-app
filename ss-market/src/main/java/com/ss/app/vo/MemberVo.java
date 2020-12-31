@@ -4,8 +4,7 @@ import java.sql.Date;
 
 public class MemberVo {
 
-	private Long id;
-	private String member_id;
+	private String id;
 	private String name;
 	private Date dob;
 	private String gender;
@@ -18,17 +17,12 @@ public class MemberVo {
 	private Date createon;
 	private Date updatedon;
 	private String referedby;
-	public Long getId() {
+	
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
-	}
-	public String getMember_id() {
-		return member_id;
-	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
 	}
 	public String getName() {
 		return name;

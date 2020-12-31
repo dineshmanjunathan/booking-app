@@ -20,7 +20,8 @@
                      <div class="row">
                          <div class="col-md-12">
                              <div class="form-group">
-                                 <input type="text" placeholder="User Name" title="Please enter you username" required="Enter your Card Number" value="" name="admin_card_no" id="admin_card_no" class="form-control">
+                                 <input type="text" placeholder="SS************" title="Please enter you username" 
+                                 required="Enter your Card Number" value="" name="id" id="id" class="form-control">
                              </div>
                          </div>
                      </div>
@@ -35,7 +36,7 @@
                      	 <div class="col-md-3"></div>
                          <div class="col-md-6">
                               <button class="btn btn-success btn-block loginbtn" type="submit" name="submit" value="login">Login</button>
-                              <a class="btn btn-success btn-block loginbtn" href="/user.jsp">Register</a>
+                              <a class="btn btn-success btn-block loginbtn" href="/register">Register</a>
                               
                          </div>
                          <div class="col-md-3"></div>

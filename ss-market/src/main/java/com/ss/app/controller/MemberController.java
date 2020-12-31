@@ -66,8 +66,10 @@ public class MemberController {
 	} 
 	@RequestMapping("/register")
 	public String user(HttpServletRequest request,ModelMap model) {
-		Iterable<CountryCode> countryCodeList = countryCodeRepository.findAll();
-		model.addAttribute("countryCodeList", countryCodeList);
+		/*
+		 * Iterable<CountryCode> countryCodeList = countryCodeRepository.findAll();
+		 * model.addAttribute("countryCodeList", countryCodeList);
+		 */
 		return "user";
 	} 
 	@RequestMapping("/logout")
@@ -82,21 +84,14 @@ public class MemberController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String loginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
-			
-			request.getSession().setAttribute("LOGGED_ON", "true");
-			request.getSession().setAttribute("MEMBER_ID", user.getId());
-			return "menu";
-			/*User ab = userDao.findUser(user);  
-			if(ab != null) { 
-				request.getSession().setAttribute("USER", ab);
-				model.addAttribute("CURRENT_USER", ab);
-				request.getSession().setAttribute("USER_NAME", ab.getName());
-				return "home";   //menu 
+			Member member = userRepository.findById(user.getId()).get();
+			if(member!=null) {
+				request.getSession().setAttribute("LOGGED_ON", "true");
+				request.getSession().setAttribute("MEMBER_ID", user.getId());
 			} else {
-				model.addAttribute("errormsg","Username or Password is incorrect");
-				return "login";
-			}  */
-			
+				model.addAttribute("errormsg","User Id or Password is incorrect!");
+			}
+			return "menu";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
