@@ -8,7 +8,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -130,15 +131,22 @@ public class MemberController {
 	public String registerSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
 			Member userEntity=new Member();
-			BeanUtils.copyProperties(userEntity, user);
+			model.addAttribute("member", user);
+			BeanUtils.copyProperties(user, userEntity, "createon", "updatedon");
+			if(StringUtils.isNotEmpty(user.getReferedby())) {
+				String referedBy = userRepository.checkSponserExists(user.getReferedby());
+				if(StringUtils.isEmpty(referedBy)) {
+					model.addAttribute("errormsg", "Invalid Sponser Id.");
+					return "user";
+				}
+			}
 			userRepository.save(userEntity);
 			System.out.println("Name ::"+user.getName());
-			
-			model.addAttribute("registersuccess", "Member "+user.getId()+ "Registered Successfully ");
-			
-			//model.addAttribute("userList", userList); 
+			model.addAttribute("registersuccess", "Member Registered Successfully! ");
 		} catch (Exception e) {
 			e.printStackTrace();
+			model.addAttribute("errormsg", "Member Registered Failed! ");
+			return "user";
 		}
 		return "login";
 	}
@@ -291,10 +299,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/wallet/balance")
-	public ResponseEntity<Integer> loadWallet(@RequestParam("memberId") String memberId,HttpServletRequest request,ModelMap model) { 
-		Integer balance = userRepository.getWalletBalance(memberId);
-		model.addAttribute("balance", balance);  
-		return new ResponseEntity(balance, HttpStatus.OK);
+	public ResponseEntity<Member> loadWallet(@RequestParam("memberId") String memberId,HttpServletRequest request,ModelMap model) { 
+		Member member = userRepository.findById(memberId).get();
+		model.addAttribute("balance", member.getWalletBalance());
+		model.addAttribute("withdrawn", member.getWalletWithdrawn()); 
+		model.addAttribute("totalEarned", member.getWalletBalance() + member.getWalletWithdrawn()); 
+		return new ResponseEntity(member, HttpStatus.OK);
 	}
 	
 	

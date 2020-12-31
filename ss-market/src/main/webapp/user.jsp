@@ -39,33 +39,37 @@
 												<c:url var="action" value="/register" />
 											</c:otherwise>
 										</c:choose>
-										<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
+										<form action="${action}" method="post"
+											onsubmit="return ValidateForm(this);">
+											<p style="color: red" align="center">${errormsg}</p>
 											<input type="hidden" name="id" id="id" value="${member.id}">
 											<div id="dropzone1" class="pro-ad">
 
 												<p style="color: green" align="center">${successMessage}</p>
 												<p style="color: red" align="center">${deletesuccessmessage}</p>
 												<script type="text/javascript">
-															function ValidateForm(frm) {
-																if (frm.password1.value != frm.password2.value) {
-																	alert('Passwords do not match');
-																	frm.password1.focus();
-																	return false;
-																	} 
-																if (frm.mobile.value.length!=10){
-																	alert('Required 10 digits, match requested format!');
-																	frm.mobile.focus();
-																	return false;
-																	}
-																
-																} 
-															</script>
+													function ValidateForm(frm) {
+														if (frm.password1.value != frm.password2.value) {
+															alert('Passwords do not match');
+															frm.password1
+																	.focus();
+															return false;
+														}
+														if (frm.mobile.value.length != 10) {
+															alert('Required 10 digits, match requested format!');
+															frm.mobile.focus();
+															return false;
+														}
+
+													}
+												</script>
 												<div class="well row">
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
 														<div class="form-group"></div>
 														<div class="form-group">
 															<input name="name" type="text" class="form-control"
-																placeholder="Member Name" value="${member.name}" required>
+																placeholder="Member Name" value="${member.name}"
+																required>
 														</div>
 
 														<div class="form-group">
@@ -73,21 +77,24 @@
 																placeholder="Email" value="${member.email}" required>
 														</div>
 														<div class="form-group">
-															<input name="phonenumber" type="text" class="form-control"
-																placeholder="Phone Number" value="${member.phonenumber}" required>
+															<input name="phonenumber" type="text"
+																class="form-control" placeholder="Phone Number"
+																value="${member.phonenumber}" required>
 														</div>
 														<div class="form-group">
-															<input name="password" type="text" class="form-control"
-																placeholder="Password" value="${member.password}" required>
+															<input name="password" type="password" class="form-control"
+																placeholder="Password" value="${member.password}"
+																required>
 														</div>
-														</div>
-														<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
+													</div>
+													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
 														<div class="form-group">
 															<label>Date of Birth:</label> <input name="dob"
 																type="date" class="form-control"
-																placeholder="Date of Birth" value="${member.dob}" required>
+																placeholder="Date of Birth" value="${member.dob}"
+																required>
 														</div>
-														
+
 														<div class="form-group">
 															<label>Gender :</label> <input name="gender"
 																class=" required " id="gender" type="radio" value="Male"
@@ -97,8 +104,9 @@
 																${member.gender eq 'Female' ?'Checked':''}>Female
 														</div>
 														<div class="form-group">
-															<input name="referedby" type="numeric" class="form-control"
-																placeholder="Refered By" value="${member.referedby}" required>
+															<input name="referedby" type="numeric"
+																class="form-control" placeholder="Sponser Id"
+																value="${member.referedby}" >
 														</div>
 													</div>
 
