@@ -3,12 +3,15 @@ package com.ss.app.controller;
 
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeanUtils;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -112,14 +115,27 @@ public class MemberController {
 	@RequestMapping(value="/member/tree",method=RequestMethod.GET)
 	public String memberTree(HttpServletRequest request,ModelMap model) {
 		try {
-			/*
-			 * Iterable<UserMaster> userList = userRepository.findAll();
-			 * model.addAttribute("userList", userList);
-			 */
+			Map<String, List<String>> tree = new HashedMap();
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			Member member = userRepository.findById(memberId).get();
+			recursionTree(tree, member.getReferencecode(), memberId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "memberTree";
+	}
+	
+	private List<String> recursionTree(Map<String, List<String>> tree, String basekeyCode, String memberId) {
+		List<Member> child= userRepository.findByReferedby(basekeyCode);
+		List<String> c = new ArrayList<>();
+		for(Member mem : child) {
+			c.add(mem.getId());
+		}
+		tree.put(memberId, c);
+		for(String keycode : c) {
+			recursionTree(tree, keycode, memberId);
+		}
+		return c;
 	}
 
 	@RequestMapping(value="/register",method=RequestMethod.POST)
@@ -151,7 +167,7 @@ public class MemberController {
 		try {
 			Member user = userRepository.findById(userId).get();
 			MemberVo MemberVo=new MemberVo();
-			BeanUtils.copyProperties(MemberVo, user);
+			BeanUtils.copyProperties(user, MemberVo);
 			model.addAttribute("user", MemberVo); 
 			Iterable<CountryCode> countryCodeList = countryCodeRepository.findAll();
 			model.addAttribute("countryCodeList", countryCodeList);
@@ -299,7 +315,7 @@ public class MemberController {
 		model.addAttribute("balance", member.getWalletBalance());
 		model.addAttribute("withdrawn", member.getWalletWithdrawn()); 
 		model.addAttribute("totalEarned", member.getWalletBalance() + member.getWalletWithdrawn()); 
-		return new ResponseEntity(member, HttpStatus.OK);
+		return new ResponseEntity<Member>(member, HttpStatus.OK);
 	}
 	
 	

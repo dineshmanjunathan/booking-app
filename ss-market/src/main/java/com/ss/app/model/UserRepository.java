@@ -1,6 +1,7 @@
 package com.ss.app.model;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
@@ -16,8 +17,7 @@ public interface UserRepository extends CrudRepository<Member, Long>{
 	
 	Optional<Member> findById(String id);
 	
-	@Query(value="select walletBalance from t_member m where m.member_id=:id", nativeQuery=true)
-	Long getWalletBalance(String id);
+	List<Member> findByReferedby(String id);
 	
 	@Query(value="select referencecode from t_member m where m.referencecode=:id", nativeQuery=true)
 	String checkSponserExists(String id);

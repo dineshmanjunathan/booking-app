@@ -342,7 +342,7 @@
 						<a href="#" data-toggle="dropdown" role="button"
 							aria-expanded="false" class="nav-link dropdown-toggle"> <span
 							class="admin-name">Logged In as -
-								&nbsp;${sessionScope.USER_NAME}</span> <i
+								&nbsp;${sessionScope.MEMBER_ID}</span> <i
 							class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 						</a>
 						<ul role="menu"
