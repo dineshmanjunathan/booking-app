@@ -10,9 +10,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.BeanUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -91,12 +91,33 @@ public class MemberController {
 			if(member!=null) {
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
+				request.getSession().setAttribute("MEMBER_NAME", member.getName());
+				return "menu";
 			} else {
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
 			}
-			return "menu";
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return "login";
+	}
+	
+	@RequestMapping(value="/wallet",method=RequestMethod.GET)
+	public String getWalletBalance(HttpServletRequest request,ModelMap model) {
+		try {
+			String userId=(String) request.getSession().getAttribute("MEMBER_ID");
+			
+			Member member = userRepository.findById(userId).get();
+			if(member!=null && member.getId()!=null) {
+				
+				member.setTotalbalance(member.getWalletBalance()+member.getWalletWithdrawn());
+				model.addAttribute("userwallet", member);
+				return "wallet";
+			}else {
+				model.addAttribute("errormsg","Try again sometime");
+			}
+		} catch (Exception e) {
+			//e.printStackTrace();
 		}
 		return "login";
 	}

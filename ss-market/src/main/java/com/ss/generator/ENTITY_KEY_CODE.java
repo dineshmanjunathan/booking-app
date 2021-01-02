@@ -10,4 +10,5 @@ public interface ENTITY_KEY_CODE {
 	
 	String KEY_MEMBER_ID="SS";
 	String KEY_REFERED_ID="REF";
+	String KEY_COUNTRY_CODE="CC";
 }

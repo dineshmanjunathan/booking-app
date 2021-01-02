@@ -198,7 +198,7 @@
 }
 </style>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function() {
 		history.pushState(null, null, location.href);
 		window.onpopstate = function() {
@@ -225,7 +225,7 @@
 	});
 
 
-</script>
+</script> -->
 </head>
 
 <!-- Start Left menu area -->
@@ -247,39 +247,18 @@
 								<a aria-expanded="false"><br /> <b>Lookup</b></a>
 							</center>
 						</li>
-						<!-- <li><a title="" href="/userlisting" aria-expanded="false"><span
-								class="educate-icon educate-library icon-wrap sub-icon-mg"
-								aria-hidden="true"></span> <span class="mini-click-non">Contact Us</span></a></li>	 -->
+						<br>
 						<li>
-							<p style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">Total Earned</p>
-							<div class="col-md-9 col-md-offset-2 row">
-							<button style="font-size: 24px;color: black;background: #337ab7;">
-								<i class="fa fa-credit-card" id="totalEarned">0</i>
-							</button>
-							</div>
+						<a title="" href="/wallet" aria-expanded="false" style="background: #337ab7;color: white;padding: 5px 5px 5px 30px;">
+							My Wallet</a>
 						</li>
-						<li>
-							<p style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">Balance</p>
-							<div class="col-md-9 col-md-offset-2 row">
-							<button style="font-size: 24px;color: black;background: #337ab7;">
-								<i class="fa fa-credit-card" id="walletBalance">0</i>
-							</button>
-							</div>
-						</li>
-						<li>
-							<p style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">Withdrawn</p>
-							<div class="col-md-9 col-md-offset-2 row">
-							<button style="font-size: 24px;color: black;background: #337ab7;">
-								<i class="fa fa-credit-card" id="walletWithdrawn">0</i>
-							</button>
-							</div>
-						</li>
-						<li>
-						<a title="" href="/userlisting" aria-expanded="false" style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">
+						<br>
+						<a title="" href="/userlisting" aria-expanded="false" style="background: #337ab7;color: white;padding: 5px 5px 5px 30px;">
 							Shopping site</a>
 						</li>
+						<br>
 						<li>
-						<a title="" href="/userlisting" aria-expanded="false" style="background: #337ab7;color: black;padding: 5px 5px 5px 30px;">
+						<a title="" href="/userlisting" aria-expanded="false" style="background: #337ab7;color: white;padding: 5px 5px 5px 30px;">
 							Contact Us</a>
 						</li>
 					</ul>
@@ -342,7 +321,7 @@
 						<a href="#" data-toggle="dropdown" role="button"
 							aria-expanded="false" class="nav-link dropdown-toggle"> <span
 							class="admin-name">Logged In as -
-								&nbsp;${sessionScope.MEMBER_ID}</span> <i
+								&nbsp;${sessionScope.MEMBER_NAME}</span> <i
 							class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 						</a>
 						<ul role="menu"

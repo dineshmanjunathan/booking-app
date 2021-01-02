@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -41,6 +42,9 @@ public class Member implements Serializable {
 	private Date createon = new Date(millis);
 	private Date updatedon = new Date(millis);
 	private String referedby;
+	
+	@Transient
+	private Long totalbalance= 0L;
 		
 	public String getId() {
 		return id;
@@ -124,6 +128,11 @@ public class Member implements Serializable {
 		this.walletWithdrawn = walletWithdrawn;
 	}
 
-	
+	public Long getTotalbalance() {
+		return totalbalance;
+	}
+	public void setTotalbalance(Long totalbalance) {
+		this.totalbalance = totalbalance;
+	}
 
 }

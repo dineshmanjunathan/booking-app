@@ -1,26 +1,31 @@
 package com.ss.app.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.ss.generator.DefaultCountryCodeGenerator;
 
 @Entity
 @Table(name = "t_country_code")
 public class CountryCode {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@GenericGenerator(name = "country_code_generator", strategy = "com.ss.generator.DefaultCountryCodeGenerator", parameters = {
+			@org.hibernate.annotations.Parameter(name = "sequence_prefix", value = DefaultCountryCodeGenerator.defaultSsequencePrefix),
+			@org.hibernate.annotations.Parameter(name = "sequence_increment", value = DefaultCountryCodeGenerator.defaultSsequenceIncrement) })
+	@GeneratedValue(generator = "country_code_generator")
+	private String id;
 	private String countryCode;
 	private String countryDesc;
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getCountryCode() {
