@@ -9,13 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "hibernate_sequence")
-public class HibernateSequence implements Serializable {
+public class HibernateSequence  {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7187348510206952329L;
-
 	@Id
 	private int id;
 	@Column(name="prefix_value")
@@ -23,6 +18,19 @@ public class HibernateSequence implements Serializable {
 	@Column(name="next_val")
 	private int nextval;
 	private int increment;
+	
+	
+    public HibernateSequence(int id, String prefixvalue, int nextval, int increment) {  
+        super();  
+        this.id = id;  
+        this.prefixvalue = prefixvalue;  
+        this.nextval = nextval;
+        this.increment = increment;  
+    }  
+    public HibernateSequence() {  
+        super();  
+    }  
+	
 	public int getId() {
 		return id;
 	}
