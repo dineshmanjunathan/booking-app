@@ -1,7 +1,5 @@
 package com.ss.app.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,10 +10,12 @@ import javax.persistence.Table;
 public class HibernateSequence  {
 	
 	@Id
+	@Column(name="id",updatable = false)
+
 	private int id;
 	@Column(name="prefix_value")
 	private String prefixvalue;
-	@Column(name="next_val")
+	@Column(name="next_val",updatable = false)
 	private int nextval;
 	private int increment;
 	
