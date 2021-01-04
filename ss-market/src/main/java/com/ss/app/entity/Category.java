@@ -16,7 +16,7 @@ public class Category {
 	private Long id;
 	@Column(unique=true)
 	private String code;
-	private String desc;
+	private String description;
 	
 	public Long getId() {
 		return id;
@@ -30,12 +30,14 @@ public class Category {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
+	
+	
 	
 	
 	

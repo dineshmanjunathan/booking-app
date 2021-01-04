@@ -77,10 +77,20 @@ $(document).ready(function(){
 															<div class="form-group">
 															</div>
 															<div class="form-group">
+															<select name="category" id="category"
+																class="form-control">
+																<option value="">-Select Category-</option>
+																<c:forEach var="options" items="${categoryList}"
+																	varStatus="status">
+																	<option value="${options.prodCode}">${options.prodDesc}</option>
+																</c:forEach>
+															</select>
+														</div>
+															<div class="form-group">
 															<select name="product" id="product"
 																class="form-control">
 																<option value="">-Select Product-</option>
-																<c:forEach var="options" items="${categoryList}"
+																<c:forEach var="options" items="${productList}"
 																	varStatus="status">
 																	<option value="${options.prodCode}">${options.prodDesc}</option>
 																</c:forEach>
