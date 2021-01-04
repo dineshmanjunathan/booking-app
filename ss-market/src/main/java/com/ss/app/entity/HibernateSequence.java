@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "hibernate_sequence")
+@Table(name = "ss_id_generator")
 public class HibernateSequence  {
 	
 	@Id

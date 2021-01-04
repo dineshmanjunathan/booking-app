@@ -42,8 +42,8 @@
 									
 										<div class="well row">
 										
-								<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
-									  <div class="col-md-10">
+								<div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-info">
 									        <div class="thumbnail">
@@ -51,9 +51,10 @@
 									            <!-- <div class="position-relative">
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
-									            <h4 id="thumbnail-label">Total Points</h4>
-									            <div class="thumbnail-description smaller">${userwallet.totalbalance}</div>
-									            <br><br>
+									            <h4 id="thumbnail-label" style="text-decoration: underline;">TOTAL POINTS</h4>
+									             <br>
+									            <h2>${userwallet.totalbalance}</h2>
+									            <br>
 									          </div>
 									        </div>
 									      </div>
@@ -61,10 +62,8 @@
 									  </div>
 									</div>
 
-
-
-										<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
-									  <div class="col-md-10">
+										<div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-warning">
 									        <div class="thumbnail">
@@ -72,9 +71,10 @@
 									           <!--  <div class="position-relative">
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
-									            <h4 id="thumbnail-label">WithDrawn Points</h4>
-									            <div class="thumbnail-description smaller">${userwallet.walletWithdrawn}</div>
-									            <br><br>
+									            <h4 id="thumbnail-label" style="text-decoration: underline;">WITHDRAWN POINTS</h4>
+									             <br>
+									            <h1>${userwallet.walletWithdrawn}</h1>
+									            <br>
 									          </div>
 									        </div>
 									      </div>
@@ -84,12 +84,12 @@
 										
 									
 									
-									</div>
-									<div class="well row">
+									<!-- </div>
+									<div class="well row"> -->
 									
 									
-									<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
-									  <div class="col-md-10">
+									<div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-success">
 									        <div class="thumbnail">
@@ -97,11 +97,9 @@
 									            <!-- <div class="position-relative">
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
-									            <h4 id="thumbnail-label">Available Points</h4>
-									            <div class="thumbnail-description smaller">${userwallet.walletBalance}</div>
-									            <br>
-									            <button class="btn btn-link"
-															type="submit" name="submit" value="register">(Click here to add Re purchase points)</button>
+									            <h4 id="thumbnail-label" style="text-decoration: underline;">AVAILABLE POINTS</h4>
+									            <h2>${userwallet.walletBalance}</h2>
+									            <button class="btn btn-link" type="submit" name="submit" value="register">(ADD POINTS TO RE-PURCHASE)</button>
 									          </div>
 									        </div>
 									      </div>
@@ -109,8 +107,8 @@
 									  </div>
 									</div>
 									
-									<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
-									  <div class="col-md-10">
+									<div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-danger">
 									        <div class="thumbnail">
@@ -118,9 +116,10 @@
 									            <!-- <div class="position-relative">
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
-									            <h4 id="thumbnail-label">Re purchase Points</h4>
-									            <div class="thumbnail-description smaller">${userwallet.repurcahse}</div>
-									            <br><br>
+									            <h4 id="thumbnail-label" style="text-decoration: underline;">RE PURCHASE POINTS</h4>
+									            <br>
+									            <h2>${userwallet.repurcahse}</h2>
+												<br>
 									          </div>
 									        </div>
 									      </div>

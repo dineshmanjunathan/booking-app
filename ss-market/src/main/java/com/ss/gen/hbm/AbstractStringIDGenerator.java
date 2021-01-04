@@ -37,7 +37,7 @@ public abstract class AbstractStringIDGenerator implements IdentifierGenerator ,
 	public static final String SEQUENCE_PREFIX = "sequence_prefix";
 	public static final String SEQUENCE_PREFIX_INCREMENT = "sequence_increment";
 		
-    public final String DEFAULT_SEQUENCE_NAME = "hibernate_sequence";
+    public final String DEFAULT_SEQUENCE_NAME = "ss_id_generator";
     private final String BLANK_SPACE=" ";
 	public String sequencePrefix_seperator=ENTITY_KEY_CODE.SEQUENCE_PREFIX_SEPERATOR;
 	public String globalDefaultEntityIdentifierPrefix="SYS";
