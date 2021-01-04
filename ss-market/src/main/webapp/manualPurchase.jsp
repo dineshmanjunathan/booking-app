@@ -40,7 +40,7 @@ $(document).ready(function(){
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="product-payment-inner-st">
 						<ul id="myTabedu1" class="tab-review-design">
-							<li class="active"><a href="">Country Code Registration</a></li>
+							<li class="active"><a href="">Manual purchase entry</a></li>
 						</ul>
 						<!-- <form action="/userlisting" method="get"> -->
 							<div class="payment-adress">

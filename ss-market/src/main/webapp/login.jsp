@@ -28,7 +28,8 @@
 					<div class="row">
                          <div class="col-md-12">
                              <div class="form-group">
-                                 <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password1" id="password-field" class="form-control">
+                                 <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password-field" class="form-control"
+                                 required>
                              </div>
                          </div>
                      </div> 

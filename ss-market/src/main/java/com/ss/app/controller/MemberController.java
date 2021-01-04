@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.ss.app.dao.UserDao;
 import com.ss.app.entity.CountryCode;
 import com.ss.app.entity.Member;
@@ -92,18 +93,21 @@ public class MemberController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String loginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
-			/*Member member = userRepository.findById(user.getId()).get();
+			Member member = userRepository.findById(user.getId()).get();
 			if(member!=null) {
+				if(!user.getPassword().equals(member.getPassword())) {
+					model.addAttribute("errormsg","Password is incorrect!");
+					return "login";
+				}
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
 				request.getSession().setAttribute("MEMBER_NAME", member.getName());
 				return "menu";
 			} else {
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
-			}*/
-			return "menu";
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			model.addAttribute("errormsg","Member does not Exists!");
 		}
 		return "login";
 	}
@@ -160,13 +164,18 @@ public class MemberController {
 	@RequestMapping(value="/member/tree",method=RequestMethod.GET)
 	public String memberTree(HttpServletRequest request,ModelMap model) {
 		try {
-			MemberTree tree = new MemberTree();
+			List<MemberTree> treeList = new ArrayList<>();
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 			Member member = userRepository.findById(memberId).get();
+			MemberTree tree = new MemberTree();
 			tree.setId(memberId);
 			tree.setParent("#");
 			tree.setText(memberId);	
-			recursionTree(tree, member.getReferencecode(), memberId);
+			treeList.add(tree);
+			findTree(member.getReferencecode(), memberId, treeList);
+			String json = new Gson().toJson(treeList);
+			System.out.println(json);
+			model.addAttribute("JSON_TREE", json);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -183,13 +192,24 @@ public class MemberController {
 			subTree.setId(mem.getId());
 			subTree.setParent(memberId);
 			subTree.setText(mem.getId());
-			c.add(mem.getReferencecode());
+			recursionTree(subTree, mem.getReferencecode(), mem.getId());
 			subTreeList.add(subTree);
 		}
-		for(String keycode : c) {
-			recursionTree(tree, keycode, memberId);
-		}
+		//tree.setChildren(subTreeList);
 		return c;
+	}
+	
+	private void findTree(String basekeyCode, String memberId, List<MemberTree> treeList) {
+		List<Member> child= userRepository.findByReferedby(basekeyCode);
+		MemberTree subTree = null;
+		for(Member mem : child) {
+			subTree = new MemberTree();
+			subTree.setId(mem.getId());
+			subTree.setParent(memberId);
+			subTree.setText(mem.getId() + "("+mem.getName()+")");
+			treeList.add(subTree);
+			findTree(mem.getReferencecode(), mem.getId(), treeList);
+		}
 	}
 
 	@RequestMapping(value="/register",method=RequestMethod.POST)

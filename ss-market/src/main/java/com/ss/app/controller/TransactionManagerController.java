@@ -11,7 +11,7 @@ public class TransactionManagerController {
 	
 	@RequestMapping("/manual/purchase")
 	public String login(HttpServletRequest request,ModelMap model) {
-		return "login";
+		return "manualPurchase";
 	} 
 
 }

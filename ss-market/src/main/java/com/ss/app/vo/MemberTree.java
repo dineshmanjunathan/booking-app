@@ -9,8 +9,6 @@ public class MemberTree {
 	private String parent;
 	private String text;
 	
-	private List<MemberTree> children = new ArrayList<MemberTree>();
-
 	public String getId() {
 		return id;
 	}
@@ -35,13 +33,12 @@ public class MemberTree {
 		this.text = text;
 	}
 
-	public List<MemberTree> getChildren() {
-		return children;
-	}
 
-	public void setChildren(List<MemberTree> children) {
-		this.children = children;
+	@Override
+	public String toString() {
+		return "MemberTree [id=" + id + ", parent=" + parent + ", text=" + text + "]";
 	}
+	
 	
 	
 
