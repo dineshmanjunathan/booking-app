@@ -331,8 +331,11 @@
 						</ul>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/login"><span
-								class="edu-icon edu-locked author-log-ic"></span>Login</a>
+						<li><a href="/login" style="border: 3px solid;"><span
+								class="edu-icon edu-locked author-log-ic"></span>Member Login</a>
+							</li>
+							<li><a href="/stock/point/login" style="border: 3px solid;"><span
+								class="edu-icon edu-locked author-log-ic"></span>Stock Point Login</a>
 							</li>
 
 					</c:otherwise>
@@ -342,7 +345,7 @@
 </nav>
 
 <div class="footer">
-	<p>© 2020 Copyright: SS Marketing</p>
+	<p>© 2021 Copyright: SS Marketing</p>
 </div>
 
 </html>

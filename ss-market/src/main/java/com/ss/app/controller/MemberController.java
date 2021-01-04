@@ -112,11 +112,15 @@ public class MemberController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/stoct/point/login",method=RequestMethod.POST)
+	@RequestMapping(value="/stock/point/login",method=RequestMethod.POST)
 	public String stockPointLoginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
 			Member member = userRepository.findById(user.getId()).get();
 			if(member!=null) {
+				if(!user.getPassword().equals(member.getPassword())) {
+					model.addAttribute("errormsg","Password is incorrect!");
+					return "stockPointLogin";
+				}
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
 				request.getSession().setAttribute("MEMBER_NAME", member.getName());
@@ -125,7 +129,7 @@ public class MemberController {
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			model.addAttribute("errormsg","Member does not Exists!");
 		}
 		return "stockPointLogin";
 	}
