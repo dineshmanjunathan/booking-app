@@ -21,7 +21,7 @@
 						<a
 							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
 							href="/login.jsp" type="submit" name="submit"
-							value="adminListing">Back to Main</a>
+							value="adminListing">Back to Login</a>
 					</div>
 					<!-- </form> -->
 
