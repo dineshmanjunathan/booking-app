@@ -5,12 +5,10 @@ import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,7 @@ import com.ss.app.entity.Member;
 import com.ss.app.model.CountryCodeRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CountryCodeVo;
+import com.ss.app.vo.MemberTree;
 import com.ss.app.vo.MemberVo;
 import com.ss.utils.ReportGenerator;
 
@@ -51,10 +50,16 @@ public class MemberController {
 	public String login(HttpServletRequest request,ModelMap model) {
 		return "login";
 	} 
+	
 	@RequestMapping("/login")
 	public String inlogin(HttpServletRequest request,ModelMap model) {
 		return "login";
 	} 
+	
+	@RequestMapping("/stock/point/login")
+	public String stockPoint(HttpServletRequest request,ModelMap model) {
+		return "stockPointLogin";
+	}
 
 	@RequestMapping("/menu")
 	public String menu(HttpServletRequest request,ModelMap model) {
@@ -87,7 +92,7 @@ public class MemberController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String loginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
-			Member member = userRepository.findById(user.getId()).get();
+			/*Member member = userRepository.findById(user.getId()).get();
 			if(member!=null) {
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
@@ -95,11 +100,30 @@ public class MemberController {
 				return "menu";
 			} else {
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
-			}
+			}*/
+			return "menu";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "login";
+	}
+	
+	@RequestMapping(value="/stoct/point/login",method=RequestMethod.POST)
+	public String stockPointLoginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
+		try {
+			Member member = userRepository.findById(user.getId()).get();
+			if(member!=null) {
+				request.getSession().setAttribute("LOGGED_ON", "true");
+				request.getSession().setAttribute("MEMBER_ID", user.getId());
+				request.getSession().setAttribute("MEMBER_NAME", member.getName());
+				return "adminMenu";
+			} else {
+				model.addAttribute("errormsg","User Id or Password is incorrect!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "stockPointLogin";
 	}
 	
 	@RequestMapping(value="/wallet",method=RequestMethod.GET)
@@ -136,9 +160,12 @@ public class MemberController {
 	@RequestMapping(value="/member/tree",method=RequestMethod.GET)
 	public String memberTree(HttpServletRequest request,ModelMap model) {
 		try {
-			Map<String, List<String>> tree = new HashedMap();
+			MemberTree tree = new MemberTree();
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 			Member member = userRepository.findById(memberId).get();
+			tree.setId(memberId);
+			tree.setParent("#");
+			tree.setText(memberId);	
 			recursionTree(tree, member.getReferencecode(), memberId);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,13 +173,19 @@ public class MemberController {
 		return "memberTree";
 	}
 	
-	private List<String> recursionTree(Map<String, List<String>> tree, String basekeyCode, String memberId) {
+	private List<String> recursionTree(MemberTree tree, String basekeyCode, String memberId) {
 		List<Member> child= userRepository.findByReferedby(basekeyCode);
 		List<String> c = new ArrayList<>();
+		List<MemberTree> subTreeList = new ArrayList<>();
+		MemberTree subTree = null;
 		for(Member mem : child) {
-			c.add(mem.getId());
+			subTree = new MemberTree();
+			subTree.setId(mem.getId());
+			subTree.setParent(memberId);
+			subTree.setText(mem.getId());
+			c.add(mem.getReferencecode());
+			subTreeList.add(subTree);
 		}
-		tree.put(memberId, c);
 		for(String keycode : c) {
 			recursionTree(tree, keycode, memberId);
 		}

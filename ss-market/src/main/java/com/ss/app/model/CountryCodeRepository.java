@@ -9,6 +9,6 @@ import com.ss.app.entity.CountryCode;
 @Service
 public interface CountryCodeRepository extends CrudRepository<CountryCode, Long>{
 	
-	void deleteById(String userId);
+	//void deleteById(String userId);
 
 }

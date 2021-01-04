@@ -332,7 +332,13 @@
 					</c:when>
 					<c:otherwise>
 						<li><a href="/login"><span
-								class="edu-icon edu-locked author-log-ic"></span>Login</a></li>
+								class="edu-icon edu-locked author-log-ic"></span>Login</a>
+							<ul role="menu"
+								class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+								<li><a href="/stock/point/login"><span
+										class="edu-icon edu-locked author-log-ic"></span>Stock point Login</a></li>
+							</ul></li>
+
 					</c:otherwise>
 				</c:choose></li>
 		</ul>
