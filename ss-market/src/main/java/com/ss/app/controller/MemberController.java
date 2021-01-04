@@ -124,7 +124,7 @@ public class MemberController {
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
 				request.getSession().setAttribute("MEMBER_NAME", member.getName());
-				return "adminMenu";
+				return "stockPointMenu";
 			} else {
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
 			}

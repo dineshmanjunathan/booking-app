@@ -248,19 +248,18 @@
 							</center>
 						</li>
 						<br>
-						<li>
-						<a title="" href="/wallet" aria-expanded="false" style="background: #337ab7;color: white;padding: 5px 5px 5px 30px;">
-							My Wallet</a>
-						</li>
+						<li><a title="" href="/wallet" aria-expanded="false"
+							style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								My Wallet</a></li>
 						<br>
-						<a title="" href="/userlisting" aria-expanded="false" style="background: #337ab7;color: white;padding: 5px 5px 5px 30px;">
+						<a title="" href="/userlisting" aria-expanded="false"
+							style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
 							Shopping site</a>
 						</li>
 						<br>
-						<li>
-						<a title="" href="/userlisting" aria-expanded="false" style="background: #337ab7;color: white;padding: 5px 5px 5px 30px;">
-							Contact Us</a>
-						</li>
+						<li><a title="" href="/userlisting" aria-expanded="false"
+							style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								Contact Us</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -315,7 +314,7 @@
 <nav class="navbar navbar-dark bg-primary">
 
 	<div class="header-right-info">
-		<ul class="nav navbar-nav mai-top-nav header-right-menu">
+		<ul class="nav navbar-nav mai-top-nav header-right-menu" style="padding: 20px 60px;">
 			<li class="nav-item"><c:choose>
 					<c:when test="${ not empty sessionScope.LOGGED_ON}">
 						<a href="#" data-toggle="dropdown" role="button"
@@ -331,12 +330,21 @@
 						</ul>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/login" style="border: 3px solid;"><span
-								class="edu-icon edu-locked author-log-ic"></span>Member Login</a>
-							</li>
-							<li><a href="/stock/point/login" style="border: 3px solid;"><span
-								class="edu-icon edu-locked author-log-ic"></span>Stock Point Login</a>
-							</li>
+						<a href="#" data-toggle="dropdown" role="button"
+							aria-expanded="false" class="nav-link dropdown-toggle"> <span
+							class="admin-name">Login as</span> <i
+							class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+						</a>
+						<ul role="menu" style="width: 100px"
+							class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+							<li><a href="/login" ><span
+									class="edu-icon edu-locked author-log-ic"></span>Member</a></li>
+							<li><a href="/stock/point/login"><span
+									class="edu-icon edu-locked author-log-ic"></span>Stock Point</a></li>
+							<li><a href="/admin/login"><span
+									class="edu-icon edu-locked author-log-ic"></span>Admin</a></li>
+						</ul>
+
 
 					</c:otherwise>
 				</c:choose></li>
