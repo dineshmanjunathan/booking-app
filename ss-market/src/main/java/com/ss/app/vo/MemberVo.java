@@ -17,6 +17,7 @@ public class MemberVo {
 	private Date createon;
 	private Date updatedon;
 	private String referedby;
+	private Long repurcahse= 0L;
 	
 	public String getId() {
 		return id;
@@ -95,6 +96,12 @@ public class MemberVo {
 	}
 	public void setReferedby(String referedby) {
 		this.referedby = referedby;
+	}
+	public Long getRepurcahse() {
+		return repurcahse;
+	}
+	public void setRepurcahse(Long repurcahse) {
+		this.repurcahse = repurcahse;
 	}
 	
 	

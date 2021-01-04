@@ -12,7 +12,7 @@
 	<h4>Member Details</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/userlisting">
+		<a href="<c:url value='/user/edit' />">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
 					<h5>Manage Member</h5>

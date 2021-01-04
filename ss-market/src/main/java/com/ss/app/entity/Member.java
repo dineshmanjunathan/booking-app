@@ -38,6 +38,7 @@ public class Member implements Serializable {
 	private String password;
 	private Long walletBalance = 0L;
 	private Long walletWithdrawn= 0L;
+	private Long repurcahse= 0L;
 	private String referencecode;
 	long millis=System.currentTimeMillis();  
 	private Date createon = new Date(millis);
@@ -134,6 +135,12 @@ public class Member implements Serializable {
 	}
 	public void setTotalbalance(Long totalbalance) {
 		this.totalbalance = totalbalance;
+	}
+	public Long getRepurcahse() {
+		return repurcahse;
+	}
+	public void setRepurcahse(Long repurcahse) {
+		this.repurcahse = repurcahse;
 	}
 
 }

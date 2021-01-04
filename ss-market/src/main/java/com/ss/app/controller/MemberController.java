@@ -153,6 +153,41 @@ public class MemberController {
 		}
 		return "login";
 	}
+	
+	@RequestMapping(value="/wallet/rePurchase",method=RequestMethod.POST)
+	public String redirectToRePurcahse(HttpServletRequest request,MemberVo user,ModelMap model) { 
+		Member userEntity=new Member();
+		try {
+
+			BeanUtils.copyProperties(user,userEntity);
+			model.addAttribute("member", userEntity); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "rePurchase";
+	}
+	
+	@RequestMapping(value="updateRePurchase",method=RequestMethod.POST)
+	public String updateToRePurcahse(HttpServletRequest request,MemberVo user,ModelMap model) { 
+		try {
+			
+			String userId=(String) request.getSession().getAttribute("MEMBER_ID");
+			Member member = userRepository.findById(userId).get();
+			
+			member.setRepurcahse(user.getRepurcahse());
+			member.setWalletBalance(member.getWalletBalance()-user.getRepurcahse());
+			member = userRepository.save(member);
+			
+			member.setTotalbalance(member.getWalletBalance()+member.getWalletWithdrawn()+member.getRepurcahse());
+			model.addAttribute("userwallet", member); 
+			
+			model.addAttribute("successMessage","Points successfully added to Re Purchase!"); 
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errormsg", "Failed to add points in  Re Purchase!");
+		}
+		return "wallet";
+	}
 
 	@RequestMapping(value="/userlisting",method=RequestMethod.GET)
 	public String adminListingSubmit(HttpServletRequest request,ModelMap model) {
@@ -241,18 +276,20 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/user/edit",method=RequestMethod.GET)
-	public String edit(@RequestParam("user_id")String userId,HttpServletRequest request,ModelMap model) { 
+	public String edit(HttpServletRequest request,ModelMap model) { 
 		try {
+			String userId=request.getSession().getAttribute("MEMBER_ID").toString();
+
 			Member user = userRepository.findById(userId).get();
-			MemberVo MemberVo=new MemberVo();
-			BeanUtils.copyProperties(user, MemberVo);
-			model.addAttribute("user", MemberVo); 
-			Iterable<CountryCode> countryCodeList = countryCodeRepository.findAll();
-			model.addAttribute("countryCodeList", countryCodeList);
+			
+			MemberVo memberVo=new MemberVo();
+			BeanUtils.copyProperties(user,memberVo);
+			
+			model.addAttribute("member", memberVo); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "user";  
+		return "useredit";  
 	}
 	
 
@@ -260,16 +297,16 @@ public class MemberController {
 	public String editSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		Member userEntity=new Member();
 		try {
-			BeanUtils.copyProperties(userEntity, user);
-			System.out.println(userEntity.getId());
-			userRepository.save(userEntity);
-			Iterable<Member> userList = userRepository.findAll();  
-			model.addAttribute("userList", userList); 
-			model.addAttribute("successMessage","Successfully Edited Admin Record"); 
+			BeanUtils.copyProperties(user,userEntity);
+			
+			Member member = userRepository.save(userEntity);
+			
+			model.addAttribute("member", member); 
+			model.addAttribute("successMessage","Member profile updated successfully"); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "userListing";
+		return "useredit";
 	}	
 
 	@RequestMapping("/user/delete")
