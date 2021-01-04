@@ -6,18 +6,6 @@
 <head>
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
-<script type="text/javascript" charset="utf-8">
-
-function validateForm() {
-	  var repurchasepoint = document.getElementById("repurchasepoint");
-	  var availableBal = document.getElementById("availableBal");
-	  if (availableBal > repurchasepoint) {
-	    alert("Re Purcahse Points Shouldn't be Greater than Available Balance! ");
-	    return false;
-	  }
-	}
-
-</script>
 </head>
 <body>
 
@@ -46,7 +34,23 @@ function validateForm() {
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="review-content-section">
 										
-											<form action="/updateRePurchase" method="post" onsubmit="return validateForm(this);">
+											<form action="/updateRePurchase" method="post" onsubmit="return validateFormOnSubmit(this);">
+											
+											<script type="text/javascript">
+													function validateFormOnSubmit(frm) {
+														var walletbalance =frm.walletbalance.value;
+														var repurcahse =frm.repurcahse.value;
+														
+														if(walletbalance > repurcahse){
+															return true;
+														}else{
+															 	alert("Re Purcahse Points Shouldn't be Greater than Available Balance! ");
+																return false;
+															}
+
+													}
+												</script>
+											
 											
 											<input type="hidden" name="id" id="id" value="${member.id}">
 									
@@ -56,7 +60,7 @@ function validateForm() {
 														<div class=" well col-lg-6 col-md-6 col-sm-6 col-xs-12">
 															<div class="form-group">
 															<label>Available Balance:</label>
-																<input name="walletbalance" type="text" class="form-control"
+																<input name="walletbalance" id="walletbalance" type="text" class="form-control"
 																	placeholder="" value="${member.walletBalance}" readonly>
 															</div>
 															

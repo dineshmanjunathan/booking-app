@@ -31,38 +31,18 @@
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="review-content-section">
-										<c:choose>
-											<c:when test="${not empty member}">
-												<c:url var="action" value="/user/edit" />
-											</c:when>
-											<c:otherwise>
-												<c:url var="action" value="/register" />
-											</c:otherwise>
-										</c:choose>
-										<form action="${action}" method="post"
-											onsubmit="return ValidateForm(this);">
+										<form action="/register" method="post">
+										
 											<p style="color: red" align="center">${errormsg}</p>
+											
 											<input type="hidden" name="id" id="id" value="${member.id}">
+											<input type="hidden" name="createon" id="createon" value="${member.createon}">
+											
 											<div id="dropzone1" class="pro-ad">
 
 												<p style="color: green" align="center">${successMessage}</p>
 												<p style="color: red" align="center">${deletesuccessmessage}</p>
-												<script type="text/javascript">
-													function ValidateForm(frm) {
-														if (frm.password1.value != frm.password2.value) {
-															alert('Passwords do not match');
-															frm.password1
-																	.focus();
-															return false;
-														}
-														if (frm.mobile.value.length != 10) {
-															alert('Required 10 digits, match requested format!');
-															frm.mobile.focus();
-															return false;
-														}
-
-													}
-												</script>
+												
 												<div class="well row">
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
 														<div class="form-group"></div>
