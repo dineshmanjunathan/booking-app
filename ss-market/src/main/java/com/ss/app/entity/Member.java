@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.Random;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -40,10 +39,11 @@ public class Member implements Serializable {
 	private Long walletWithdrawn= 0L;
 	private Long repurcahse= 0L;
 	private String referencecode;
-	long millis=System.currentTimeMillis();  
-	private Date createon = new Date(millis);
-	private Date updatedon = new Date(millis);
+	private Date createon = new Date(System.currentTimeMillis());
+	private Date updatedon = new Date(System.currentTimeMillis());
 	private String referedby;
+	private Long active_days;
+	private String role;
 	
 	@Transient
 	private Long totalbalance= 0L;
@@ -142,5 +142,18 @@ public class Member implements Serializable {
 	public void setRepurcahse(Long repurcahse) {
 		this.repurcahse = repurcahse;
 	}
+	public Long getActive_days() {
+		return active_days;
+	}
+	public void setActive_days(Long active_days) {
+		this.active_days = active_days;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 
+	
 }

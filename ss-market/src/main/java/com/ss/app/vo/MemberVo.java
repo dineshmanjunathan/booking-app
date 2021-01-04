@@ -18,6 +18,8 @@ public class MemberVo {
 	private Date updatedon;
 	private String referedby;
 	private Long repurcahse= 0L;
+	private Long active_days;
+	private String role;
 	
 	public String getId() {
 		return id;
@@ -103,6 +105,20 @@ public class MemberVo {
 	public void setRepurcahse(Long repurcahse) {
 		this.repurcahse = repurcahse;
 	}
+	public Long getActive_days() {
+		return active_days;
+	}
+	public void setActive_days(Long active_days) {
+		this.active_days = active_days;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	
 	
 	
 	
