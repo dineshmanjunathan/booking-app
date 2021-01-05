@@ -37,8 +37,8 @@ public class Purchase {
 
 	public void setOrderNumber(Long orderNumber) {
 		Random random = new Random();
-		Long randomWithNextInt = random.nextLong();
-		this.orderNumber = Math.abs(randomWithNextInt);
+		int randomWithNextInt = random.nextInt(999999999);
+		this.orderNumber = (long) Math.abs(randomWithNextInt);
 	}
 
 	public String getMemberid() {

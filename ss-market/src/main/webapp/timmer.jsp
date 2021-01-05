@@ -8,7 +8,9 @@
 <body>
 
 <!-- <center class ="btn btn-primary"><b></b><p id="timmer"></p></b></center> -->
-<center><b></b><p id="timmer"></p></b></center>
+<label 
+    style=' font-weight: bold; color: green;text-align: center;font-size: 182%;font-style: italic;'> Active days left!</label>
+<center><p id="timmer"></p></center>
 <script>
 // Set the date we're counting down to
 var countDownDate = new Date("Jan 18, 2021 15:37:25").getTime();
@@ -29,7 +31,7 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
   // Output the result in an element with id="demo"
-  document.getElementById("timmer").innerHTML = "<div style='font-size: 70px;color: #268f63; font-weight: bold;'>"+days + "d</div> <div style='font-size: 28px; color: #268f63; font-weight: bold;'>" + hours + "h "
+  document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #268f63; font-weight: bold;'>"+days + "d</div> <div style='font-size: 23px; color: #268f63;'>" + hours + "h "
   + minutes + "m " + seconds + "s </div>";
   /* document.getElementById("timmer").innerHTML = "<div style='font-size: 70px; font-weight: bold;'>"+days + "d</div> <div style='font-size: 28px;  font-weight: bold;'>" + hours + "h "
   + minutes + "m " + seconds + "s </div>"; */

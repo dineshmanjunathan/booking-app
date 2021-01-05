@@ -117,9 +117,6 @@ $(document).ready(function(){
 																	type="submit" name="submit" value="register">Submit</button>
 																<button class="btn btn-primary waves-effect waves-light"
 																	type="reset" name="reset" value="reset">Clear</button>
-																	
-																	<button class="btn btn-primary waves-effect waves-light"
-																	type="submit" name="submit" value="register">Submit</button>
 
 															</div>
 														</div>
