@@ -1,6 +1,7 @@
 package com.ss.app.entity;
 
 import java.sql.Date;
+import java.util.Random;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,9 @@ public class Purchase {
 		return orderNumber;
 	}
 	public void setOrderNumber(Long orderNumber) {
-		this.orderNumber = orderNumber;
+		Random random = new Random();
+		Long randomWithNextInt = random.nextLong();
+		this.orderNumber = Math.abs(randomWithNextInt);
 	}
 	public String getMember_id() {
 		return member_id;

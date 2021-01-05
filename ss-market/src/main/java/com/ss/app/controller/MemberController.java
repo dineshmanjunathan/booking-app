@@ -23,8 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.ss.app.dao.UserDao;
+import com.ss.app.entity.Category;
 import com.ss.app.entity.CountryCode;
 import com.ss.app.entity.Member;
+import com.ss.app.model.CategoryCodeRepository;
 import com.ss.app.model.CountryCodeRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CountryCodeVo;
@@ -172,14 +174,18 @@ public class MemberController {
 	@RequestMapping(value = "updateRePurchase", method = RequestMethod.POST)
 	public String updateToRePurcahse(HttpServletRequest request, MemberVo user, ModelMap model) {
 		try {
-
-			if (user.getWalletBalance() > user.getRepurcahse()) {
-				model.addAttribute("errormsg", "Re Purcahse Points Shouldn't be Greater than Available Balance!");
-				return "wallet";
-			}
 			String userId = (String) request.getSession().getAttribute("MEMBER_ID");
 			Member member = userRepository.findById(userId).get();
 
+			if (user.getWalletBalance() <= user.getRepurcahse()) {
+				model.addAttribute("errormsg", "Re Purcahse Points Shouldn't be Greater than Available Balance!");
+				
+
+				model.addAttribute("member", member);
+				
+				return "rePurchase";
+			}
+			
 			member.setRepurcahse(user.getRepurcahse());
 			member.setWalletBalance(member.getWalletBalance() - user.getRepurcahse());
 			member.setUpdatedon(new Date(System.currentTimeMillis()));
@@ -437,5 +443,5 @@ public class MemberController {
 		model.addAttribute("totalEarned", member.getWalletBalance() + member.getWalletWithdrawn());
 		return new ResponseEntity<Member>(member, HttpStatus.OK);
 	}
-
+	
 }

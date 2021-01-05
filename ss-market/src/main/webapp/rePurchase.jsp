@@ -26,6 +26,7 @@
 							value="adminListing">Back to Wallet</a>
 						</div>
 						<!-- </form> -->
+						<p style="color: red" align="center">${errormsg}</p>
 						
 						<div id="myTabContent" class="tab-content custom-product-edit">
 							<div class="product-tab-list tab-pane fade active in"
@@ -34,22 +35,7 @@
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="review-content-section">
 										
-											<form action="/updateRePurchase" method="post" onsubmit="return validateFormOnSubmit(this);">
-											
-											<script type="text/javascript">
-													function validateFormOnSubmit(frm) {
-														var walletbalance =frm.walletbalance.value;
-														var repurcahse =frm.repurcahse.value;
-														
-														if(walletbalance > repurcahse){
-															return true;
-														}else{
-															 	alert("Re Purcahse Points Shouldn't be Greater than Available Balance! ");
-																return false;
-															}
-
-													}
-												</script>
+											<form action="/updateRePurchase" method="post">
 											
 											
 											<input type="hidden" name="id" id="id" value="${member.id}">
@@ -60,7 +46,7 @@
 														<div class=" well col-lg-6 col-md-6 col-sm-6 col-xs-12">
 															<div class="form-group">
 															<label>Available Balance:</label>
-																<input name="walletbalance" id="walletbalance" type="text" class="form-control"
+																<input name="walletBalance" id="walletBalance" type="text" class="form-control"
 																	placeholder="" value="${member.walletBalance}" readonly>
 															</div>
 															

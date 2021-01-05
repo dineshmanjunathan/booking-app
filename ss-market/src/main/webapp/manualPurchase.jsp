@@ -8,11 +8,11 @@
 <meta charset="ISO-8859-1">
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
-    $('#product').on('change', function (){
+    $('#category').on('change', function (){
     	$.ajax({
             url: "/loadProduct",
             data: {
-                
+                "categoryId": $( "#category option:selected" ).val()
             },
             type: "get",
             cache: false,
@@ -20,9 +20,9 @@ $(document).ready(function(){
                 if(data) {
                 	 var options = '<option value="">-Select Product-</option>';
                      for (var i = 0; i < data.length; i++) {
-                       options += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+                       options += '<option value="' + data[i].prodCode + '">' + data[i].prodDesc + '</option>';
                      }
-                     $("select#product").html(options);
+                     $("select#prodCode").html(options);
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -44,10 +44,11 @@ $(document).ready(function(){
 						</ul>
 						<!-- <form action="/userlisting" method="get"> -->
 							<div class="payment-adress">
-								<a
-									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/countryCodeListing"
-									type="submit" name="submit" value="adminListing">Back</a>
-							</div>
+							<a
+							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
+							href="/menu" type="submit" name="submit"
+							value="adminListing">Back to Main</a>
+						</div>
 						<!-- </form> -->
 						
 						<div id="myTabContent" class="tab-content custom-product-edit">
@@ -56,20 +57,13 @@ $(document).ready(function(){
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="review-content-section">
-										<c:choose>
-												<c:when test="${not empty countryCode}">
-													<c:url var="action" value="/countryCode/edit"/>
-												</c:when>
-												<c:otherwise>
-													<c:url var="action" value="/countryCode/save"/>
-												</c:otherwise>
-											</c:choose>
-											<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
-											<input type="hidden" name="id" id="id" value="${countryCode.id}">
+											<form action="/save/purchase" method="post">
+											<input type="hidden" name="member_id" id="member_id" value="${sessionScope.MEMBER_ID}">
+											
 											<div id="dropzone1" class="pro-ad">
 											
 													<p style="color: green" align="center">${successMessage}</p>
-													<p style="color: red" align="center">${deletesuccessmessage}</p>
+													<p style="color: red" align="center">${errormsg}</p>
 													<script type="text/javascript">
 															</script>
 													<div class="row">
@@ -82,27 +76,27 @@ $(document).ready(function(){
 																<option value="">-Select Category-</option>
 																<c:forEach var="options" items="${categoryList}"
 																	varStatus="status">
-																	<option value="${options.prodCode}">${options.prodDesc}</option>
+																	<option value="${options.code}">${options.description}</option>
 																</c:forEach>
 															</select>
 														</div>
 															<div class="form-group">
-															<select name="product" id="product"
-																class="form-control">
+															<select name="prodCode" id="prodCode"class="form-control">
+															
 																<option value="">-Select Product-</option>
 																<c:forEach var="options" items="${productList}"
 																	varStatus="status">
-																	<option value="${options.prodCode}">${options.prodDesc}</option>
+																	<%-- <option value="${options.prodCode}">${options.prodDesc}</option> --%>
 																</c:forEach>
 															</select>
 														</div>
 															<div class="form-group">
-																<input name="countryCode" type="text" class="form-control"
-																	placeholder="Quantity" value="${countryCode.countryCode}" required>
+																<input name="quantity" id="quantity" type="number" class="form-control"
+																	placeholder="Quantity"  required>
 															</div>
 															<div class="form-group">
-																<input name="countryDesc" type="text" class="form-control"
-																	placeholder="amount" value="${countryCode.countryDesc}" required>
+																<input name="amount" type="number" class="form-control"
+																	placeholder="amount"  required>
 															</div>
 															
 													</div>
