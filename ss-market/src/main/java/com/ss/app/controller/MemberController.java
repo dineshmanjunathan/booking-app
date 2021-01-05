@@ -26,7 +26,7 @@ import com.ss.app.dao.UserDao;
 import com.ss.app.entity.Category;
 import com.ss.app.entity.CountryCode;
 import com.ss.app.entity.Member;
-import com.ss.app.model.CategoryCodeRepository;
+import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.CountryCodeRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CountryCodeVo;

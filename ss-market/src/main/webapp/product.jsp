@@ -14,11 +14,11 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="product-payment-inner-st">
 						<ul id="myTabedu1" class="tab-review-design">
-							<li class="active"><a href="">Category Registration</a></li>
+							<li class="active"><a href="">Manage Product</a></li>
 						</ul>
 							<div class="payment-adress">
 								<a
-									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/categoryCodeListing"
+									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/productListing"
 									type="submit" name="submit" value="adminListing">Back</a>
 							</div>
 						<!-- </form> -->
@@ -38,7 +38,7 @@
 												</c:otherwise>
 											</c:choose>
 											<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
-											<input type="hidden" name="id" id="id" value="${categoryCode.id}">
+											<input type="hidden" name="id" id="id" value="${product.id}">
 											<div id="dropzone1" class="pro-ad">
 											
 													<p style="color: green" align="center">${successMessage}</p>
@@ -48,22 +48,32 @@
 															<div class="form-group">
 															</div>
 															<div class="form-group">
-																<input name="categoryCode" type="text" class="form-control"
-																	placeholder="Product Code" value="${categoryCode.categoryCode}" required>
+															<select name="category" id="category"
+																class="form-control">
+																<option value="">-Select category-</option>
+																<c:forEach var="options" items="${categoryList}"
+																	varStatus="status">
+																	<option value="${options.id}">${options.categoryDesc}</option>
+																</c:forEach>
+															</select>
+														</div>
+															<div class="form-group">
+																<input name="prodCode" type="text" class="form-control"
+																	placeholder="Product Code" value="${product.prodCode}" required>
 															</div>
 															<div class="form-group">
-																<input name="categoryDesc" type="text" class="form-control"
-																	placeholder="Product Description" value="${categoryCode.categoryDesc}" required>
+																<input name="prodDesc" type="text" class="form-control"
+																	placeholder="Product Description" value="${product.prodDesc}" required>
 															</div>
 															
 															<div class="form-group">
-																<input name="categoryDesc" type="text" class="form-control"
-																	placeholder="Quantity" value="${categoryCode.categoryDesc}" required>
+																<input name="quantity" type="number" class="form-control"
+																	placeholder="Quantity" value="${product.quantity}" required>
 															</div>
 															
 															<div class="form-group">
-																<input name="categoryDesc" type="text" class="form-control"
-																	placeholder="Price Per-Item" value="${categoryCode.categoryDesc}" required>
+																<input name="price" type="text" class="form-control"
+																	placeholder="Price Per-Item" value="${product.price}" required>
 															</div>
 															
 													</div>

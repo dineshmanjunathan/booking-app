@@ -239,34 +239,39 @@
 					href="/home"><img src="../../img/logo/logo.jpeg" alt=""
 						style="height: 100px; width: 200px;"></a></strong>
 			</div>
-			<div class="left-custom-menu-adp-wrap comment-scrollbar">
-				<nav class="sidebar-nav left-sidebar-menu-pro">
-					<ul class="metismenu" id="menu1">
-						<li>
-							<center>
-								<a aria-expanded="false"><br /> <b>Lookup</b></a>
-							</center>
-						</li>
-						<br>
-						<li><a title="" href="/wallet" aria-expanded="false"
-							style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
-								My Wallet</a></li>
-						<br>
-						<a title="" href="/userlisting" aria-expanded="false"
-							style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
-							Shopping site</a>
-						</li>
-						<br>
-						<li><a title="" href="/userlisting" aria-expanded="false"
-							style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
-								Contact Us</a></li>
-								<br><br><br>
-						<%@ include file="timmer.jsp"%>
-								
-					</ul>
-				</nav>
-				
-			</div>
+			<c:if test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
+				<div class="left-custom-menu-adp-wrap comment-scrollbar">
+					<nav class="sidebar-nav left-sidebar-menu-pro">
+						<ul class="metismenu" id="menu1">
+							<li>
+								<center>
+									<a aria-expanded="false"><br /> <b>Lookup</b></a>
+								</center>
+							</li>
+							<br>
+							<li><a title="" href="/wallet" aria-expanded="false"
+								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+									My Wallet</a></li>
+							<br>
+							<a title="" href="/userlisting" aria-expanded="false"
+								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								Shopping site</a>
+							</li>
+							<br>
+							<li><a title="" href="/userlisting" aria-expanded="false"
+								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+									Contact Us</a></li>
+							<br>
+							<br>
+							<br>
+							<%@ include file="timmer.jsp"%>
+
+						</ul>
+					</nav>
+
+				</div>
+			</c:if>
+
 		</nav>
 	</div>
 </c:if>
@@ -318,7 +323,8 @@
 <nav class="navbar navbar-dark bg-primary">
 
 	<div class="header-right-info">
-		<ul class="nav navbar-nav mai-top-nav header-right-menu" style="padding: 20px 60px;">
+		<ul class="nav navbar-nav mai-top-nav header-right-menu"
+			style="padding: 20px 60px;">
 			<li class="nav-item"><c:choose>
 					<c:when test="${ not empty sessionScope.LOGGED_ON}">
 						<a href="#" data-toggle="dropdown" role="button"
@@ -341,7 +347,7 @@
 						</a>
 						<ul role="menu" style="width: 100px"
 							class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-							<li><a href="/login" ><span
+							<li><a href="/login"><span
 									class="edu-icon edu-locked author-log-ic"></span>Member</a></li>
 							<li><a href="/stock/point/login"><span
 									class="edu-icon edu-locked author-log-ic"></span>Stock Point</a></li>

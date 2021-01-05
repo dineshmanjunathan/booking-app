@@ -22,6 +22,7 @@ public class Product {
 	private String prodCode;
 	private String prodDesc;
 	private Long quantity;
+	private Long price;
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] image;
@@ -73,6 +74,16 @@ public class Product {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+	
+	
 	
 	
 

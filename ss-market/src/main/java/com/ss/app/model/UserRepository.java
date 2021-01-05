@@ -21,5 +21,7 @@ public interface UserRepository extends CrudRepository<Member, Long>{
 	
 	@Query(value="select referencecode from t_member m where m.referencecode=:id", nativeQuery=true)
 	String checkSponserExists(String id);
+	
+	Optional<Member> findByIdAndPasswordAndRole(String id, String password, String role);
 
 }

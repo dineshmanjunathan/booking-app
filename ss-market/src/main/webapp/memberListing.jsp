@@ -58,7 +58,7 @@
 										</tr>
 									</thead>
                                         <tbody> 
-                                        <c:forEach var="details" items="${userList}" varStatus="status">
+                                        <c:forEach var="details" items="${memberList}" varStatus="status">
                                             <tr>
 												<td>${details.id}</td>
 												<td>${details.name}</td> 
@@ -70,9 +70,6 @@
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
 		        								 href="<c:url value='/user/delete?user_id=${details.id}' />" >
 		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
-		        								  <td>
-		        								  <a href="<c:url value='/user/generate/pdf?user_id=${details.id}' />" > <center><i class="fa fa-download" aria-hidden="true"></i></center></a>
-		        								 </td>
                                             </tr> 
                                         </c:forEach>
                                         </tbody>

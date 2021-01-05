@@ -1,5 +1,7 @@
 package com.ss.app.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +22,31 @@ public class AdminController {
 	
 	@RequestMapping("/admin/login")
 	public String inlogin(HttpServletRequest request,ModelMap model) {
-		return "adminLogin";
+		model.addAttribute("ROLE","ADMIN");
+		return "commonLogin";
+	} 
+	
+	@RequestMapping("/admin/menu")
+	public String adminMenu(HttpServletRequest request,ModelMap model) {
+		return "adminMenu";
+	} 
+	
+	@RequestMapping("/member/listing")
+	public String adminListing(HttpServletRequest request,ModelMap model) {
+		Iterable<Member> memberList = userRepository.findAll();
+		model.addAttribute("memberList",memberList);
+		return "memberListing";
 	} 
 	
 	@RequestMapping(value="/admin/login",method=RequestMethod.POST)
 	public String stockPointLoginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
-			Member member = userRepository.findById(user.getId()).get();
-			if(member!=null) {
-				if(!user.getPassword().equals(member.getPassword())) {
-					model.addAttribute("errormsg","Password is incorrect!");
-					return "adminLogin";
-				}
+			Member member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), user.getRole()).get();
+			if(member!=null && member.getId() !=null) {
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
 				request.getSession().setAttribute("MEMBER_NAME", member.getName());
+				request.getSession().setAttribute("ROLE", member.getRole());
 				return "adminMenu";
 			} else {
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
@@ -42,7 +54,7 @@ public class AdminController {
 		} catch (Exception e) {
 			model.addAttribute("errormsg","Member does not Exists!");
 		}
-		return "adminLogin";
+		return "commonLogin";
 	}
 
 }
