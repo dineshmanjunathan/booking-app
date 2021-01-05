@@ -27,13 +27,6 @@
 										</span>
 										</a>
 									</td>
-									<td>
-										<a href="/user.jsp"
-											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
-											<span> <i class="fa fa-plus"></i> <span>Create</span>
-										</span>
-										</a>
-									</td>
 									</tr> 
 									</table>
 										 <div class="sparkline13-graph">
@@ -49,11 +42,11 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 										<tr> 
-											<th data-field="id">Member Id</th>
+											<th data-field="id" data-editable="false">Member Id</th>
 											<th data-field="name" data-editable="false">Name</th>
 											<th data-field="gender" data-editable="false">Gender</th>
 											<th data-field="email" data-editable="false">Email</th>
-											<th data-field="phone">Mobile</th>
+											<th data-field="phonenumber" data-editable="false">Mobile</th>
 											<th data-field="dob" data-editable="false">DOB</th>
 										</tr>
 									</thead>
@@ -61,15 +54,20 @@
                                         <c:forEach var="details" items="${memberList}" varStatus="status">
                                             <tr>
 												<td>${details.id}</td>
-												<td>${details.name}</td> 
-												<td>${details.gender}</td>
+												<td>${details.name}</td>
+												<td>${details.gender}</td> 
 												<td>${details.email}</td>
 												<td>${details.phonenumber}</td>
 												<td>${details.dob}</td>
-                                                <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
+                                                
+                                             	 <%-- <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
 		        								 href="<c:url value='/user/delete?user_id=${details.id}' />" >
 		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
+		        								  <td>
+		        								  <a href="<c:url value='/user/generate/pdf?user_id=${details.id}' />" > <center><i class="fa fa-download" aria-hidden="true"></i></center></a>
+		        								  </td> --%>
+		        								 
                                             </tr> 
                                         </c:forEach>
                                         </tbody>

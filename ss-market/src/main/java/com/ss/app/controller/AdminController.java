@@ -41,7 +41,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/login",method=RequestMethod.POST)
 	public String stockPointLoginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
-			Member member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), user.getRole()).get();
+			Member member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), "ADMIN").get();
 			if(member!=null && member.getId() !=null) {
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
@@ -52,7 +52,7 @@ public class AdminController {
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
 			}
 		} catch (Exception e) {
-			model.addAttribute("errormsg","Member does not Exists!");
+			model.addAttribute("errormsg","Admin does not Exists!");
 		}
 		return "commonLogin";
 	}

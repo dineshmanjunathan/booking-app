@@ -97,7 +97,7 @@ public class MemberController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginSubmit(HttpServletRequest request, MemberVo user, ModelMap model) {
 		try {
-			Member member = userRepository.findById(user.getId()).get();
+			Member member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), "MEMBER").get();
 			if (member != null && member.getId()!=null) {
 				if (!user.getPassword().equals(member.getPassword())) {
 					model.addAttribute("errormsg", "Password is incorrect!");
@@ -106,6 +106,7 @@ public class MemberController {
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
 				request.getSession().setAttribute("MEMBER_NAME", member.getName());
+				request.getSession().setAttribute("ROLE", member.getRole());
 				return "menu";
 			} else {
 				model.addAttribute("errormsg", "User Id or Password is incorrect!");
