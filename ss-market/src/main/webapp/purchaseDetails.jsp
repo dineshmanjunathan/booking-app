@@ -43,10 +43,10 @@
                                      <thead>
 										<tr> 
 											<th data-field="id" data-editable="false">Id</th>
+											<th data-field="orderNumber" data-editable="false">Order ID</th>
 											<th data-field="prodCode" data-editable="false">Product Code</th>
 											<th data-field="quantity" data-editable="false">Quantity</th>
 											<th data-field="amount" data-editable="false">Amount</th>
-											<th data-field="orderNumber" data-editable="false">Order ID</th>
 											<th data-field="purchasedOn" data-editable="false">Purchased On</th>
 										</tr>
 									</thead>
@@ -54,10 +54,10 @@
                                         <c:forEach var="details" items="${purchaseList}" varStatus="status">
                                             <tr>
 												<td>${details.id}</td>
+												<td>${details.orderNumber}</td>
 												<td>${details.prodCode}</td> 
 												<td>${details.quantity}</td>
 												<td>${details.amount}</td>
-												<td>${details.orderNumber}</td>
 												<td>${details.purchasedOn}</td>
                                                 
                                                 <%-- <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
