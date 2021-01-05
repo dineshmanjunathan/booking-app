@@ -98,7 +98,7 @@ public class MemberController {
 	public String loginSubmit(HttpServletRequest request, MemberVo user, ModelMap model) {
 		try {
 			Member member = userRepository.findById(user.getId()).get();
-			if (member != null) {
+			if (member != null && member.getId()!=null) {
 				if (!user.getPassword().equals(member.getPassword())) {
 					model.addAttribute("errormsg", "Password is incorrect!");
 					return "login";

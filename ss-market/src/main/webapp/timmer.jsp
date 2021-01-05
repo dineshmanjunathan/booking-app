@@ -39,7 +39,7 @@ var x = setInterval(function() {
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("timmer").innerHTML = "<br><br><div style='font-size:35px;color: red; font-weight: bold;'>0</div>";
+    document.getElementById("timmer").innerHTML = "<div style='font-size:60px;color: red; font-weight: bold;'>0</div>";
   }
 }, 1000);
 </script>

@@ -33,6 +33,10 @@ public class TransactionManagerController {
 			BeanUtils.copyProperties(purchase, purchaseEntity);
 			purchaseRepository.save(purchaseEntity);
 			model.addAttribute("successMessage", "Item Purchased Successfully");
+			
+			Iterable<Category> categoryList = categoryRepository.findAll();
+			model.addAttribute("categoryList", categoryList);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
