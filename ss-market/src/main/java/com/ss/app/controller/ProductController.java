@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.app.entity.Category;
 import com.ss.app.entity.Product;
+import com.ss.app.entity.Purchase;
 import com.ss.app.model.CategoryCodeRepository;
 import com.ss.app.model.ProductRepository;
+import com.ss.app.model.PurchaseRepository;
 
 @Controller
 public class ProductController {
@@ -26,6 +28,9 @@ public class ProductController {
 
 	@Autowired
 	private CategoryCodeRepository categoryCodeRepository;
+	
+	@Autowired
+	private PurchaseRepository purchaseRepository;
 
 	
 	@RequestMapping(value = "/manual/purchase", method = RequestMethod.GET)
@@ -46,5 +51,17 @@ public class ProductController {
 		List<Product> Product = productRepository.findByCategory(category);
 		model.addAttribute("productList", Product);
 		return new ResponseEntity(Product, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/purchase/detail", method = RequestMethod.GET)
+	public String loadPurchase(HttpServletRequest request, ModelMap model) {
+		try {
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			List<Purchase> purchaseList = purchaseRepository.findByMemberid(memberId);
+			model.addAttribute("purchaseList", purchaseList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "purchaseDetails";
 	}
 }

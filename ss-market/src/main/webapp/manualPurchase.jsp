@@ -43,11 +43,20 @@ $(document).ready(function(){
 							<li class="active"><a href="">Manual purchase entry</a></li>
 						</ul>
 						<!-- <form action="/userlisting" method="get"> -->
+						<div class="row">
+						<div class="col-lg-12">
 							<div class="payment-adress">
 							<a
 							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
 							href="/menu" type="submit" name="submit"
 							value="adminListing">Back to Main</a>
+						<div class="row"><div class="col-lg-12"></div></div>
+							<a
+							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
+							href="/purchase/detail" type="submit" name="submit"
+							value="adminListing">View Purchase List</a>
+						</div>
+						</div>
 						</div>
 						<!-- </form> -->
 						
@@ -58,7 +67,7 @@ $(document).ready(function(){
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="review-content-section">
 											<form action="/save/purchase" method="post">
-											<input type="hidden" name="member_id" id="member_id" value="${sessionScope.MEMBER_ID}">
+											<input type="hidden" name="memberid" id="memberid" value="${sessionScope.MEMBER_ID}">
 											
 											<div id="dropzone1" class="pro-ad">
 											
@@ -96,7 +105,7 @@ $(document).ready(function(){
 															</div>
 															<div class="form-group">
 																<input name="amount" type="number" class="form-control"
-																	placeholder="amount"  required>
+																	placeholder="Amount"  required>
 															</div>
 															
 													</div>
@@ -108,6 +117,9 @@ $(document).ready(function(){
 																	type="submit" name="submit" value="register">Submit</button>
 																<button class="btn btn-primary waves-effect waves-light"
 																	type="reset" name="reset" value="reset">Clear</button>
+																	
+																	<button class="btn btn-primary waves-effect waves-light"
+																	type="submit" name="submit" value="register">Submit</button>
 
 															</div>
 														</div>
