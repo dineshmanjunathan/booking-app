@@ -66,7 +66,7 @@ $(document).ready(function(){
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="review-content-section">
-											<form action="/save/purchase" method="post">
+											<form action="/save/purchase" method="post"  onsubmit="return confirm('Are you sure you want to submit?')">
 											<input type="hidden" name="memberid" id="memberid" value="${sessionScope.MEMBER_ID}">
 											
 											<div id="dropzone1" class="pro-ad">
@@ -75,8 +75,8 @@ $(document).ready(function(){
 													<p style="color: red" align="center">${errormsg}</p>
 													<script type="text/javascript">
 															</script>
-													<div class="row">
-														<div class=" well col-lg-6 col-md-6 col-sm-6 col-xs-12">
+													<div class="row" style="padding-right: 16%;padding-left: 16%;">
+														<div class=" well col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															<div class="form-group">
 															</div>
 															<div class="form-group">
@@ -115,8 +115,6 @@ $(document).ready(function(){
 															<div class="payment-adress">
 																<button class="btn btn-primary waves-effect waves-light"
 																	type="submit" name="submit" value="register">Submit</button>
-																<button class="btn btn-primary waves-effect waves-light"
-																	type="reset" name="reset" value="reset">Clear</button>
 
 															</div>
 														</div>

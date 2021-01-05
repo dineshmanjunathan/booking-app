@@ -39,8 +39,7 @@
 												<c:url var="action" value="/register" />
 											</c:otherwise>
 										</c:choose>
-										<form action="${action}" method="post"
-											onsubmit="return ValidateForm(this);">
+										<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
 											<p style="color: red" align="center">${errormsg}</p>
 											<input type="hidden" name="id" id="id" value="${member.id}">
 											<input type="hidden" name="walletBalance" id="walletBalance" value="${member.walletBalance}">

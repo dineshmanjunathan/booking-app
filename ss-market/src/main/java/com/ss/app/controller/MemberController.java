@@ -178,7 +178,7 @@ public class MemberController {
 			Member member = userRepository.findById(userId).get();
 
 			if (user.getWalletBalance() <= user.getRepurcahse()) {
-				model.addAttribute("errormsg", "Re Purcahse Points Shouldn't be Greater than Available Balance!");
+				model.addAttribute("errormsg", "Given value is greater than available balance!");
 				
 
 				model.addAttribute("member", member);
