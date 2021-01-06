@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ss.app.entity.Category;
+import com.ss.app.entity.Product;
 import com.ss.app.entity.Purchase;
 import com.ss.app.model.CategoryRepository;
+import com.ss.app.model.ProductRepository;
 import com.ss.app.model.PurchaseRepository;
 
 @Controller
@@ -24,6 +26,9 @@ public class TransactionManagerController {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
 
 	@RequestMapping(value = "/save/purchase", method = RequestMethod.POST)
 	public String savePurchase(HttpServletRequest request, Purchase purchase, ModelMap model) {
@@ -56,7 +61,7 @@ public class TransactionManagerController {
 	}
 	
 	@RequestMapping(value = "/manual/purchase", method = RequestMethod.GET)
-	public String loadCategory(HttpServletRequest request, ModelMap model) {
+	public String manualPurchase(HttpServletRequest request, ModelMap model) {
 		try {
 			Iterable<Category> categoryList = categoryRepository.findAll();
 			model.addAttribute("categoryList", categoryList);
@@ -64,6 +69,17 @@ public class TransactionManagerController {
 			e.printStackTrace();
 		}
 		return "manualPurchase";
+	}
+	
+	@RequestMapping(value = "/purchase/list", method = RequestMethod.GET)
+	public String purchaseList(HttpServletRequest request, ModelMap model) {
+		try {
+			Iterable<Product> productList = productRepository.findAll();
+			model.addAttribute("productList", productList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "purchaseProductList";
 	}
 
 }

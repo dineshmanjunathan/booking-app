@@ -253,12 +253,12 @@
 								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
 									My Wallet</a></li>
 							<br>
-							<a title="" href="/userlisting" aria-expanded="false"
+							<a title="" href="/purchase/list" aria-expanded="false"
 								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
 								Shopping site</a>
 							</li>
 							<br>
-							<li><a title="" href="/userlisting" aria-expanded="false"
+							<li><a title="" href="/contactus" aria-expanded="false"
 								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
 									Contact Us</a></li>
 							<br>

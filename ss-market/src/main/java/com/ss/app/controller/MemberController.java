@@ -446,4 +446,9 @@ public class MemberController {
 		return new ResponseEntity<Member>(member, HttpStatus.OK);
 	}
 	
+	@RequestMapping("/contactus")
+	public String contactus(HttpServletRequest request, ModelMap model) {
+		return "contactus";
+	}
+	
 }
