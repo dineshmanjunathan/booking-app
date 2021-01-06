@@ -255,7 +255,7 @@
 							<br>
 							<a title="" href="/purchase/list" aria-expanded="false"
 								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
-								Shopping site</a>
+								Click to Purchase</a>
 							</li>
 							<br>
 							<li><a title="" href="/contactus" aria-expanded="false"
