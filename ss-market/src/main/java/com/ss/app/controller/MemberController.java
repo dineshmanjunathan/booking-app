@@ -270,6 +270,7 @@ public class MemberController {
 		try {
 			Member userEntity = new Member();
 			model.addAttribute("member", user);
+			user.setRole("MEMBER");
 			BeanUtils.copyProperties(user, userEntity, "createon", "updatedon");
 			if (StringUtils.isNotEmpty(user.getReferedby())) {
 				String referedBy = userRepository.checkSponserExists(user.getReferedby());
