@@ -38,6 +38,8 @@
 									</td>
 									</tr> 
 									</table>
+									<p style="color: green" align="center">${successMessage}</p>
+								    <p style="color: green" align="center">${deletesuccessmessage}</p>
 										 <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">

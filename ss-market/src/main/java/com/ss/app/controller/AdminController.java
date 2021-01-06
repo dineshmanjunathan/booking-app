@@ -102,7 +102,7 @@ public class AdminController {
 	public String categoryCodeDelete(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
 			categoryRepository.deleteById(Long.parseLong(id));
-			model.addAttribute("deletesuccessmessage","Deleted Successfully"); 
+			model.addAttribute("deletesuccessmessage","Category Deleted Successfully."); 
 			Iterable<Category> categoryCodeList = categoryRepository.findAll();
 			model.addAttribute("categoryCodeList", categoryCodeList); 
 		} catch (Exception e) {
@@ -133,7 +133,7 @@ public class AdminController {
 			categoryRepository.save(categoryCode);
 			Iterable<Category> categoryCodeList = categoryRepository.findAll();
 			model.addAttribute("categoryCodeList", categoryCodeList); 
-			model.addAttribute("successMessage","Successfully Edited Admin Record"); 
+			model.addAttribute("successMessage","Category Updated Successfully."); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -153,7 +153,7 @@ public class AdminController {
 			categoryRepository.save(categoryCode);
 			Iterable<Category> categoryCodeList = categoryRepository.findAll();
 			model.addAttribute("categoryCodeList", categoryCodeList); 
-			model.addAttribute("successMessage","Record Inserted Successfully"); 
+			model.addAttribute("successMessage","Category Added Successfully."); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -176,7 +176,7 @@ public class AdminController {
 	public String productDelete(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
 			proRepository.deleteById(Long.parseLong(id));
-			model.addAttribute("deletesuccessmessage","Deleted Successfully"); 
+			model.addAttribute("deletesuccessmessage","Product Deleted Successfully."); 
 			Iterable<Product> productList = proRepository.findAll();
 			model.addAttribute("productListing", productList); 
 		} catch (Exception e) {
@@ -208,10 +208,11 @@ public class AdminController {
 		Product product=new Product();
 		try {
 			BeanUtils.copyProperties(productVo,product);
+			System.out.println("product--->"+product.getId());
 			proRepository.save(product);
 			Iterable<Product> productList = proRepository.findAll();
 			model.addAttribute("productListing", productList); 
-			model.addAttribute("successMessage","Successfully Edited Admin Record"); 
+			model.addAttribute("successMessage","Product Updated Successfully."); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -235,7 +236,7 @@ public class AdminController {
 			proRepository.save(product);
 			Iterable<Product> productList = proRepository.findAll();
 			model.addAttribute("productListing", productList); 
-			model.addAttribute("successMessage","Record Inserted Successfully"); 
+			model.addAttribute("successMessage","Product Added Successfully."); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
