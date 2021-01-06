@@ -291,9 +291,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/user/edit", method = RequestMethod.GET)
-	public String edit(HttpServletRequest request, ModelMap model) {
+	public String edit(@RequestParam("user_id") String userId,HttpServletRequest request, ModelMap model) {
 		try {
-			String userId = request.getSession().getAttribute("MEMBER_ID").toString();
 
 			Member user = userRepository.findById(userId).get();
 
@@ -322,36 +321,6 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		return "useredit";
-	}
-
-	@RequestMapping("/user/delete")
-	public String delete(@RequestParam("user_id") String userId, HttpServletRequest request, ModelMap model) {
-		try {
-			userRepository.deleteById(userId);
-			// userRepository.delete(user);
-			model.addAttribute("deletesuccessmessage", "Deleted Successfully");
-			Iterable<Member> userList = userRepository.findAll();
-			model.addAttribute("userList", userList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "userListing";
-	}
-
-	@RequestMapping(value = "/user/delete", method = RequestMethod.POST)
-	public String deleteSubmit(HttpServletRequest request, ModelMap model) {
-		try {
-			String user_id = request.getParameter("id");
-			// Optional<User> user=userRepository.findById(Long.parseLong(user_id));
-			userRepository.deleteById(user_id);
-			model.addAttribute("deletesuccessmessage", "Deleted Successfully");
-			List<MemberVo> userList;
-			userList = userDao.findUsers();
-			model.addAttribute("userList", userList);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return "userListing";
 	}
 
 	@RequestMapping("/countryCodeListing")

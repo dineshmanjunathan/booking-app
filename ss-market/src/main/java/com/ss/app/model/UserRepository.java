@@ -12,9 +12,7 @@ import com.ss.app.entity.Member;
 
 @Service
 public interface UserRepository extends CrudRepository<Member, Long>{
-	
-	void deleteById(String userId);
-	
+		
 	Optional<Member> findById(String id);
 	
 	List<Member> findByReferedby(String id);
@@ -23,5 +21,8 @@ public interface UserRepository extends CrudRepository<Member, Long>{
 	String checkSponserExists(String id);
 	
 	Optional<Member> findByIdAndPasswordAndRole(String id, String password, String role);
+
+	@Query(value="delete from t_member where id=:id", nativeQuery=true)
+	void removeUser(String id);
 
 }

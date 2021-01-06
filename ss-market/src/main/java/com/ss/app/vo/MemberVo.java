@@ -13,14 +13,11 @@ public class MemberVo {
 	private String password;
 	private Long walletBalance = 0L;
 	private Long walletWithdrawn= 0L;
-	private String referencecode;
-	private Date createon;
-	private Date updatedon;
-	private String referedby;
 	private Long repurcahse= 0L;
+	private String referencecode;
+	private String referedby;
 	private Long active_days;
 	private String role;
-	
 	public String getId() {
 		return id;
 	}
@@ -75,35 +72,23 @@ public class MemberVo {
 	public void setWalletWithdrawn(Long walletWithdrawn) {
 		this.walletWithdrawn = walletWithdrawn;
 	}
+	public Long getRepurcahse() {
+		return repurcahse;
+	}
+	public void setRepurcahse(Long repurcahse) {
+		this.repurcahse = repurcahse;
+	}
 	public String getReferencecode() {
 		return referencecode;
 	}
 	public void setReferencecode(String referencecode) {
 		this.referencecode = referencecode;
 	}
-	public Date getCreateon() {
-		return createon;
-	}
-	public void setCreateon(Date createon) {
-		this.createon = createon;
-	}
-	public Date getUpdatedon() {
-		return updatedon;
-	}
-	public void setUpdatedon(Date updatedon) {
-		this.updatedon = updatedon;
-	}
 	public String getReferedby() {
 		return referedby;
 	}
 	public void setReferedby(String referedby) {
 		this.referedby = referedby;
-	}
-	public Long getRepurcahse() {
-		return repurcahse;
-	}
-	public void setRepurcahse(Long repurcahse) {
-		this.repurcahse = repurcahse;
 	}
 	public Long getActive_days() {
 		return active_days;
@@ -116,10 +101,7 @@ public class MemberVo {
 	}
 	public void setRole(String role) {
 		this.role = role;
+		
 	}
-	
-	
-	
-	
 	
 }

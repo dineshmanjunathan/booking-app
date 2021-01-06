@@ -8,6 +8,7 @@ public class ProductVo {
 	private String prodDesc;
 	private Long quantity;
 	private byte[] image;
+	private Long price;
 
 	public Long getId() {
 		return id;
@@ -55,6 +56,14 @@ public class ProductVo {
 
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
 	}
 	
 	

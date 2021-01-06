@@ -13,7 +13,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Category</a></li></center>
+								<center><li class="active"><a href="">Product</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -30,7 +30,7 @@
 										</a>
 									</td>
 									<td>
-										<a href="/categoryCode.jsp"
+										<a href="/admin/product"
 											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
 											<span> <i class="fa fa-plus"></i> <span>Create</span>
 										</span>
@@ -51,20 +51,26 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 										<tr> 
-											<th data-field="name" data-editable="false">Category Code</th>
-											<th data-field="Description" data-editable="false">Description</th>
+											<th data-field="category" data-editable="false">Category Code</th>
+											<th data-field="prodCode" data-editable="false">Product Code</th>
+											<th data-field="prodDesc" data-editable="false">Product Description</th>
+											<th data-field="quantity" data-editable="false">Quantity</th>
+											<th data-field="price" data-editable="false">Price</th>
 											<th data-field="action">Action</th>
 										</tr>
 									</thead>
                                         <tbody> 
-                                        <c:forEach var="details" items="${categoryCodeList}" varStatus="status">
+                                        <c:forEach var="details" items="${productListing}" varStatus="status">
                                             <tr>
 												<%-- <td>${details.id}</td> --%>
-												<td>${details.categoryCode}</td> 
-												<td>${details.categoryDesc}</td>
-                                                <td><a href="<c:url value='/categoryCode/edit?id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
+												<td>${details.category}</td> 
+												<td>${details.prodCode}</td> 
+												<td>${details.prodDesc}</td>
+												<td>${details.quantity}</td>
+												<td>${details.price}</td>
+                                                <td><a href="<c:url value='/product/edit?id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
-		        								 href="<c:url value='/categoryCode/delete?id=${details.id}' />" >
+		        								 href="<c:url value='/product/delete?id=${details.id}' />" >
 		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
 		        								  
 		        								  		

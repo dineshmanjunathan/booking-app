@@ -30,11 +30,11 @@
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="review-content-section">
 										<c:choose>
-												<c:when test="${not empty categoryCode}">
-													<c:url var="action" value="/categoryCode/edit"/>
+												<c:when test="${not empty productCode}">
+													<c:url var="action" value="/product/edit"/>
 												</c:when>
 												<c:otherwise>
-													<c:url var="action" value="/categoryCode/save"/>
+													<c:url var="action" value="/product/save"/>
 												</c:otherwise>
 											</c:choose>
 											<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
@@ -51,29 +51,29 @@
 															<select name="category" id="category"
 																class="form-control">
 																<option value="">-Select category-</option>
-																<c:forEach var="options" items="${categoryList}"
+																<c:forEach var="options" items="${categoryCodeList}"
 																	varStatus="status">
-																	<option value="${options.id}">${options.categoryDesc}</option>
+																	<option value="${options.code}">${options.description}</option>
 																</c:forEach>
 															</select>
 														</div>
 															<div class="form-group">
 																<input name="prodCode" type="text" class="form-control"
-																	placeholder="Product Code" value="${product.prodCode}" required>
+																	placeholder="Product Code" value="${productCode.prodCode}" required>
 															</div>
 															<div class="form-group">
 																<input name="prodDesc" type="text" class="form-control"
-																	placeholder="Product Description" value="${product.prodDesc}" required>
+																	placeholder="Product Description" value="${productCode.prodDesc}" required>
 															</div>
 															
 															<div class="form-group">
 																<input name="quantity" type="number" class="form-control"
-																	placeholder="Quantity" value="${product.quantity}" required>
+																	placeholder="Quantity" value="${productCode.quantity}" required>
 															</div>
 															
 															<div class="form-group">
 																<input name="price" type="text" class="form-control"
-																	placeholder="Price Per-Item" value="${product.price}" required>
+																	placeholder="Price Per-Item" value="${productCode.price}" required>
 															</div>
 															
 													</div>

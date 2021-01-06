@@ -23,14 +23,14 @@
 									<table class="full-right">
 									<tr>
 									<td>
-										<a href="/menu"
+										<a href="/admin/menu"
 											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
 											<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
 										</span>
 										</a>
 									</td>
 									<td>
-										<a href="/categoryCode.jsp"
+										<a href="/admin/categoryCode"
 											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
 											<span> <i class="fa fa-plus"></i> <span>Create</span>
 										</span>
@@ -38,6 +38,8 @@
 									</td>
 									</tr> 
 									</table>
+									<p style="color: green" align="center">${successMessage}</p>
+								    <p style="color: green" align="center">${deletesuccessmessage}</p>
 										 <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
@@ -60,8 +62,8 @@
                                         <c:forEach var="details" items="${categoryCodeList}" varStatus="status">
                                             <tr>
 												<%-- <td>${details.id}</td> --%>
-												<td>${details.categoryCode}</td> 
-												<td>${details.categoryDesc}</td>
+												<td>${details.code}</td> 
+												<td>${details.description}</td>
                                                 <td><a href="<c:url value='/categoryCode/edit?id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
 		        								 href="<c:url value='/categoryCode/delete?id=${details.id}' />" >

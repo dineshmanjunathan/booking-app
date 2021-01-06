@@ -21,7 +21,7 @@
 									<table class="full-right">
 									<tr>
 									<td>
-										<a href="/menu"
+										<a href="/admin/menu"
 											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
 											<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
 										</span>
@@ -29,6 +29,9 @@
 									</td>
 									</tr> 
 									</table>
+									<p style="color: red" align="center">${errormsg}</p>
+									<p style="color: green" align="center">${successMessage}</p>
+									<p style="color: green" align="center">${deletesuccessmessage}</p>
 										 <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
@@ -48,6 +51,9 @@
 											<th data-field="email" data-editable="false">Email</th>
 											<th data-field="phonenumber" data-editable="false">Mobile</th>
 											<th data-field="dob" data-editable="false">DOB</th>
+											<th data-field="role" data-editable="false">Role</th>
+											<th data-field="action">Action</th>
+											<th data-field="attachment">Attachment</th>
 										</tr>
 									</thead>
                                         <tbody> 
@@ -59,14 +65,15 @@
 												<td>${details.email}</td>
 												<td>${details.phonenumber}</td>
 												<td>${details.dob}</td>
+												<td>${details.role}</td>
                                                 
-                                             	 <%-- <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
+                                             	  <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
 		        								 href="<c:url value='/user/delete?user_id=${details.id}' />" >
 		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
-		        								  <td>
+		        								<td>
 		        								  <a href="<c:url value='/user/generate/pdf?user_id=${details.id}' />" > <center><i class="fa fa-download" aria-hidden="true"></i></center></a>
-		        								  </td> --%>
+		        								  </td>
 		        								 
                                             </tr> 
                                         </c:forEach>

@@ -14,7 +14,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="product-payment-inner-st">
 						<ul id="myTabedu1" class="tab-review-design">
-							<li class="active"><a href="">Category Registration</a></li>
+							<li class="active"><a href="">Category</a></li>
 						</ul>
 							<div class="payment-adress">
 								<a
@@ -63,12 +63,12 @@
 															<div class="form-group">
 															</div>
 															<div class="form-group">
-																<input name="categoryCode" type="text" class="form-control"
-																	placeholder="Category Code" value="${categoryCode.categoryCode}" required>
+																<input name="code" type="text" class="form-control"
+																	placeholder="Category Code" value="${categoryCode.code}" required>
 															</div>
 															<div class="form-group">
-																<input name="categoryDesc" type="text" class="form-control"
-																	placeholder="Description" value="${categoryCode.categoryDesc}" required>
+																<input name="description" type="text" class="form-control"
+																	placeholder="Description" value="${categoryCode.description}" required>
 															</div>
 															
 													</div>
