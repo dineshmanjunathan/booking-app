@@ -13,7 +13,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Product</a></li></center>
+								<center><li class="active"><a href="">Manage Product</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -32,7 +32,7 @@
 									<td>
 										<a href="/admin/product"
 											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
-											<span> <i class="fa fa-plus"></i> <span>Create</span>
+											<span> <i class="fa fa-plus"></i> <span>Product</span>
 										</span>
 										</a>
 									</td>
@@ -70,9 +70,9 @@
 												<td>${details.prodDesc}</td>
 												<td>${details.quantity}</td>
 												<td>${details.price}</td>
-                                                <td><a href="<c:url value='/product/edit?id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
+                                                <td><a href="<c:url value='/admin/product/edit?id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
-		        								 href="<c:url value='/product/delete?id=${details.id}' />" >
+		        								 href="<c:url value='/admin/product/delete?id=${details.id}' />" >
 		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
 		        								  
 		        								  		

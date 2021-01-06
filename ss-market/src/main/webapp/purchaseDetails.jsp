@@ -59,14 +59,6 @@
 												<td>${details.quantity}</td>
 												<td>${details.amount}</td>
 												<td>${details.purchasedOn}</td>
-                                                
-                                                <%-- <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
-		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
-		        								 href="<c:url value='/user/delete?user_id=${details.id}' />" >
-		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
-		        								  <td>
-		        								  <a href="<c:url value='/user/generate/pdf?user_id=${details.id}' />" > <center><i class="fa fa-download" aria-hidden="true"></i></center></a>
-		        								 </td> --%>
 		        								 
                                             </tr> 
                                         </c:forEach>

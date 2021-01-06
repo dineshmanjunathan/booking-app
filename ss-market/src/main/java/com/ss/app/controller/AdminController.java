@@ -46,7 +46,7 @@ public class AdminController {
 		return "adminMenu";
 	} 
 	
-	@RequestMapping("/member/listing")
+	@RequestMapping("/admin/member/listing")
 	public String adminListing(HttpServletRequest request,ModelMap model) {
 		Iterable<Member> memberList = userRepository.findAll();
 		model.addAttribute("memberList",memberList);
@@ -72,7 +72,7 @@ public class AdminController {
 		return "commonLogin";
 	}
 	
-	@RequestMapping("/user/delete")
+	@RequestMapping("/admin/user/delete")
 	public String delete(@RequestParam("user_id") String userId, HttpServletRequest request, ModelMap model) {
 		try {
 			userRepository.removeUser(userId);
@@ -87,7 +87,7 @@ public class AdminController {
 		return "adminMenu";
 	}
 	
-	@RequestMapping("/categoryCodeListing")
+	@RequestMapping("/admin/categoryCodeListing")
 	public String categoryCodeListing(HttpServletRequest request,ModelMap model) { 
 		try {
 			Iterable<Category> categoryCodeList = categoryRepository.findAll();
@@ -98,7 +98,7 @@ public class AdminController {
 		return "categoryCodeListing";
 	}
 
-	@RequestMapping(value="/categoryCode/delete",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/categoryCode/delete",method=RequestMethod.GET)
 	public String categoryCodeDelete(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
 			categoryRepository.deleteById(Long.parseLong(id));
@@ -111,7 +111,7 @@ public class AdminController {
 		return "categoryCodeListing";
 	}
 	
-	@RequestMapping(value="/categoryCode/edit",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/categoryCode/edit",method=RequestMethod.GET)
 	public String categoryCodeEdit(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
 			Category categoryCode = categoryRepository.findById(Long.parseLong(id)).get();
@@ -125,7 +125,7 @@ public class AdminController {
 	}
 
 
-	@RequestMapping(value="/categoryCode/edit",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/categoryCode/edit",method=RequestMethod.POST)
 	public String categoryCodeEditSubmit(HttpServletRequest request,CategoryVo categoryCodeVo,ModelMap model) {
 		Category categoryCode=new Category();
 		try {
@@ -145,7 +145,7 @@ public class AdminController {
 		return "categoryCode";
 	} 
 	
-	@RequestMapping(value="/categoryCode/save",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/categoryCode/save",method=RequestMethod.POST)
 	public String categoryCodeSubmit(HttpServletRequest request,CategoryVo categoryCodeVo,ModelMap model) {
 		try {
 			Category categoryCode=new Category();
@@ -161,7 +161,7 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping("/productListing")
+	@RequestMapping("/admin/productListing")
 	public String productListing(HttpServletRequest request,ModelMap model) { 
 		try {
 			Iterable<Product> productList = proRepository.findAll();
@@ -172,7 +172,7 @@ public class AdminController {
 		return "productListing";
 	}
 
-	@RequestMapping(value="/product/delete",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/product/delete",method=RequestMethod.GET)
 	public String productDelete(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
 			proRepository.deleteById(Long.parseLong(id));
@@ -185,7 +185,7 @@ public class AdminController {
 		return "productListing";
 	}
 	
-	@RequestMapping(value="/product/edit",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/product/edit",method=RequestMethod.GET)
 	public String productEdit(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
 			Product productCode = proRepository.findById(Long.parseLong(id)).get();
@@ -203,7 +203,7 @@ public class AdminController {
 	}
 
 
-	@RequestMapping(value="/product/edit",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/product/edit",method=RequestMethod.POST)
 	public String productEditSubmit(HttpServletRequest request,ProductVo productVo,ModelMap model) {
 		Product product=new Product();
 		try {
@@ -228,7 +228,7 @@ public class AdminController {
 		return "product";
 	} 
 	
-	@RequestMapping(value="/product/save",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/product/save",method=RequestMethod.POST)
 	public String categoryCodeSubmit(HttpServletRequest request,ProductVo productVo,ModelMap model) {
 		try {
 			Product product=new Product();

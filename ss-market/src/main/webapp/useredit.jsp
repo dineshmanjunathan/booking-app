@@ -23,7 +23,7 @@
 						<a class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/menu" type="submit" name="submit" value="adminListing">Back to Main</a>
 					</c:if>
 					<c:if test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
-						<a class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/member/listing" type="submit" name="submit" value="adminListing">Back to Main</a>
+						<a class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/member/listing" type="submit" name="submit" value="adminListing">Back to Main</a>
 					</c:if>
 					</div>
 					<!-- </form> -->

@@ -14,11 +14,11 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="product-payment-inner-st">
 						<ul id="myTabedu1" class="tab-review-design">
-							<li class="active"><a href="">Category</a></li>
+							<li class="active"><a href="">Manage Category</a></li>
 						</ul>
 							<div class="payment-adress">
 								<a
-									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/categoryCodeListing"
+									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/categoryCodeListing"
 									type="submit" name="submit" value="adminListing">Back</a>
 							</div>
 						<!-- </form> -->
@@ -31,10 +31,10 @@
 										<div class="review-content-section">
 										<c:choose>
 												<c:when test="${not empty categoryCode}">
-													<c:url var="action" value="/categoryCode/edit"/>
+													<c:url var="action" value="/admin/categoryCode/edit"/>
 												</c:when>
 												<c:otherwise>
-													<c:url var="action" value="/categoryCode/save"/>
+													<c:url var="action" value="/admin/categoryCode/save"/>
 												</c:otherwise>
 											</c:choose>
 											<form action="${action}" method="post" onsubmit="return ValidateForm(this);">

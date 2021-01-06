@@ -12,7 +12,7 @@
 	<h4>Member Details</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="<c:url value='/member/listing' />">
+		<a href="<c:url value='/admin/member/listing' />">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
 					<h5>Manage Member</h5>
@@ -28,7 +28,7 @@
 	<h4>Product Manager</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/categoryCodeListing">
+		<a href="/admin/categoryCodeListing">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
 					<h5>Manage Category</h5>
@@ -40,7 +40,7 @@
 		</a>
 	</div>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/productListing">
+		<a href="/admin/productListing">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
 					<h5>Manage Product</h5>

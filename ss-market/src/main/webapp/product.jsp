@@ -18,7 +18,7 @@
 						</ul>
 							<div class="payment-adress">
 								<a
-									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/productListing"
+									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/productListing"
 									type="submit" name="submit" value="adminListing">Back</a>
 							</div>
 						<!-- </form> -->
@@ -31,14 +31,14 @@
 										<div class="review-content-section">
 										<c:choose>
 												<c:when test="${not empty productCode}">
-													<c:url var="action" value="/product/edit"/>
+													<c:url var="action" value="/admin/product/edit"/>
 												</c:when>
 												<c:otherwise>
-													<c:url var="action" value="/product/save"/>
+													<c:url var="action" value="/admin/product/save"/>
 												</c:otherwise>
 											</c:choose>
 											<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
-											<input type="hidden" name="id" id="id" value="${product.id}">
+											<input type="hidden" name="id" id="id" value="${productCode.id}">
 											<div id="dropzone1" class="pro-ad">
 											
 													<p style="color: green" align="center">${successMessage}</p>
@@ -53,7 +53,7 @@
 																<option value="">-Select category-</option>
 																<c:forEach var="options" items="${categoryCodeList}"
 																	varStatus="status">
-																	<option value="${options.code}">${options.description}</option>
+																	<option value="${options.code}" ${options.code == productCode.category ? 'selected' : ''}>${options.description}</option>
 																</c:forEach>
 															</select>
 														</div>
