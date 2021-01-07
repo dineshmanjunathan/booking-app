@@ -27,6 +27,13 @@
 										</span>
 										</a>
 									</td>
+									<td>
+										<a href="/admin/user/edit"
+											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
+											<span> <i class="fa fa-plus"></i> <span>Member</span>
+										</span>
+										</a>
+									</td>
 									</tr> 
 									</table>
 									<p style="color: red" align="center">${errormsg}</p>
@@ -51,6 +58,7 @@
 											<th data-field="email" data-editable="false">Email</th>
 											<th data-field="phonenumber" data-editable="false">Mobile</th>
 											<th data-field="dob" data-editable="false">DOB</th>
+											<th data-field="referedby" data-editable="false">Sponser Id</th>
 											<th data-field="role" data-editable="false">Role</th>
 											<th data-field="action">Action</th>
 										</tr>
@@ -64,6 +72,7 @@
 												<td>${details.email}</td>
 												<td>${details.phonenumber}</td>
 												<td>${details.dob}</td>
+												<td>${details.referedby}</td>
 												<td>${details.role}</td>
                                                 
                                              	  <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>

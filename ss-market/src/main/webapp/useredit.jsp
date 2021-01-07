@@ -45,6 +45,8 @@
 										<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
 											<p style="color: red" align="center">${errormsg}</p>
 											<input type="hidden" name="id" id="id" value="${member.id}">
+											<input type="hidden" name="role" id="role" value="${member.role}">
+											<input type="hidden" name="active_days" id="active_days" value="${member.active_days}">
 											<input type="hidden" name="walletBalance" id="walletBalance" value="${member.walletBalance}">
 											<input type="hidden" name="walletWithdrawn" id="walletWithdrawn" value="${member.walletWithdrawn}">
 											<input type="hidden" name="repurcahse" id="repurcahse" value="${member.repurcahse}">
@@ -108,12 +110,17 @@
 																type="radio" value="Female"
 																${member.gender eq 'Female' ?'Checked':''}>Female
 														</div>
-														<div class="form-group">
-															<input name="referedby" type="text"
-																class="form-control" placeholder="Sponser Id"
-																value="${member.referedby}" >
+														
+														
+														<c:choose>
+														<c:when test="${not empty member.id}">
+															<div class="form-group"><input name="referedby" type="text"	class="form-control" placeholder="Sponser Id"value="${member.referedby}" readonly></div>
+														</c:when>
+														<c:otherwise>
+															<div class="form-group"><input name="referedby" type="text"	class="form-control" placeholder="Sponser Id"value="${member.referedby}" ></div>
+														</c:otherwise>
+														</c:choose>
 														</div>
-													</div>
 
 													<%-- <div class="form-group">
 																<input name="password" type="password"

@@ -268,20 +268,37 @@ public class MemberController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerSubmit(HttpServletRequest request, MemberVo user, ModelMap model) {
 		try {
+			String role = (String) request.getSession().getAttribute("ROLE");
+
 			Member userEntity = new Member();
 			model.addAttribute("member", user);
 			user.setRole("MEMBER");
+			
 			BeanUtils.copyProperties(user, userEntity, "createon", "updatedon");
 			if (StringUtils.isNotEmpty(user.getReferedby())) {
 				String referedBy = userRepository.checkSponserExists(user.getReferedby());
 				if (StringUtils.isEmpty(referedBy)) {
+					
 					model.addAttribute("errormsg", "Invalid Sponser Id.");
-					return "user";
+					if(role!=null && role.equals("ADMIN")) {
+						model.addAttribute("member", userEntity);
+						return "useredit";
+					}else {
+						return "user";
+					}
 				}
 			}
 			userRepository.save(userEntity);
-			System.out.println("Name ::" + user.getName());
-			model.addAttribute("registersuccess", "Member Registered Successfully! ");
+			
+			if(role!=null && role.equals("ADMIN")) {
+				model.addAttribute("successMessage", "Member Created Successfully! ");
+				Iterable<Member> memberList = userRepository.findAll();
+				model.addAttribute("memberList",memberList);
+				return "memberListing";
+			}else {
+				model.addAttribute("registersuccess", "Member Registered Successfully! ");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errormsg", "Member Registered Failed! ");
@@ -293,12 +310,9 @@ public class MemberController {
 	@RequestMapping(value = "/user/edit", method = RequestMethod.GET)
 	public String edit(@RequestParam("user_id") String userId,HttpServletRequest request, ModelMap model) {
 		try {
-
 			Member user = userRepository.findById(userId).get();
-
 			MemberVo memberVo = new MemberVo();
 			BeanUtils.copyProperties(user, memberVo);
-
 			model.addAttribute("member", memberVo);
 		} catch (Exception e) {
 			e.printStackTrace();

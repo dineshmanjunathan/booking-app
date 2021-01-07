@@ -72,19 +72,27 @@ public class AdminController {
 		return "commonLogin";
 	}
 	
+	@RequestMapping(value = "/admin/user/edit", method = RequestMethod.GET)
+	public String edit(HttpServletRequest request, ModelMap model) {
+		return "useredit";
+	}
+	
 	@RequestMapping("/admin/user/delete")
 	public String delete(@RequestParam("user_id") String userId, HttpServletRequest request, ModelMap model) {
 		try {
-			userRepository.removeUser(userId);
-			model.addAttribute("deletesuccessmessage", "Deleted Successfully!");
+			try {
+				userRepository.removeUser(userId);
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			model.addAttribute("deletesuccessmessage", "Member Deleted Successfully!");
 			
 			Iterable<Member> memberList = userRepository.findAll();
-			System.out.println("memberList-->");
 			model.addAttribute("memberList",memberList);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
-		return "adminMenu";
+		return "memberListing";
 	}
 	
 	@RequestMapping("/admin/categoryCodeListing")
