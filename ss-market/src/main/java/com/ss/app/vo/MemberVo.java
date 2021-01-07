@@ -18,6 +18,8 @@ public class MemberVo {
 	private String referedby;
 	private Long active_days;
 	private String role;
+	private boolean status;
+	
 	public String getId() {
 		return id;
 	}
@@ -102,6 +104,12 @@ public class MemberVo {
 	public void setRole(String role) {
 		this.role = role;
 		
+	}
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	
 }

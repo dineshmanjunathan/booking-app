@@ -33,7 +33,7 @@ public class StockPointController {
 	@RequestMapping(value="/stock/point/login",method=RequestMethod.POST)
 	public String stockPointLoginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
-			Member member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), "STOCK_POINT").get();
+			Member member = userRepository.findByIdAndPasswordAndRoleAndStatus(user.getId(), user.getPassword(), "STOCK_POINT",true).get();
 			if(member!=null && member.getId() !=null) {
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());

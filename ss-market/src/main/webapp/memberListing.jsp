@@ -60,6 +60,7 @@
 											<th data-field="dob" data-editable="false">DOB</th>
 											<th data-field="referedby" data-editable="false">Sponser Id</th>
 											<th data-field="role" data-editable="false">Role</th>
+											<th data-field="status" data-editable="false">Status</th>
 											<th data-field="action">Action</th>
 										</tr>
 									</thead>
@@ -74,6 +75,7 @@
 												<td>${details.dob}</td>
 												<td>${details.referedby}</td>
 												<td>${details.role}</td>
+												<td>${details.status == true ? 'Active' : 'Inactive'}</td>				
                                                 
                                              	  <td><a href="<c:url value='/user/edit?user_id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 

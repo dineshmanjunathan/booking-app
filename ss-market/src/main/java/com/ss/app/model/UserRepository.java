@@ -20,7 +20,7 @@ public interface UserRepository extends CrudRepository<Member, Long>{
 	@Query(value="select referencecode from t_member m where m.referencecode=:id", nativeQuery=true)
 	String checkSponserExists(String id);
 	
-	Optional<Member> findByIdAndPasswordAndRole(String id, String password, String role);
+	Optional<Member> findByIdAndPasswordAndRoleAndStatus(String id, String password, String role,boolean status);
 
 	@Query(value="delete from t_member where id=:id", nativeQuery=true)
 	void removeUser(String id);

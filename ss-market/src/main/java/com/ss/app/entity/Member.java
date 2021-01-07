@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.Random;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -35,15 +36,22 @@ public class Member implements Serializable {
 	private String email;
 	private Long phonenumber;
 	private String password;
+	@Column(columnDefinition="bigint default 0")
 	private Long walletBalance = 0L;
+	
+	@Column(columnDefinition="bigint default 0")
 	private Long walletWithdrawn= 0L;
+	
+	@Column(columnDefinition="bigint default 0")
 	private Long repurcahse= 0L;
+	
 	private String referencecode;
 	private Date createon = new Date(System.currentTimeMillis());
 	private Date updatedon = new Date(System.currentTimeMillis());
 	private String referedby;
 	private Long active_days;
 	private String role;
+	private boolean status;
 	
 	@Transient
 	private Long totalbalance= 0L;
@@ -103,7 +111,7 @@ public class Member implements Serializable {
 	public void setReferencecode(String referencecode) {
 		Random random = new Random();
 		int randomWithNextInt = random.nextInt(99999999);
-		this.referencecode = "REF00"+Math.abs(randomWithNextInt);
+		this.referencecode = "SS00"+Math.abs(randomWithNextInt);
 	}
 	public Date getCreateon() {
 		return createon;
@@ -153,6 +161,12 @@ public class Member implements Serializable {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	

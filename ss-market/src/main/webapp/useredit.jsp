@@ -45,11 +45,7 @@
 										<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
 											<p style="color: red" align="center">${errormsg}</p>
 											<input type="hidden" name="id" id="id" value="${member.id}">
-											<input type="hidden" name="role" id="role" value="${member.role}">
 											<input type="hidden" name="active_days" id="active_days" value="${member.active_days}">
-											<input type="hidden" name="walletBalance" id="walletBalance" value="${member.walletBalance}">
-											<input type="hidden" name="walletWithdrawn" id="walletWithdrawn" value="${member.walletWithdrawn}">
-											<input type="hidden" name="repurcahse" id="repurcahse" value="${member.repurcahse}">
 									
 											<div id="dropzone1" class="pro-ad">
 
@@ -114,12 +110,43 @@
 														
 														<c:choose>
 														<c:when test="${not empty member.id}">
-															<div class="form-group"><input name="referedby" type="text"	class="form-control" placeholder="Sponser Id"value="${member.referedby}" readonly></div>
+															<div class="form-group"><input name="referedby" type="text"	class="form-control" placeholder="Sponser Id"value="${member.referedby}" readonly></div>														
 														</c:when>
 														<c:otherwise>
 															<div class="form-group"><input name="referedby" type="text"	class="form-control" placeholder="Sponser Id"value="${member.referedby}" ></div>
+
 														</c:otherwise>
 														</c:choose>
+														
+														<c:choose>
+														<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
+
+														<div class="form-group">
+															<select name="role" id="role"
+																class="form-control">
+																<option value="">-Select Role-</option>
+																<option value="ADMIN"  ${member.role == 'ADMIN' ? 'selected' : ''}>ADMIN</option>
+																<option value="MEMBER" ${member.role == 'MEMBER' ? 'selected' : ''}>MEMBER</option>
+																<option value="STOCK_POINT" ${member.role == 'STOCK_POINT' ? 'selected' : ''}>STOCK POINT</option>
+															</select>
+														</div>
+														
+														<div class="form-group">
+															<select name="status" id="status"
+																class="form-control">
+																<option value="">-Select Status-</option>
+																<option value="true"  ${member.status == true ? 'selected' : ''}>Active</option>
+																<option value="false" ${member.status == false ? 'selected' : ''}>Inactive</option>
+															</select>
+														</div>
+														</c:when>		
+														<c:otherwise>
+																<input type="hidden" name="status" id="status" value="${member.status}">
+																<input type="hidden" name="role" id="role" value="${member.role}">
+														</c:otherwise>									
+														</c:choose>
+														
+
 														</div>
 
 													<%-- <div class="form-group">

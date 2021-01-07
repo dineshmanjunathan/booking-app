@@ -36,7 +36,8 @@
 											<p style="color: red" align="center">${errormsg}</p>
 											
 											<input type="hidden" name="id" id="id" value="${member.id}">
-											<input type="hidden" name="createon" id="createon" value="${member.createon}">
+											<input type="hidden" name="role" id="role" value="MEMBER">
+											<input type="hidden" name="status" id="status" value="true">
 											
 											<div id="dropzone1" class="pro-ad">
 

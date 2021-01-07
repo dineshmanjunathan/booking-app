@@ -1,5 +1,7 @@
 package com.ss.app.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeanUtils;
@@ -19,6 +21,7 @@ import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CategoryVo;
 import com.ss.app.vo.MemberVo;
 import com.ss.app.vo.ProductVo;
+import com.ss.utils.Utils;
 
 @Controller
 public class AdminController {
@@ -41,6 +44,14 @@ public class AdminController {
 	@RequestMapping("/admin/menu")
 	public String adminMenu(HttpServletRequest request,ModelMap model) {
 		model.addAttribute("ROLE","ADMIN");
+		
+		Iterable<Member> memberList = userRepository.findAll();
+		if (memberList != null) {
+			Utils utils = new Utils();
+			HashMap<String, Long> countMap = utils.computeMemberCount(memberList);
+			model.mergeAttributes(countMap);
+		}
+		
 		return "adminMenu";
 	} 
 	
@@ -54,12 +65,20 @@ public class AdminController {
 	@RequestMapping(value="/admin/login",method=RequestMethod.POST)
 	public String stockPointLoginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
-			Member member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), "ADMIN").get();
+			Member member = userRepository.findByIdAndPasswordAndRoleAndStatus(user.getId(), user.getPassword(), "ADMIN",true).get();
 			if(member!=null && member.getId() !=null) {
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
 				request.getSession().setAttribute("MEMBER_NAME", member.getName());
 				request.getSession().setAttribute("ROLE", member.getRole());
+				
+				Iterable<Member> memberList = userRepository.findAll();
+				if (memberList != null) {
+					Utils utils = new Utils();
+					HashMap<String, Long> countMap = utils.computeMemberCount(memberList);
+					model.mergeAttributes(countMap);
+				}
+				
 				return "adminMenu";
 			} else {
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
@@ -214,7 +233,6 @@ public class AdminController {
 		Product product=new Product();
 		try {
 			BeanUtils.copyProperties(productVo,product);
-			System.out.println("product--->"+product.getId());
 			proRepository.save(product);
 			Iterable<Product> productList = proRepository.findAll();
 			model.addAttribute("productListing", productList); 
