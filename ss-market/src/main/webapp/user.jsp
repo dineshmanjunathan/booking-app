@@ -37,7 +37,6 @@
 											
 											<input type="hidden" name="id" id="id" value="${member.id}">
 											<input type="hidden" name="role" id="role" value="MEMBER">
-											<input type="hidden" name="status" id="status" value="true">
 											
 											<div id="dropzone1" class="pro-ad">
 

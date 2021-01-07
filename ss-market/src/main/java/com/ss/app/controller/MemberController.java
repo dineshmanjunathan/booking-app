@@ -52,11 +52,6 @@ public class MemberController {
 		return "login";
 	}
 
-	@RequestMapping("/stock/point/login")
-	public String stockPoint(HttpServletRequest request, ModelMap model) {
-		return "stockPointLogin";
-	}
-
 	@RequestMapping("/menu")
 	public String menu(HttpServletRequest request, ModelMap model) {
 		return "menu";
@@ -90,7 +85,7 @@ public class MemberController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginSubmit(HttpServletRequest request, MemberVo user, ModelMap model) {
 		try {
-			Member member = userRepository.findByIdAndPasswordAndRoleAndStatus(user.getId(), user.getPassword(), "MEMBER",true).get();
+			Member member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), "MEMBER").get();
 			if (member != null && member.getId()!=null) {
 				if (!user.getPassword().equals(member.getPassword())) {
 					model.addAttribute("errormsg", "Password is incorrect!");
@@ -108,28 +103,6 @@ public class MemberController {
 			model.addAttribute("errormsg", "Member does not Exists!");
 		}
 		return "login";
-	}
-
-	@RequestMapping(value = "/stock/point/login", method = RequestMethod.POST)
-	public String stockPointLoginSubmit(HttpServletRequest request, MemberVo user, ModelMap model) {
-		try {
-			Member member = userRepository.findById(user.getId()).get();
-			if (member != null) {
-				if (!user.getPassword().equals(member.getPassword())) {
-					model.addAttribute("errormsg", "Password is incorrect!");
-					return "stockPointLogin";
-				}
-				request.getSession().setAttribute("LOGGED_ON", "true");
-				request.getSession().setAttribute("MEMBER_ID", user.getId());
-				request.getSession().setAttribute("MEMBER_NAME", member.getName());
-				return "stockPointMenu";
-			} else {
-				model.addAttribute("errormsg", "User Id or Password is incorrect!");
-			}
-		} catch (Exception e) {
-			model.addAttribute("errormsg", "Member does not Exists!");
-		}
-		return "stockPointLogin";
 	}
 
 	@RequestMapping(value = "/wallet", method = RequestMethod.GET)
@@ -304,9 +277,7 @@ public class MemberController {
 	public String edit(@RequestParam("user_id") String userId,HttpServletRequest request, ModelMap model) {
 		try {
 			Member user = userRepository.findById(userId).get();
-			MemberVo memberVo = new MemberVo();
-			BeanUtils.copyProperties(user, memberVo);
-			model.addAttribute("member", memberVo);
+			model.addAttribute("member", user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

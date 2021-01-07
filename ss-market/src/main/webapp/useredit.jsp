@@ -130,18 +130,8 @@
 																<option value="STOCK_POINT" ${member.role == 'STOCK_POINT' ? 'selected' : ''}>STOCK POINT</option>
 															</select>
 														</div>
-														
-														<div class="form-group">
-															<select name="status" id="status"
-																class="form-control">
-																<option value="">-Select Status-</option>
-																<option value="true"  ${member.status == true ? 'selected' : ''}>Active</option>
-																<option value="false" ${member.status == false ? 'selected' : ''}>Inactive</option>
-															</select>
-														</div>
 														</c:when>		
 														<c:otherwise>
-																<input type="hidden" name="status" id="status" value="${member.status}">
 																<input type="hidden" name="role" id="role" value="${member.role}">
 														</c:otherwise>									
 														</c:choose>

@@ -30,14 +30,19 @@ public class StockPointController {
 		return "commonLogin";
 	} 
 	
+	@RequestMapping("/stock/point/menu")
+	public String toStockMenu(HttpServletRequest request,ModelMap model) {
+		return "stockPointMenu";
+	} 
+	
 	@RequestMapping(value="/stock/point/login",method=RequestMethod.POST)
 	public String stockPointLoginSubmit(HttpServletRequest request,MemberVo user,ModelMap model) {
 		try {
-			Member member = userRepository.findByIdAndPasswordAndRoleAndStatus(user.getId(), user.getPassword(), "STOCK_POINT",true).get();
+			Member member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), "STOCK_POINT").get();
 			if(member!=null && member.getId() !=null) {
 				request.getSession().setAttribute("LOGGED_ON", "true");
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
-				request.getSession().setAttribute("MEMBER_NAME", member.getName());
+				request.getSession().setAttribute("MEMBER_NAME", member.getName());	
 				request.getSession().setAttribute("ROLE", member.getRole());
 				return "stockPointMenu";
 			} else {

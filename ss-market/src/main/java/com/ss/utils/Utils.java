@@ -21,9 +21,11 @@ public class Utils {
 				ArrayList<Member> importOrderList = Lists.newArrayList(memberList);
 				
 				for(Member member:importOrderList) {
-					if(member.isStatus()) ++active;
-					
-					if(!member.isStatus()) ++inactive;
+					/*
+					 * if(member.isStatus()) ++active;
+					 * 
+					 * if(!member.isStatus()) ++inactive;
+					 */
 					
 					if(member.getRole()!=null && member.getRole().equalsIgnoreCase("STOCK_POINT")) ++stock;
 					

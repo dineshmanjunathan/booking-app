@@ -51,7 +51,6 @@ public class Member implements Serializable {
 	private String referedby;
 	private Long active_days;
 	private String role;
-	private boolean status;
 	
 	@Transient
 	private Long totalbalance= 0L;
@@ -162,12 +161,4 @@ public class Member implements Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public boolean isStatus() {
-		return status;
-	}
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
-	
 }

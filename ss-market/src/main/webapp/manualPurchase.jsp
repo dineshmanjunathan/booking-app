@@ -48,12 +48,12 @@ $(document).ready(function(){
 							<div class="payment-adress">
 							<a
 							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
-							href="/menu" type="submit" name="submit"
+							href="/stock/point/menu" type="submit" name="submit"
 							value="adminListing">Back to Main</a>
 						<div class="row"><div class="col-lg-12"></div></div>
 							<a
 							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
-							href="/purchase/detail" type="submit" name="submit"
+							href="#" type="submit" name="submit"
 							value="adminListing">View Purchase List</a>
 						</div>
 						</div>
@@ -93,10 +93,7 @@ $(document).ready(function(){
 															<select name="prodCode" id="prodCode"class="form-control">
 															
 																<option value="">-Select Product-</option>
-																<c:forEach var="options" items="${productList}"
-																	varStatus="status">
-																	<%-- <option value="${options.prodCode}">${options.prodDesc}</option> --%>
-																</c:forEach>
+																
 															</select>
 														</div>
 															<div class="form-group">
