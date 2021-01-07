@@ -60,16 +60,6 @@ public class TransactionManagerController {
 		return "purchaseDetails";
 	}
 	
-	@RequestMapping(value = "/manual/purchase", method = RequestMethod.GET)
-	public String manualPurchase(HttpServletRequest request, ModelMap model) {
-		try {
-			Iterable<Category> categoryList = categoryRepository.findAll();
-			model.addAttribute("categoryList", categoryList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "manualPurchase";
-	}
 	
 	@RequestMapping(value = "/purchase/list", method = RequestMethod.GET)
 	public String purchaseList(HttpServletRequest request, ModelMap model) {

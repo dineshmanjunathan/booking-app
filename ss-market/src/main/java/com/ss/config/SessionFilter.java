@@ -30,6 +30,8 @@ public class SessionFilter implements Filter {
         	String isLoggedIn = (String) ses.getAttribute("LOGGED_ON");
         	String memberId = (String) ses.getAttribute("MEMBER_ID");
         	if(!"true".equals(isLoggedIn)) {
+        		System.out.println(req.getRequestURI());
+        		System.out.println(req.getContextPath());
         		res.sendRedirect("/login");
         	}
         }

@@ -13,7 +13,15 @@
 			</div>
 			<div class="well col-md-4 col-md-offset-4">
 			<!-- <h3 >SS MARKETING</h3>  -->
-                  <form action="/admin/login" method="post">
+		<c:choose>
+			<c:when test="${ROLE == 'ADMIN'}">
+				<c:set var="url" scope="session" value="/admin/login" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="url" scope="session" value="/stock/point/login" />
+			</c:otherwise>
+		</c:choose>
+		<form action="${url}" method="post">
                       	<p style="color:red" align="center">${errormsg}</p>  
                       	<p style="color:green" align="center">${adminlogout}</p>
                       	<p style="color:green" align="center">${registersuccess}</p> 
