@@ -1,7 +1,5 @@
 package com.ss.app.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeanUtils;

@@ -2,7 +2,6 @@ package com.ss.app.controller;
 
 import java.io.OutputStream;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.ss.app.dao.UserDao;
-import com.ss.app.entity.Category;
 import com.ss.app.entity.CountryCode;
 import com.ss.app.entity.Member;
-import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.CountryCodeRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CountryCodeVo;
@@ -39,9 +35,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 @Controller
 public class MemberController {
-
-	@Autowired
-	private UserDao userDao;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -235,6 +228,7 @@ public class MemberController {
 		return "memberTree";
 	}
 
+	@SuppressWarnings("unused")
 	private List<String> recursionTree(MemberTree tree, String basekeyCode, String memberId) {
 		List<Member> child = userRepository.findByReferedby(basekeyCode);
 		List<String> c = new ArrayList<>();

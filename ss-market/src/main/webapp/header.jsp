@@ -245,7 +245,7 @@
 						<ul class="metismenu" id="menu1">
 							<li>
 								<center>
-									<a aria-expanded="false"><br /> <b>Lookup</b></a>
+									<a href="/menu" aria-expanded="false"><br/> <b>Home</b></a>
 								</center>
 							</li>
 							<br>
