@@ -198,34 +198,15 @@
 }
 </style>
 
-<!-- <script type="text/javascript">
+ <script type="text/javascript">
 	$(document).ready(function() {
 		history.pushState(null, null, location.href);
 		window.onpopstate = function() {
 			history.go(1);
 		};
-		
-		$.ajax({
-            url: "/wallet/balance",
-            data: {
-                "memberId": session.getAttribrute("MEMBER_ID");
-            },
-            type: "get",
-            cache: false,
-            success: function (data) {
-                if(data) {
-                     $("#walletWithdrawn").html(data.walletWithdrawn);
-                     $("#walletBalance").html(data.walletBalance);
-                     $("#totalEarned").html(data.walletWithdrawn + data.walletBalance);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
-            }
-        });
 	});
-
-
-</script> -->
+		
+</script> 
 </head>
 
 <!-- Start Left menu area -->

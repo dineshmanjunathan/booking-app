@@ -1,8 +1,10 @@
 package com.ss.app.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
 import com.ss.app.entity.Category;
 import com.ss.app.entity.Product;
 import com.ss.app.entity.Purchase;
@@ -24,10 +28,10 @@ public class TransactionManagerController {
 
 	@Autowired
 	private PurchaseRepository purchaseRepository;
-	
+
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
+
 	@Autowired
 	private ProductRepository productRepository;
 
@@ -39,16 +43,16 @@ public class TransactionManagerController {
 			BeanUtils.copyProperties(purchase, purchaseEntity);
 			purchaseRepository.save(purchaseEntity);
 			model.addAttribute("successMessage", "Item Purchased Successfully");
-			
+
 			Iterable<Category> categoryList = categoryRepository.findAll();
 			model.addAttribute("categoryList", categoryList);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "manualPurchase";
 	}
-	
+
 	@RequestMapping(value = "/purchase/detail", method = RequestMethod.GET)
 	public String loadPurchase(HttpServletRequest request, ModelMap model) {
 		try {
@@ -60,8 +64,7 @@ public class TransactionManagerController {
 		}
 		return "purchaseDetails";
 	}
-	
-	
+
 	@RequestMapping(value = "/purchase/list", method = RequestMethod.GET)
 	public String purchaseList(HttpServletRequest request, ModelMap model) {
 		try {
@@ -74,7 +77,7 @@ public class TransactionManagerController {
 		}
 		return "purchaseProductList";
 	}
-	
+
 	@RequestMapping(value = "/purchase/loadProduct/{catId}", method = RequestMethod.GET)
 	public String loadProduct(@PathVariable String catId, HttpServletRequest request, ModelMap model) {
 		try {
@@ -87,7 +90,18 @@ public class TransactionManagerController {
 		}
 		return "purchaseProductList";
 	}
-	
-	
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/purchase/review/{cart}", method = RequestMethod.GET)
+	public String purchaseReview(HttpServletRequest request, ModelMap model, @PathVariable("cart") String cart) {
+		try {
+			Gson gson = new Gson();
+			HashMap<String, String> cartMap = gson.fromJson(cart, HashMap.class);
+			model.addAttribute("cartMap", cartMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "purchaseReview";
+	}
 
 }
