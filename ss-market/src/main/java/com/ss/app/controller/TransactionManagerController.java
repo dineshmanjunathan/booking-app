@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -66,10 +67,27 @@ public class TransactionManagerController {
 		try {
 			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productList", productList);
+			Iterable<Category> catIterable = categoryRepository.findAll();
+			model.addAttribute("categoryCodeList", catIterable);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "purchaseProductList";
 	}
+	
+	@RequestMapping(value = "/purchase/loadProduct/{catId}", method = RequestMethod.GET)
+	public String loadProduct(@PathVariable String catId, HttpServletRequest request, ModelMap model) {
+		try {
+			Iterable<Product> productList = productRepository.findByCategory(catId);
+			model.addAttribute("productList", productList);
+			Iterable<Category> catIterable = categoryRepository.findAll();
+			model.addAttribute("categoryCodeList", catIterable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "purchaseProductList";
+	}
+	
+	
 
 }

@@ -97,13 +97,18 @@ public class MemberController {
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
 				request.getSession().setAttribute("MEMBER_NAME", member.getName());
 				request.getSession().setAttribute("ROLE", member.getRole());
-				long numOfDays = ChronoUnit.DAYS.between( LocalDateTime.now(), member.getActive_days())+1;
-				request.getSession().setAttribute("ACTIVE_DAYS", numOfDays);
+				if(member.getActive_days() !=null) {
+					long numOfDays = ChronoUnit.DAYS.between( LocalDateTime.now(), member.getActive_days())+1;
+					request.getSession().setAttribute("ACTIVE_DAYS", numOfDays);
+				} else {
+					request.getSession().setAttribute("ACTIVE_DAYS", 0);
+				}
 				return "menu";
 			} else {
 				model.addAttribute("errormsg", "User Id or Password is incorrect!");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			model.addAttribute("errormsg", "Member does not Exists!");
 		}
 		return "login";
