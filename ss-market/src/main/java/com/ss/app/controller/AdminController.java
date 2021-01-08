@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ss.app.entity.Category;
 import com.ss.app.entity.Member;
 import com.ss.app.entity.Product;
+import com.ss.app.entity.StockPointPurchase;
 import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.ProductRepository;
+import com.ss.app.model.StockPointPurchaseRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CategoryVo;
 import com.ss.app.vo.MemberVo;
@@ -34,6 +36,9 @@ public class AdminController {
 	
 	@Autowired
 	private ProductRepository proRepository;
+	
+	@Autowired
+	private StockPointPurchaseRepository stockPurchaseRepository;
 	
 	@RequestMapping("/admin/login")
 	public String inlogin(HttpServletRequest request,ModelMap model) {
@@ -266,4 +271,12 @@ public class AdminController {
 		}
 		return "productListing";
 	}
+	
+	@RequestMapping("/admin/stockpurchase/listing")
+	public String stockpurchaseListing(HttpServletRequest request,ModelMap model) {
+		Iterable<StockPointPurchase> purchaseList = stockPurchaseRepository.findAll();
+		model.addAttribute("stockPoitPurchaseList",purchaseList);
+		return "stockPointPurcahseList";
+	} 
+	
 }

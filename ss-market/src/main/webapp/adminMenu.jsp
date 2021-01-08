@@ -91,6 +91,19 @@
 			</div>
 		</a>
 	</div>
+	
+	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		<a href="<c:url value='/admin/stockpurchase/listing' />">
+			<div class="panel-body">
+				<div class="stats-title pull-left">
+					<h5>Stock Point Purchase</h5>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="educate-icon educate-apps"></i>
+				</div>
+			</div>
+		</a>
+	</div>
 </div>
 <div class="col-md-10 col-md-offset-2 well row">
 	<h4>Product Manager</h4>

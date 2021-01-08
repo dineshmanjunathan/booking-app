@@ -2,6 +2,7 @@ package com.ss.app.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,10 +15,7 @@ import com.ss.generator.DefaultCountryCodeGenerator;
 public class CountryCode {
 
 	@Id
-	@GenericGenerator(name = "country_code_generator", strategy = "com.ss.generator.DefaultCountryCodeGenerator", parameters = {
-			@org.hibernate.annotations.Parameter(name = "sequence_prefix", value = DefaultCountryCodeGenerator.defaultSsequencePrefix),
-			@org.hibernate.annotations.Parameter(name = "sequence_increment", value = DefaultCountryCodeGenerator.defaultSsequenceIncrement) })
-	@GeneratedValue(generator = "country_code_generator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 	private String countryCode;
 	private String countryDesc;
