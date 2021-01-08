@@ -1,6 +1,7 @@
 package com.ss.app.vo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class MemberVo {
 
@@ -16,7 +17,7 @@ public class MemberVo {
 	private Long repurcahse= 0L;
 	private String referencecode;
 	private String referedby;
-	private Long active_days;
+	private LocalDateTime active_days;
 	private String role;
 	
 	public String getId() {
@@ -91,10 +92,10 @@ public class MemberVo {
 	public void setReferedby(String referedby) {
 		this.referedby = referedby;
 	}
-	public Long getActive_days() {
+	public LocalDateTime getActive_days() {
 		return active_days;
 	}
-	public void setActive_days(Long active_days) {
+	public void setActive_days(LocalDateTime active_days) {
 		this.active_days = active_days;
 	}
 	public String getRole() {

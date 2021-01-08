@@ -2,6 +2,8 @@ package com.ss.app.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import javax.persistence.Column;
@@ -49,7 +51,8 @@ public class Member implements Serializable {
 	private Date createon = new Date(System.currentTimeMillis());
 	private Date updatedon = new Date(System.currentTimeMillis());
 	private String referedby;
-	private Long active_days;
+	
+	private LocalDateTime active_days;
 	private String role;
 	
 	@Transient
@@ -149,10 +152,10 @@ public class Member implements Serializable {
 	public void setRepurcahse(Long repurcahse) {
 		this.repurcahse = repurcahse;
 	}
-	public Long getActive_days() {
+	public LocalDateTime getActive_days() {
 		return active_days;
 	}
-	public void setActive_days(Long active_days) {
+	public void setActive_days(LocalDateTime active_days) {
 		this.active_days = active_days;
 	}
 	public String getRole() {

@@ -2,6 +2,8 @@ package com.ss.app.controller;
 
 import java.io.OutputStream;
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +97,8 @@ public class MemberController {
 				request.getSession().setAttribute("MEMBER_ID", user.getId());
 				request.getSession().setAttribute("MEMBER_NAME", member.getName());
 				request.getSession().setAttribute("ROLE", member.getRole());
+				long numOfDays = ChronoUnit.DAYS.between( LocalDateTime.now(), member.getActive_days())+1;
+				request.getSession().setAttribute("ACTIVE_DAYS", numOfDays);
 				return "menu";
 			} else {
 				model.addAttribute("errormsg", "User Id or Password is incorrect!");

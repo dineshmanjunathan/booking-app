@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -13,7 +14,10 @@
 <center><p id="timmer"></p></center>
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Jan 18, 2021 15:37:25").getTime();
+var activeDaysLeft = new Date();
+activeDaysLeft.setDate(activeDaysLeft.getDate() + ${sessionScope.ACTIVE_DAYS});
+ var countDownDate = activeDaysLeft.getTime();
+
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -25,14 +29,21 @@ var x = setInterval(function() {
   var distance = countDownDate - now;
     
   // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24))+1;
+   //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+   //var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+   //var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
   // Output the result in an element with id="demo"
-  document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #268f63; font-weight: bold;'>"+days + "d</div> <div style='font-size: 23px; color: #268f63;'>" + hours + "h "
-  + minutes + "m " + seconds + "s </div>";
+  if (days ==1) {
+  
+  document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #268f63; font-weight: bold;'>"+days +"</div><div style='font-size: 30px;color: #268f63; font-weight: bold;'> Day</div>" ;
+  
+  }else{
+  
+   document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #268f63; font-weight: bold;'>"+days +"</div><div style='font-size: 30px;color: #268f63; font-weight: bold;'> Days</div>" ;
+   
+  }
   /* document.getElementById("timmer").innerHTML = "<div style='font-size: 70px; font-weight: bold;'>"+days + "d</div> <div style='font-size: 28px;  font-weight: bold;'>" + hours + "h "
   + minutes + "m " + seconds + "s </div>"; */
     
