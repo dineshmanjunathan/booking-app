@@ -14,17 +14,28 @@
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="product-payment-inner-st">
 					<ul id="myTabedu1" class="tab-review-design">
+					<c:choose>
+						<c:when test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
 						<li class="active"><a href="">Member profile</a></li>
+						</c:when>
+						<c:otherwise>
+						<li class="active"><a href="">User</a></li>
+						</c:otherwise>
+					</c:choose>
+						
 					</ul>
 					<!-- <form action="/userlisting" method="get"> -->
 					
 					<div class="payment-adress">
-					<c:if test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
+					
+					<c:choose>
+					<c:when test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
 						<a class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/menu" type="submit" name="submit" value="adminListing">Back to Main</a>
-					</c:if>
-					<c:if test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
+					</c:when>
+					<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
 						<a class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/member/listing" type="submit" name="submit" value="adminListing">Back to Main</a>
-					</c:if>
+					</c:when>				
+					</c:choose>
 					</div>
 					<!-- </form> -->
 

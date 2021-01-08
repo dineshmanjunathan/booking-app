@@ -11,7 +11,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">MEMBER LIST</a></li></center>
+								<center><li class="active"><a href="">USER LIST</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -30,7 +30,7 @@
 									<td>
 										<a href="/admin/user/edit"
 											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
-											<span> <i class="fa fa-plus"></i> <span>Member</span>
+											<span> <i class="fa fa-plus"></i> <span>User</span>
 										</span>
 										</a>
 									</td>

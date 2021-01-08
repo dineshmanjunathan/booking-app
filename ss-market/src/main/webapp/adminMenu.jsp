@@ -9,7 +9,7 @@
 <meta charset="ISO-8859-1">
 </head>
 <div class="col-md-10 col-md-offset-2 well row">
-	<h4>Member Status</h4>
+	<h4>User Status</h4>
 	</br>
 	<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 btn btn-info" style="padding: inherit;">
 		<a href="<c:url value='#' />">
@@ -77,13 +77,13 @@
 	</div>
 </div>
 <div class="col-md-10 col-md-offset-2 well row">
-	<h4>Member Details</h4>
+	<h4>User Management</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 		<a href="<c:url value='/admin/member/listing' />">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
-					<h5>Manage Member</h5>
+					<h5>Manage User</h5>
 				</div>
 				<div class="stats-icon pull-right">
 					<i class="educate-icon educate-apps"></i>
