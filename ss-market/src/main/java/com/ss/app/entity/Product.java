@@ -1,13 +1,16 @@
 package com.ss.app.entity;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +20,11 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String category;
-	@Column(unique=true)
+	@OneToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "category_id")
+	private Category category;
+
+	@Column(unique = true)
 	private String prodCode;
 	private String prodDesc;
 	private Long quantity;
@@ -35,11 +41,11 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -82,9 +88,5 @@ public class Product {
 	public void setPrice(Long price) {
 		this.price = price;
 	}
-	
-	
-	
-	
 
 }

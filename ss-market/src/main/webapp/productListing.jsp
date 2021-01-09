@@ -65,7 +65,7 @@
                                         <c:forEach var="details" items="${productListing}" varStatus="status">
                                             <tr>
 												<%-- <td>${details.id}</td> --%>
-												<td>${details.category}</td> 
+												<td>${details.category.description}</td> 
 												<td>${details.prodCode}</td> 
 												<td>${details.prodDesc}</td>
 												<td>${details.quantity}</td>

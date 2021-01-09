@@ -1,9 +1,11 @@
 package com.ss.app.vo;
 
+import com.ss.app.entity.Category;
+
 public class ProductVo {
 
 	private Long id;
-	private String category;
+	private Category category;
 	private String prodCode;
 	private String prodDesc;
 	private Long quantity;
@@ -18,11 +20,11 @@ public class ProductVo {
 		this.id = id;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -65,7 +67,5 @@ public class ProductVo {
 	public void setPrice(Long price) {
 		this.price = price;
 	}
-	
-	
 
 }

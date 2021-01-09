@@ -48,12 +48,13 @@
 															<div class="form-group">
 															</div>
 															<div class="form-group">
+															<input type="hidden" name="none" id="none" value="${productCode.category.description}">
+															
 															<select name="category" id="category"
 																class="form-control">
 																<option value="">-Select category-</option>
-																<c:forEach var="options" items="${categoryCodeList}"
-																	varStatus="status">
-																	<option value="${options.code}" ${options.code == productCode.category ? 'selected' : ''}>${options.description}</option>
+																<c:forEach var="options" items="${categoryCodeList}" varStatus="status">
+																	<option value="${options.id}" ${options.id == productCode.category.id ? 'selected' : ''}>${options.description}</option>
 																</c:forEach>
 															</select>
 														</div>
