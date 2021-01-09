@@ -2,6 +2,7 @@ package com.ss.app.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
 import com.ss.app.entity.Category;
@@ -22,6 +22,7 @@ import com.ss.app.entity.Purchase;
 import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.ProductRepository;
 import com.ss.app.model.PurchaseRepository;
+import com.ss.app.vo.CartVo;
 
 @Controller
 public class TransactionManagerController {
@@ -92,16 +93,42 @@ public class TransactionManagerController {
 	}
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/purchase/review/{cart}", method = RequestMethod.GET)
-	public String purchaseReview(HttpServletRequest request, ModelMap model, @PathVariable("cart") String cart) {
+	@RequestMapping(value = "/purchase/review/{cart}/{total}", method = RequestMethod.GET)
+	public String purchaseReview(HttpServletRequest request, ModelMap model, @PathVariable("cart") String cart, @PathVariable("total") String total) {
 		try {
 			Gson gson = new Gson();
-			HashMap<String, String> cartMap = gson.fromJson(cart, HashMap.class);
+			HashMap<String, CartVo> cartMap = gson.fromJson(cart, HashMap.class);
 			model.addAttribute("cartMap", cartMap);
+			model.addAttribute("cartTotal", total);
+			HttpSession session = request.getSession();
+			session.setAttribute("cartMap", cartMap);
+			session.setAttribute("cartTotal", total);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "purchaseReview";
+	}
+	
+	@RequestMapping(value = "/purchase/review/edit", method = RequestMethod.GET)
+	public String reviewEdit(HttpServletRequest request, ModelMap model) {
+		try {
+			HttpSession session = request.getSession();
+			HashMap<String, CartVo> cartMap = (HashMap<String, CartVo>) session.getAttribute("cartMap");
+			HashMap<String, Long> map = new HashMap<>();
+			model.addAttribute("cartTotal", session.getAttribute("cartTotal"));
+			Iterable<Product> productList = productRepository.findAll();
+			cartMap.entrySet().stream()
+		      .forEach(e -> {
+		    	  map.put(e.getKey(), Long.parseLong(e.getValue().getQty()));
+		      });			
+			model.addAttribute("productList", productList);
+			model.addAttribute("cartMap", map);
+			Iterable<Category> catIterable = categoryRepository.findAll();
+			model.addAttribute("categoryCodeList", catIterable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "purchaseProductList";
 	}
 
 }

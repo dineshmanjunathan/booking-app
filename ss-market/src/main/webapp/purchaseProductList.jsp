@@ -16,10 +16,11 @@ $(document).ready(function(){
 
 
 //simple function 
-function prodCart(code,desc,qty){ 
+function CartVo(code, desc, qty, price){ 
     this.code = code; 
     this.desc = desc; 
-    this.qty = qty; 
+    this.qty = qty;
+    this.price = price;
 } 
 
 let cart = new Map();
@@ -41,7 +42,7 @@ function addToCart(prodCode, price, desc) {
 		let total = price * qty; 
 		cartTotal = cartTotal + total;
 	}
-	let obj  = new prodCart(prodCode, desc, qty); 
+	let obj  = new CartVo(prodCode, desc, qty, price); 
 	cart.set(prodCode,obj);
 	$('#cartTotal').text(cartTotal);
 	cart.set("cartTotal",cartTotal);
@@ -63,7 +64,8 @@ function removeFromCart(prodCode, price) {
 }
 
 function review() {
-	window.location.href = "/purchase/review/"+encodeURIComponent( JSON.stringify(cart, (key, value) => (value instanceof Map ? [...value] : value)) );
+	window.location.href = "/purchase/review/"
+	+encodeURIComponent( JSON.stringify(cart, (key, value) => (value instanceof Map ? [...value] : value))+"/"+encodeURIComponent(cartTotal));
 }
 
 </script>
@@ -158,7 +160,7 @@ function review() {
 																	<option value="">-Select Quantity-</option>
 																	<c:forEach begin="1" end="${details.quantity}"
 																		varStatus="loop">
-																		<option value="${loop.index}">${loop.index}</option>
+																		<option value="${loop.index}" ${loop.index == map[details.prodCode] ? 'selected' : ''}>${loop.index}</option>
 																	</c:forEach>
 																</select>
 															</div>

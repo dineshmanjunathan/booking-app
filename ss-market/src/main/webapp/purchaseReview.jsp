@@ -91,8 +91,7 @@ $('#purchaseReview').on('click', function (){
 								<div class="row">
 									<a href="/menu"
 										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
-										<span><i class="fa fa-arrow-left"></i> <span>Back
-												to Main</span> </span>
+										<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span> </span>
 									</a> 
 								</div>
 								<br>
@@ -114,8 +113,7 @@ $('#purchaseReview').on('click', function (){
 											data-click-to-select="true" data-toolbar="#toolbar">
 											<thead>
 												<tr>
-													<th data-field="prodCode" data-editable="false">Product
-														Code</th>
+													<th data-field="prodCode" data-editable="false">Product</th>
 													<th data-field="quantity" data-editable="false">Quantity</th>
 													<th data-field="total">Action</th>
 												</tr>
@@ -124,11 +122,11 @@ $('#purchaseReview').on('click', function (){
 
 												<c:forEach var="entry" items="${cartMap}">
   														<tr>
-														<td>${entry.key}</td>
-														<td>${entry.value}</td>
+														<td>${entry.value.desc}</td>
+														<td>${entry.value.qty}</td>
 														<td>
 															<button class="btn btn-danger" type="button"
-																onclick="return removeFromCart('${details.prodCode}', '${details.price}');">
+																onclick="return removeFromCart('${entry.value.code}', '${entry.value.qty.price}');">
 																<i class="fa fa-remove"></i>Remove</button>
 														</td>
 														</tr>
@@ -146,14 +144,15 @@ $('#purchaseReview').on('click', function (){
 											</span>
 										</div>
 										<div class="row">
-											</a> <a href="#"
+											<a href="/purchase/review/edit"
+												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
+												<span><i class="fa fa-arrow-left"></i> <span>Edit cart</span> </span></a>
+											 <a href="#"
 												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-9 col-md-3">
 												<span> <i class="fa fa-plus"></i> <span>Pay to place you order</span>
 											</span>
 											</a>
-
 										</div>
-
 									</div>
 								</div>
 							</div>
