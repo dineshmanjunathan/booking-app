@@ -45,7 +45,6 @@ function addToCart(prodCode, price, desc) {
 	let obj  = new CartVo(prodCode, desc, qty, price); 
 	cart.set(prodCode,obj);
 	$('#cartTotal').text(cartTotal);
-	cart.set("cartTotal",cartTotal);
 }
 
 function removeFromCart(prodCode, price) {
@@ -64,8 +63,8 @@ function removeFromCart(prodCode, price) {
 }
 
 function review() {
-	window.location.href = "/purchase/review/"
-	+encodeURIComponent( JSON.stringify(cart, (key, value) => (value instanceof Map ? [...value] : value))+"/"+encodeURIComponent(cartTotal));
+	window.location.href = "/purchase/review?total="+cartTotal+"&cart="
+	+encodeURIComponent( JSON.stringify(cart, (key, value) => (value instanceof Map ? [...value] : value)));
 }
 
 </script>
@@ -78,8 +77,7 @@ function review() {
 				<div class="product-payment-inner-st">
 					<ul id="myTabedu1" class="tab-review-design">
 						<center>
-							<li class="active"><a href="">Select Products to
-									purchase</a></li>
+							<li class="active"><a href="">Select Products to purchase</a></li>
 						</center>
 					</ul>
 
@@ -90,8 +88,7 @@ function review() {
 								<div class="row">
 									<a href="/menu"
 										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
-										<span><i class="fa fa-arrow-left"></i> <span>Back
-												to Main</span> </span>
+										<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span> </span>
 									</a> 
 									<a href="#"
 										class="btn btn-waring m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-2">
@@ -133,12 +130,8 @@ function review() {
 											data-click-to-select="true" data-toolbar="#toolbar">
 											<thead>
 												<tr>
-													<th data-field="category" data-editable="false">Category
-														Code</th>
-													<th data-field="prodCode" data-editable="false">Product
-														Code</th>
-													<th data-field="prodDesc" data-editable="false">Product
-														Description</th>
+													<th data-field="category" data-editable="false">Category</th>
+													<th data-field="code" data-editable="false">Product</th>
 													<th data-field="price" data-editable="false">Price</th>
 													<th data-field="quantity" data-editable="false">Quantity</th>
 													<th data-field="total">Action</th>
@@ -149,28 +142,27 @@ function review() {
 													varStatus="status">
 													<tr>
 														<%-- <td>${details.id}</td> --%>
-														<td>${details.category}</td>
-														<td>${details.prodCode}</td>
+														<td>${details.category.description}</td>
 														<td>${details.prodDesc}</td>
 														<td>${details.price}</td>
 														<td>
 															<div class="form-group">
 																<select name="quantity"
-																	id="quantity-${details.prodCode}" class="form-control">
+																	id="quantity-${details.code}" class="form-control">
 																	<option value="">-Select Quantity-</option>
 																	<c:forEach begin="1" end="${details.quantity}"
 																		varStatus="loop">
-																		<option value="${loop.index}" ${loop.index == map[details.prodCode] ? 'selected' : ''}>${loop.index}</option>
+																		<option value="${loop.index}" ${loop.index == cartMap[details.code] ? 'selected' : ''}>${loop.index}</option>
 																	</c:forEach>
 																</select>
 															</div>
 														</td>
 														<td>
 															<button class="btn btn-primary" type="button"
-																onclick="return addToCart('${details.prodCode}', '${details.price}');">
+																onclick="return addToCart('${details.code}', '${details.price}', '${details.prodDesc}');">
 																<i class="fa fa-shopping-cart"></i> Add to Cart</button>
 															<button class="btn btn-danger" type="button"
-																onclick="return removeFromCart('${details.prodCode}', '${details.price}');">
+																onclick="return removeFromCart('${details.code}', '${details.price}');">
 																<i class="fa fa-remove"></i>Remove</button>
 														</td>
 													</tr>

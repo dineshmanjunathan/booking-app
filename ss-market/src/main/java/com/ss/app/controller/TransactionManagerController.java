@@ -2,7 +2,6 @@ package com.ss.app.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
 import com.ss.app.entity.Category;
@@ -36,10 +36,12 @@ public class TransactionManagerController {
 	@Autowired
 	private ProductRepository productRepository;
 
-	@RequestMapping(value = "/save/purchase", method = RequestMethod.POST)
+	@RequestMapping(value = "/purchase/order", method = RequestMethod.POST)
 	public String savePurchase(HttpServletRequest request, Purchase purchase, ModelMap model) {
 		try {
-
+			//TODO
+			// decrease qty in product table.
+			// update active days date in member table
 			Purchase purchaseEntity = new Purchase();
 			BeanUtils.copyProperties(purchase, purchaseEntity);
 			purchaseRepository.save(purchaseEntity);
@@ -93,22 +95,30 @@ public class TransactionManagerController {
 	}
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/purchase/review/{cart}/{total}", method = RequestMethod.GET)
-	public String purchaseReview(HttpServletRequest request, ModelMap model, @PathVariable("cart") String cart, @PathVariable("total") String total) {
+	@RequestMapping(value = "/purchase/review", method = RequestMethod.GET)
+	public String purchaseReview(HttpServletRequest request, ModelMap model, @RequestParam("cart") String cart, @RequestParam("total") String total) {
 		try {
-			Gson gson = new Gson();
-			HashMap<String, CartVo> cartMap = gson.fromJson(cart, HashMap.class);
-			model.addAttribute("cartMap", cartMap);
-			model.addAttribute("cartTotal", total);
 			HttpSession session = request.getSession();
-			session.setAttribute("cartMap", cartMap);
-			session.setAttribute("cartTotal", total);
+			HashMap<String, CartVo> cartMap = (HashMap<String, CartVo>) session.getAttribute("cartMap");
+			if(cartMap != null) {
+				model.addAttribute("cartTotal", session.getAttribute("cartTotal"));
+				model.addAttribute("cartMap", cartMap);
+			} else {
+				Gson gson = new Gson();
+				cartMap = gson.fromJson(cart, HashMap.class);
+				model.addAttribute("cartMap", cartMap);
+				model.addAttribute("cartTotal", total);
+				// Add cart values in session
+				session.setAttribute("cartMap", cartMap);
+				session.setAttribute("cartTotal", total);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "purchaseReview";
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/purchase/review/edit", method = RequestMethod.GET)
 	public String reviewEdit(HttpServletRequest request, ModelMap model) {
 		try {
@@ -117,10 +127,9 @@ public class TransactionManagerController {
 			HashMap<String, Long> map = new HashMap<>();
 			model.addAttribute("cartTotal", session.getAttribute("cartTotal"));
 			Iterable<Product> productList = productRepository.findAll();
-			cartMap.entrySet().stream()
-		      .forEach(e -> {
-		    	  map.put(e.getKey(), Long.parseLong(e.getValue().getQty()));
-		      });			
+			cartMap.entrySet().stream().forEach(e -> {
+				map.put(e.getKey(), Long.parseLong(e.getValue().getQty()));
+			});
 			model.addAttribute("productList", productList);
 			model.addAttribute("cartMap", map);
 			Iterable<Category> catIterable = categoryRepository.findAll();
@@ -130,13 +139,12 @@ public class TransactionManagerController {
 		}
 		return "purchaseProductList";
 	}
-	
+
 	@RequestMapping(value = "/purchase/all/list", method = RequestMethod.GET)
 	public String allTxnList(HttpServletRequest request, ModelMap model) {
 		try {
 			Iterable<Purchase> purchaseList = purchaseRepository.findAll();
 			model.addAttribute("purchaseList", purchaseList);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

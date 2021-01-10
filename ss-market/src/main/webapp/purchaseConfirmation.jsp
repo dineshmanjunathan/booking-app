@@ -80,7 +80,7 @@ $('#purchaseReview').on('click', function (){
 				<div class="product-payment-inner-st">
 					<ul id="myTabedu1" class="tab-review-design">
 						<center>
-							<li class="active"><a href="">Review your products to purchase</a></li>
+							<li class="active"><a href="">Order confirmation</a></li>
 						</center>
 					</ul>
 
@@ -95,6 +95,13 @@ $('#purchaseReview').on('click', function (){
 									</a> 
 								</div>
 								<br>
+								<div class="row">
+									<a href="#"
+										class="btn-warning col-md-offset-1 col-md-2">
+										<span>Order number : ${orderNumber} </span>
+										<span>Address : ${orderAddress} </span>
+									</a> 
+								</div>
 								<div class="sparkline13-graph">
 									<div class="datatable-dashv1-list custom-datatable-overright">
 										<div id="toolbar">
@@ -124,11 +131,6 @@ $('#purchaseReview').on('click', function (){
   														<tr>
 														<td>${entry.value.desc}</td>
 														<td>${entry.value.qty}</td>
-														<td>
-															<button class="btn btn-danger" type="button"
-																onclick="return removeFromCart('${entry.value.code}', '${entry.value.price}');">
-																<i class="fa fa-remove"></i>Remove</button>
-														</td>
 														</tr>
 												</c:forEach>
 											</tbody>
@@ -136,22 +138,12 @@ $('#purchaseReview').on('click', function (){
 
 										<div class="row">
 											<a href="#"
-												class="btn btn-waring col-md-offset-9 col-md-3">
+												class="btn btn-waring m-btn m-btn--custom m-btn--icon col-md-offset-9 col-md-3">
 												<span> <i class="fa fa-shopping-cart"
 													style="font-size: 20px"></i> <span>Purchase Total:
 														&#x20b9; <span id="cartTotal">${cartTotal}</span>
 												</span>
 											</span>
-										</div>
-										<div class="row">
-											<a href="/purchase/review/edit"
-												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
-												<span><i class="fa fa-arrow-left"></i> <span>Edit cart</span> </span></a>
-											 <a href="#"
-												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
-												<span> <i class="fa fa-plus"></i> <span>Pay to place you order</span>
-											</span>
-											</a>
 										</div>
 									</div>
 								</div>
