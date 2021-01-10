@@ -6,6 +6,16 @@
 <head>
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
+
+<script type="text/javascript" charset="utf-8">
+function review() {
+	var walletBalance = $('#walletBalance').val();
+	var repurcahse = $('#repurcahse').val();
+	window.location.href = "/wallet/deduction/compute?walletBalance="+walletBalance+"&repurcahse="+repurcahse;
+}
+
+</script>
+
 </head>
 <body>
 
@@ -32,7 +42,7 @@
 							<div class="product-tab-list tab-pane fade active in"
 								id="description">
 								<div class="row">
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right: 19%; padding-left: 19%;">
 										<div class="review-content-section">
 										
 											<form action="/updateRePurchase" method="post">
@@ -43,20 +53,45 @@
 											<div id="dropzone1" class="pro-ad">
 											
 													<div class="row">
-														<div class=" well col-lg-6 col-md-6 col-sm-6 col-xs-12">
+														<div class=" well col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															<div class="form-group">
 															<label>Available Balance:</label>
 																<input name="walletBalance" id="walletBalance" type="text" class="form-control"
 																	placeholder="" value="${member.walletBalance}" readonly>
 															</div>
-															
-
+														
+														<c:choose>
+														<c:when test="${not empty DEBIT}">
 														<div class="form-group">
 															<input name="repurcahse" id="repurcahse" type="number" class="form-control"
-																placeholder="Re purcahse points" value="${member.repurcahse}"
-																required>
+																placeholder="Add Points to Re-purcahse" value="${member.repurcahse}" required>
 														</div>
+														</c:when>
+														<c:otherwise>
+														<div class="form-group">
+															<input name="repurcahse" id="repurcahse" type="number" class="form-control"
+																placeholder="Add Points to Re-purcahse" required>
+														</div>
+														</c:otherwise>
+														</c:choose>
 
+														<div class="payment-adress">
+															<a
+																class="btn btn-success col-md-offset-10 col-md-2"
+																onclick="return review();" type="button">Validate</a>
+														</div>
+														<br><br><br>
+														<c:choose>
+														<c:when test="${not empty DEBIT}">
+														<div class="form-group">
+														<label style="font-size: 25px;">The charge will be ${DEBIT} point</label>
+														</div>
+														
+														<div class="form-group">
+														<label style="font-size: 25px;">Remaining Balance ${REMAINING_AMOUNT}</label>
+														</div>
+														</c:when>
+														</c:choose>
 														</div>
 															
 													</div>

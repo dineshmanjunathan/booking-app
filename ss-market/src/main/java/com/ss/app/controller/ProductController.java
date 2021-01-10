@@ -16,7 +16,6 @@ import com.ss.app.entity.Category;
 import com.ss.app.entity.Product;
 import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.ProductRepository;
-import com.ss.app.model.PurchaseRepository;
 
 @Controller
 public class ProductController {
@@ -26,24 +25,20 @@ public class ProductController {
 
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
-	@Autowired
-	private PurchaseRepository purchaseRepository;
 
-	
 	@RequestMapping("/loadProduct")
-	public ResponseEntity<Iterable<Product>> loadDoctor(@RequestParam("categoryId") String category,HttpServletRequest request, ModelMap model) {
+	public ResponseEntity<Iterable<Product>> loadProduct(@RequestParam("categoryId") String category,
+			HttpServletRequest request, ModelMap model) {
 		List<Product> Product = productRepository.findByCategory(category);
 		model.addAttribute("productList", Product);
 		return new ResponseEntity(Product, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping("/product")
-	public String inlogin(HttpServletRequest request,ModelMap model) {
+	public String inlogin(HttpServletRequest request, ModelMap model) {
 		Iterable<Category> categoryList = categoryRepository.findAll();
 		model.addAttribute("categoryList", categoryList);
 		return "productListing";
-	} 
-	
-	
+	}
+
 }

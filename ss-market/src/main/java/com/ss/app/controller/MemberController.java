@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,13 +25,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.ss.app.entity.CountryCode;
+import com.ss.app.entity.DBConfiguration;
 import com.ss.app.entity.Member;
+import com.ss.app.entity.Product;
 import com.ss.app.model.CountryCodeRepository;
+import com.ss.app.model.DBConfigRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CountryCodeVo;
 import com.ss.app.vo.MemberTree;
 import com.ss.app.vo.MemberVo;
 import com.ss.utils.ReportGenerator;
+import com.ss.utils.Utils;
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -43,6 +48,9 @@ public class MemberController {
 
 	@Autowired
 	private CountryCodeRepository countryCodeRepository;
+	
+	@Autowired
+	private DBConfigRepository dbConfigRepository;
 
 	@RequestMapping("/")
 	public String login(HttpServletRequest request, ModelMap model) {
@@ -146,8 +154,45 @@ public class MemberController {
 		}
 		return "rePurchase";
 	}
+	
+	@RequestMapping(value = "/wallet/deduction/compute", method = RequestMethod.GET)
+	public String validateRepurchase(HttpServletRequest request, MemberVo user, ModelMap model) {
+		
+		if ((user.getWalletBalance() != null && user.getWalletBalance() > 0) &&
+				user.getRepurcahse() != null && user.getRepurcahse() > 0) {
 
-	@RequestMapping(value = "updateRePurchase", method = RequestMethod.POST)
+			DBConfiguration configurations1 = dbConfigRepository.findById(1111).get();
+			DBConfiguration configurations2 = dbConfigRepository.findById(1112).get();
+
+			try {
+				Long rp = user.getRepurcahse();
+				Long remaningPoint = user.getWalletBalance();
+
+				if (rp > 0) {
+					Double config1 = Double.parseDouble(Utils.checkNull(configurations1.getValue(), "0.0"));
+					Double config2 = Double.parseDouble(Utils.checkNull(configurations2.getValue(), "0.0"));
+					Double deductAmt1 = (rp.doubleValue() / 100) * config1;
+					Double deductAmt2 = (rp.doubleValue() / 100) * config2;
+					Long totaldeduct = (long) (deductAmt1 + deductAmt2);
+					remaningPoint = remaningPoint - rp;
+					model.addAttribute("DEBIT", totaldeduct);
+					model.addAttribute("REMAINING_AMOUNT", remaningPoint);
+				}
+
+				model.addAttribute("member", user);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				model.addAttribute("errormsg", "Failed to add points in  Re Purchase!");
+			}
+
+		}else {
+			model.addAttribute("member", user);
+		}
+		return "rePurchase";
+	}
+
+	@RequestMapping(value = "/updateRePurchase", method = RequestMethod.POST)
 	public String updateToRePurcahse(HttpServletRequest request, MemberVo user, ModelMap model) {
 		try {
 			String userId = (String) request.getSession().getAttribute("MEMBER_ID");
@@ -155,22 +200,46 @@ public class MemberController {
 
 			if (user.getWalletBalance() <= user.getRepurcahse()) {
 				model.addAttribute("errormsg", "Given value is greater than available balance!");
-				
 
 				model.addAttribute("member", member);
-				
+
 				return "rePurchase";
 			}
-			
-			member.setRepurcahse(user.getRepurcahse());
-			member.setWalletBalance(member.getWalletBalance() - user.getRepurcahse());
-			member.setUpdatedon(new Date(System.currentTimeMillis()));
-			member = userRepository.save(member);
 
-			member.setTotalbalance(member.getWalletBalance() + member.getWalletWithdrawn() + member.getRepurcahse());
-			model.addAttribute("userwallet", member);
+			if ((user.getWalletBalance() != null && user.getWalletBalance() > 0) && user.getRepurcahse() != null
+					&& user.getRepurcahse() > 0) {
 
-			model.addAttribute("successMessage", "Points successfully added to Re Purchase!");
+				// INCENTIVE DEDUCTION STARTS
+				DBConfiguration configurations1 = dbConfigRepository.findById(1111).get();
+				DBConfiguration configurations2 = dbConfigRepository.findById(1112).get();
+				Long rp = user.getRepurcahse();
+				Long remaningPoint = user.getWalletBalance();
+				Double config1 = Double.parseDouble(Utils.checkNull(configurations1.getValue(), "0.0"));
+				Double config2 = Double.parseDouble(Utils.checkNull(configurations2.getValue(), "0.0"));
+				Double deductAmt1 = (rp.doubleValue() / 100) * config1;
+				Double deductAmt2 = (rp.doubleValue() / 100) * config2;
+				Long totaldeduct = (long) (deductAmt1 + deductAmt2);
+				remaningPoint = remaningPoint - rp;
+				model.addAttribute("DEBIT", totaldeduct);
+				model.addAttribute("REMAINING_AMOUNT", remaningPoint);
+				// INCENTIVE DEDUCTION ENDS
+
+				member.setRepurcahse(member.getRepurcahse() + (rp - totaldeduct));
+				member.setWalletBalance(remaningPoint);
+				member.setUpdatedon(new Date(System.currentTimeMillis()));
+
+				member = userRepository.save(member);
+
+				member.setTotalbalance(
+						member.getWalletBalance() + member.getWalletWithdrawn() + member.getRepurcahse());
+				model.addAttribute("userwallet", member);
+
+				model.addAttribute("successMessage", "Points successfully added to Re Purchase!");
+			} else {
+				model.addAttribute("errormsg", "Insufficient balance!");
+				model.addAttribute("member", member);
+				return "rePurchase";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errormsg", "Failed to add points in  Re Purchase!");

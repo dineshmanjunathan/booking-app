@@ -11,7 +11,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Stock Point Purchase</a></li></center>
+								<center><li class="active"><a href="">Transaction History</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">

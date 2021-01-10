@@ -6,32 +6,6 @@
 <head>
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
-<script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-    $('#category').on('change', function (){
-    	$.ajax({
-            url: "/loadProduct",
-            data: {
-                "categoryId": $( "#category option:selected" ).val()
-            },
-            type: "get",
-            cache: false,
-            success: function (data) {
-                if(data) {
-                	 var options = '<option value="">-Select Product-</option>';
-                     for (var i = 0; i < data.length; i++) {
-                       options += '<option value="' + data[i].prodCode + '">' + data[i].prodDesc + '</option>';
-                     }
-                     $("select#prodCode").html(options);
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
-            }
-        });
-    });
-});
-</script>
 </head>
 <body>
 	<!-- Single pro tab review Start-->

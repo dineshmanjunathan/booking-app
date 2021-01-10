@@ -55,8 +55,38 @@ public class Utils {
 		}
 		return userList;
 	}
+	
+	public static String checkNull(String str, String _default) {
+		String result = null;
+		try {
+			if (str != null && str.trim().length() > 0 && !str.trim().equals("null")) {
+				result = str.trim();
+			} else {
+				result = _default;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	public static void main(String[] arg) {
+		
+		Long rp = 40L;
+		Long remaningPoint = 540L;
+		Double config1 = Double.parseDouble(Utils.checkNull("10", "0.0"));
+		Double config2 = Double.parseDouble(Utils.checkNull("5", "0.0"));
+		Double deductAmt1 = (rp.doubleValue() / 100) * config1;
+		Double deductAmt2 = (rp.doubleValue() / 100) * config2;
+		Long totaldeduct = (long) (deductAmt1 + deductAmt2);
+
+		remaningPoint = remaningPoint - rp;
+		
+		System.out.println("config1 -->"+config1);
+		System.out.println("config2 -->"+config2);
+		System.out.println("deductAmt1 -->"+deductAmt1);
+		System.out.println("deductAmt2 -->"+deductAmt2);
+		System.out.println("deductAmt2 -->"+deductAmt2);
 
 	}
 }
