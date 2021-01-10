@@ -3,10 +3,13 @@ package com.ss.app.entity;
 import java.time.LocalDateTime;
 import java.util.Random;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,10 +21,14 @@ public class Purchase {
 	private Long id;
 	private Long orderNumber;
 	private String memberid;
-	private String prodCode;
-	private Long amount;
+	@OneToOne()
+	@JoinColumn(name = "product_code")
+	private Product product;
+	private Double amount;
 	private Long quantity;
 	private LocalDateTime purchasedOn = LocalDateTime.now();
+	@Column(name = "order_status")
+	private String orderStatus = "P";
 
 	public Long getId() {
 		return id;
@@ -49,19 +56,19 @@ public class Purchase {
 		this.memberid = memberid;
 	}
 
-	public String getProdCode() {
-		return prodCode;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProdCode(String prodCode) {
-		this.prodCode = prodCode;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
-	public Long getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Long amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
@@ -81,4 +88,11 @@ public class Purchase {
 		this.purchasedOn = purchasedOn;
 	}
 
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 }

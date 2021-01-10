@@ -38,7 +38,6 @@
 												</c:otherwise>
 											</c:choose>
 											<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
-											<input type="hidden" name="id" id="id" value="${categoryCode.id}">
 											<div id="dropzone1" class="pro-ad">
 											
 													<p style="color: green" align="center">${successMessage}</p>

@@ -4,20 +4,18 @@ import com.ss.app.entity.Category;
 
 public class ProductVo {
 
-	private Long id;
+	private String code;
 	private Category category;
-	private String prodCode;
 	private String prodDesc;
 	private Long quantity;
-	private byte[] image;
-	private Long price;
+	private Double price;
 
-	public Long getId() {
-		return id;
+	public String getCode() {
+		return code;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public Category getCategory() {
@@ -26,14 +24,6 @@ public class ProductVo {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-	public String getProdCode() {
-		return prodCode;
-	}
-
-	public void setProdCode(String prodCode) {
-		this.prodCode = prodCode;
 	}
 
 	public String getProdDesc() {
@@ -52,19 +42,11 @@ public class ProductVo {
 		this.quantity = quantity;
 	}
 
-	public byte[] getImage() {
-		return image;
-	}
-
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
-
-	public Long getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Long price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

@@ -38,7 +38,6 @@
 												</c:otherwise>
 											</c:choose>
 											<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
-											<input type="hidden" name="id" id="id" value="${productCode.id}">
 											<div id="dropzone1" class="pro-ad">
 											
 													<p style="color: green" align="center">${successMessage}</p>
@@ -47,20 +46,18 @@
 														<div class=" well col-lg-6 col-md-6 col-sm-6 col-xs-12">
 															<div class="form-group">
 															</div>
-															<div class="form-group">
-															<input type="hidden" name="none" id="none" value="${productCode.category.description}">
-															
+															<div class="form-group">															
 															<select name="category" id="category"
 																class="form-control">
 																<option value="">-Select category-</option>
 																<c:forEach var="options" items="${categoryCodeList}" varStatus="status">
-																	<option value="${options.id}" ${options.id == productCode.category.id ? 'selected' : ''}>${options.description}</option>
+																	<option value="${options.code}" ${options.code == productCode.category.code ? 'selected' : ''}>${options.description}</option>
 																</c:forEach>
 															</select>
 														</div>
 															<div class="form-group">
-																<input name="prodCode" type="text" class="form-control"
-																	placeholder="Product Code" value="${productCode.prodCode}" required>
+																<input name="code" type="text" class="form-control"
+																	placeholder="Product Code" value="${productCode.code}" required>
 															</div>
 															<div class="form-group">
 																<input name="prodDesc" type="text" class="form-control"

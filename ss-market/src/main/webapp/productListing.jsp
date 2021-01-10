@@ -53,7 +53,7 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 										<tr> 
-											<th data-field="category" data-editable="false">Category Code</th>
+											<th data-field="category" data-editable="false">Category</th>
 											<th data-field="prodCode" data-editable="false">Product Code</th>
 											<th data-field="prodDesc" data-editable="false">Product Description</th>
 											<th data-field="quantity" data-editable="false">Quantity</th>
@@ -65,14 +65,14 @@
                                         <c:forEach var="details" items="${productListing}" varStatus="status">
                                             <tr>
 												<%-- <td>${details.id}</td> --%>
-												<td>${details.category.description}</td> 
-												<td>${details.prodCode}</td> 
+												<td>${details.category.description} [${details.category.code}]</td> 
+												<td>${details.code}</td> 
 												<td>${details.prodDesc}</td>
 												<td>${details.quantity}</td>
 												<td>${details.price}</td>
-                                                <td><a href="<c:url value='/admin/product/edit?id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
+                                                <td><a href="<c:url value='/admin/product/edit?id=${details.code}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
-		        								 href="<c:url value='/admin/product/delete?id=${details.id}' />" >
+		        								 href="<c:url value='/admin/product/delete?id=${details.code}' />" >
 		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
 		        								  
 		        								  		

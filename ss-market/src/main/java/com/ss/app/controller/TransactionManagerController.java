@@ -130,5 +130,17 @@ public class TransactionManagerController {
 		}
 		return "purchaseProductList";
 	}
+	
+	@RequestMapping(value = "/purchase/all/list", method = RequestMethod.GET)
+	public String allTxnList(HttpServletRequest request, ModelMap model) {
+		try {
+			Iterable<Purchase> purchaseList = purchaseRepository.findAll();
+			model.addAttribute("purchaseList", purchaseList);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "allTransactionList";
+	}
 
 }

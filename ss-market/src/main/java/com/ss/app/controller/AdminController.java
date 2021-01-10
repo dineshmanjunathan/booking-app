@@ -35,7 +35,7 @@ public class AdminController {
 	private CategoryRepository categoryRepository;
 	
 	@Autowired
-	private ProductRepository proRepository;
+	private ProductRepository productRepository;
 	
 	@Autowired
 	private StockPointPurchaseRepository stockPurchaseRepository;
@@ -131,7 +131,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/categoryCode/delete",method=RequestMethod.GET)
 	public String categoryCodeDelete(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
-			categoryRepository.deleteById(Long.parseLong(id));
+			categoryRepository.deleteByCode(id);
 			model.addAttribute("deletesuccessmessage","Category Deleted Successfully."); 
 			Iterable<Category> categoryCodeList = categoryRepository.findAll();
 			model.addAttribute("categoryCodeList", categoryCodeList); 
@@ -144,7 +144,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/categoryCode/edit",method=RequestMethod.GET)
 	public String categoryCodeEdit(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
-			Category categoryCode = categoryRepository.findById(Long.parseLong(id)).get();
+			Category categoryCode = categoryRepository.findByCode(id);
 			CategoryVo categoryCodeVo=new CategoryVo();
 			BeanUtils.copyProperties(categoryCode,categoryCodeVo);
 			model.addAttribute("categoryCode", categoryCodeVo); 
@@ -194,7 +194,7 @@ public class AdminController {
 	@RequestMapping("/admin/productListing")
 	public String productListing(HttpServletRequest request,ModelMap model) { 
 		try {
-			Iterable<Product> productList = proRepository.findAll();
+			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productListing", productList); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -205,9 +205,13 @@ public class AdminController {
 	@RequestMapping(value="/admin/product/delete",method=RequestMethod.GET)
 	public String productDelete(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
-			proRepository.deleteById(Long.parseLong(id));
+			try {
+				productRepository.removeProduct(id);
+			}catch(Exception e){
+				//do nothing
+			}
 			model.addAttribute("deletesuccessmessage","Product Deleted Successfully."); 
-			Iterable<Product> productList = proRepository.findAll();
+			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productListing", productList); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -218,7 +222,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/product/edit",method=RequestMethod.GET)
 	public String productEdit(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
-			Product productCode = proRepository.findById(Long.parseLong(id)).get();
+			Product productCode = productRepository.findByCode(id);
 			ProductVo productVo=new ProductVo();
 			BeanUtils.copyProperties(productCode,productVo);
 			model.addAttribute("productCode", productVo); 
@@ -238,8 +242,8 @@ public class AdminController {
 		Product product=new Product();
 		try {
 			BeanUtils.copyProperties(productVo,product);
-			proRepository.save(product);
-			Iterable<Product> productList = proRepository.findAll();
+			productRepository.save(product);
+			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productListing", productList); 
 			model.addAttribute("successMessage","Product Updated Successfully."); 
 		} catch (Exception e) {
@@ -261,9 +265,15 @@ public class AdminController {
 	public String categoryCodeSubmit(HttpServletRequest request,ProductVo productVo,ModelMap model) {
 		try {
 			Product product=new Product();
+			
 			BeanUtils.copyProperties(productVo,product);
-			proRepository.save(product);
-			Iterable<Product> productList = proRepository.findAll();
+			
+			System.out.println("productVo-->"+product.getCategory().getCode());
+			System.out.println("productVo-->"+product.getCode());
+			System.out.println("productVo-->"+product.getProdDesc());
+			
+			productRepository.save(product);
+			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productListing", productList); 
 			model.addAttribute("successMessage","Product Added Successfully."); 
 		} catch (Exception e) {

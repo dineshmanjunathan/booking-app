@@ -2,13 +2,15 @@ package com.ss.app.vo;
 
 import java.time.LocalDateTime;
 
+import com.ss.app.entity.Product;
+
 public class PurchaseVo {
 
 	private Long id;
 	private Long orderNumber;
 	private String memberid;
-	private String prodCode;
-	private Long amount;
+	private Product product;
+	private Double amount;
 	private Long quantity;
 	private LocalDateTime purchasedOn = LocalDateTime.now();
 
@@ -36,19 +38,19 @@ public class PurchaseVo {
 		this.memberid = memberid;
 	}
 
-	public String getProdCode() {
-		return prodCode;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProdCode(String prodCode) {
-		this.prodCode = prodCode;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
-	public Long getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Long amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 

@@ -53,7 +53,7 @@
                                         <c:forEach var="details" items="${stockPoitPurchaseList}" varStatus="status">
                                             <tr>
 												<td>${details.stockPointId}</td>
-												<td>${details.categoryCode.description}</td>
+												<td>${details.categoryCode.description} [${details.categoryCode.code}]</td>
 												<td>${details.productCode.prodDesc}</td>
 												<td>${details.qty}</td>		        								 
                                             </tr> 

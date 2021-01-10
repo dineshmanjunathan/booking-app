@@ -25,12 +25,12 @@ public class StockPointPurchase implements Serializable {
 	private String id;
 	private String stockPointId; // MEMBER ID
 
-	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "category_id")
+	@OneToOne()
+	@JoinColumn(name = "category_code")
 	private Category categoryCode;
 
-	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "product_id")
+	@OneToOne()
+	@JoinColumn(name = "product_code")
 	private Product productCode;
 	private Long qty = 0L;
 

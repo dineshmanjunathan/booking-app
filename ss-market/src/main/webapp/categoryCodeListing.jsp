@@ -64,9 +64,9 @@
 												<%-- <td>${details.id}</td> --%>
 												<td>${details.code}</td> 
 												<td>${details.description}</td>
-                                                <td><a href="<c:url value='/admin/categoryCode/edit?id=${details.id}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
+                                                <td><a href="<c:url value='/admin/categoryCode/edit?id=${details.code}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
 		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
-		        								 href="<c:url value='/admin/categoryCode/delete?id=${details.id}' />" >
+		        								 href="<c:url value='/admin/categoryCode/delete?id=${details.code}' />" >
 		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
 		        								  
 		        								  

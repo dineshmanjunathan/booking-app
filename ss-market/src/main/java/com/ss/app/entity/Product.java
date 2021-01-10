@@ -2,11 +2,8 @@ package com.ss.app.entity;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -18,28 +15,17 @@ import javax.persistence.Table;
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "category_id")
+	private String code;
+	@OneToOne()
+	@JoinColumn(name = "category_code")
 	private Category category;
 
-	@Column(unique = true)
-	private String prodCode;
 	private String prodDesc;
 	private Long quantity;
-	private Long price;
+	private Double price = 0.0;
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] image;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Category getCategory() {
 		return category;
@@ -49,12 +35,12 @@ public class Product {
 		this.category = category;
 	}
 
-	public String getProdCode() {
-		return prodCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setProdCode(String prodCode) {
-		this.prodCode = prodCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getProdDesc() {
@@ -81,11 +67,11 @@ public class Product {
 		this.image = image;
 	}
 
-	public Long getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Long price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

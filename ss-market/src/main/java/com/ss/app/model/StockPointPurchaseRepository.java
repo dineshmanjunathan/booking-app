@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 import com.ss.app.entity.StockPointPurchase;
 
 @Service
-public interface StockPointPurchaseRepository extends CrudRepository<StockPointPurchase, Long> {
+public interface StockPointPurchaseRepository extends CrudRepository<StockPointPurchase, String> {
 
 }

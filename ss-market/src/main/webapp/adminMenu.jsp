@@ -135,4 +135,22 @@
 
 </div>
 
+<div class="col-md-10 col-md-offset-2 well row">
+	<h4>Transaction Management</h4>
+	<br>
+	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		<a href="/purchase/all/list">
+			<div class="panel-body">
+				<div class="stats-title pull-left">
+					<h5>Transaction History</h5>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="educate-icon educate-apps"></i>
+				</div>
+			</div>
+		</a>
+	</div>	
+
+</div>
+
 </html>

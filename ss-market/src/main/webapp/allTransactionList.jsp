@@ -11,7 +11,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Purchase List</a></li></center>
+								<center><li class="active"><a href="">Stock Point Purchase</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -21,7 +21,7 @@
 									<table class="full-right">
 									<tr>
 									<td>
-										<a href="/menu"
+										<a href="/admin/menu"
 											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
 											<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
 										</span>
@@ -29,7 +29,8 @@
 									</td>
 									</tr> 
 									</table>
-										 <div class="sparkline13-graph">
+									<%-- <p style="color: red" align="center">${errormsg}</p> --%>
+							<div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
                                         <select class="form-control dt-tb">
@@ -42,6 +43,7 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 										<tr> 
+											<th data-field="memberid" data-editable="false">Member Id</th>
 											<th data-field="orderNumber" data-editable="false">Order Number</th>
 											<th data-field="category" data-editable="false">Category</th>
 											<th data-field="product" data-editable="false">Product</th>
@@ -54,6 +56,7 @@
                                         <tbody> 
                                         <c:forEach var="details" items="${purchaseList}" varStatus="status">
                                             <tr>
+												<td>${details.memberid}</td>
 												<td>${details.orderNumber}</td>
 												<td>${details.product.category.description} [${details.product.category.code}]</td>
 												<td>${details.product.prodDesc} [${details.product.code}]</td>												
@@ -70,8 +73,7 @@
 														<td>${details.orderStatus}</td>
 													</c:otherwise>
 												</c:choose>	   
-												<td>${details.purchasedOn}</td>		
-		        								 
+												<td>${details.purchasedOn}</td>		     								 
                                             </tr> 
                                         </c:forEach>
                                         </tbody>
