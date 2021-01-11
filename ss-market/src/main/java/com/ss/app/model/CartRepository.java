@@ -18,5 +18,8 @@ public interface CartRepository extends CrudRepository<Cart, Long> {
 	@Query(value = "delete from t_cart where prod_code=:code and memberid=:memberId ", nativeQuery = true)
 	void removeCart(String code, String memberId);
 	
+	@Query(value = "delete from t_cart where memberid=:memberId ", nativeQuery = true)
+	void removeAll(String memberId);
+	
 	
 }

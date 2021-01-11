@@ -56,6 +56,7 @@ public class TransactionManagerController {
 			//Get order number
 			Long orderNumber = Utils.getOrderNumber();
 			Purchase purchase = new Purchase();
+			Member member =userRepository.findById(memberId).get();
 			for(Cart c:cart) {
 				// Update qty in product
 				Product prod = productRepository.findByCode(c.getProdCode());
@@ -63,9 +64,9 @@ public class TransactionManagerController {
 				productRepository.save(prod);
 				
 				//Prepare purchase
-				preparePurchase(memberId, orderNumber, purchase, c, prod);
+				preparePurchase(member, orderNumber, purchase, c, prod);
 			}
-			Member member =userRepository.findById(memberId).get();
+			cartRepository.removeAll(memberId);
 			//TODO calculate date and update in DB.
 			//member.setActive_days(active_days);
 			//userRepository.save(member);
@@ -78,11 +79,15 @@ public class TransactionManagerController {
 		return "purchaseConfirmation";
 	}
 
-	private void preparePurchase(String memberId, Long orderNumber, Purchase purchase, Cart c, Product prod) {
+	private void preparePurchase(Member member, Long orderNumber, Purchase purchase, Cart c, Product prod) {
 		purchase.setOrderNumber(orderNumber);
 		purchase.setAmount(c.getAmount());
-		purchase.setMemberid(memberId);
-		purchase.setOrderStatus("APPROVED");
+		purchase.setMemberid(member.getId());
+		if("STOCK_POINT".equals(member.getRole())) {
+			purchase.setOrderStatus("PENDING");
+		} else {
+			purchase.setOrderStatus("APPROVED");
+		}
 		purchase.setProduct(prod);
 		purchase.setQuantity(c.getQuantity());
 		purchaseRepository.save(purchase);
