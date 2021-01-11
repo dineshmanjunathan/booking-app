@@ -7,68 +7,6 @@
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
 <script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-	
-//     $('#category').on('change', function (){
-//     	window.location.href = "/purchase/loadProduct/"+$( "#category option:selected" ).val();
-//     });
-
-});
-
-let cart = new Map();
-let cartTotal =  0;
-
-function addToCart(prodCode, price) {
-	let qty = $( "#quantity-"+prodCode+" option:selected" ).val();
-	if(!qty){
-		alert('Please select quantity.');
-		return;
-	}
-	let existingQty = cart.get(prodCode);
-	if(!existingQty){
-		let total = price * qty; 
-		cartTotal = cartTotal + total;
-	} else {
-		let removeTotal = price * existingQty;
-		cartTotal = cartTotal - removeTotal;
-		let total = price * qty; 
-		cartTotal = cartTotal + total;
-	}
-	cart.set(prodCode,qty);
-	$('#cartTotal').text(cartTotal);
-}
-
-function removeFromCart(prodCode, price) {
-	if(confirm("Do you want to remove from cart?")) {
-		cart.delete(prodCode);
-		let qty = cart.get(prodCode);
-		let total = price * qty; 
-		cartTotal = cartTotal - total;
-		if(!cartTotal){
-			$('#cartTotal').text(0);
-		} else {
-			$('#cartTotal').text(cartTotal);
-		}
-		$("#quantity-"+prodCode+" option:selected").removeAttr("selected");
-	}
-}
-
-$('#purchaseReview').on('click', function (){
-	$.ajax({
-        url: "/purchase/review",
-        data: {
-            "cart": JSON.stringify(cart)
-        },
-        type: "post",
-        cache: false,
-        success: function (data) {
-            
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
-        }
-    });
-});
 
 </script>
 </head>

@@ -46,18 +46,23 @@
 											<th data-field="category" data-editable="false">Category</th>
 											<th data-field="product" data-editable="false">Product</th>
 											<th data-field="qty" data-editable="false">Quantity</th>
-											<th data-field="amount" data-editable="false">Amount</th>
+											<th data-field="price" data-editable="false">Price</th>
+											<th data-field="total" data-editable="false">Total</th>
 											<th data-field="purchasedOn" data-editable="false">Purchased On</th>
 										</tr>
 									</thead>
                                         <tbody> 
+                                        <c:set var="cartTotal" value="${0}" />
                                         <c:forEach var="details" items="${purchaseList}" varStatus="status">
                                             <tr>
 												<td>${details.orderNumber}</td>
 												<td>${details.product.category.description} [${details.product.category.code}]</td>
 												<td>${details.product.prodDesc} [${details.product.code}]</td>												
 												<td>${details.quantity}</td>
-												<td>${details.amount}</td>  
+												<td>${details.amount}</td>
+												<c:set var="total" value="${details.amount * details.quantity}" />
+												<td>${total}</td>
+												<c:set var="cartTotal" value="${cartTotal + total}" />  
 												<td>${details.purchasedOn}</td>		
 		        								 
                                             </tr> 

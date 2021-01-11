@@ -220,7 +220,7 @@
 					href="/home"><img src="../../img/logo/logo.jpeg" alt=""
 						style="height: 100px; width: 200px;"></a></strong>
 			</div>
-			<c:if test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
+			<c:if test="${fn:contains(sessionScope.ROLE, 'MEMBER') or fn:contains(sessionScope.ROLE, 'STOCK_POINT')}">
 				<div class="left-custom-menu-adp-wrap comment-scrollbar">
 					<nav class="sidebar-nav left-sidebar-menu-pro">
 						<ul class="metismenu" id="menu1">
