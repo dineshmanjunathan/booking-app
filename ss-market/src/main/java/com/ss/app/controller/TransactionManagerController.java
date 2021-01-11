@@ -3,6 +3,7 @@ package com.ss.app.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,12 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.app.entity.Cart;
 import com.ss.app.entity.Category;
+import com.ss.app.entity.Member;
 import com.ss.app.entity.Product;
 import com.ss.app.entity.Purchase;
 import com.ss.app.model.CartRepository;
 import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.ProductRepository;
 import com.ss.app.model.PurchaseRepository;
+import com.ss.app.model.UserRepository;
+import com.ss.utils.Utils;
 
 @Controller
 public class TransactionManagerController {
@@ -35,28 +39,53 @@ public class TransactionManagerController {
 
 	@Autowired
 	private ProductRepository productRepository;
-	
+
 	@Autowired
 	private CartRepository cartRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
-	@RequestMapping(value = "/purchase/order", method = RequestMethod.POST)
-	public String savePurchase(HttpServletRequest request, Purchase purchase, ModelMap model) {
+	@RequestMapping(value = "/purchase/confirm", method = RequestMethod.GET)
+	public String savePurchase(HttpServletRequest request, ModelMap model) {
 		try {
-			//TODO
-			// decrease qty in product table.
 			// update active days date in member table
-			Purchase purchaseEntity = new Purchase();
-			BeanUtils.copyProperties(purchase, purchaseEntity);
-			purchaseRepository.save(purchaseEntity);
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			List<Cart> cart = cartRepository.findByMemberid(memberId);
+			
+			//Get order number
+			Long orderNumber = Utils.getOrderNumber();
+			Purchase purchase = new Purchase();
+			for(Cart c:cart) {
+				// Update qty in product
+				Product prod = productRepository.findByCode(c.getProdCode());
+				prod.setQuantity(prod.getQuantity() - c.getQuantity());
+				productRepository.save(prod);
+				
+				//Prepare purchase
+				preparePurchase(memberId, orderNumber, purchase, c, prod);
+			}
+			Member member =userRepository.findById(memberId).get();
+			//TODO calculate date and update in DB.
+			//member.setActive_days(active_days);
+			//userRepository.save(member);
+			model.addAttribute("cartList", cart);
+			model.addAttribute("orderNumber", orderNumber);
 			model.addAttribute("successMessage", "Item Purchased Successfully");
-
-			Iterable<Category> categoryList = categoryRepository.findAll();
-			model.addAttribute("categoryList", categoryList);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "manualPurchase";
+		return "purchaseConfirmation";
+	}
+
+	private void preparePurchase(String memberId, Long orderNumber, Purchase purchase, Cart c, Product prod) {
+		purchase.setOrderNumber(orderNumber);
+		purchase.setAmount(c.getAmount());
+		purchase.setMemberid(memberId);
+		purchase.setOrderStatus("APPROVED");
+		purchase.setProduct(prod);
+		purchase.setQuantity(c.getQuantity());
+		purchaseRepository.save(purchase);
 	}
 
 	@RequestMapping(value = "/purchase/detail", method = RequestMethod.GET)
@@ -97,7 +126,6 @@ public class TransactionManagerController {
 		return "purchaseProductList";
 	}
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/purchase/review", method = RequestMethod.GET)
 	public String purchaseReview(HttpServletRequest request, ModelMap model) {
 		try {
@@ -115,14 +143,18 @@ public class TransactionManagerController {
 		try {
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 			List<Cart> cart = cartRepository.findByMemberid(memberId);
-			Map<String, Long> map = new HashMap<>();
-			cart.forEach(c -> {
-				map.put(c.getProdCode(), c.getQuantity());
-			});
-
+			Double total = 0.0;
+			if (cart != null) {
+				Map<String, Long> map = new HashMap<>();
+				for(Cart c: cart) {
+					total = total + (c.getQuantity() * c.getAmount());
+					map.put(c.getProdCode(), c.getQuantity());
+				};
+				model.addAttribute("cartMap", map);
+				model.addAttribute("cartTotal", total);
+			}
 			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productList", productList);
-			model.addAttribute("cartMap", map);
 			Iterable<Category> catIterable = categoryRepository.findAll();
 			model.addAttribute("categoryCodeList", catIterable);
 		} catch (Exception e) {
@@ -130,13 +162,14 @@ public class TransactionManagerController {
 		}
 		return "purchaseProductList";
 	}
-	
+
 	@RequestMapping(value = "/purchase/addToCart", method = RequestMethod.POST)
-	public String addTocart(HttpServletRequest request, ModelMap model, @RequestParam("prodCode") String prodCode, @RequestParam("qty") String qty) {
+	public String addTocart(HttpServletRequest request, ModelMap model, @RequestParam("prodCode") String prodCode,
+			@RequestParam("qty") String qty) {
 		try {
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 			Cart existingCart = cartRepository.findByMemberidAndProdCode(memberId, prodCode);
-			if(existingCart != null) {
+			if (existingCart != null) {
 				existingCart.setQuantity(Long.parseLong(qty));
 				cartRepository.save(existingCart);
 			} else {
@@ -149,15 +182,16 @@ public class TransactionManagerController {
 				cart.setAmount(product.getPrice());
 				cartRepository.save(cart);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "purchaseReview";
 	}
-	
+
 	@RequestMapping(value = "/purchase/remove/cart", method = RequestMethod.POST)
-	public String removeFromCarty(HttpServletRequest request, ModelMap model, @RequestParam("prodCode") String prodCode) {
+	public String removeFromCarty(HttpServletRequest request, ModelMap model,
+			@RequestParam("prodCode") String prodCode) {
 		try {
 			cartRepository.removeCart(prodCode, (String) request.getSession().getAttribute("MEMBER_ID"));
 		} catch (Exception e) {
@@ -176,7 +210,7 @@ public class TransactionManagerController {
 		}
 		return "allTransactionList";
 	}
-	
+
 	@RequestMapping(value = "/purchase/pending/list", method = RequestMethod.GET)
 	public String pendingTxnList(HttpServletRequest request, ModelMap model) {
 		try {
@@ -187,22 +221,22 @@ public class TransactionManagerController {
 		}
 		return "trasnactionApprove";
 	}
-	
-	
+
 	@RequestMapping(value = "/purchase/approve", method = RequestMethod.GET)
 	public String approvePurchase(HttpServletRequest request, ModelMap model, @RequestParam("id") String id) {
 		try {
 			Purchase purchase = purchaseRepository.findById(Long.parseLong(id)).get();
-			
-			if(purchase!=null && purchase.getId()!=null) {
+
+			if (purchase != null && purchase.getId() != null) {
 				purchase.setOrderStatus("A");
-				model.addAttribute("successMessage","Order No:"+purchase.getOrderNumber()+" Approved Successfully.");
+				model.addAttribute("successMessage",
+						"Order No:" + purchase.getOrderNumber() + " Approved Successfully.");
 				purchase = purchaseRepository.save(purchase);
 				Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("P");
 				model.addAttribute("purchaseList", purchaseList);
-				
-			}else {
-				model.addAttribute("errorMessage","Try Again Later!");
+
+			} else {
+				model.addAttribute("errorMessage", "Try Again Later!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

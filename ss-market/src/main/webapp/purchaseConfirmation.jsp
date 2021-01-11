@@ -99,7 +99,7 @@ $('#purchaseReview').on('click', function (){
 									<a href="#"
 										class="btn-warning col-md-offset-1 col-md-2">
 										<span>Order number : ${orderNumber} </span>
-										<span>Address : ${orderAddress} </span>
+										<%-- <span>Address : ${orderAddress} </span> --%>
 									</a> 
 								</div>
 								<div class="sparkline13-graph">
@@ -122,16 +122,21 @@ $('#purchaseReview').on('click', function (){
 												<tr>
 													<th data-field="prodCode" data-editable="false">Product</th>
 													<th data-field="quantity" data-editable="false">Quantity</th>
-													<th data-field="total">Action</th>
+													<th data-field="price" data-editable="false">Price per quantity</th>
+													<th data-field="total" data-editable="false">Total</th>
 												</tr>
 											</thead>
 											<tbody>
-
-												<c:forEach var="entry" items="${cartMap}">
-  														<tr>
-														<td>${entry.value.desc}</td>
-														<td>${entry.value.qty}</td>
-														</tr>
+												<c:set var="cartTotal" value="${0}" />
+												<c:forEach var="detail" items="${cartList}">
+													<tr>
+														<td>${detail.prodDesc}</td>
+														<td>${detail.quantity}</td>
+														<td>${detail.amount}</td>
+														<c:set var="total" value="${detail.amount * detail.quantity}" />
+														<td>${total}</td>
+														<c:set var="cartTotal" value="${cartTotal + total}" />
+													</tr>
 												</c:forEach>
 											</tbody>
 										</table>

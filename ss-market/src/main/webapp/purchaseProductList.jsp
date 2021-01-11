@@ -15,7 +15,7 @@ $(document).ready(function(){
 });
 
 	
-let cartTotal =  0;
+let cartTotal =  ${cartTotal == null ? 0.0:cartTotal};
 
 function addToCart(prodCode, price) {
 	let qty = $( "#quantity-"+prodCode+" option:selected" ).val();
@@ -107,7 +107,7 @@ function review() {
 										class="btn btn-waring m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-2">
 										<span> <i class="fa fa-shopping-cart"
 											style="font-size: 20px"></i> <span>Purchase Total:
-												&#x20b9; <span id="cartTotal">${cartTotal == null ? 0:cartTotal}</span>
+												&#x20b9; <span id="cartTotal">${cartTotal == null ? 0.0:cartTotal}</span>
 										</span>
 									</span>
 									</a>

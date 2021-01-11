@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import com.google.common.collect.Lists;
 import com.ss.app.entity.Member;
@@ -68,6 +69,12 @@ public class Utils {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public static Long getOrderNumber() {
+		Random random = new Random();
+		int randomWithNextInt = random.nextInt(999999999);
+		return (long) Math.abs(randomWithNextInt);
 	}
 
 	public static void main(String[] arg) {

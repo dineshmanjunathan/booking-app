@@ -80,21 +80,21 @@ function removeFromCart(prodCode, price) {
 												<tr>
 													<th data-field="prodCode" data-editable="false">Product</th>
 													<th data-field="quantity" data-editable="false">Quantity</th>
-													<th data-field="total">Action</th>
+													<th data-field="price" data-editable="false">Price per quantity</th>
+													<th data-field="total" data-editable="false">Total</th>
 												</tr>
 											</thead>
 											<tbody>
-
+												<c:set var="cartTotal" value="${0}" />
 												<c:forEach var="detail" items="${cartList}">
-  														<tr>
+													<tr>
 														<td>${detail.prodDesc}</td>
 														<td>${detail.quantity}</td>
-														<td>
-															<button class="btn btn-danger" type="button"
-																onclick="return removeFromCart('${detail.prodCode}', '${details.price}')">
-																<i class="fa fa-remove"></i>Remove</button>
-														</td>
-														</tr>
+														<td>${detail.amount}</td>
+														<c:set var="total" value="${detail.amount * detail.quantity}" />
+														<td>${total}</td>
+														<c:set var="cartTotal" value="${cartTotal + total}" />
+													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
@@ -112,7 +112,7 @@ function removeFromCart(prodCode, price) {
 											<a href="/purchase/review/edit"
 												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 												<span><i class="fa fa-arrow-left"></i> <span>Edit cart</span> </span></a>
-											 <a href="#"
+											 <a href="/purchase/confirm"
 												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
 												<span> <i class="fa fa-plus"></i> <span>Pay to place you order</span>
 											</span>
