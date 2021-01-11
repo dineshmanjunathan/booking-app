@@ -11,7 +11,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Stock Point Transaction Approve</a></li></center>
+								<center><li class="active"><a href="">Stock Point Transaction</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -68,7 +68,7 @@
 												
 												
 												<c:choose>
-													<c:when test="${details.orderStatus == 'P'}">
+													<c:when test="${details.orderStatus == 'PENDING'}">
 														 <td>
 												  <a href="<c:url value='/purchase/approve?id=${details.id}' />">
 												<button class="btn btn-primary" type="button">
