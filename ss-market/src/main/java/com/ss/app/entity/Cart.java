@@ -1,9 +1,19 @@
-package com.ss.app.vo;
+package com.ss.app.entity;
 
 import java.time.LocalDateTime;
 
-public class CartVo {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "t_cart")
+public class Cart {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String memberid;
 	private String prodCode;
@@ -56,5 +66,9 @@ public class CartVo {
 	public void setProdDesc(String prodDesc) {
 		this.prodDesc = prodDesc;
 	}
+	
+	
+	
+	
 
 }

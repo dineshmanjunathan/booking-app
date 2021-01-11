@@ -14,57 +14,69 @@ $(document).ready(function(){
 //     });
 });
 
-
-//simple function 
-function CartVo(code, desc, qty, price){ 
-    this.code = code; 
-    this.desc = desc; 
-    this.qty = qty;
-    this.price = price;
-} 
-
-let cart = new Map();
+	
 let cartTotal =  0;
 
-function addToCart(prodCode, price, desc) {
+function addToCart(prodCode, price) {
 	let qty = $( "#quantity-"+prodCode+" option:selected" ).val();
 	if(!qty){
 		alert('Please select quantity.');
 		return;
 	}
-	let existingQty = cart.get(prodCode);
-	if(!existingQty){
-		let total = price * qty; 
-		cartTotal = cartTotal + total;
-	} else {
-		let removeTotal = price * existingQty.qty;
-		cartTotal = cartTotal - removeTotal;
-		let total = price * qty; 
-		cartTotal = cartTotal + total;
-	}
-	let obj  = new CartVo(prodCode, desc, qty, price); 
-	cart.set(prodCode,obj);
-	$('#cartTotal').text(cartTotal);
+	$.ajax({
+	    url: "/purchase/addToCart",
+	    data: {
+	        "prodCode": prodCode,
+	        "qty" :qty
+	    },
+	    type: "post",
+	    cache: false,
+	    success: function (data) {
+	    	let total = price * qty; 
+			cartTotal = cartTotal + total
+			$('#cartTotal').text(cartTotal);
+	    },
+	    error: function (XMLHttpRequest, textStatus, errorThrown) {
+	        console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+	    }
+	});
+
 }
 
 function removeFromCart(prodCode, price) {
-	if(confirm("Do you want to remove from cart?")) {
-		cart.delete(prodCode);
-		let qty = cart.get(prodCode);
-		let total = price * qty.qty; 
-		cartTotal = cartTotal - total;
-		if(!cartTotal){
-			$('#cartTotal').text(0);
-		} else {
-			$('#cartTotal').text(cartTotal);
-		}
-		$("#quantity-"+prodCode+" option:selected").removeAttr("selected");
+	let qty = $( "#quantity-"+prodCode+" option:selected" ).val();
+	if(!qty){
+		alert('Please select quantity.');
+		return;
 	}
+	if(confirm("Do you want to remove from cart?")) {
+		$.ajax({
+		    url: "/purchase/remove/cart",
+		    data: {
+		        "prodCode": prodCode
+		    },
+		    type: "post",
+		    cache: false,
+		    success: function (data) {
+		    	let total = price * qty; 
+				cartTotal = cartTotal - total;
+				if(!cartTotal){
+					$('#cartTotal').text(0);
+				} else {
+					$('#cartTotal').text(cartTotal);
+				}
+				$("#quantity-"+prodCode+" option:selected").removeAttr("selected");
+		    },
+		    error: function (XMLHttpRequest, textStatus, errorThrown) {
+		        console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+		    }
+		});
+	}
+
 }
 
 function review() {
-	window.location.href = "/purchase/review?total="+cartTotal+"&cart="
-	+encodeURIComponent( JSON.stringify(cart, (key, value) => (value instanceof Map ? [...value] : value)));
+	window.location.href = "/purchase/review";
 }
 
 </script>
@@ -77,7 +89,8 @@ function review() {
 				<div class="product-payment-inner-st">
 					<ul id="myTabedu1" class="tab-review-design">
 						<center>
-							<li class="active"><a href="">Select Products to purchase</a></li>
+							<li class="active"><a href="">Select Products to
+									purchase</a></li>
 						</center>
 					</ul>
 
@@ -88,29 +101,33 @@ function review() {
 								<div class="row">
 									<a href="/menu"
 										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
-										<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span> </span>
-									</a> 
-									<a href="#"
+										<span><i class="fa fa-arrow-left"></i> <span>Back
+												to Main</span> </span>
+									</a> <a href="#"
 										class="btn btn-waring m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-2">
-										<span> <i class="fa fa-shopping-cart" style="font-size:20px"></i> <span>Purchase Total: &#x20b9; 
-										<span id="cartTotal">0</span></span>
+										<span> <i class="fa fa-shopping-cart"
+											style="font-size: 20px"></i> <span>Purchase Total:
+												&#x20b9; <span id="cartTotal">${cartTotal == null ? 0:cartTotal}</span>
+										</span>
 									</span>
 									</a>
-									<button class="btn btn-primary col-md-offset-0 col-md-1" type="button" onclick="return review();">
-																<i class="fa fa-plus"></i> Purchase</button>
-									</div>
-<!-- 								<br> -->
-<!-- 								<div class="row"> -->
-<!-- 									<div class="form-group col-md-4 col-md-offset-4"> -->
-<!-- 										<select name="category" id="category" class="form-control"> -->
-<!-- 											<option value="">-Select category-</option> -->
-<%-- 											<c:forEach var="options" items="${categoryCodeList}" --%>
-<%-- 												varStatus="status"> --%>
-<%-- 												<option value="${options.code}">${options.description}</option> --%>
-<%-- 											</c:forEach> --%>
-<!-- 										</select> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
+									<button class="btn btn-primary col-md-offset-0 col-md-1"
+										type="button" onclick="return review();">
+										<i class="fa fa-plus"></i> Purchase
+									</button>
+								</div>
+								<!-- 								<br> -->
+								<!-- 								<div class="row"> -->
+								<!-- 									<div class="form-group col-md-4 col-md-offset-4"> -->
+								<!-- 										<select name="category" id="category" class="form-control"> -->
+								<!-- 											<option value="">-Select category-</option> -->
+								<%-- 											<c:forEach var="options" items="${categoryCodeList}" --%>
+								<%-- 												varStatus="status"> --%>
+								<%-- 												<option value="${options.code}">${options.description}</option> --%>
+								<%-- 											</c:forEach> --%>
+								<!-- 										</select> -->
+								<!-- 									</div> -->
+								<!-- 								</div> -->
 								<br>
 								<div class="sparkline13-graph">
 									<div class="datatable-dashv1-list custom-datatable-overright">
@@ -147,23 +164,26 @@ function review() {
 														<td>${details.price}</td>
 														<td>
 															<div class="form-group">
-																<select name="quantity"
-																	id="quantity-${details.code}" class="form-control">
+																<select name="quantity" id="quantity-${details.code}"
+																	class="form-control">
 																	<option value="">-Select Quantity-</option>
 																	<c:forEach begin="1" end="${details.quantity}"
 																		varStatus="loop">
-																		<option value="${loop.index}" ${loop.index == cartMap[details.code] ? 'selected' : ''}>${loop.index}</option>
+																		<option value="${loop.index}"
+																			${loop.index == cartMap[details.code] ? 'selected' : ''}>${loop.index}</option>
 																	</c:forEach>
 																</select>
 															</div>
 														</td>
 														<td>
 															<button class="btn btn-primary" type="button"
-																onclick="return addToCart('${details.code}', '${details.price}', '${details.prodDesc}');">
-																<i class="fa fa-shopping-cart"></i> Add to Cart</button>
+																onclick="return addToCart('${details.code}', '${details.price}');">
+																<i class="fa fa-shopping-cart"></i> Add to Cart
+															</button>
 															<button class="btn btn-danger" type="button"
 																onclick="return removeFromCart('${details.code}', '${details.price}');">
-																<i class="fa fa-remove"></i>Remove</button>
+																<i class="fa fa-remove"></i>Remove
+															</button>
 														</td>
 													</tr>
 												</c:forEach>

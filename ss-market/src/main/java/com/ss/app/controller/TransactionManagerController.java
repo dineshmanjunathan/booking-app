@@ -2,9 +2,9 @@ package com.ss.app.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.gson.Gson;
+import com.ss.app.entity.Cart;
 import com.ss.app.entity.Category;
 import com.ss.app.entity.Product;
 import com.ss.app.entity.Purchase;
+import com.ss.app.model.CartRepository;
 import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.ProductRepository;
 import com.ss.app.model.PurchaseRepository;
-import com.ss.app.vo.CartVo;
 
 @Controller
 public class TransactionManagerController {
@@ -35,6 +35,9 @@ public class TransactionManagerController {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private CartRepository cartRepository;
 
 	@RequestMapping(value = "/purchase/order", method = RequestMethod.POST)
 	public String savePurchase(HttpServletRequest request, Purchase purchase, ModelMap model) {
@@ -96,40 +99,28 @@ public class TransactionManagerController {
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/purchase/review", method = RequestMethod.GET)
-	public String purchaseReview(HttpServletRequest request, ModelMap model, @RequestParam("cart") String cart, @RequestParam("total") String total) {
+	public String purchaseReview(HttpServletRequest request, ModelMap model) {
 		try {
-			HttpSession session = request.getSession();
-			HashMap<String, CartVo> cartMap = (HashMap<String, CartVo>) session.getAttribute("cartMap");
-			if(cartMap != null) {
-				model.addAttribute("cartTotal", session.getAttribute("cartTotal"));
-				model.addAttribute("cartMap", cartMap);
-			} else {
-				Gson gson = new Gson();
-				cartMap = gson.fromJson(cart, HashMap.class);
-				model.addAttribute("cartMap", cartMap);
-				model.addAttribute("cartTotal", total);
-				// Add cart values in session
-				session.setAttribute("cartMap", cartMap);
-				session.setAttribute("cartTotal", total);
-			}
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			List<Cart> cart = cartRepository.findByMemberid(memberId);
+			model.addAttribute("cartList", cart);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "purchaseReview";
 	}
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/purchase/review/edit", method = RequestMethod.GET)
 	public String reviewEdit(HttpServletRequest request, ModelMap model) {
 		try {
-			HttpSession session = request.getSession();
-			HashMap<String, CartVo> cartMap = (HashMap<String, CartVo>) session.getAttribute("cartMap");
-			HashMap<String, Long> map = new HashMap<>();
-			model.addAttribute("cartTotal", session.getAttribute("cartTotal"));
-			Iterable<Product> productList = productRepository.findAll();
-			cartMap.entrySet().stream().forEach(e -> {
-				map.put(e.getKey(), Long.parseLong(e.getValue().getQty()));
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			List<Cart> cart = cartRepository.findByMemberid(memberId);
+			Map<String, Long> map = new HashMap<>();
+			cart.forEach(c -> {
+				map.put(c.getProdCode(), c.getQuantity());
 			});
+
+			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productList", productList);
 			model.addAttribute("cartMap", map);
 			Iterable<Category> catIterable = categoryRepository.findAll();
@@ -138,6 +129,41 @@ public class TransactionManagerController {
 			e.printStackTrace();
 		}
 		return "purchaseProductList";
+	}
+	
+	@RequestMapping(value = "/purchase/addToCart", method = RequestMethod.POST)
+	public String addTocart(HttpServletRequest request, ModelMap model, @RequestParam("prodCode") String prodCode, @RequestParam("qty") String qty) {
+		try {
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			Cart existingCart = cartRepository.findByMemberidAndProdCode(memberId, prodCode);
+			if(existingCart != null) {
+				existingCart.setQuantity(Long.parseLong(qty));
+				cartRepository.save(existingCart);
+			} else {
+				Product product = productRepository.findByCode(prodCode);
+				Cart cart = new Cart();
+				cart.setProdCode(product.getCode());
+				cart.setProdDesc(product.getProdDesc());
+				cart.setMemberid(memberId);
+				cart.setQuantity(Long.parseLong(qty));
+				cart.setAmount(product.getPrice());
+				cartRepository.save(cart);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "purchaseReview";
+	}
+	
+	@RequestMapping(value = "/purchase/remove/cart", method = RequestMethod.POST)
+	public String removeFromCarty(HttpServletRequest request, ModelMap model, @RequestParam("prodCode") String prodCode) {
+		try {
+			cartRepository.removeCart(prodCode, (String) request.getSession().getAttribute("MEMBER_ID"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "purchaseReview";
 	}
 
 	@RequestMapping(value = "/purchase/all/list", method = RequestMethod.GET)
