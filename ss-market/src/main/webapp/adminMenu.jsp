@@ -155,7 +155,7 @@
 		<a href="/purchase/pending/list">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
-					<h5>Stock Point Transaction</h5>
+					<h5>Approve Stock Point Transaction</h5>
 				</div>
 				<div class="stats-icon pull-right">
 					<i class="educate-icon educate-apps"></i>

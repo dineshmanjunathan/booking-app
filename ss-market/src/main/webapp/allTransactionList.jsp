@@ -49,6 +49,7 @@
 											<th data-field="product" data-editable="false">Product</th>
 											<th data-field="qty" data-editable="false">Quantity</th>
 											<th data-field="amount" data-editable="false">Amount</th>
+											<th data-field="total" data-editable="false">Total</th>
 											<th data-field="purchasedOn" data-editable="false">Purchased On</th>
 										</tr>
 									</thead>
@@ -61,6 +62,8 @@
 												<td>${details.product.prodDesc} [${details.product.code}]</td>												
 												<td>${details.quantity}</td>
 												<td>${details.amount}</td>   
+												<c:set var="total" value="${details.amount * details.quantity}" />
+												<td>${total}</td>
 												<td>${details.purchasedOn}</td>		     								 
                                             </tr> 
                                         </c:forEach>
