@@ -214,7 +214,7 @@ public class TransactionManagerController {
 	@RequestMapping(value = "/purchase/pending/list", method = RequestMethod.GET)
 	public String pendingTxnList(HttpServletRequest request, ModelMap model) {
 		try {
-			Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("P");
+			Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("PENDING");
 			model.addAttribute("purchaseList", purchaseList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -228,11 +228,11 @@ public class TransactionManagerController {
 			Purchase purchase = purchaseRepository.findById(Long.parseLong(id)).get();
 
 			if (purchase != null && purchase.getId() != null) {
-				purchase.setOrderStatus("A");
+				purchase.setOrderStatus("APPROVED");
 				model.addAttribute("successMessage",
 						"Order No:" + purchase.getOrderNumber() + " Approved Successfully.");
 				purchase = purchaseRepository.save(purchase);
-				Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("P");
+				Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("PENDING");
 				model.addAttribute("purchaseList", purchaseList);
 
 			} else {
