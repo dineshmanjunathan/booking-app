@@ -35,7 +35,7 @@
 								<br>
 								<div class="row">
 									<a href="#"
-										class="btn-warning col-md-offset-1 col-md-2">
+										class="btn btn-warning col-md-offset-5 col-md-2">
 										<span>Order number : ${orderNumber} </span>
 										<%-- <span>Address : ${orderAddress} </span> --%>
 									</a> 

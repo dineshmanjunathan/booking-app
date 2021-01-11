@@ -106,7 +106,7 @@
 	</div>
 </div>
 <div class="col-md-10 col-md-offset-2 well row">
-	<h4>Product Manager</h4>
+	<h4>Product Management</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 		<a href="/admin/categoryCodeListing">

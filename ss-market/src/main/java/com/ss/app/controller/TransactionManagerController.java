@@ -66,7 +66,11 @@ public class TransactionManagerController {
 				//Prepare purchase
 				preparePurchase(member, orderNumber, purchase, c, prod);
 			}
-			cartRepository.removeAll(memberId);
+			try {
+				cartRepository.removeAll(memberId);
+			}catch(Exception e) {
+				//TODO 
+			}
 			//TODO calculate date and update in DB.
 			//member.setActive_days(active_days);
 			//userRepository.save(member);
@@ -200,7 +204,7 @@ public class TransactionManagerController {
 		try {
 			cartRepository.removeCart(prodCode, (String) request.getSession().getAttribute("MEMBER_ID"));
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return "purchaseReview";
 	}
