@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.ss.app.entity.DBConfiguration;
 
 @Service
-public interface DBConfigRepository extends CrudRepository<DBConfiguration, Integer> {
+public interface DBConfigRepository extends CrudRepository<DBConfiguration, String> {
 
-	Optional<DBConfiguration> findById(int i);
+	Optional<DBConfiguration> findById(String i);
 
 }

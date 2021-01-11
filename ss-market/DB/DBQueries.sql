@@ -56,3 +56,8 @@ CREATE TABLE  hibernate_sequence(
 
 insert into hibernate_sequence values(1,'SS','1111211','1');
 insert into hibernate_sequence values(2,'REF','1','1');
+
+
+INSERT INTO public.t_member
+(id, active_days, createon, dob, email, gender, "name", "password", phonenumber, referedby, referencecode, repurcahse, "role", updatedon, wallet_balance, wallet_withdrawn)
+VALUES('SS1111210', NULL, '2021-01-06', '1995-01-06', 'SSADMIN@gmail.com', 'Male', 'SSADMIN', '1234', 999999999, '', 'REF0051355055', 40, 'MEMBER', '2021-01-06', 220, 60);

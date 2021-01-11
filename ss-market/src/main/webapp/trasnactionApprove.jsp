@@ -11,7 +11,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Transaction History</a></li></center>
+								<center><li class="active"><a href="">Stock Point Transaction Approve</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -29,6 +29,8 @@
 									</td>
 									</tr> 
 									</table>
+									<p style="color: green" align="center">${successMessage}</p>
+								    <p style="color: red" align="center">${errorMessage}</p>
 									<%-- <p style="color: red" align="center">${errormsg}</p> --%>
 							<div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
@@ -50,6 +52,7 @@
 											<th data-field="qty" data-editable="false">Quantity</th>
 											<th data-field="amount" data-editable="false">Amount</th>
 											<th data-field="purchasedOn" data-editable="false">Purchased On</th>
+											<th data-field="action">Action</th>
 										</tr>
 									</thead>
                                         <tbody> 
@@ -60,8 +63,25 @@
 												<td>${details.product.category.description} [${details.product.category.code}]</td>
 												<td>${details.product.prodDesc} [${details.product.code}]</td>												
 												<td>${details.quantity}</td>
-												<td>${details.amount}</td>   
-												<td>${details.purchasedOn}</td>		     								 
+												<td>${details.amount}</td>  
+												<td>${details.purchasedOn}</td>	
+												
+												
+												<c:choose>
+													<c:when test="${details.orderStatus == 'P'}">
+														 <td>
+												  <a href="<c:url value='/purchase/approve?id=${details.id}' />">
+												<button class="btn btn-primary" type="button">
+													<i class="fa fa-shopping-cart"> </i> Approve
+												</button>
+												  </a>		</td>
+													</c:when>
+													<c:otherwise>
+														<td>-</td>
+													</c:otherwise>
+												</c:choose>	   
+													     	
+												 					 
                                             </tr> 
                                         </c:forEach>
                                         </tbody>

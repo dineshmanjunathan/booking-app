@@ -161,16 +161,16 @@ public class MemberController {
 		if ((user.getWalletBalance() != null && user.getWalletBalance() > 0) &&
 				user.getRepurcahse() != null && user.getRepurcahse() > 0) {
 
-			DBConfiguration configurations1 = dbConfigRepository.findById(1111).get();
-			DBConfiguration configurations2 = dbConfigRepository.findById(1112).get();
+			DBConfiguration configurations1 = dbConfigRepository.findById("INCENTIVE_VAL").get();
+			DBConfiguration configurations2 = dbConfigRepository.findById("GST_VAL").get();
 
 			try {
 				Long rp = user.getRepurcahse();
 				Long remaningPoint = user.getWalletBalance();
 
 				if (rp > 0) {
-					Double config1 = Double.parseDouble(Utils.checkNull(configurations1.getValue(), "0.0"));
-					Double config2 = Double.parseDouble(Utils.checkNull(configurations2.getValue(), "0.0"));
+					Double config1 = configurations1.getValue();
+					Double config2 = configurations2.getValue();
 					Double deductAmt1 = (rp.doubleValue() / 100) * config1;
 					Double deductAmt2 = (rp.doubleValue() / 100) * config2;
 					Long totaldeduct = (long) (deductAmt1 + deductAmt2);
@@ -210,12 +210,12 @@ public class MemberController {
 					&& user.getRepurcahse() > 0) {
 
 				// INCENTIVE DEDUCTION STARTS
-				DBConfiguration configurations1 = dbConfigRepository.findById(1111).get();
-				DBConfiguration configurations2 = dbConfigRepository.findById(1112).get();
+				DBConfiguration configurations1 = dbConfigRepository.findById("INCENTIVE_VAL").get();
+				DBConfiguration configurations2 = dbConfigRepository.findById("GST_VAL").get();
 				Long rp = user.getRepurcahse();
 				Long remaningPoint = user.getWalletBalance();
-				Double config1 = Double.parseDouble(Utils.checkNull(configurations1.getValue(), "0.0"));
-				Double config2 = Double.parseDouble(Utils.checkNull(configurations2.getValue(), "0.0"));
+				Double config1 = configurations1.getValue();
+				Double config2 = configurations2.getValue();
 				Double deductAmt1 = (rp.doubleValue() / 100) * config1;
 				Double deductAmt2 = (rp.doubleValue() / 100) * config2;
 				Long totaldeduct = (long) (deductAmt1 + deductAmt2);
@@ -230,8 +230,7 @@ public class MemberController {
 
 				member = userRepository.save(member);
 
-				member.setTotalbalance(
-						member.getWalletBalance() + member.getWalletWithdrawn() + member.getRepurcahse());
+				member.setTotalbalance(member.getWalletBalance() + member.getWalletWithdrawn());
 				model.addAttribute("userwallet", member);
 
 				model.addAttribute("successMessage", "Points successfully added to Re Purchase!");

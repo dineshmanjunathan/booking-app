@@ -60,19 +60,6 @@ class DemoCommandLineRunner implements CommandLineRunner{
 		s1.setIncrement(1);
 
 		hibernateSequenceRepository.save(s1);
-		
-		DBConfiguration db1 = new DBConfiguration();
-		db1.setId(1111);
-		db1.setDescription("COMPANY INCENTIVE");
-		db1.setValue("10");
-		dbConfigRepository.save(db1);
-
-		DBConfiguration db2 = new DBConfiguration();
-		db2.setId(1112);
-		db2.setDescription("GST INCENTIVE");
-		db2.setValue("5");
-		dbConfigRepository.save(db2);
-
-		
+				
 	}
 }

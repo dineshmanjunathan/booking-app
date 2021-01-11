@@ -176,5 +176,38 @@ public class TransactionManagerController {
 		}
 		return "allTransactionList";
 	}
+	
+	@RequestMapping(value = "/purchase/pending/list", method = RequestMethod.GET)
+	public String pendingTxnList(HttpServletRequest request, ModelMap model) {
+		try {
+			Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("P");
+			model.addAttribute("purchaseList", purchaseList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "trasnactionApprove";
+	}
+	
+	
+	@RequestMapping(value = "/purchase/approve", method = RequestMethod.GET)
+	public String approvePurchase(HttpServletRequest request, ModelMap model, @RequestParam("id") String id) {
+		try {
+			Purchase purchase = purchaseRepository.findById(Long.parseLong(id)).get();
+			
+			if(purchase!=null && purchase.getId()!=null) {
+				purchase.setOrderStatus("A");
+				model.addAttribute("successMessage","Order No:"+purchase.getOrderNumber()+" Approved Successfully.");
+				purchase = purchaseRepository.save(purchase);
+				Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("P");
+				model.addAttribute("purchaseList", purchaseList);
+				
+			}else {
+				model.addAttribute("errorMessage","Try Again Later!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "trasnactionApprove";
+	}
 
 }

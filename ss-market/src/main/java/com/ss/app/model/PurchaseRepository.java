@@ -11,4 +11,6 @@ import com.ss.app.entity.Purchase;
 public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
 
 	List<Purchase> findByMemberid(String memberid);
+	
+	List<Purchase> findByOrderStatus(String orderStatus);
 }

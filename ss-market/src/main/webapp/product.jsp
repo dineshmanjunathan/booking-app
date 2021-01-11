@@ -13,9 +13,9 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="product-payment-inner-st">
-						<ul id="myTabedu1" class="tab-review-design">
+						<center><ul id="myTabedu1" class="tab-review-design">
 							<li class="active"><a href="">Manage Product</a></li>
-						</ul>
+						</ul></center>
 							<div class="payment-adress">
 								<a
 									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/productListing"
@@ -27,7 +27,7 @@
 							<div class="product-tab-list tab-pane fade active in"
 								id="description">
 								<div class="row">
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right: 21%; padding-left: 21%;" >
 										<div class="review-content-section">
 										<c:choose>
 												<c:when test="${not empty productCode}">
@@ -43,7 +43,7 @@
 													<p style="color: green" align="center">${successMessage}</p>
 													<p style="color: red" align="center">${deletesuccessmessage}</p>
 													<div class="row">
-														<div class=" well col-lg-6 col-md-6 col-sm-6 col-xs-12">
+														<div class=" well col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															<div class="form-group">
 															</div>
 															<div class="form-group">															

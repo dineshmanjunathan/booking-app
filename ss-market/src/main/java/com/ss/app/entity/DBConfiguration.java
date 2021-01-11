@@ -10,28 +10,41 @@ import javax.persistence.Table;
 public class DBConfiguration {
 
 	@Id
-	@Column(name="id",updatable = false)
-	private int Id;
+	@Column(name = "id")
+	private String code;
 	private String description;
-	@Column(name="value",updatable = false)
-	private String value;
-	
-	public int getId() {
-		return Id;
+	private String commant;
+	private Double value;
+
+	public String getCode() {
+		return code;
 	}
-	public void setId(int id) {
-		Id = id;
+
+	public void setCode(String code) {
+		this.code = code;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getValue() {
+
+	public String getCommant() {
+		return commant;
+	}
+
+	public void setCommant(String commant) {
+		this.commant = commant;
+	}
+
+	public Double getValue() {
 		return value;
 	}
-	public void setValue(String value) {
+
+	public void setValue(Double value) {
 		this.value = value;
 	}
 

@@ -47,7 +47,6 @@
 											<th data-field="product" data-editable="false">Product</th>
 											<th data-field="qty" data-editable="false">Quantity</th>
 											<th data-field="amount" data-editable="false">Amount</th>
-											<th data-field="orderStatus" data-editable="false">Order Status</th>
 											<th data-field="purchasedOn" data-editable="false">Purchased On</th>
 										</tr>
 									</thead>
@@ -58,18 +57,7 @@
 												<td>${details.product.category.description} [${details.product.category.code}]</td>
 												<td>${details.product.prodDesc} [${details.product.code}]</td>												
 												<td>${details.quantity}</td>
-												<td>${details.amount}</td>
-												<c:choose>
-													<c:when test="${details.orderStatus == 'P'}">
-														<td>Pending</td>	
-													</c:when>
-													<c:when test="${details.orderStatus == 'A'}">
-														<td>Approved</td>	
-													</c:when>
-													<c:otherwise>
-														<td>${details.orderStatus}</td>
-													</c:otherwise>
-												</c:choose>	   
+												<td>${details.amount}</td>  
 												<td>${details.purchasedOn}</td>		
 		        								 
                                             </tr> 

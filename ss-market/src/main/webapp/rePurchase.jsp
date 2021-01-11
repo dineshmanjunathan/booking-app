@@ -25,9 +25,9 @@ function review() {
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="product-payment-inner-st">
-						<ul id="myTabedu1" class="tab-review-design">
+						<center><ul id="myTabedu1" class="tab-review-design">
 							<li class="active"><a href="">Re purchase entry</a></li>
-						</ul>
+						</ul></center>
 						<!-- <form action="/userlisting" method="get"> -->
 						<div class="payment-adress">
 						<a
@@ -42,7 +42,7 @@ function review() {
 							<div class="product-tab-list tab-pane fade active in"
 								id="description">
 								<div class="row">
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right: 19%; padding-left: 19%;">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right: 21%; padding-left: 21%;">
 										<div class="review-content-section">
 										
 											<form action="/updateRePurchase" method="post">
@@ -101,8 +101,6 @@ function review() {
 															<div class="payment-adress">
 																<button class="btn btn-primary waves-effect waves-light"
 																	type="submit" name="submit" value="register">Submit</button>
-																<button class="btn btn-primary waves-effect waves-light"
-																	type="reset" name="reset" value="reset">Clear</button>
 
 															</div>
 														</div>
