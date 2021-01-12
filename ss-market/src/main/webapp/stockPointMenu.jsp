@@ -23,6 +23,48 @@
 			</div>
 		</a>
 	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">WW
+		<a href="/stock/point/manual/purchase">
+			<div class="panel-body">
+				<div class="stats-title pull-left">
+					<h5>My Stock Inventory</h5>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="educate-icon educate-apps"></i>
+				</div>
+			</div>
+		</a>
+	</div>
+
+</div>
+
+<div class="col-md-10 col-md-offset-2 well row">
+	<h4>Transaction Manager</h4>
+	</br>
+	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		<a href="/stock/point/manual/purchase">
+			<div class="panel-body">
+				<div class="stats-title pull-left">
+					<h5>Purchase History</h5>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="educate-icon educate-apps"></i>
+				</div>
+			</div>
+		</a>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		<a href="/stock/point/manual/purchase">
+			<div class="panel-body">
+				<div class="stats-title pull-left">
+					<h5>Stock Sales History</h5>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="educate-icon educate-apps"></i>
+				</div>
+			</div>
+		</a>
+	</div>
 
 </div>
 

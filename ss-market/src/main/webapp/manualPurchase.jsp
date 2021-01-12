@@ -40,8 +40,7 @@
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="review-content-section">
-											<form action="/save/purchase" method="post"  onsubmit="return confirm('Are you sure you want to submit?')">
-											<input type="hidden" name="memberid" id="memberid" value="${sessionScope.MEMBER_ID}">
+											<form action="/purchase/manual/confirm" method="post"  onsubmit="return confirm('Are you sure you want to submit?')">
 											
 											<div id="dropzone1" class="pro-ad">
 											
@@ -52,6 +51,10 @@
 													<div class="row" style="padding-right: 16%;padding-left: 16%;">
 														<div class=" well col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															<div class="form-group">
+															</div>
+															<div class="form-group">
+																<input name="memberid" id="memberid" type="text" class="form-control"
+																	placeholder="Member Id"  required>
 															</div>
 															<div class="form-group">
 															<select name="category" id="category"

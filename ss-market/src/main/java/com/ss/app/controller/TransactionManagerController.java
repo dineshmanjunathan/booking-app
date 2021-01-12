@@ -52,7 +52,38 @@ public class TransactionManagerController {
 			// update active days date in member table
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 			List<Cart> cart = cartRepository.findByMemberid(memberId);
-			
+			//Get order number
+			Long orderNumber = Utils.getOrderNumber();
+			Purchase purchase = new Purchase();
+			Member member =userRepository.findById(memberId).get();
+			for(Cart c:cart) {
+				// Update qty in product
+				Product prod = productRepository.findByCode(c.getProdCode());
+				prod.setQuantity(prod.getQuantity() - c.getQuantity());
+				productRepository.save(prod);
+				
+				//Prepare purchase
+				preparePurchase(member, orderNumber, purchase, c, prod);
+			}
+			cartRepository.removeAll(memberId);
+			//TODO calculate date and update in DB.
+			//member.setActive_days(active_days);
+			//userRepository.save(member);
+			model.addAttribute("cartList", cart);
+			model.addAttribute("orderNumber", orderNumber);
+			model.addAttribute("successMessage", "Item Purchased Successfully");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "purchaseConfirmation";
+	}
+	
+	@RequestMapping(value = "/purchase/manual/confirm", method = RequestMethod.GET)
+	public String saveManualPurchase(HttpServletRequest request, ModelMap model) {
+		try {
+			// update active days date in member table
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			List<Cart> cart = cartRepository.findByMemberid(memberId);
 			//Get order number
 			Long orderNumber = Utils.getOrderNumber();
 			Purchase purchase = new Purchase();
