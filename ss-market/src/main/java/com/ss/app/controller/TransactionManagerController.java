@@ -3,11 +3,10 @@ package com.ss.app.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -69,6 +68,8 @@ public class TransactionManagerController {
 			//TODO calculate date and update in DB.
 			//member.setActive_days(active_days);
 			//userRepository.save(member);
+			
+			//TODO email to member email address
 			model.addAttribute("cartList", cart);
 			model.addAttribute("orderNumber", orderNumber);
 			model.addAttribute("successMessage", "Item Purchased Successfully");
@@ -79,10 +80,15 @@ public class TransactionManagerController {
 	}
 	
 	@RequestMapping(value = "/purchase/manual/confirm", method = RequestMethod.GET)
-	public String saveManualPurchase(HttpServletRequest request, ModelMap model) {
+	public String saveManualPurchase(HttpServletRequest request, ModelMap model, @RequestParam(required = false) String memberid) {
 		try {
 			// update active days date in member table
-			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			HttpSession session = request.getSession();
+			String memberId = (String) session.getAttribute("MEMBER_ID");
+			String role = (String) session.getAttribute("ROLE");
+			if("STOCK_POINT".equals(role)) {
+				memberId = memberid;
+			}
 			List<Cart> cart = cartRepository.findByMemberid(memberId);
 			//Get order number
 			Long orderNumber = Utils.getOrderNumber();

@@ -5,11 +5,11 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import com.ss.app.entity.DBConfiguration;
+import com.ss.app.entity.SSConfiguration;
 
 @Service
-public interface DBConfigRepository extends CrudRepository<DBConfiguration, String> {
+public interface SSConfigRepository extends CrudRepository<SSConfiguration, String> {
 
-	Optional<DBConfiguration> findById(String i);
+	Optional<SSConfiguration> findById(String i);
 
 }

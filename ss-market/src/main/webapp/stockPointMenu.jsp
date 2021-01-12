@@ -12,7 +12,7 @@
 	<h4>Product Manager</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/stock/point/manual/purchase">
+		<a href="/purchase/review/edit">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
 					<h5>Manual Purchase</h5>
@@ -23,7 +23,7 @@
 			</div>
 		</a>
 	</div>
-	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">WW
+	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 		<a href="/stock/point/manual/purchase">
 			<div class="panel-body">
 				<div class="stats-title pull-left">

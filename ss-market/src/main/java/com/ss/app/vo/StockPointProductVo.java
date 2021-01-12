@@ -1,17 +1,9 @@
 package com.ss.app.vo;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-
 import com.ss.app.entity.Category;
 
-@Entity
 public class StockPointProductVo {
 
-	@Id
 	private String code;
 	private String memberId;
 	private Category category;
@@ -19,8 +11,6 @@ public class StockPointProductVo {
 	private String prodDesc;
 	private Long quantity;
 	private Double price = 0.0;
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
 	private byte[] image;
 
 	

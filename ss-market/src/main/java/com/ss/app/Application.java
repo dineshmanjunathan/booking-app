@@ -12,9 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 
-import com.ss.app.entity.DBConfiguration;
+import com.ss.app.entity.SSConfiguration;
 import com.ss.app.entity.HibernateSequence;
-import com.ss.app.model.DBConfigRepository;
+import com.ss.app.model.SSConfigRepository;
 import com.ss.app.model.HibernateSequenceRepository;
 import com.ss.config.SessionFilter;
 
@@ -48,7 +48,7 @@ class DemoCommandLineRunner implements CommandLineRunner{
 	private HibernateSequenceRepository hibernateSequenceRepository;
 	
 	@Autowired
-	private DBConfigRepository dbConfigRepository;
+	private SSConfigRepository dbConfigRepository;
 
 	@Override
 	public void run(String... args) throws Exception {

@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ss_configuration")
-public class DBConfiguration {
+public class SSConfiguration {
 
 	@Id
 	@Column(name = "id")

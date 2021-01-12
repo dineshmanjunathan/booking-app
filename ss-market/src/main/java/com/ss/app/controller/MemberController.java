@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,17 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.ss.app.entity.CountryCode;
-import com.ss.app.entity.DBConfiguration;
 import com.ss.app.entity.Member;
-import com.ss.app.entity.Product;
+import com.ss.app.entity.SSConfiguration;
 import com.ss.app.model.CountryCodeRepository;
-import com.ss.app.model.DBConfigRepository;
+import com.ss.app.model.SSConfigRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CountryCodeVo;
 import com.ss.app.vo.MemberTree;
 import com.ss.app.vo.MemberVo;
 import com.ss.utils.ReportGenerator;
-import com.ss.utils.Utils;
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -50,7 +47,7 @@ public class MemberController {
 	private CountryCodeRepository countryCodeRepository;
 	
 	@Autowired
-	private DBConfigRepository dbConfigRepository;
+	private SSConfigRepository ssConfigRepository;
 
 	@RequestMapping("/")
 	public String login(HttpServletRequest request, ModelMap model) {
@@ -161,8 +158,8 @@ public class MemberController {
 		if ((user.getWalletBalance() != null && user.getWalletBalance() > 0) &&
 				user.getRepurcahse() != null && user.getRepurcahse() > 0) {
 
-			DBConfiguration configurations1 = dbConfigRepository.findById("INCENTIVE_VAL").get();
-			DBConfiguration configurations2 = dbConfigRepository.findById("GST_VAL").get();
+			SSConfiguration configurations1 = ssConfigRepository.findById("INCENTIVE_VAL").get();
+			SSConfiguration configurations2 = ssConfigRepository.findById("GST_VAL").get();
 
 			try {
 				Long rp = user.getRepurcahse();
@@ -210,8 +207,8 @@ public class MemberController {
 					&& user.getRepurcahse() > 0) {
 
 				// INCENTIVE DEDUCTION STARTS
-				DBConfiguration configurations1 = dbConfigRepository.findById("INCENTIVE_VAL").get();
-				DBConfiguration configurations2 = dbConfigRepository.findById("GST_VAL").get();
+				SSConfiguration configurations1 = ssConfigRepository.findById("INCENTIVE_VAL").get();
+				SSConfiguration configurations2 = ssConfigRepository.findById("GST_VAL").get();
 				Long rp = user.getRepurcahse();
 				Long remaningPoint = user.getWalletBalance();
 				Double config1 = configurations1.getValue();
@@ -342,6 +339,7 @@ public class MemberController {
 				model.addAttribute("registersuccess", "Member Registered Successfully! ");
 			}
 			
+			//TODO SMS to member mobile number
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errormsg", "Member Registered Failed! ");

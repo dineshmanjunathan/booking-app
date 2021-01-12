@@ -35,6 +35,20 @@ function removeFromCart(prodCode, price) {
 
 }
 
+function submit() {
+	let role = `${sessionScope.ROLE}`;
+	if(role == 'STOCK_POINT'){
+		let memberID = $("#memberid").val(); 
+		if(!memberID){
+			alert('Manual purchase requires member id.');
+			return;
+		} else {
+			window.location.href = "/purchase/confirm?memberid="+memberid;
+		}
+	}
+	window.location.href = "/purchase/confirm";
+}
+
 </script>
 </head>
 <body>
@@ -106,17 +120,38 @@ function removeFromCart(prodCode, price) {
 													style="font-size: 20px"></i> <span>Purchase Total:
 														&#x20b9; <span id="cartTotal">${cartTotal}</span>
 												</span>
-											</span>
+											</span></a>
 										</div>
+										<c:if test="${sessionScope.ROLE == 'STOCK_POINT'}">
+											<div class="form-group col-md-offset-8">
+											<label>Please add member id:</label>
+												<input name="memberid" id="memberid" type="text" style="border: 5px solid blue;"
+													class="form-control" placeholder="Member Id" required>
+											</div>
+										</c:if>
 										<div class="row">
 											<a href="/purchase/review/edit"
 												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
-												<span><i class="fa fa-arrow-left"></i> <span>Edit cart</span> </span></a>
-											 <a href="/purchase/confirm"
-												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
-												<span> <i class="fa fa-plus"></i> <span>Pay to place you order</span>
-											</span>
+												<span><i class="fa fa-arrow-left"></i> <span>Edit
+														cart</span> </span>
 											</a>
+											<c:choose>
+												<c:when test="${sessionScope.ROLE == 'STOCK_POINT'}">
+													<a href="#" onclick="return submit();"
+														class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
+														<span> <i class="fa fa-plus"></i> <span>Place you order</span>
+													</span>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="#" onclick="return submit();"
+														class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
+														<span> <i class="fa fa-plus"></i> <span>Pay to proceed</span>
+													</span>
+													</a>
+												</c:otherwise>
+											</c:choose>
+
 										</div>
 									</div>
 								</div>

@@ -220,7 +220,7 @@
 					href="/home"><img src="../../img/logo/logo.jpeg" alt=""
 						style="height: 100px; width: 200px;"></a></strong>
 			</div>
-			<c:if test="${fn:contains(sessionScope.ROLE, 'MEMBER') or fn:contains(sessionScope.ROLE, 'STOCK_POINT')}">
+			<c:if test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
 				<div class="left-custom-menu-adp-wrap comment-scrollbar">
 					<nav class="sidebar-nav left-sidebar-menu-pro">
 						<ul class="metismenu" id="menu1">
@@ -246,6 +246,38 @@
 							<br>
 							<br>
 							<%@ include file="timmer.jsp"%>
+
+						</ul>
+					</nav>
+
+				</div>
+			</c:if>
+			
+			<c:if test="${fn:contains(sessionScope.ROLE, 'STOCK_POINT')}">
+				<div class="left-custom-menu-adp-wrap comment-scrollbar">
+					<nav class="sidebar-nav left-sidebar-menu-pro">
+						<ul class="metismenu" id="menu1">
+							<li>
+								<center>
+									<a href="/menu" aria-expanded="false"><br/> <b>Home</b></a>
+								</center>
+							</li>
+							<br>
+							<li><a title="" href="/wallet" aria-expanded="false"
+								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+									My Wallet</a></li>
+							<br>
+							<li><a title="" href="/purchase/review/edit" aria-expanded="false"
+								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								Click to Purchase</a>
+							</li>
+							<br>
+							<li><a title="" href="/contactus" aria-expanded="false"
+								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+									Contact Us</a></li>
+							<br>
+							<br>
+							<br>
 
 						</ul>
 					</nav>
