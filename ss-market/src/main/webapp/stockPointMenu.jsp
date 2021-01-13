@@ -12,7 +12,7 @@
 	<h4>Product Manager</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/purchase/review/edit">
+		<a href="/purchase/manual/edit">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
 					<h5>Manual Purchase</h5>

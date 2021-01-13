@@ -8,37 +8,6 @@
 <meta charset="ISO-8859-1">
 <script type="text/javascript" charset="utf-8">
 
-function removeFromCart(prodCode, price) {
-	if(confirm("Do you want to remove from cart?")) {
-		$.ajax({
-		    url: "/purchase/remove/cart",
-		    data: {
-		        "prodCode": prodCode
-		    },
-		    type: "post",
-		    cache: false,
-		    success: function (data) {
-		    	let total = price * qty; 
-				cartTotal = cartTotal - total;
-				if(!cartTotal){
-					$('#cartTotal').text(0);
-				} else {
-					$('#cartTotal').text(cartTotal);
-				}
-				$("#quantity-"+prodCode+" option:selected").removeAttr("selected");
-		    },
-		    error: function (XMLHttpRequest, textStatus, errorThrown) {
-		        console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
-		    }
-		});
-	}
-
-}
-
-function submit() {
-	window.location.href = "/purchase/confirm";
-}
-
 </script>
 </head>
 <body>
@@ -49,7 +18,7 @@ function submit() {
 				<div class="product-payment-inner-st">
 					<ul id="myTabedu1" class="tab-review-design">
 						<center>
-							<li class="active"><a href="">Review your products to purchase</a></li>
+							<li class="active"><a href="">Order confirmation</a></li>
 						</center>
 					</ul>
 
@@ -58,12 +27,33 @@ function submit() {
 							id="description">
 							<div class="row">
 								<div class="row">
-									<a href="/menu"
+								<c:set var="url" value="#"></c:set>
+								<c:choose>
+								<c:when test="${sessionScope.ROLE == 'ADMIN' }">
+									<c:set var="url" value="/admin/menu"></c:set>
+								</c:when>
+								<c:otherwise>
+									<c:set var="url" value="/stock/point/menu"></c:set>
+								</c:otherwise>
+								</c:choose>
+									<a href="${url}"
 										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 										<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span> </span>
 									</a> 
 								</div>
 								<br>
+								<div class="row">
+									<a href="#"
+										class="btn btn-warning col-md-offset-5 col-md-2">
+										<span>Order number : ${orderNumber} </span>
+										<%-- <span>Address : ${orderAddress} </span> --%>
+									</a>
+									<a href="#"
+										class="btn btn-warning col-md-offset-5 col-md-2">
+										<span>Ordered Placed to : ${memberId} </span>
+										<%-- <span>Address : ${orderAddress} </span> --%>
+									</a>
+								</div>
 								<div class="sparkline13-graph">
 									<div class="datatable-dashv1-list custom-datatable-overright">
 										<div id="toolbar">
@@ -105,25 +95,12 @@ function submit() {
 
 										<div class="row">
 											<a href="#"
-												class="btn btn-waring col-md-offset-9 col-md-3">
+												class="btn btn-waring m-btn m-btn--custom m-btn--icon col-md-offset-9 col-md-3">
 												<span> <i class="fa fa-shopping-cart"
 													style="font-size: 20px"></i> <span>Purchase Total:
 														&#x20b9; <span id="cartTotal">${cartTotal}</span>
 												</span>
-											</span></a>
-										</div>
-										<div class="row">
-											<a href="/purchase/review/edit"
-												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
-												<span><i class="fa fa-arrow-left"></i> <span>Edit
-														cart</span> </span>
-											</a>
-											<a href="#" onclick="return submit();"
-														class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
-														<span> <i class="fa fa-plus"></i> <span>Pay to proceed</span>
-													</span>
-													</a>
-
+											</span>
 										</div>
 									</div>
 								</div>

@@ -68,6 +68,7 @@ function removeFromCart(prodCode, price) {
 				$("#quantity-"+prodCode+" option:selected").removeAttr("selected");
 		    },
 		    error: function (XMLHttpRequest, textStatus, errorThrown) {
+		    	$("#quantity-"+prodCode+" option:selected").removeAttr("selected");
 		        console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
 		    }
 		});

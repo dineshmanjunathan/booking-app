@@ -113,7 +113,6 @@ public class MemberController {
 				model.addAttribute("errormsg", "User Id or Password is incorrect!");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			model.addAttribute("errormsg", "Member does not Exists!");
 		}
 		return "login";

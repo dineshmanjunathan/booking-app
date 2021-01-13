@@ -13,13 +13,17 @@ public interface CartRepository extends CrudRepository<Cart, Long> {
 
 	List<Cart> findByMemberid(String memberid);
 	
-	Cart findByMemberidAndProdCode(String memberid, String prodCode);
+	Cart findByMemberidAndCode(String memberid, String prodCode);
 	
 	@Query(value = "delete from t_cart where prod_code=:code and memberid=:memberId ", nativeQuery = true)
 	void removeCart(String code, String memberId);
 	
 	@Query(value = "delete from t_cart where memberid=:memberId ", nativeQuery = true)
 	void removeAll(String memberId);
+	
+	Long deleteByMemberid(String memberId);
+	
+	Long deleteByCodeAndMemberid(String code, String memberId);
 	
 	
 }

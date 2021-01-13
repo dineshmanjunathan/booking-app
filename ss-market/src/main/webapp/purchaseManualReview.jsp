@@ -35,10 +35,17 @@ function removeFromCart(prodCode, price) {
 
 }
 
-function submit() {
-	window.location.href = "/purchase/confirm";
-}
 
+	function submit() {
+
+		let memberID = $("#memberid").val();
+		if (!memberID) {
+			alert('Manual purchase requires member id.');
+			return;
+		} else {
+			window.location.href = "/purchase/manual/confirm?memberid=" + memberid;
+		}
+	}
 </script>
 </head>
 <body>
@@ -58,7 +65,16 @@ function submit() {
 							id="description">
 							<div class="row">
 								<div class="row">
-									<a href="/menu"
+								<c:set var="url" value="#"></c:set>
+								<c:choose>
+								<c:when test="${sessionScope.ROLE == 'ADMIN' }">
+									<c:set var="url" value="/admin/menu"></c:set>
+								</c:when>
+								<c:otherwise>
+									<c:set var="url" value="/stock/point/menu"></c:set>
+								</c:otherwise>
+								</c:choose>
+									<a href="${url}"
 										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 										<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span> </span>
 									</a> 
@@ -112,6 +128,11 @@ function submit() {
 												</span>
 											</span></a>
 										</div>
+											<div class="form-group col-md-offset-8">
+											<label>Please add member id:</label>
+												<input name="memberid" id="memberid" type="text" style="border: 5px solid blue;"
+													class="form-control" placeholder="Member Id" required>
+											</div>
 										<div class="row">
 											<a href="/purchase/review/edit"
 												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
@@ -120,7 +141,7 @@ function submit() {
 											</a>
 											<a href="#" onclick="return submit();"
 														class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
-														<span> <i class="fa fa-plus"></i> <span>Pay to proceed</span>
+														<span> <i class="fa fa-plus"></i> <span>Place you order</span>
 													</span>
 													</a>
 

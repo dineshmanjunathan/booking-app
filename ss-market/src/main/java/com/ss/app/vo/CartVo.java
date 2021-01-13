@@ -6,12 +6,11 @@ public class CartVo {
 
 	private Long id;
 	private String memberid;
-	private String prodCode;
+	private String code;
 	private String prodDesc;
 	private Double amount;
 	private Long quantity;
-	private LocalDateTime purchasedOn = LocalDateTime.now();
-	
+	private LocalDateTime purchasedon;
 	
 	public Long getId() {
 		return id;
@@ -25,7 +24,18 @@ public class CartVo {
 	public void setMemberid(String memberid) {
 		this.memberid = memberid;
 	}
-
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getProdDesc() {
+		return prodDesc;
+	}
+	public void setProdDesc(String prodDesc) {
+		this.prodDesc = prodDesc;
+	}
 	public Double getAmount() {
 		return amount;
 	}
@@ -38,23 +48,18 @@ public class CartVo {
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
-	public LocalDateTime getPurchasedOn() {
-		return purchasedOn;
+	public LocalDateTime getPurchasedon() {
+		return purchasedon;
 	}
-	public void setPurchasedOn(LocalDateTime purchasedOn) {
-		this.purchasedOn = purchasedOn;
+	public void setPurchasedon(LocalDateTime purchasedon) {
+		this.purchasedon = purchasedon;
 	}
-	public String getProdCode() {
-		return prodCode;
-	}
-	public void setProdCode(String prodCode) {
-		this.prodCode = prodCode;
-	}
-	public String getProdDesc() {
-		return prodDesc;
-	}
-	public void setProdDesc(String prodDesc) {
-		this.prodDesc = prodDesc;
-	}
+	
+	
+	
+	
+	
+	
+	
 
 }

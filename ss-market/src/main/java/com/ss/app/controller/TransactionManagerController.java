@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +22,12 @@ import com.ss.app.entity.Category;
 import com.ss.app.entity.Member;
 import com.ss.app.entity.Product;
 import com.ss.app.entity.Purchase;
+import com.ss.app.entity.StockPointProduct;
 import com.ss.app.model.CartRepository;
 import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.ProductRepository;
 import com.ss.app.model.PurchaseRepository;
+import com.ss.app.model.StockPointProuctRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.utils.Utils;
 
@@ -44,6 +48,9 @@ public class TransactionManagerController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private StockPointProuctRepository stockPointProuctRepository;
 
 	@RequestMapping(value = "/purchase/confirm", method = RequestMethod.GET)
 	public String savePurchase(HttpServletRequest request, ModelMap model) {
@@ -57,14 +64,14 @@ public class TransactionManagerController {
 			Member member =userRepository.findById(memberId).get();
 			for(Cart c:cart) {
 				// Update qty in product
-				Product prod = productRepository.findByCode(c.getProdCode());
+				Product prod = productRepository.findByCode(c.getCode());
 				prod.setQuantity(prod.getQuantity() - c.getQuantity());
 				productRepository.save(prod);
 				
 				//Prepare purchase
 				preparePurchase(member, orderNumber, purchase, c, prod);
 			}
-			cartRepository.removeAll(memberId);
+			cartRepository.deleteByMemberid(memberId);
 			//TODO calculate date and update in DB.
 			//member.setActive_days(active_days);
 			//userRepository.save(member);
@@ -96,28 +103,35 @@ public class TransactionManagerController {
 			Member member =userRepository.findById(memberId).get();
 			for(Cart c:cart) {
 				// Update qty in product
-				Product prod = productRepository.findByCode(c.getProdCode());
-				prod.setQuantity(prod.getQuantity() - c.getQuantity());
-				productRepository.save(prod);
-				
-				//Prepare purchase
-				preparePurchase(member, orderNumber, purchase, c, prod);
+				Product product = null;
+				if("STOCK_POINT".equals(role)) {
+					StockPointProduct prod = stockPointProuctRepository.findByCode(c.getCode());
+					prod.setQuantity(prod.getQuantity() - c.getQuantity());
+					stockPointProuctRepository.save(prod);
+					
+					//Prepare purchase
+					product =new Product();
+					product.setCode(prod.getCode());
+					product.setProdDesc(prod.getProdDesc());
+				} else {
+					product = productRepository.findByCode(c.getCode());
+					product.setQuantity(product.getQuantity() - c.getQuantity());
+					productRepository.save(product);
+				}
+				preparePurchase(member, orderNumber, purchase, c, product);
 			}
-			try {
-				cartRepository.removeAll(memberId);
-			}catch(Exception e) {
-				//TODO 
-			}
+			cartRepository.deleteByMemberid(memberId);
 			//TODO calculate date and update in DB.
 			//member.setActive_days(active_days);
 			//userRepository.save(member);
 			model.addAttribute("cartList", cart);
 			model.addAttribute("orderNumber", orderNumber);
+			model.addAttribute("memberId", memberId);
 			model.addAttribute("successMessage", "Item Purchased Successfully");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "purchaseConfirmation";
+		return "purchaseManualConfirmation";
 	}
 
 	private void preparePurchase(Member member, Long orderNumber, Purchase purchase, Cart c, Product prod) {
@@ -183,6 +197,18 @@ public class TransactionManagerController {
 		}
 		return "purchaseReview";
 	}
+	
+	@RequestMapping(value = "/purchase/manual/review", method = RequestMethod.GET)
+	public String purchasemanualReview(HttpServletRequest request, ModelMap model) {
+		try {
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			List<Cart> cart = cartRepository.findByMemberid(memberId);
+			model.addAttribute("cartList", cart);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "purchaseManualReview";
+	}
 
 	@RequestMapping(value = "/purchase/review/edit", method = RequestMethod.GET)
 	public String reviewEdit(HttpServletRequest request, ModelMap model) {
@@ -194,7 +220,7 @@ public class TransactionManagerController {
 				Map<String, Long> map = new HashMap<>();
 				for(Cart c: cart) {
 					total = total + (c.getQuantity() * c.getAmount());
-					map.put(c.getProdCode(), c.getQuantity());
+					map.put(c.getCode(), c.getQuantity());
 				};
 				model.addAttribute("cartMap", map);
 				model.addAttribute("cartTotal", total);
@@ -208,20 +234,45 @@ public class TransactionManagerController {
 		}
 		return "purchaseProductList";
 	}
+	
+	@RequestMapping(value = "/purchase/manual/edit", method = RequestMethod.GET)
+	public String reviewManualEdit(HttpServletRequest request, ModelMap model) {
+		try {
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			List<Cart> cart = cartRepository.findByMemberid(memberId);
+			Double total = 0.0;
+			if (cart != null) {
+				Map<String, Long> map = new HashMap<>();
+				for(Cart c: cart) {
+					total = total + (c.getQuantity() * c.getAmount());
+					map.put(c.getCode(), c.getQuantity());
+				};
+				model.addAttribute("cartMap", map);
+				model.addAttribute("cartTotal", total);
+			}
+			Iterable<Product> productList = productRepository.findAll();
+			model.addAttribute("productList", productList);
+			Iterable<Category> catIterable = categoryRepository.findAll();
+			model.addAttribute("categoryCodeList", catIterable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "manualPrchase";
+	}
 
 	@RequestMapping(value = "/purchase/addToCart", method = RequestMethod.POST)
 	public String addTocart(HttpServletRequest request, ModelMap model, @RequestParam("prodCode") String prodCode,
 			@RequestParam("qty") String qty) {
 		try {
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
-			Cart existingCart = cartRepository.findByMemberidAndProdCode(memberId, prodCode);
+			Cart existingCart = cartRepository.findByMemberidAndCode(memberId, prodCode);
 			if (existingCart != null) {
 				existingCart.setQuantity(Long.parseLong(qty));
 				cartRepository.save(existingCart);
 			} else {
 				Product product = productRepository.findByCode(prodCode);
 				Cart cart = new Cart();
-				cart.setProdCode(product.getCode());
+				cart.setCode(product.getCode());
 				cart.setProdDesc(product.getProdDesc());
 				cart.setMemberid(memberId);
 				cart.setQuantity(Long.parseLong(qty));
@@ -236,14 +287,17 @@ public class TransactionManagerController {
 	}
 
 	@RequestMapping(value = "/purchase/remove/cart", method = RequestMethod.POST)
-	public String removeFromCarty(HttpServletRequest request, ModelMap model,
+	public ResponseEntity<String> removeFromCarty(HttpServletRequest request, ModelMap model,
 			@RequestParam("prodCode") String prodCode) {
 		try {
-			cartRepository.removeCart(prodCode, (String) request.getSession().getAttribute("MEMBER_ID"));
+			Long val = cartRepository.deleteByCodeAndMemberid(prodCode, (String) request.getSession().getAttribute("MEMBER_ID"));
+			if(val <=0) {
+				return new ResponseEntity<String>("No product to remove",HttpStatus.BAD_REQUEST);
+			}
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
-		return "purchaseReview";
+		return new ResponseEntity<String>("Removed product from cart",HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/purchase/all/list", method = RequestMethod.GET)
