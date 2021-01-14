@@ -33,6 +33,7 @@ public class StockPointPurchase implements Serializable {
 	@JoinColumn(name = "product_code")
 	private Product productCode;
 	private Long qty = 0L;
+	private Double price;
 
 	public String getId() {
 		return id;
@@ -73,5 +74,15 @@ public class StockPointPurchase implements Serializable {
 	public void setCategoryCode(Category categoryCode) {
 		this.categoryCode = categoryCode;
 	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	
+	
 
 }

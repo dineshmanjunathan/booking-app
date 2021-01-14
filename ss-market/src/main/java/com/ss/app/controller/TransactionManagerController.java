@@ -23,11 +23,13 @@ import com.ss.app.entity.Member;
 import com.ss.app.entity.Product;
 import com.ss.app.entity.Purchase;
 import com.ss.app.entity.StockPointProduct;
+import com.ss.app.entity.StockPointPurchase;
 import com.ss.app.model.CartRepository;
 import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.ProductRepository;
 import com.ss.app.model.PurchaseRepository;
 import com.ss.app.model.StockPointProuctRepository;
+import com.ss.app.model.StockPointPurchaseRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.utils.Utils;
 
@@ -51,6 +53,9 @@ public class TransactionManagerController {
 	
 	@Autowired
 	private StockPointProuctRepository stockPointProuctRepository;
+	
+	@Autowired
+	private StockPointPurchaseRepository stockPointPurchaseRepository;
 
 	@RequestMapping(value = "/purchase/confirm", method = RequestMethod.GET)
 	public String savePurchase(HttpServletRequest request, ModelMap model) {
@@ -140,6 +145,12 @@ public class TransactionManagerController {
 		purchase.setMemberid(member.getId());
 		if("STOCK_POINT".equals(member.getRole())) {
 			purchase.setOrderStatus("PENDING");
+			StockPointPurchase sp = new StockPointPurchase();
+			sp.setPrice(c.getAmount());
+			sp.setStockPointId(member.getId());
+			sp.setProductCode(prod);
+			sp.setQty(c.getQuantity());
+			stockPointPurchaseRepository.save(sp);
 		} else {
 			purchase.setOrderStatus("APPROVED");
 		}
@@ -257,7 +268,7 @@ public class TransactionManagerController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "manualPrchase";
+		return "manualPurchase";
 	}
 
 	@RequestMapping(value = "/purchase/addToCart", method = RequestMethod.POST)

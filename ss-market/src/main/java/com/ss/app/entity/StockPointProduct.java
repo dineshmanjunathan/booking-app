@@ -26,6 +26,7 @@ public class StockPointProduct {
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] image;
+	private String status;
 
 	
 	public String getMemberId() {
@@ -83,5 +84,15 @@ public class StockPointProduct {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 
 }

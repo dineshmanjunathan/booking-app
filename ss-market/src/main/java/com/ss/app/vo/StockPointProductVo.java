@@ -12,6 +12,7 @@ public class StockPointProductVo {
 	private Long quantity;
 	private Double price = 0.0;
 	private byte[] image;
+	private String status;
 
 	
 	public String getMemberId() {
@@ -68,6 +69,14 @@ public class StockPointProductVo {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

@@ -10,6 +10,7 @@ public class StockPointPurchaseVo {
 	private Product productCode;
 	private Category categoryCode;
 	private Long qty = 0L;
+	private Double price;
 
 	public String getId() {
 		return id;
@@ -49,5 +50,13 @@ public class StockPointPurchaseVo {
 
 	public void setCategoryCode(Category categoryCode) {
 		this.categoryCode = categoryCode;
+	}
+	
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 }
