@@ -15,14 +15,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ss.app.entity.Category;
 import com.ss.app.entity.Member;
 import com.ss.app.entity.Product;
+import com.ss.app.entity.SSConfiguration;
 import com.ss.app.entity.StockPointPurchase;
 import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.ProductRepository;
+import com.ss.app.model.SSConfigRepository;
 import com.ss.app.model.StockPointPurchaseRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CategoryVo;
 import com.ss.app.vo.MemberVo;
 import com.ss.app.vo.ProductVo;
+import com.ss.app.vo.SSConfigurationVo;
 import com.ss.utils.Utils;
 
 @Controller
@@ -36,6 +39,9 @@ public class AdminController {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private SSConfigRepository ssConfigRepo;
 	
 	@Autowired
 	private StockPointPurchaseRepository stockPurchaseRepository;
@@ -102,17 +108,13 @@ public class AdminController {
 	@RequestMapping("/admin/user/delete")
 	public String delete(@RequestParam("user_id") String userId, HttpServletRequest request, ModelMap model) {
 		try {
-			try {
-				userRepository.removeUser(userId);
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
-			model.addAttribute("deletesuccessmessage", "Member Deleted Successfully!");
-			
+			userRepository.deleteById(userId);
+
+			model.addAttribute("deletesuccessmessage", "Member Deleted Successfully.");
 			Iterable<Member> memberList = userRepository.findAll();
-			model.addAttribute("memberList",memberList);
+			model.addAttribute("memberList", memberList);
 		} catch (Exception e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return "memberListing";
 	}
@@ -205,12 +207,13 @@ public class AdminController {
 	@RequestMapping(value="/admin/product/delete",method=RequestMethod.GET)
 	public String productDelete(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
-			try {
-				productRepository.removeProduct(id);
-			}catch(Exception e){
-				//do nothing
+			
+			Long val=productRepository.deleteByCode(id);
+			if(val>0) {
+				model.addAttribute("deletesuccessmessage","Product Deleted Successfully.");
+			}else {
+				model.addAttribute("deletesuccessmessage","Unable To Deleted Product.");
 			}
-			model.addAttribute("deletesuccessmessage","Product Deleted Successfully."); 
 			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productListing", productList); 
 		} catch (Exception e) {
@@ -266,12 +269,7 @@ public class AdminController {
 		try {
 			Product product=new Product();
 			
-			BeanUtils.copyProperties(productVo,product);
-			
-			System.out.println("productVo-->"+product.getCategory().getCode());
-			System.out.println("productVo-->"+product.getCode());
-			System.out.println("productVo-->"+product.getProdDesc());
-			
+			BeanUtils.copyProperties(productVo,product);			
 			productRepository.save(product);
 			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productListing", productList); 
@@ -289,4 +287,69 @@ public class AdminController {
 		return "stockPointPurcahseList";
 	} 
 	
+	@RequestMapping("/admin/ssconfig/listing")
+	public String ssconfigListing(HttpServletRequest request,ModelMap model) {
+		Iterable<SSConfiguration> ssConfig = ssConfigRepo.findAll();
+		model.addAttribute("ssConfigList",ssConfig);
+		return "ssConfigList";
+	}
+	
+	@RequestMapping(value="/admin/ssconfig/edit",method=RequestMethod.GET)
+	public String ssconfigEdit(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) {
+		SSConfiguration ssConfig = ssConfigRepo.findById(id).get();
+		model.addAttribute("ssConfigDetail",ssConfig);
+		return "ssConfigEdit";
+	}
+	
+	@RequestMapping(value="/admin/ssconfig/edit",method=RequestMethod.POST)
+	public String ssconfigEditSubmit(HttpServletRequest request,SSConfigurationVo ssConfigurationVo,ModelMap model) {
+		SSConfiguration ssConfiguration=new SSConfiguration();
+		try {
+			BeanUtils.copyProperties(ssConfigurationVo,ssConfiguration);
+			ssConfigRepo.save(ssConfiguration);
+			Iterable<SSConfiguration> ssConfig = ssConfigRepo.findAll();
+			model.addAttribute("ssConfigList",ssConfig);
+			model.addAttribute("successMessage","Record Added Successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ssConfigList";
+	}
+	
+	@RequestMapping(value="/admin/ssconfig/delete",method=RequestMethod.GET)
+	public String ssconfigDelete(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
+		try {
+			Long val=ssConfigRepo.deleteByCode(id);
+			if(val>0) {
+				model.addAttribute("deletesuccessmessage", id+" - Record Deleted Successfully.");
+			}else {
+				model.addAttribute("deletesuccessmessage",id+" - Unable to Deleted.");
+			}
+			Iterable<SSConfiguration> ssConfig = ssConfigRepo.findAll();
+			model.addAttribute("ssConfigList",ssConfig);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}  
+		return "ssConfigList";
+	}
+	
+	@RequestMapping(value="/admin/ssconfig/save",method=RequestMethod.POST)
+	public String ssconfigSave(HttpServletRequest request,SSConfigurationVo ssConfigurationVo,ModelMap model) {
+		try {
+			SSConfiguration ssConfiguration=new SSConfiguration();
+			BeanUtils.copyProperties(ssConfigurationVo,ssConfiguration);
+			ssConfigRepo.save(ssConfiguration);
+			Iterable<SSConfiguration> ssConfig = ssConfigRepo.findAll();
+			model.addAttribute("ssConfigList",ssConfig);
+			model.addAttribute("successMessage","Record Added Successfully."); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ssConfigList";
+	}
+	@RequestMapping("/admin/ssconfig")
+	public String inSSConfig(HttpServletRequest request,ModelMap model) {
+		
+		return "ssConfigEdit";
+	} 
 }

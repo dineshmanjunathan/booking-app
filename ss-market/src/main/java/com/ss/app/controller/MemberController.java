@@ -157,8 +157,8 @@ public class MemberController {
 		if ((user.getWalletBalance() != null && user.getWalletBalance() > 0) &&
 				user.getRepurcahse() != null && user.getRepurcahse() > 0) {
 
-			SSConfiguration configurations1 = ssConfigRepository.findById("INCENTIVE_VAL").get();
-			SSConfiguration configurations2 = ssConfigRepository.findById("GST_VAL").get();
+			SSConfiguration configurations1 = ssConfigRepository.findById("1111").get();
+			SSConfiguration configurations2 = ssConfigRepository.findById("1112").get();
 
 			try {
 				Long rp = user.getRepurcahse();
@@ -206,8 +206,8 @@ public class MemberController {
 					&& user.getRepurcahse() > 0) {
 
 				// INCENTIVE DEDUCTION STARTS
-				SSConfiguration configurations1 = ssConfigRepository.findById("INCENTIVE_VAL").get();
-				SSConfiguration configurations2 = ssConfigRepository.findById("GST_VAL").get();
+				SSConfiguration configurations1 = ssConfigRepository.findById("1111").get();
+				SSConfiguration configurations2 = ssConfigRepository.findById("1112").get();
 				Long rp = user.getRepurcahse();
 				Long remaningPoint = user.getWalletBalance();
 				Double config1 = configurations1.getValue();

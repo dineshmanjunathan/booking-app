@@ -14,28 +14,34 @@
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="product-payment-inner-st">
 					<ul id="myTabedu1" class="tab-review-design">
-					<c:choose>
-						<c:when test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
-						<li class="active"><a href="">Member profile</a></li>
-						</c:when>
-						<c:otherwise>
-						<li class="active"><a href="">User</a></li>
-						</c:otherwise>
-					</c:choose>
-						
+						<c:choose>
+							<c:when test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
+								<li class="active"><a href="">Member profile</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="active"><a href="">User</a></li>
+							</c:otherwise>
+						</c:choose>
+
 					</ul>
 					<!-- <form action="/userlisting" method="get"> -->
-					
+
 					<div class="payment-adress">
-					
-					<c:choose>
-					<c:when test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
-						<a class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/menu" type="submit" name="submit" value="adminListing">Back to Main</a>
-					</c:when>
-					<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
-						<a class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/member/listing" type="submit" name="submit" value="adminListing">Back to Main</a>
-					</c:when>				
-					</c:choose>
+
+						<c:choose>
+							<c:when test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
+								<a
+									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
+									href="/menu" type="submit" name="submit" value="adminListing">Back
+									to Main</a>
+							</c:when>
+							<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
+								<a
+									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
+									href="/admin/member/listing" type="submit" name="submit"
+									value="adminListing">Back to Main</a>
+							</c:when>
+						</c:choose>
 					</div>
 					<!-- </form> -->
 
@@ -53,11 +59,13 @@
 												<c:url var="action" value="/register" />
 											</c:otherwise>
 										</c:choose>
-										<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
+										<form action="${action}" method="post"
+											onsubmit="return ValidateForm(this);">
 											<p style="color: red" align="center">${errormsg}</p>
 											<input type="hidden" name="id" id="id" value="${member.id}">
-											<input type="hidden" name="active_days" id="active_days" value="${member.active_days}">
-									
+											<input type="hidden" name="active_days" id="active_days"
+												value="${member.active_days}">
+
 											<div id="dropzone1" class="pro-ad">
 
 												<p style="color: green" align="center">${successMessage}</p>
@@ -96,9 +104,9 @@
 																value="${member.phonenumber}" required>
 														</div>
 														<div class="form-group">
-															<input name="password" type="password" class="form-control"
-																placeholder="Password" value="${member.password}"
-																required>
+															<input name="password" type="password"
+																class="form-control" placeholder="Password"
+																value="${member.password}" required>
 														</div>
 													</div>
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
@@ -117,38 +125,50 @@
 																type="radio" value="Female"
 																${member.gender eq 'Female' ?'Checked':''}>Female
 														</div>
-														
-														
+
+
 														<c:choose>
-														<c:when test="${not empty member.id}">
-															<div class="form-group"><input name="referedby" type="text"	class="form-control" placeholder="Sponser Id"value="${member.referedby}" readonly></div>														
-														</c:when>
-														<c:otherwise>
-															<div class="form-group"><input name="referedby" type="text"	class="form-control" placeholder="Sponser Id"value="${member.referedby}" ></div>
+															<c:when test="${not empty member.id}">
+																<div class="form-group">
+																	<input name="referedby" type="text"
+																		class="form-control" placeholder="Sponser Id"
+																		value="${member.referedby}" readonly>
+																</div>
+															</c:when>
+															<c:otherwise>
+																<div class="form-group">
+																	<input name="referedby" type="text"
+																		class="form-control" placeholder="Sponser Id"
+																		value="${member.referedby}">
+																</div>
 
-														</c:otherwise>
+															</c:otherwise>
 														</c:choose>
-														
+
 														<c:choose>
-														<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
+															<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
 
-														<div class="form-group">
-															<select name="role" id="role"
-																class="form-control">
-																<option value="">-Select Role-</option>
-																<option value="ADMIN"  ${member.role == 'ADMIN' ? 'selected' : ''}>ADMIN</option>
-																<option value="MEMBER" ${member.role == 'MEMBER' ? 'selected' : ''}>MEMBER</option>
-																<option value="STOCK_POINT" ${member.role == 'STOCK_POINT' ? 'selected' : ''}>STOCK POINT</option>
-															</select>
-														</div>
-														</c:when>		
-														<c:otherwise>
-																<input type="hidden" name="role" id="role" value="${member.role}">
-														</c:otherwise>									
+																<div class="form-group">
+																	<select name="role" id="role" class="form-control">
+																		<option value="">-Select Role-</option>
+																		<option value="ADMIN"
+																			${member.role == 'ADMIN' ? 'selected' : ''}>ADMIN</option>
+																		<option value="MEMBER"
+																			${member.role == 'MEMBER' ? 'selected' : ''}>MEMBER</option>
+																		<option value="STOCK_POINT"
+																			${member.role == 'STOCK_POINT' ? 'selected' : ''}>STOCK
+																			POINT</option>
+																	</select>
+																</div>
+															</c:when>
+															<c:otherwise>
+																<input type="hidden" name="role" id="role"
+																	value="${member.role}">
+															</c:otherwise>
 														</c:choose>
-														
 
-														</div>
+
+													</div>
 
 													<%-- <div class="form-group">
 																<input name="password" type="password"
@@ -165,8 +185,17 @@
 											<div class="row">
 												<div class="col-lg-12">
 													<div class="payment-adress">
-														<button class="btn btn-primary waves-effect waves-light"
-															type="submit" name="submit" value="register">Update</button>
+
+														<c:choose>
+															<c:when test="${not empty member.id}">
+																<button class="btn btn-primary waves-effect waves-light"
+																	type="submit" name="submit" value="register">Create</button>
+															</c:when>
+															<c:otherwise>
+																<button class="btn btn-primary waves-effect waves-light"
+																	type="submit" name="submit" value="register">Update</button>
+															</c:otherwise>
+														</c:choose>
 														<button class="btn btn-primary waves-effect waves-light"
 															type="reset" name="reset" value="reset">Clear</button>
 

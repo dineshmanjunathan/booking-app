@@ -13,7 +13,7 @@ public class SSConfiguration {
 	@Column(name = "id")
 	private String code;
 	private String description;
-	private String commant;
+	private String comment;
 	private Double value;
 
 	public String getCode() {
@@ -32,12 +32,12 @@ public class SSConfiguration {
 		this.description = description;
 	}
 
-	public String getCommant() {
-		return commant;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setCommant(String commant) {
-		this.commant = commant;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public Double getValue() {

@@ -11,7 +11,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Stock Point Purchase List</a></li></center>
+								<center><li class="active"><a href="">SS Configuration</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -27,8 +27,17 @@
 										</span>
 										</a>
 									</td>
+									<td>
+										<a href="/admin/ssconfig"
+											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
+											<span> <i class="fa fa-plus"></i> <span>Create</span>
+										</span>
+										</a>
+									</td>
 									</tr> 
 									</table>
+									<p style="color: green" align="center">${successMessage}</p>
+								    <p style="color: green" align="center">${deletesuccessmessage}</p>
 									<%-- <p style="color: red" align="center">${errormsg}</p> --%>
 							<div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
@@ -43,19 +52,26 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 										<tr> 
-											<th data-field="stockPointId" data-editable="false">Stock Point Id</th>
-											<th data-field="categoryCode" data-editable="false">Category</th>
-											<th data-field="productCode" data-editable="false">Product</th>
-											<th data-field="qty" data-editable="false">Quantity</th>
+											<th data-field="code" data-editable="false">Code</th>
+											<th data-field="description" data-editable="false">Description</th>
+											<th data-field="value" data-editable="false">Value</th>
+											<th data-field="comment" data-editable="false">Comment</th>
+											<th data-field="action" data-editable="false">Action</th>
 										</tr>
 									</thead>
                                         <tbody> 
-                                        <c:forEach var="details" items="${stockPoitPurchaseList}" varStatus="status">
+                                        <c:forEach var="details" items="${ssConfigList}" varStatus="status">
                                             <tr>
-												<td>${details.stockPointId}</td>
-												<td>${details.categoryCode.description} [${details.categoryCode.code}]</td>
-												<td>${details.productCode.prodDesc}</td>
-												<td>${details.qty}</td>		        								 
+												<td>${details.code}</td>
+												<td>${details.description}</td>
+												<td>${details.value}</td>
+												<td>${details.comment}</td>
+												
+												 <td><a href="<c:url value='/admin/ssconfig/edit?id=${details.code}'/>"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
+		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
+		        								 href="<c:url value='/admin/ssconfig/delete?id=${details.code}' />" >
+		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
+												      								 
                                             </tr> 
                                         </c:forEach>
                                         </tbody>

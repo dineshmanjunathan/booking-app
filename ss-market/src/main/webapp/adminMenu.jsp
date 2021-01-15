@@ -77,7 +77,7 @@
 	</div>
 </div>
 <div class="col-md-10 col-md-offset-2 well row">
-	<h4>User Management</h4>
+	<h4>Management</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 		<a href="<c:url value='/admin/member/listing' />">
@@ -96,7 +96,19 @@
 		<a href="<c:url value='/admin/stockpurchase/listing' />">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
-					<h5>Stock Point Purchase</h5>
+					<h5>Stock Point Purchase List</h5>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="educate-icon educate-apps"></i>
+				</div>
+			</div>
+		</a>
+	</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		<a href="<c:url value='/admin/ssconfig/listing' />">
+			<div class="panel-body">
+				<div class="stats-title pull-left">
+					<h5>SS Configuration</h5>
 				</div>
 				<div class="stats-icon pull-right">
 					<i class="educate-icon educate-apps"></i>

@@ -5,48 +5,45 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 
-import com.ss.app.entity.SSConfiguration;
 import com.ss.app.entity.HibernateSequence;
-import com.ss.app.model.SSConfigRepository;
+import com.ss.app.entity.SSConfiguration;
 import com.ss.app.model.HibernateSequenceRepository;
-import com.ss.config.SessionFilter;
+import com.ss.app.model.SSConfigRepository;
 
 @SpringBootApplication
 @ComponentScan("com.ss.app")
 @EnableJpaRepositories
-public class Application extends SpringBootServletInitializer { 
-	
+public class Application extends SpringBootServletInitializer {
+
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Application.class);
 	}
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-	} 
-	
+	}
+
 //	@Bean
 //	public FilterRegistrationBean<SessionFilter> loggingFilter(){
 //	    FilterRegistrationBean<SessionFilter> registrationBean  = new FilterRegistrationBean<>();
 //	    registrationBean.setFilter(new SessionFilter());
 //	    return registrationBean;    
 //	}
-	
+
 }
 
 @Component
-class DemoCommandLineRunner implements CommandLineRunner{
+class DemoCommandLineRunner implements CommandLineRunner {
 
 	@Autowired
 	private HibernateSequenceRepository hibernateSequenceRepository;
-	
+
 	@Autowired
 	private SSConfigRepository dbConfigRepository;
 
@@ -60,6 +57,20 @@ class DemoCommandLineRunner implements CommandLineRunner{
 		s1.setIncrement(1);
 
 		hibernateSequenceRepository.save(s1);
-				
+
+		SSConfiguration ssConfig1 = new SSConfiguration();
+		ssConfig1.setCode("1111");
+		ssConfig1.setDescription("COMPANY INCENTIVE");
+		ssConfig1.setValue(10.00);
+		ssConfig1.setComment("COMPANY INCENTIVE (CAN MODIFY)");
+
+		SSConfiguration ssConfig2 = new SSConfiguration();
+		ssConfig2.setCode("1112");
+		ssConfig2.setDescription("GST INCENTIVE");
+		ssConfig2.setValue(5.00);
+		ssConfig2.setComment("GST INCENTIVE (CAN MODIFY)");
+
+		dbConfigRepository.save(ssConfig1);
+		dbConfigRepository.save(ssConfig2);
 	}
 }
