@@ -16,6 +16,7 @@ $(document).ready(function(){
 
 	
 let cartTotal =  ${cartTotal == null ? 0.0:cartTotal};
+let cartMap = new Map();
 
 function addToCart(prodCode, price) {
 	let qty = $( "#quantity-"+prodCode+" option:selected" ).val();
@@ -32,12 +33,12 @@ function addToCart(prodCode, price) {
 	    type: "post",
 	    cache: false,
 	    success: function (data) {
-	    	let total = price * qty; 
-			cartTotal = cartTotal + total
-			$('#cartTotal').text(cartTotal);
+	    	if(data){
+	    		$('#cartTotal').text(data);
+	    	}
 	    },
 	    error: function (XMLHttpRequest, textStatus, errorThrown) {
-	        console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+	        alert('Unable to add product to cart!');
 	    }
 	});
 
@@ -58,13 +59,11 @@ function removeFromCart(prodCode, price) {
 		    type: "post",
 		    cache: false,
 		    success: function (data) {
-		    	let total = price * qty; 
-				cartTotal = cartTotal - total;
-				if(!cartTotal){
-					$('#cartTotal').text(0);
-				} else {
-					$('#cartTotal').text(cartTotal);
-				}
+		    	if(data){
+		    		$('#cartTotal').text(data);
+		    	} else {
+		    		$('#cartTotal').text(0.0);
+		    	}
 				$("#quantity-"+prodCode+" option:selected").removeAttr("selected");
 		    },
 		    error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,7 @@ import com.ss.app.model.UserRepository;
 import com.ss.utils.Utils;
 
 @Controller
+@Transactional(rollbackOn = Exception.class)
 public class TransactionManagerController {
 
 	@Autowired
@@ -272,8 +274,9 @@ public class TransactionManagerController {
 	}
 
 	@RequestMapping(value = "/purchase/addToCart", method = RequestMethod.POST)
-	public String addTocart(HttpServletRequest request, ModelMap model, @RequestParam("prodCode") String prodCode,
+	public ResponseEntity<String> addTocart(HttpServletRequest request, ModelMap model, @RequestParam("prodCode") String prodCode,
 			@RequestParam("qty") String qty) {
+		Double cartTotal = 0.0;
 		try {
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 			Cart existingCart = cartRepository.findByMemberidAndCode(memberId, prodCode);
@@ -290,25 +293,30 @@ public class TransactionManagerController {
 				cart.setAmount(product.getPrice());
 				cartRepository.save(cart);
 			}
-
+			cartTotal = cartRepository.getCartTotal(memberId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<String>("0.0", HttpStatus.BAD_REQUEST);
 		}
-		return "purchaseReview";
+		return new ResponseEntity<String>(String.valueOf(cartTotal),HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/purchase/remove/cart", method = RequestMethod.POST)
 	public ResponseEntity<String> removeFromCarty(HttpServletRequest request, ModelMap model,
 			@RequestParam("prodCode") String prodCode) {
+		Double cartTotal = 0.0;
 		try {
-			Long val = cartRepository.deleteByCodeAndMemberid(prodCode, (String) request.getSession().getAttribute("MEMBER_ID"));
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			Long val = cartRepository.deleteByCodeAndMemberid(prodCode, memberId);
 			if(val <=0) {
 				return new ResponseEntity<String>("No product to remove",HttpStatus.BAD_REQUEST);
 			}
+			cartTotal = cartRepository.getCartTotal(memberId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<String>("0.0",HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>("Removed product from cart",HttpStatus.OK);
+		return new ResponseEntity<String>(String.valueOf(cartTotal),HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/purchase/all/list", method = RequestMethod.GET)
