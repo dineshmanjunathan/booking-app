@@ -21,7 +21,7 @@ public class StockPointPurchase implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private Long id;
 	private String stockPointId; // MEMBER ID
 
 	@OneToOne()
@@ -34,11 +34,11 @@ public class StockPointPurchase implements Serializable {
 	private Long qty = 0L;
 	private Double price;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
