@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ss.app.entity.Category;
 import com.ss.app.entity.Member;
+import com.ss.app.entity.StockPointProduct;
+import com.ss.app.entity.StockPointPurchase;
 import com.ss.app.model.CategoryRepository;
+import com.ss.app.model.StockPointProuctRepository;
+import com.ss.app.model.StockPointPurchaseRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.MemberVo;
 
@@ -23,6 +27,12 @@ public class StockPointController {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
+	@Autowired
+	private StockPointPurchaseRepository stockPointPurchaseRepository;
+	
+	@Autowired
+	private StockPointProuctRepository stockPointProuctRepository;
+	
 	@RequestMapping("/stock/point/login")
 	public String inlogin(HttpServletRequest request,ModelMap model) {
 		model.addAttribute("ROLE","STOCK_POINT");
@@ -32,6 +42,22 @@ public class StockPointController {
 	@RequestMapping("/stock/point/menu")
 	public String toStockMenu(HttpServletRequest request,ModelMap model) {
 		return "stockPointMenu";
+	}
+	
+	@RequestMapping("/stock/point/sales/history")
+	public String stockSalesHistory(HttpServletRequest request,ModelMap model) {
+		String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+		Iterable<StockPointPurchase> spList = stockPointPurchaseRepository.findByStockPointId(memberId);
+		model.addAttribute("stockPoitPurchaseList",spList);
+		return "stockSalesHistory";
+	} 
+	
+	@RequestMapping("/stock/point/inventory")
+	public String stockPointInventory(HttpServletRequest request,ModelMap model) {
+		String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+		Iterable<StockPointProduct> spList = stockPointProuctRepository.findByMemberId(memberId);
+		model.addAttribute("stockPointInventory",spList);
+		return "stockPointInventory";
 	} 
 	
 	@RequestMapping(value="/stock/point/login",method=RequestMethod.POST)

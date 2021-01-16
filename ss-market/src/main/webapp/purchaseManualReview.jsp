@@ -57,6 +57,7 @@ function removeFromCart(prodCode, price) {
 					<ul id="myTabedu1" class="tab-review-design">
 						<center>
 							<li class="active"><a href="">Review your products to purchase</a></li>
+							<p style="color:red" align="center">${errormsg}</p>
 						</center>
 					</ul>
 
