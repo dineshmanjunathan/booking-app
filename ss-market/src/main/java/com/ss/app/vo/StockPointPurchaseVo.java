@@ -6,7 +6,8 @@ import com.ss.app.entity.Product;
 public class StockPointPurchaseVo {
 
 	private String id;
-	private String stockPointId; // MEMBER ID
+	private String stockPointId;
+	private String memberId;
 	private Product productCode;
 	private Category categoryCode;
 	private Long qty = 0L;
@@ -26,6 +27,14 @@ public class StockPointPurchaseVo {
 
 	public void setStockPointId(String stockPointId) {
 		this.stockPointId = stockPointId;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	public Product getProductCode() {
@@ -51,7 +60,7 @@ public class StockPointPurchaseVo {
 	public void setCategoryCode(Category categoryCode) {
 		this.categoryCode = categoryCode;
 	}
-	
+
 	public Double getPrice() {
 		return price;
 	}

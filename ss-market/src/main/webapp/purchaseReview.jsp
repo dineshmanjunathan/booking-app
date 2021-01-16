@@ -58,7 +58,7 @@ function submit() {
 							id="description">
 							<div class="row">
 								<div class="row">
-									<a href="/purchase/review/edit"
+									<a href="/stock/point/menu"
 										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 										<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span> </span>
 									</a> 

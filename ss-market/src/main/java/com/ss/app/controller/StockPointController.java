@@ -49,7 +49,7 @@ public class StockPointController {
 		String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 		Iterable<StockPointPurchase> spList = stockPointPurchaseRepository.findByStockPointId(memberId);
 		model.addAttribute("stockPoitPurchaseList",spList);
-		return "stockSalesHistory";
+		return "stockPointPurcahseList";
 	} 
 	
 	@RequestMapping("/stock/point/inventory")

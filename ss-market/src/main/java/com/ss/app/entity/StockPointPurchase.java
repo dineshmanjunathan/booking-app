@@ -22,7 +22,9 @@ public class StockPointPurchase implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String stockPointId; // MEMBER ID
+	private String stockPointId;
+
+	private String memberId;
 
 	@OneToOne()
 	@JoinColumn(name = "category_code")
@@ -48,6 +50,14 @@ public class StockPointPurchase implements Serializable {
 
 	public void setStockPointId(String stockPointId) {
 		this.stockPointId = stockPointId;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	public Product getProductCode() {
@@ -81,7 +91,5 @@ public class StockPointPurchase implements Serializable {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
-	
 
 }

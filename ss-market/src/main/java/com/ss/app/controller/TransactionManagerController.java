@@ -76,7 +76,7 @@ public class TransactionManagerController {
 				productRepository.save(prod);
 				
 				//Prepare purchase
-				preparePurchase(member, orderNumber, purchase, c, prod);
+				preparePurchase(request.getSession(), member, orderNumber, purchase, c, prod);
 			}
 			cartRepository.deleteByMemberid(memberId);
 			//TODO calculate date and update in DB.
@@ -132,7 +132,7 @@ public class TransactionManagerController {
 					product.setQuantity(product.getQuantity() - c.getQuantity());
 					productRepository.save(product);
 				}
-				preparePurchase(member, orderNumber, purchase, c, product);
+				preparePurchase(session, member, orderNumber, purchase, c, product);
 			}
 			cartRepository.deleteByMemberid(memberId);
 			//TODO calculate date and update in DB.
@@ -148,15 +148,16 @@ public class TransactionManagerController {
 		return "purchaseManualConfirmation";
 	}
 
-	private void preparePurchase(Member member, Long orderNumber, Purchase purchase, Cart c, Product prod) {
+	private void preparePurchase(HttpSession session,Member member, Long orderNumber, Purchase purchase, Cart c, Product prod) {
 		purchase.setOrderNumber(orderNumber);
 		purchase.setAmount(c.getAmount());
 		purchase.setMemberid(member.getId());
 		if("STOCK_POINT".equals(member.getRole())) {
 			purchase.setOrderStatus("PENDING");
 			StockPointPurchase sp = new StockPointPurchase();
+			sp.setStockPointId((String) session.getAttribute("MEMBER_ID"));
 			sp.setPrice(c.getAmount());
-			sp.setStockPointId(member.getId());
+			sp.setMemberId(member.getId());
 			sp.setProductCode(prod);
 			sp.setQty(c.getQuantity());
 			stockPointPurchaseRepository.save(sp);
