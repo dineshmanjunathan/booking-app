@@ -298,6 +298,7 @@ public class AdminController {
 	public String ssconfigEdit(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) {
 		SSConfiguration ssConfig = ssConfigRepo.findById(id).get();
 		model.addAttribute("ssConfigDetail",ssConfig);
+		model.addAttribute("ssConfigType", Utils.getSSConfigTypeList()); 
 		return "ssConfigEdit";
 	}
 	
@@ -306,6 +307,7 @@ public class AdminController {
 		SSConfiguration ssConfiguration=new SSConfiguration();
 		try {
 			BeanUtils.copyProperties(ssConfigurationVo,ssConfiguration);
+			ssConfiguration.setDescription(Utils.getSSConfigTypeMap().get(ssConfiguration.getCode()));
 			ssConfigRepo.save(ssConfiguration);
 			Iterable<SSConfiguration> ssConfig = ssConfigRepo.findAll();
 			model.addAttribute("ssConfigList",ssConfig);
@@ -338,6 +340,7 @@ public class AdminController {
 		try {
 			SSConfiguration ssConfiguration=new SSConfiguration();
 			BeanUtils.copyProperties(ssConfigurationVo,ssConfiguration);
+			ssConfiguration.setDescription(Utils.getSSConfigTypeMap().get(ssConfiguration.getCode()));
 			ssConfigRepo.save(ssConfiguration);
 			Iterable<SSConfiguration> ssConfig = ssConfigRepo.findAll();
 			model.addAttribute("ssConfigList",ssConfig);
@@ -349,7 +352,8 @@ public class AdminController {
 	}
 	@RequestMapping("/admin/ssconfig")
 	public String inSSConfig(HttpServletRequest request,ModelMap model) {
-		
+
+		model.addAttribute("ssConfigType", Utils.getSSConfigTypeList()); 
 		return "ssConfigEdit";
 	} 
 }

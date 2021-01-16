@@ -47,15 +47,17 @@
 													<div class="row">
 														<div class=" well col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															<div class="form-group">
+															</div>															
+															<div class="form-group">															
+															<select name="code" id="code"
+																class="form-control">
+																<option value="">-Select Type-</option>
+																<c:forEach var="options" items="${ssConfigType}" varStatus="status">
+																	<option value="${options.code}" ${options.code == ssConfigDetail.code ? 'selected' : ''}>${options.description}</option>
+																</c:forEach>
+															</select>
 															</div>
-															<div class="form-group">
-																<input name="code" type="text" class="form-control"
-																	placeholder="SS Configuration Code" value="${ssConfigDetail.code}" required>
-															</div>
-															<div class="form-group">
-																<input name="description" type="text" class="form-control"
-																	placeholder="Description" value="${ssConfigDetail.description}" required>
-															</div>
+														
 															
 															<div class="form-group">
 																<input name="value" type="text" class="form-control"

@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
 import com.ss.app.entity.Member;
+import com.ss.app.entity.SSConfiguration;
 
 public class Utils {
 	/**
@@ -26,12 +28,11 @@ public class Utils {
 				ArrayList<Member> importOrderList = Lists.newArrayList(memberList);
 				for (Member member : importOrderList) {
 					LocalDateTime computeDate = member.getActive_days();
-					
+
 					if (member.getRole() != null && member.getRole().equalsIgnoreCase("ADMIN")) {
 						continue;
 					}
-							
-							
+
 					if (computeDate == null) {
 						computeDate = LocalDateTime.now();
 					}
@@ -56,7 +57,7 @@ public class Utils {
 		}
 		return userList;
 	}
-	
+
 	public static String checkNull(String str, String _default) {
 		String result = null;
 		try {
@@ -70,15 +71,42 @@ public class Utils {
 		}
 		return result;
 	}
-	
+
 	public static Long getOrderNumber() {
 		Random random = new Random();
 		int randomWithNextInt = random.nextInt(999999999);
 		return (long) Math.abs(randomWithNextInt);
 	}
 
+	public static Map<String, String> getSSConfigTypeMap() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("1111", "GST INCENTIVE");
+		map.put("1112", "COMPANY INCENTIVE");
+		map.put("1113", "LEVEL 1");
+		map.put("1114", "LEVEL 2");
+		map.put("1115", "LEVEL 3");
+		map.put("1116", "LEVEL 4");
+		map.put("1117", "LEVEL 5");
+
+		return map;
+	}
+
+	public static ArrayList<SSConfiguration> getSSConfigTypeList() {
+
+		Map<String, String> map = getSSConfigTypeMap();
+		ArrayList<SSConfiguration> list = new ArrayList<SSConfiguration>();
+		for (String key : map.keySet()) {
+			SSConfiguration ssConfiguration = new SSConfiguration();
+			ssConfiguration.setCode(key);
+			ssConfiguration.setDescription(map.get(key));
+			list.add(ssConfiguration);
+		}
+
+		return list;
+	}
+
 	public static void main(String[] arg) {
-		
+
 		Long rp = 40L;
 		Long remaningPoint = 540L;
 		Double config1 = Double.parseDouble(Utils.checkNull("10", "0.0"));
@@ -88,12 +116,12 @@ public class Utils {
 		Long totaldeduct = (long) (deductAmt1 + deductAmt2);
 
 		remaningPoint = remaningPoint - rp;
-		
-		System.out.println("config1 -->"+config1);
-		System.out.println("config2 -->"+config2);
-		System.out.println("deductAmt1 -->"+deductAmt1);
-		System.out.println("deductAmt2 -->"+deductAmt2);
-		System.out.println("deductAmt2 -->"+deductAmt2);
+
+		System.out.println("config1 -->" + config1);
+		System.out.println("config2 -->" + config2);
+		System.out.println("deductAmt1 -->" + deductAmt1);
+		System.out.println("deductAmt2 -->" + deductAmt2);
+		System.out.println("deductAmt2 -->" + deductAmt2);
 
 	}
 }

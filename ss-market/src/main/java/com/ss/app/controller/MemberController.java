@@ -172,7 +172,7 @@ public class MemberController {
 					Long totaldeduct = (long) (deductAmt1 + deductAmt2);
 					remaningPoint = remaningPoint - rp;
 					model.addAttribute("DEBIT", totaldeduct);
-					model.addAttribute("REMAINING_AMOUNT", remaningPoint);
+					model.addAttribute("REPURCHASE_POINT", (rp - totaldeduct));
 				}
 
 				model.addAttribute("member", user);
@@ -217,7 +217,7 @@ public class MemberController {
 				Long totaldeduct = (long) (deductAmt1 + deductAmt2);
 				remaningPoint = remaningPoint - rp;
 				model.addAttribute("DEBIT", totaldeduct);
-				model.addAttribute("REMAINING_AMOUNT", remaningPoint);
+				model.addAttribute("REPURCHASE_POINT", (rp - totaldeduct));
 				// INCENTIVE DEDUCTION ENDS
 
 				member.setRepurcahse(member.getRepurcahse() + (rp - totaldeduct));

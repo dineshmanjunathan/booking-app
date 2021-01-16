@@ -78,17 +78,17 @@ function review() {
 														<div class="payment-adress">
 															<a
 																class="btn btn-success col-md-offset-10 col-md-2"
-																onclick="return review();" type="button">Validate</a>
+																onclick="return review();" type="button">Check for Charges </a>
 														</div>
 														<br><br><br>
 														<c:choose>
 														<c:when test="${not empty DEBIT}">
 														<div class="form-group">
-														<label style="font-size: 25px;">The charge will be ${DEBIT} point</label>
+														<label style="font-size: 25px;">Deduction: ${DEBIT} </label>
 														</div>
 														
 														<div class="form-group">
-														<label style="font-size: 25px;">Remaining Balance ${REMAINING_AMOUNT}</label>
+														<label style="font-size: 25px;">Point to transfer: ${REPURCHASE_POINT}</label>
 														</div>
 														</c:when>
 														</c:choose>
