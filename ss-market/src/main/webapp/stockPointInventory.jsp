@@ -7,11 +7,13 @@
 <meta charset="ISO-8859-1"> 
 </head>
 <body> 
-				<div class="col-md-10 col-md-offset-2 row">
+		<!-- Single pro tab review Start-->
+		<div class="col-md-10 col-md-offset-2 row">
+				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Purchase List</a></li></center>
+								<center><li class="active"><a href="">Manage Product</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -21,22 +23,23 @@
 									<table class="full-right">
 									<tr>
 									<td>
-									<c:set var="url" value="#"></c:set> <c:choose>
-											<c:when test="${sessionScope.ROLE == 'MEMBER' }">
-												<c:set var="url" value="/menu"></c:set>
-											</c:when>
-											<c:otherwise>
-												<c:set var="url" value="/stock/point/menu"></c:set>
-											</c:otherwise>
-										</c:choose>
-										 <a href="${url}"
+										<a href="/stock/point/menu"
 											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
 											<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
 										</span>
 										</a>
 									</td>
+									<td>
+										<a href="/admin/product"
+											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
+											<span> <i class="fa fa-plus"></i> <span>Product</span>
+										</span>
+										</a>
+									</td>
 									</tr> 
 									</table>
+									<p style="color: green" align="center">${successMessage}</p>
+								    <p style="color: green" align="center">${deletesuccessmessage}</p>
 										 <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
@@ -50,29 +53,29 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 										<tr> 
-											<th data-field="orderNumber" data-editable="false">Order Number</th>
 											<th data-field="category" data-editable="false">Category</th>
-											<th data-field="product" data-editable="false">Product</th>
-											<th data-field="qty" data-editable="false">Quantity</th>
+											<th data-field="prodCode" data-editable="false">Product Code</th>
+											<th data-field="prodDesc" data-editable="false">Product Description</th>
+											<th data-field="quantity" data-editable="false">Quantity</th>
 											<th data-field="price" data-editable="false">Price</th>
-											<th data-field="total" data-editable="false">Total</th>
-											<th data-field="purchasedOn" data-editable="false">Purchased On</th>
+											<th data-field="action">Action</th>
 										</tr>
 									</thead>
                                         <tbody> 
-                                        <c:set var="cartTotal" value="${0}" />
-                                        <c:forEach var="details" items="${purchaseList}" varStatus="status">
+                                        <c:forEach var="details" items="${stockPointInventory}" varStatus="status">
                                             <tr>
-												<td>${details.orderNumber}</td>
-												<td>${details.product.category.description} [${details.product.category.code}]</td>
-												<td>${details.product.prodDesc} [${details.product.code}]</td>												
+												<%-- <td>${details.id}</td> --%>
+												<td>${details.category.description} [${details.category.code}]</td> 
+												<td>${details.code}</td> 
+												<td>${details.prodDesc}</td>
 												<td>${details.quantity}</td>
-												<td>${details.amount}</td>
-												<c:set var="total" value="${details.amount * details.quantity}" />
-												<td>${total}</td>
-												<c:set var="cartTotal" value="${cartTotal + total}" />  
-												<td>${details.purchasedOn}</td>		
-		        								 
+												<td>${details.price}</td>
+                                                <td><a href="<c:url value='/admin/product/edit?id=${details.code}' />"><center><i class="fa fa-pencil-square-o" aria-hidden="true"></i></center></a>
+		        								 <a class="btn-danger" onclick="return confirm('Are you sure you want to delete?')" 
+		        								 href="<c:url value='/admin/product/delete?id=${details.code}' />" >
+		        								  <center><i class="fa fa-trash-o" aria-hidden="true"></i></center></a></td> 
+		        								  
+		        								  		
                                             </tr> 
                                         </c:forEach>
                                         </tbody>
@@ -84,9 +87,7 @@
 							</div>
 						</div>
 					</div>
-				</div>  
-	  						 
-		   
-		   
+				</div>
+			</div>   
 </body>
 </html>

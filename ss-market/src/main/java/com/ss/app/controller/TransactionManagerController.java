@@ -103,11 +103,18 @@ public class TransactionManagerController {
 			if("STOCK_POINT".equals(role)) {
 				memberId = memberid;
 			}
+			Member member = null;
+			try {
+				member = userRepository.findById(memberId).get();
+			} catch(Exception e) {
+				model.addAttribute("errorMessage", "Invalid member ID , Please provide a valid one.");
+				purchasemanualReview(request, model);
+			}
+			
 			List<Cart> cart = cartRepository.findByMemberid(memberId);
 			//Get order number
 			Long orderNumber = Utils.getOrderNumber();
 			Purchase purchase = new Purchase();
-			Member member =userRepository.findById(memberId).get();
 			for(Cart c:cart) {
 				// Update qty in product
 				Product product = null;

@@ -24,7 +24,7 @@
 		</a>
 	</div>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/stock/point/manual/purchase">
+		<a href="/stock/point/inventory">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
 					<h5>My Stock Inventory</h5>
@@ -42,7 +42,7 @@
 	<h4>Transaction Manager</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/stock/point/manual/purchase">
+		<a href="/purchase/detail">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
 					<h5>Purchase History</h5>
@@ -54,7 +54,7 @@
 		</a>
 	</div>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/stock/point/manual/purchase">
+		<a href="/stock/point/sales/history">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
 					<h5>Stock Sales History</h5>
