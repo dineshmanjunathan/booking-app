@@ -1,6 +1,7 @@
 package com.ss.config;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.servlet.Filter;
@@ -26,13 +27,20 @@ public class SessionFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession ses = req.getSession();
         Cookie[] allCookies = req.getCookies();
+        ArrayList<String> skipList = getSkipList();
         if(ses !=null) {
         	String isLoggedIn = (String) ses.getAttribute("LOGGED_ON");
         	String memberId = (String) ses.getAttribute("MEMBER_ID");
         	if(!"true".equals(isLoggedIn)) {
-        		System.out.println(req.getRequestURI());
-        		System.out.println(req.getContextPath());
-        		res.sendRedirect("/login");
+        		String uri = req.getRequestURI();
+        		System.out.println(uri);
+        		String uriArray[] = uri.split("/");
+        		if(uriArray.length > 1) {
+        			System.out.println(uriArray[1]);
+            		if(!skipList.contains(uriArray[1])) {
+            			res.sendRedirect("/");
+            		}
+        		}
         	}
         }
         if (allCookies != null) {
@@ -48,5 +56,14 @@ public class SessionFilter implements Filter {
         }
         chain.doFilter(req, res);
     }
+
+	private ArrayList<String> getSkipList() {
+		ArrayList<String> skipList = new ArrayList<>();
+		skipList.add("img");
+		skipList.add("fonts");
+		skipList.add("js");
+		skipList.add("css");
+		return skipList;
+	}
 
 }

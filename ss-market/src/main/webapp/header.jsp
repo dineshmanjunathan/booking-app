@@ -199,14 +199,19 @@
 </style>
 
  <script type="text/javascript">
-	$(document).ready(function() {
-		history.pushState(null, null, location.href);
-		window.onpopstate = function() {
-			history.go(1);
-		};
-	});
-		
-</script> 
+// 	$(document).ready(function() {
+// 		history.pushState(null, null, location.href);
+// 		window.onpopstate = function() {
+// 			history.go(1);
+// 		};
+// 	});
+
+
+		window.history.forward();
+		function noBack() {
+			window.history.forward();
+		}
+	</script> 
 </head>
 
 <!-- Start Left menu area -->
@@ -263,10 +268,6 @@
 								</center>
 							</li>
 							<br>
-							<li><a title="" href="/wallet" aria-expanded="false"
-								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
-									My Wallet</a></li>
-							<br>
 							<li><a title="" href="/purchase/review/edit" aria-expanded="false"
 								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
 								Stock Purchase</a>
@@ -288,51 +289,7 @@
 		</nav>
 	</div>
 </c:if>
-<!-- End Left menu area -->
-<!-- Start Welcome area -->
-<%-- <div class="all-content-wrapper">
-	<div class="container-fluid">
-		<div class="header-top-area">
-			<div class="row"></div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="header-top-wraper">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="header-right-info">
-								<ul class="nav navbar-nav mai-top-nav header-right-menu">
-									<li class="nav-item"><c:choose>
-											<c:when test="${ not empty sessionScope.USER}">
-												<a href="#" data-toggle="dropdown" role="button"
-													aria-expanded="false" class="nav-link dropdown-toggle">
-													<span class="admin-name">Hi
-														&nbsp;${sessionScope.USER_NAME}</span> <i
-													class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-												</a>
-												<ul role="menu"
-													class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-													<c:if test="${!fn:contains(sessionScope.ROLE, 'USER')}">
-														<li><a href="/menu"><span
-																class="edu-icon edu-locked author-log-ic"></span>Manage</a>
-														</li>
-													</c:if>
-													<li><a href="/logout"><span
-															class="edu-icon edu-locked author-log-ic"></span>Logout</a></li>
-												</ul>
-											</c:when>
-											<c:otherwise>
-												<li><a href="/login"><span
-														class="edu-icon edu-locked author-log-ic"></span>Login</a></li>
-											</c:otherwise>
-										</c:choose></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div> --%>
+
 <nav class="navbar navbar-dark bg-primary">
 
 	<div class="header-right-info">
