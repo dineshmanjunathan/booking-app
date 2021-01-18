@@ -311,7 +311,7 @@ public class AdminController {
 			ssConfigRepo.save(ssConfiguration);
 			Iterable<SSConfiguration> ssConfig = ssConfigRepo.findAll();
 			model.addAttribute("ssConfigList",ssConfig);
-			model.addAttribute("successMessage","Record Added Successfully.");
+			model.addAttribute("successMessage","Configuration Updated Successfully.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -323,7 +323,7 @@ public class AdminController {
 		try {
 			Long val=ssConfigRepo.deleteByCode(id);
 			if(val>0) {
-				model.addAttribute("deletesuccessmessage", id+" - Record Deleted Successfully.");
+				model.addAttribute("deletesuccessmessage", id+" - Configuration Deleted Successfully.");
 			}else {
 				model.addAttribute("deletesuccessmessage",id+" - Unable to Deleted.");
 			}
@@ -344,7 +344,7 @@ public class AdminController {
 			ssConfigRepo.save(ssConfiguration);
 			Iterable<SSConfiguration> ssConfig = ssConfigRepo.findAll();
 			model.addAttribute("ssConfigList",ssConfig);
-			model.addAttribute("successMessage","Record Added Successfully."); 
+			model.addAttribute("successMessage","Configuration Added Successfully."); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

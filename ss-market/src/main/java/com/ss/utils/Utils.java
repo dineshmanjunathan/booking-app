@@ -82,11 +82,11 @@ public class Utils {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("1111", "GST INCENTIVE");
 		map.put("1112", "COMPANY INCENTIVE");
-		map.put("1113", "LEVEL 1");
-		map.put("1114", "LEVEL 2");
-		map.put("1115", "LEVEL 3");
-		map.put("1116", "LEVEL 4");
-		map.put("1117", "LEVEL 5");
+		map.put("1113", "LEVEL 1 REWARD");
+		map.put("1114", "LEVEL 2 REWARD");
+		map.put("1115", "LEVEL 3 REWARD");
+		map.put("1116", "LEVEL 4 REWARD");
+		map.put("1117", "LEVEL 5 REWARD");
 
 		return map;
 	}
