@@ -48,7 +48,7 @@ public class StockPointController {
 	public String stockSalesHistory(HttpServletRequest request,ModelMap model) {
 		String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 		Iterable<StockPointPurchase> spList = stockPointPurchaseRepository.findByStockPointId(memberId);
-		model.addAttribute("stockPoitPurchaseList",spList);
+		model.addAttribute("stockPointPurchaseList",spList);
 		return "stockPointPurcahseList";
 	} 
 	

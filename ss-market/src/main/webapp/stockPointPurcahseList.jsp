@@ -64,7 +64,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="details" items="${stockPoitPurchaseList}"
+											<c:forEach var="details" items="${stockPointPurchaseList}"
 												varStatus="status">
 												<tr>
 													<td>${details.stockPointId}</td>

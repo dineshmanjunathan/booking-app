@@ -31,12 +31,12 @@ public class Application extends SpringBootServletInitializer {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-	public FilterRegistrationBean<SessionFilter> loggingFilter(){
-	    FilterRegistrationBean<SessionFilter> registrationBean  = new FilterRegistrationBean<>();
-	    registrationBean.setFilter(new SessionFilter());
-	    return registrationBean;    
-	}
+	/*
+	 * @Bean public FilterRegistrationBean<SessionFilter> loggingFilter(){
+	 * FilterRegistrationBean<SessionFilter> registrationBean = new
+	 * FilterRegistrationBean<>(); registrationBean.setFilter(new SessionFilter());
+	 * return registrationBean; }
+	 */
 
 }
 

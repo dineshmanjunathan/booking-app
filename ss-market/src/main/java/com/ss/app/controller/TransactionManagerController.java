@@ -151,16 +151,27 @@ public class TransactionManagerController {
 	private void preparePurchase(HttpSession session,Member member, Long orderNumber, Purchase purchase, Cart c, Product prod) {
 		purchase.setOrderNumber(orderNumber);
 		purchase.setAmount(c.getAmount());
+		String memberId = (String) session.getAttribute("MEMBER_ID");
 		purchase.setMemberid(member.getId());
 		if("STOCK_POINT".equals(member.getRole())) {
 			purchase.setOrderStatus("PENDING");
 			StockPointPurchase sp = new StockPointPurchase();
-			sp.setStockPointId((String) session.getAttribute("MEMBER_ID"));
+			sp.setStockPointId(memberId);
 			sp.setPrice(c.getAmount());
 			sp.setMemberId(member.getId());
 			sp.setProductCode(prod);
 			sp.setQty(c.getQuantity());
 			stockPointPurchaseRepository.save(sp);
+			
+			StockPointProduct spp = new StockPointProduct();
+			spp.setCategory(prod.getCategory());
+			spp.setCode(prod.getCode());
+			spp.setMemberId(memberId);
+			spp.setPrice(prod.getPrice());
+			spp.setProdDesc(prod.getProdDesc());
+			spp.setQuantity(c.getQuantity());
+			spp.setStatus("PENDING");
+			stockPointProuctRepository.save(spp);
 		} else {
 			purchase.setOrderStatus("APPROVED");
 		}

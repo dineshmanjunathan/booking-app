@@ -28,20 +28,26 @@ public class SessionFilter implements Filter {
         HttpSession ses = req.getSession();
         Cookie[] allCookies = req.getCookies();
         ArrayList<String> skipList = getSkipList();
-        if(ses !=null) {
-        	String isLoggedIn = (String) ses.getAttribute("LOGGED_ON");
-        	String memberId = (String) ses.getAttribute("MEMBER_ID");
-        	if(!"true".equals(isLoggedIn)) {
-        		String uri = req.getRequestURI();
-        		System.out.println(uri);
-        		String uriArray[] = uri.split("/");
-        		if(uriArray.length > 1) {
-        			System.out.println(uriArray[1]);
-            		if(!skipList.contains(uriArray[1])) {
-            			res.sendRedirect("/");
+        String uri = req.getRequestURI();
+        System.out.println();
+        if(!uri.equals("/") ||
+        		!uri.equals("/login") ||
+        		!uri.equals("/admin/login") ||
+        		!uri.equals("/stock/point/login") ||
+        		!uri.equals("/logout")) {
+        	if(ses !=null) {
+            	String isLoggedIn = (String) ses.getAttribute("LOGGED_ON");
+            	String memberId = (String) ses.getAttribute("MEMBER_ID");
+            	if(!"true".equals(isLoggedIn)) {
+            		String uriArray[] = uri.split("/");
+            		if(uriArray.length > 1) {
+            			System.out.println(uriArray[1]);
+                		if(!skipList.contains(uriArray[1])) {
+                			res.sendRedirect("/");
+                		}
             		}
-        		}
-        	}
+            	}
+            }
         }
         if (allCookies != null) {
             Cookie session = 
@@ -63,6 +69,7 @@ public class SessionFilter implements Filter {
 		skipList.add("fonts");
 		skipList.add("js");
 		skipList.add("css");
+		skipList.add("style.css");
 		return skipList;
 	}
 
