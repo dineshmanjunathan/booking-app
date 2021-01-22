@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -133,7 +134,14 @@ public class AdminController {
 	@RequestMapping(value="/admin/categoryCode/delete",method=RequestMethod.GET)
 	public String categoryCodeDelete(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
-			categoryRepository.deleteByCode(id);
+			try {
+				categoryRepository.deleteByCode(id);
+			}catch (DataIntegrityViolationException e) {
+				Iterable<Category> categoryCodeList = categoryRepository.findAll();
+				model.addAttribute("categoryCodeList", categoryCodeList); 
+				model.addAttribute("errormessage","Product avaialbe for this category."); 
+				return "categoryCodeListing";
+			}
 			model.addAttribute("deletesuccessmessage","Category Deleted Successfully."); 
 			Iterable<Category> categoryCodeList = categoryRepository.findAll();
 			model.addAttribute("categoryCodeList", categoryCodeList); 
