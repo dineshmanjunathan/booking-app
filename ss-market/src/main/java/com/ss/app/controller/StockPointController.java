@@ -44,12 +44,12 @@ public class StockPointController {
 		return "stockPointMenu";
 	}
 	
-	@RequestMapping("/stock/point/sales/history")
+	@RequestMapping("/stock/point/salehistory")
 	public String stockSalesHistory(HttpServletRequest request,ModelMap model) {
 		String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 		Iterable<StockPointPurchase> spList = stockPointPurchaseRepository.findByStockPointId(memberId);
 		model.addAttribute("stockPointPurchaseList",spList);
-		return "stockPointPurcahseList";
+		return "stockPointSalesHistory";
 	} 
 	
 	@RequestMapping("/stock/point/inventory")

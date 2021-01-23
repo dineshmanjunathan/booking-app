@@ -7,76 +7,79 @@
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
 <script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-	
-//     $('#category').on('change', function (){
-//     	window.location.href = "/purchase/loadProduct/"+$( "#category option:selected" ).val();
-//     });
-});
+	$(document).ready(function() {
 
-	
-let cartTotal =  ${cartTotal == null ? 0.0:cartTotal};
-
-function addToCart(prodCode, price) {
-	let qty = $( "#quantity-"+prodCode+" option:selected" ).val();
-	if(!qty){
-		alert('Please select quantity.');
-		return;
-	}
-	$.ajax({
-	    url: "/purchase/addToCart",
-	    data: {
-	        "prodCode": prodCode,
-	        "qty" :qty
-	    },
-	    type: "post",
-	    cache: false,
-	    success: function (data) {
-	    	if(data){
-	    		$('#cartTotal').text(data);
-	    	}
-	    },
-	    error: function (XMLHttpRequest, textStatus, errorThrown) {
-	        alert('Unable to add product to cart!');
-	    }
+		//     $('#category').on('change', function (){
+		//     	window.location.href = "/purchase/loadProduct/"+$( "#category option:selected" ).val();
+		//     });
 	});
 
-}
+	let cartTotal = $
+	{
+		cartTotal == null ? 0.0 : cartTotal
+	};
 
-function removeFromCart(prodCode, price) {
-	let qty = $( "#quantity-"+prodCode+" option:selected" ).val();
-	if(!qty){
-		alert('Please select quantity.');
-		return;
-	}
-	if(confirm("Do you want to remove from cart?")) {
+	function addToCart(prodCode, price) {
+		let qty = $("#quantity-" + prodCode + " option:selected").val();
+		if (!qty) {
+			alert('Please select quantity.');
+			return;
+		}
 		$.ajax({
-		    url: "/purchase/remove/cart",
-		    data: {
-		        "prodCode": prodCode
-		    },
-		    type: "post",
-		    cache: false,
-		    success: function (data) {
-		    	if(data){
-		    		$('#cartTotal').text(data);
-		    	} else {
-		    		$('#cartTotal').text(0.0);
-		    	}
-				$("#quantity-"+prodCode+" option:selected").removeAttr("selected");
-		    },
-		    error: function (XMLHttpRequest, textStatus, errorThrown) {
-		    	$("#quantity-"+prodCode+" option:selected").removeAttr("selected");
-		    }
+			url : "/purchase/addToCart",
+			data : {
+				"prodCode" : prodCode,
+				"qty" : qty
+			},
+			type : "post",
+			cache : false,
+			success : function(data) {
+				if (data) {
+					$('#cartTotal').text(data);
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert('Unable to add product to cart!');
+			}
 		});
+
 	}
 
-}
+	function removeFromCart(prodCode, price) {
+		let qty = $("#quantity-" + prodCode + " option:selected").val();
+		if (!qty) {
+			alert('Please select quantity.');
+			return;
+		}
+		if (confirm("Do you want to remove from cart?")) {
+			$.ajax({
+				url : "/purchase/remove/cart",
+				data : {
+					"prodCode" : prodCode
+				},
+				type : "post",
+				cache : false,
+				success : function(data) {
+					if (data) {
+						$('#cartTotal').text(data);
+					} else {
+						$('#cartTotal').text(0.0);
+					}
+					$("#quantity-" + prodCode + " option:selected").removeAttr(
+							"selected");
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					$("#quantity-" + prodCode + " option:selected").removeAttr(
+							"selected");
+				}
+			});
+		}
 
-function review() {
-	window.location.href = "/purchase/review";
-}
+	}
 
+	function review() {
+		window.location.href = "/purchase/review";
+	}
 </script>
 </head>
 <body>
@@ -97,14 +100,14 @@ function review() {
 							id="description">
 							<div class="row">
 								<div class="row">
-								<c:choose>
-								<c:when test="${sessionScope.ROLE == 'MEMBER' }">
-									<c:set var="url" value="/menu"></c:set>
-								</c:when>
-								<c:otherwise>
-									<c:set var="url" value="/stock/point/menu"></c:set>
-								</c:otherwise>
-								</c:choose>
+									<c:choose>
+										<c:when test="${sessionScope.ROLE == 'MEMBER' }">
+											<c:set var="url" value="/menu"></c:set>
+										</c:when>
+										<c:otherwise>
+											<c:set var="url" value="/stock/point/menu"></c:set>
+										</c:otherwise>
+									</c:choose>
 									<a href="${url}"
 										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 										<span><i class="fa fa-arrow-left"></i> <span>Back
@@ -163,35 +166,37 @@ function review() {
 											<tbody>
 												<c:forEach var="details" items="${productList}"
 													varStatus="status">
-													<tr>
-														<%-- <td>${details.id}</td> --%>
-														<td>${details.category.description}</td>
-														<td>${details.prodDesc}</td>
-														<td>${details.price}</td>
-														<td>
-															<div class="form-group">
-																<select name="quantity" id="quantity-${details.code}"
-																	class="form-control">
-																	<option value="">-Select Quantity-</option>
-																	<c:forEach begin="1" end="${details.quantity}"
-																		varStatus="loop">
-																		<option value="${loop.index}"
-																			${loop.index == cartMap[details.code] ? 'selected' : ''}>${loop.index}</option>
-																	</c:forEach>
-																</select>
-															</div>
-														</td>
-														<td>
-															<button class="btn btn-primary" type="button"
-																onclick="return addToCart('${details.code}', '${details.price}');">
-																<i class="fa fa-shopping-cart"></i> Add to Cart
-															</button>
-															<button class="btn btn-danger" type="button"
-																onclick="return removeFromCart('${details.code}', '${details.price}');">
-																<i class="fa fa-remove"></i>Remove
-															</button>
-														</td>
-													</tr>
+													<c:if test="${details.quantity > 0}">
+														<tr>
+															<%-- <td>${details.id}</td> --%>
+															<td>${details.category.description}</td>
+															<td>${details.prodDesc}</td>
+															<td>${details.price}</td>
+															<td>
+																<div class="form-group">
+																	<select name="quantity" id="quantity-${details.code}"
+																		class="form-control">
+																		<option value="">-Select Quantity-</option>
+																		<c:forEach begin="1" end="${details.quantity}"
+																			varStatus="loop">
+																			<option value="${loop.index}"
+																				${loop.index == cartMap[details.code] ? 'selected' : ''}>${loop.index}</option>
+																		</c:forEach>
+																	</select>
+																</div>
+															</td>
+															<td>
+																<button class="btn btn-primary" type="button"
+																	onclick="return addToCart('${details.code}', '${details.price}');">
+																	<i class="fa fa-shopping-cart"></i> Add to Cart
+																</button>
+																<button class="btn btn-danger" type="button"
+																	onclick="return removeFromCart('${details.code}', '${details.price}');">
+																	<i class="fa fa-remove"></i>Remove
+																</button>
+															</td>
+														</tr>
+													</c:if>
 												</c:forEach>
 											</tbody>
 										</table>

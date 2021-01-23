@@ -74,6 +74,11 @@
 																	placeholder="Price Per-Item" value="${productCode.price}" required>
 															</div>
 															
+															<div class="form-group">
+																<input type="file" name="file" />
+															</div>
+															
+															
 													</div>
 													</div>
 													<div class="row">

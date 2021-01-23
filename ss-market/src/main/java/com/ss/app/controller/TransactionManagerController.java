@@ -161,6 +161,7 @@ public class TransactionManagerController {
 			sp.setMemberId(member.getId());
 			sp.setProductCode(prod);
 			sp.setQty(c.getQuantity());
+			sp.setCategoryCode(prod.getCategory());
 			stockPointPurchaseRepository.save(sp);
 			
 			StockPointProduct spp = new StockPointProduct();
@@ -257,10 +258,8 @@ public class TransactionManagerController {
 				model.addAttribute("cartMap", map);
 				model.addAttribute("cartTotal", total);
 			}
-			Iterable<Product> productList = productRepository.findAll();
+			Iterable<StockPointProduct> productList = stockPointProuctRepository.findByMemberId(memberId);
 			model.addAttribute("productList", productList);
-			Iterable<Category> catIterable = categoryRepository.findAll();
-			model.addAttribute("categoryCodeList", catIterable);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -282,10 +281,8 @@ public class TransactionManagerController {
 				model.addAttribute("cartMap", map);
 				model.addAttribute("cartTotal", total);
 			}
-			Iterable<Product> productList = productRepository.findAll();
+			Iterable<StockPointProduct> productList = stockPointProuctRepository.findByMemberId(memberId);
 			model.addAttribute("productList", productList);
-			Iterable<Category> catIterable = categoryRepository.findAll();
-			model.addAttribute("categoryCodeList", catIterable);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
