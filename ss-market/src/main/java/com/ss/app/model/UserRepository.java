@@ -17,6 +17,8 @@ public interface UserRepository extends CrudRepository<Member, String>{
 		
 	Optional<Member> findById(String id);
 	
+	Optional<Member> findByReferencecode(String id);
+	
 	List<Member> findByReferedby(String id);
 	
 	@Query(value="select referencecode from t_member m where m.referencecode=:id", nativeQuery=true)

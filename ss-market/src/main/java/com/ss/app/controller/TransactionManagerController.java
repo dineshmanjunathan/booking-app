@@ -23,12 +23,16 @@ import com.ss.app.entity.Category;
 import com.ss.app.entity.Member;
 import com.ss.app.entity.Product;
 import com.ss.app.entity.Purchase;
+import com.ss.app.entity.RewardTransaction;
+import com.ss.app.entity.SSConfiguration;
 import com.ss.app.entity.StockPointProduct;
 import com.ss.app.entity.StockPointPurchase;
 import com.ss.app.model.CartRepository;
 import com.ss.app.model.CategoryRepository;
 import com.ss.app.model.ProductRepository;
 import com.ss.app.model.PurchaseRepository;
+import com.ss.app.model.RewardTransactionRepository;
+import com.ss.app.model.SSConfigRepository;
 import com.ss.app.model.StockPointProuctRepository;
 import com.ss.app.model.StockPointPurchaseRepository;
 import com.ss.app.model.UserRepository;
@@ -58,6 +62,12 @@ public class TransactionManagerController {
 	
 	@Autowired
 	private StockPointPurchaseRepository stockPointPurchaseRepository;
+	
+	@Autowired
+	private RewardTransactionRepository rewardTransactionRepository;
+	
+	@Autowired
+	private SSConfigRepository ssConfigRepository;
 
 	@RequestMapping(value = "/purchase/confirm", method = RequestMethod.GET)
 	public String savePurchase(HttpServletRequest request, ModelMap model) {
@@ -87,6 +97,9 @@ public class TransactionManagerController {
 			//TODO calculate date and update in DB.
 			//member.setActive_days(active_days);
 			//userRepository.save(member);
+			
+			//Reward Customer.
+			rewardCustomer(member.getReferedby(), orderNumber);
 			
 			//TODO email to member email address
 			model.addAttribute("cartList", cart);
@@ -148,6 +161,10 @@ public class TransactionManagerController {
 			//TODO calculate date and update in DB.
 			//member.setActive_days(active_days);
 			//userRepository.save(member);
+			
+			//Reward Customer.
+			rewardCustomer(member.getReferedby(), orderNumber);
+			
 			model.addAttribute("cartList", cart);
 			model.addAttribute("orderNumber", orderNumber);
 			model.addAttribute("memberId", memberId);
@@ -189,6 +206,17 @@ public class TransactionManagerController {
 		purchase.setProduct(prod);
 		purchase.setQuantity(c.getQuantity());
 		purchaseRepository.save(purchase);
+	}
+	
+	private void rewardCustomer(String sponserId, Long orderNumber) {
+		RewardTransaction reward = new RewardTransaction();
+		Member member = userRepository.findByReferencecode(sponserId).get();
+		reward.setMemberid(member.getId());
+		SSConfiguration ssConfig = ssConfigRepository.findById("PR").get();
+		reward.setPoint(ssConfig.getValue());
+		reward.setOrderNumber(orderNumber);
+		reward.setSponserId(sponserId);
+		rewardTransactionRepository.save(reward);
 	}
 
 	@RequestMapping(value = "/purchase/detail", method = RequestMethod.GET)
