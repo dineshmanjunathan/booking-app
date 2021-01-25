@@ -1,5 +1,6 @@
 package com.ss.app.controller;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -216,7 +217,20 @@ public class TransactionManagerController {
 		reward.setPoint(ssConfig.getValue());
 		reward.setOrderNumber(orderNumber);
 		reward.setSponserId(sponserId);
-		rewardTransactionRepository.save(reward);
+		RewardTransaction response = rewardTransactionRepository.save(reward);
+		
+		if(member!=null && response!=null && response.getMemberid()!=null) {
+			if(member.getActive_days()!=null) {
+				member.setActive_days(member.getActive_days().plusDays(30));
+			}else {
+				member.setActive_days(LocalDateTime.now().plusDays(30));
+			}
+			userRepository.save(member);
+		}
+		
+		
+		
+		
 	}
 
 	@RequestMapping(value = "/purchase/detail", method = RequestMethod.GET)
