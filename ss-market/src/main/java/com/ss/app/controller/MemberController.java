@@ -300,7 +300,7 @@ public class MemberController {
 				subTree = new MemberTree();
 				subTree.setId(mem.getId());
 				subTree.setParent(memberId);
-				subTree.setText(mem.getId() + "(" + mem.getName() + ")");
+				subTree.setText(mem.getId() + "    [ " + mem.getName() + " ]");
 				treeList.add(subTree);
 				findTree(mem.getReferencecode(), mem.getId(), treeList);
 			}
