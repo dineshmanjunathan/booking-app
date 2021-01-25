@@ -476,4 +476,10 @@ public class MemberController {
 		return "contactus";
 	}
 	
+	@RequestMapping("/get/member")
+	public ResponseEntity<String> findMember(@RequestParam("memberId") String memberId, HttpServletRequest request,ModelMap model) {
+		Member member = userRepository.findById(memberId).get();
+		return new ResponseEntity<String>(member.getName(), HttpStatus.OK);
+	}
+	
 }

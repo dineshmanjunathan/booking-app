@@ -296,7 +296,7 @@ public class TransactionManagerController {
 				model.addAttribute("cartMap", map);
 				model.addAttribute("cartTotal", total);
 			}
-			Iterable<StockPointProduct> productList = stockPointProuctRepository.findByMemberId(memberId);
+			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productList", productList);
 		} catch (Exception e) {
 			e.printStackTrace();

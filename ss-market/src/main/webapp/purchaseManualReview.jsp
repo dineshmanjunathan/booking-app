@@ -43,7 +43,22 @@ function removeFromCart(prodCode, price) {
 			alert('Manual purchase requires member id.');
 			return;
 		} else {
-			window.location.href = "/purchase/manual/confirm?memberid=" + memberid;
+			$.ajax({
+			    url: "/get/member",
+			    data: {
+			        "memberId": memberID
+			    },
+			    type: "post",
+			    cache: false,
+			    success: function (data) {
+			    	if(confirm("Are you placing this order for ::  [ "+data + "  ]")){
+			    		window.location.href = "/purchase/manual/confirm?memberid=" + memberID;
+			    	}
+			    },
+			    error: function (XMLHttpRequest, textStatus, errorThrown) {
+			        console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+			    }
+			});
 		}
 	}
 </script>
