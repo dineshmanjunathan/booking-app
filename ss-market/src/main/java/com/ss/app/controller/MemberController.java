@@ -274,23 +274,6 @@ public class MemberController {
 		return "memberTree";
 	}
 
-	@SuppressWarnings("unused")
-	private List<String> recursionTree(MemberTree tree, String basekeyCode, String memberId) {
-		List<Member> child = userRepository.findByReferedby(basekeyCode);
-		List<String> c = new ArrayList<>();
-		List<MemberTree> subTreeList = new ArrayList<>();
-		MemberTree subTree = null;
-		for (Member mem : child) {
-			subTree = new MemberTree();
-			subTree.setId(mem.getId());
-			subTree.setParent(memberId);
-			subTree.setText(mem.getId());
-			recursionTree(subTree, mem.getReferencecode(), mem.getId());
-			subTreeList.add(subTree);
-		}
-		// tree.setChildren(subTreeList);
-		return c;
-	}
 
 	private void findTree(String basekeyCode, String memberId, List<MemberTree> treeList) {
 		try {

@@ -10,16 +10,19 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 
 import com.ss.app.entity.HibernateSequence;
 import com.ss.app.model.HibernateSequenceRepository;
 import com.ss.app.model.SSConfigRepository;
 import com.ss.config.SessionFilter;
+import com.ss.scheduler.DailyRewardScheduler;
 
 @SpringBootApplication
 @ComponentScan("com.ss.app")
 @EnableJpaRepositories
+@EnableScheduling
 public class Application extends SpringBootServletInitializer {
 
 	@Override
@@ -30,6 +33,11 @@ public class Application extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+	
+	@Bean
+    public DailyRewardScheduler bean() {
+        return new DailyRewardScheduler();
+    }
 
 	/*
 	 * @Bean public FilterRegistrationBean<SessionFilter> loggingFilter(){

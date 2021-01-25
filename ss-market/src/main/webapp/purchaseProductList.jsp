@@ -60,7 +60,7 @@
 				type : "post",
 				cache : false,
 				success : function(data) {
-					if (data) {
+					if (data && data !== 'null') {
 						$('#cartTotal').text(data);
 					} else {
 						$('#cartTotal').text(0.0);
@@ -78,7 +78,12 @@
 	}
 
 	function review() {
-		window.location.href = "/purchase/review";
+		let total = $('#cartTotal').text();
+		if(!total || total <=0 || total == '0.0' || total == '0'){
+			alert('Select product to purchase!');
+		} else {
+			window.location.href = "/purchase/review";
+		}
 	}
 </script>
 </head>

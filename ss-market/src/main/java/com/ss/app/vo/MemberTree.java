@@ -1,8 +1,5 @@
 package com.ss.app.vo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MemberTree {
 	
 	private String id;

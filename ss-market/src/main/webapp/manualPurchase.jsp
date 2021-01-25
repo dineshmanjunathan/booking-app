@@ -59,7 +59,7 @@ function removeFromCart(prodCode, price) {
 		    type: "post",
 		    cache: false,
 		    success: function (data) {
-		    	if(data){
+		    	if (data && data !== 'null') {
 		    		$('#cartTotal').text(data);
 		    	} else {
 		    		$('#cartTotal').text(0.0);
@@ -76,7 +76,12 @@ function removeFromCart(prodCode, price) {
 }
 
 function review() {
-	window.location.href = "/purchase/manual/review";
+	let total = $('#cartTotal').text();
+	if(!total || total <=0 || total == '0.0' || total == '0'){
+		alert('Select product to purchase!');
+	} else {
+		window.location.href = "/purchase/manual/review";
+	}
 }
 
 </script>
@@ -89,8 +94,7 @@ function review() {
 				<div class="product-payment-inner-st">
 					<ul id="myTabedu1" class="tab-review-design">
 						<center>
-							<li class="active"><a href="">Select Products to
-									purchase</a></li>
+							<li class="active"><a href="">Select products to add manual purchase</a></li>
 						</center>
 					</ul>
 

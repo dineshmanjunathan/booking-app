@@ -151,7 +151,7 @@ function removeFromCart(prodCode, price) {
 													class="form-control" placeholder="Member Id" required>
 											</div>
 										<div class="row">
-											<a href="/purchase/review/edit"
+											<a href="/purchase/manual/edit"
 												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 												<span><i class="fa fa-arrow-left"></i> <span>Edit
 														cart</span> </span>
