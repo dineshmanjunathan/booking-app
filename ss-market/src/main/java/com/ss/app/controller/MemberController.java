@@ -293,15 +293,19 @@ public class MemberController {
 	}
 
 	private void findTree(String basekeyCode, String memberId, List<MemberTree> treeList) {
-		List<Member> child = userRepository.findByReferedby(basekeyCode);
-		MemberTree subTree = null;
-		for (Member mem : child) {
-			subTree = new MemberTree();
-			subTree.setId(mem.getId());
-			subTree.setParent(memberId);
-			subTree.setText(mem.getId() + "(" + mem.getName() + ")");
-			treeList.add(subTree);
-			findTree(mem.getReferencecode(), mem.getId(), treeList);
+		try {
+			List<Member> child = userRepository.findByReferedby(basekeyCode);
+			MemberTree subTree = null;
+			for (Member mem : child) {
+				subTree = new MemberTree();
+				subTree.setId(mem.getId());
+				subTree.setParent(memberId);
+				subTree.setText(mem.getId() + "(" + mem.getName() + ")");
+				treeList.add(subTree);
+				findTree(mem.getReferencecode(), mem.getId(), treeList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

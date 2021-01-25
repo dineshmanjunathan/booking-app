@@ -16,9 +16,11 @@
 		<c:choose>
 			<c:when test="${ROLE == 'ADMIN'}">
 				<c:set var="url" scope="session" value="/admin/login" />
+				<h3 >Admin Login</h3>
 			</c:when>
 			<c:otherwise>
 				<c:set var="url" scope="session" value="/stock/point/login" />
+				<h3 >Stock Point Login</h3>
 			</c:otherwise>
 		</c:choose>
 		<form action="${url}" method="post">

@@ -12,9 +12,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-
 		var jsondata = ${JSON_TREE};
-
 		createJSTree(jsondata);
 	});
 
@@ -24,9 +22,21 @@
 				"check_callback" : true,
 				'data' : jsondata
 			},
-			"plugins" : [ "contextmenu" ]
+			"plugins" : [ "contextmenu", "search" ],
+			"search" : {
+				"case_insensitive" : true,
+				"show_only_matches" : true
+			}
+			
 		});
 	}
+	
+	$(document).ready(function () {
+        $("#search").keyup(function () {
+            var searchString = $(this).val();
+            $('#memberTree').jstree('search', searchString);
+        });
+    });
 </script>
 </head>
 <body>
@@ -42,6 +52,7 @@
 					<div class="product-tab-list tab-pane fade active in"
 						id="description">
 						<div class="row">
+							
 							<table class="full-right">
 								<tr>
 									<td><a href="/menu"
@@ -51,7 +62,16 @@
 									</a></td>
 								</tr>
 							</table>
-							<div class="row"></div><br>
+							<div class="row"></div>
+							<br>
+							<div class="row">
+							<div class="input-group col-md-3 col-md-offset-5">
+								<input type="text" class="form-control" style="border: 5px solid lightblue;"
+									placeholder="Search node .." id="search"> <span
+									class="input-group-btn">
+								</span>
+							</div>
+							</div>
 							<div class="row">
 								<div class=" well col-md-offset-2 col-md-6">
 									<div id="memberTree"></div>
