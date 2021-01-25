@@ -53,6 +53,12 @@ public class AdminController {
 		return "commonLogin";
 	} 
 	
+	@RequestMapping("/admin")
+	public String adminLogin(HttpServletRequest request,ModelMap model) {
+		model.addAttribute("ROLE","ADMIN");
+		return "commonLogin";
+	} 
+	
 	@RequestMapping("/admin/menu")
 	public String adminMenu(HttpServletRequest request,ModelMap model) {
 		model.addAttribute("ROLE","ADMIN");

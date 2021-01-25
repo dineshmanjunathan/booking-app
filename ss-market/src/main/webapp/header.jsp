@@ -325,8 +325,8 @@
 									class="edu-icon edu-locked author-log-ic"></span>Member</a></li>
 							<li><a href="/stock/point/login"><span
 									class="edu-icon edu-locked author-log-ic"></span>Stock Point</a></li>
-							<li><a href="/admin/login"><span
-									class="edu-icon edu-locked author-log-ic"></span>Admin</a></li>
+							<!-- <li><a href="/admin/login"><span
+									class="edu-icon edu-locked author-log-ic"></span>Admin</a></li> -->
 						</ul>
 
 
@@ -336,8 +336,7 @@
 	</div>
 </nav>
 
-<div class="footer">
-	<p>© 2021 Copyright: SS Marketing</p>
+<div class="footer"><p>© 2021 Copyright: SS Marketing</p>
 </div>
 
 </html>
