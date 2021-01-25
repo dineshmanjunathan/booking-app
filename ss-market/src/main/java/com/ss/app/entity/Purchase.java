@@ -27,7 +27,7 @@ public class Purchase {
 	private Long quantity;
 	private LocalDateTime purchasedOn = LocalDateTime.now();
 	@Column(name = "order_status")
-	private String orderStatus = "P";
+	private String orderStatus = "PENDING";
 
 	public Long getId() {
 		return id;

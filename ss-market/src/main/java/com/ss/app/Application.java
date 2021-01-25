@@ -60,19 +60,16 @@ class DemoCommandLineRunner implements CommandLineRunner {
 
 		hibernateSequenceRepository.save(s1);
 
-		/*SSConfiguration ssConfig1 = new SSConfiguration();
-		ssConfig1.setCode("1111");
-		ssConfig1.setDescription("COMPANY INCENTIVE");
-		ssConfig1.setValue(10.00);
-		ssConfig1.setComment("COMPANY INCENTIVE (CAN MODIFY)");
-
-		SSConfiguration ssConfig2 = new SSConfiguration();
-		ssConfig2.setCode("1112");
-		ssConfig2.setDescription("GST INCENTIVE");
-		ssConfig2.setValue(5.00);
-		ssConfig2.setComment("GST INCENTIVE (CAN MODIFY)");
-
-		dbConfigRepository.save(ssConfig1);
-		dbConfigRepository.save(ssConfig2);*/
+		/*
+		 * SSConfiguration ssConfig1 = new SSConfiguration(); ssConfig1.setCode("1111");
+		 * ssConfig1.setDescription("COMPANY INCENTIVE"); ssConfig1.setValue(10.00);
+		 * ssConfig1.setComment("COMPANY INCENTIVE (CAN MODIFY)");
+		 * 
+		 * SSConfiguration ssConfig2 = new SSConfiguration(); ssConfig2.setCode("1112");
+		 * ssConfig2.setDescription("GST INCENTIVE"); ssConfig2.setValue(5.00);
+		 * ssConfig2.setComment("GST INCENTIVE (CAN MODIFY)");
+		 * 
+		 * dbConfigRepository.save(ssConfig1); dbConfigRepository.save(ssConfig2);
+		 */
 	}
 }

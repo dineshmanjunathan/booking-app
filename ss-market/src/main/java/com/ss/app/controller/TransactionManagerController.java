@@ -373,15 +373,26 @@ public class TransactionManagerController {
 		return new ResponseEntity<String>(String.valueOf(cartTotal),HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/purchase/all/list", method = RequestMethod.GET)
-	public String allTxnList(HttpServletRequest request, ModelMap model) {
+	@RequestMapping(value = "/purchase/allmanual/list", method = RequestMethod.GET)
+	public String allManualTxnList(HttpServletRequest request, ModelMap model) {
 		try {
-			Iterable<Purchase> purchaseList = purchaseRepository.findAll();
+			Iterable<Purchase> purchaseList = purchaseRepository.findByMember("STOCK_POINT");
 			model.addAttribute("purchaseList", purchaseList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "allTransactionList";
+		return "allManualTransactionList";
+	}
+	
+	@RequestMapping(value = "/purchase/allMember/list", method = RequestMethod.GET)
+	public String allMemberTxnList(HttpServletRequest request, ModelMap model) {
+		try {
+			Iterable<Purchase> purchaseList = purchaseRepository.findByMember("MEMBER");
+			model.addAttribute("purchaseList", purchaseList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "allMemberTransactionList";
 	}
 
 	@RequestMapping(value = "/purchase/pending/list", method = RequestMethod.GET)

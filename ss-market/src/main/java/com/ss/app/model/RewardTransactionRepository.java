@@ -8,6 +8,6 @@ import com.ss.app.entity.RewardTransaction;
 
 public interface RewardTransactionRepository extends CrudRepository<RewardTransaction, Long> {
 	
-	List<RewardTransaction> findByMemberId(String memberId);
+	List<RewardTransaction> findByMemberid(String memberId);
 
 }
