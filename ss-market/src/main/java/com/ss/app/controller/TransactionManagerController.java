@@ -72,6 +72,11 @@ public class TransactionManagerController {
 			for(Cart c:cart) {
 				// Update qty in product
 				Product prod = productRepository.findByCode(c.getCode());
+				if(prod.getQuantity() <= 0) {
+					cartRepository.deleteByCodeAndMemberid(prod.getCode(), memberId);
+					model.addAttribute("errormsg", "Item out of stock !");
+					return purchaseReview(request, model);
+				}
 				prod.setQuantity(prod.getQuantity() - c.getQuantity());
 				productRepository.save(prod);
 				
@@ -120,6 +125,11 @@ public class TransactionManagerController {
 				Product product = null;
 				if("STOCK_POINT".equals(role)) {
 					StockPointProduct prod = stockPointProuctRepository.findByCode(c.getCode());
+					if(prod.getQuantity() <= 0) {
+						cartRepository.deleteByCodeAndMemberid(prod.getCode(), memberId);
+						model.addAttribute("errormsg", "Item out of stock !");
+						return purchasemanualReview(request, model);
+					}
 					prod.setQuantity(prod.getQuantity() - c.getQuantity());
 					stockPointProuctRepository.save(prod);
 					
