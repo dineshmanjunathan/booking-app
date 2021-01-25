@@ -414,7 +414,7 @@ public class TransactionManagerController {
 			if (purchase != null && purchase.getId() != null) {
 				purchase.setOrderStatus("APPROVED");
 				model.addAttribute("successMessage",
-						"Order No:" + purchase.getOrderNumber() + " Approved Successfully.");
+						"Order " + purchase.getOrderNumber() + " Delivered Successfully.");
 				purchase = purchaseRepository.save(purchase);
 				Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("PENDING");
 				model.addAttribute("purchaseList", purchaseList);

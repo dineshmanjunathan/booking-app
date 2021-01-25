@@ -32,8 +32,8 @@ function review() {
 						<div class="payment-adress">
 						<a
 							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
-							href="/wallet" type="submit" name="submit"
-							value="adminListing">Back to Wallet</a>
+							href="/member/repurchase/wallet" type="submit" name="submit"
+							value="adminListing">Back</a>
 						</div>
 						<!-- </form> -->
 						<p style="color: red" align="center">${errormsg}</p>

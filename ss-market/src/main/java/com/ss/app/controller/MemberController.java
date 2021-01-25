@@ -137,6 +137,26 @@ public class MemberController {
 		}
 		return "login";
 	}
+	
+	@RequestMapping(value = "/member/repurchase/wallet", method = RequestMethod.GET)
+	public String getRePurchaseWallet(HttpServletRequest request, ModelMap model) {
+		try {
+			String userId = (String) request.getSession().getAttribute("MEMBER_ID");
+
+			Member member = userRepository.findById(userId).get();
+			if (member != null && member.getId() != null) {
+
+				member.setTotalbalance(member.getWalletBalance() + member.getWalletWithdrawn());
+				model.addAttribute("userwallet", member);
+				return "rePurchaseWallet";
+			} else {
+				model.addAttribute("errormsg", "Try again sometime");
+			}
+		} catch (Exception e) {
+			// e.printStackTrace();
+		}
+		return "login";
+	}
 
 	@RequestMapping(value = "/wallet/rePurchase", method = RequestMethod.POST)
 	public String redirectToRePurcahse(HttpServletRequest request, MemberVo user, ModelMap model) {
@@ -239,7 +259,7 @@ public class MemberController {
 			e.printStackTrace();
 			model.addAttribute("errormsg", "Failed to add points in  Re Purchase!");
 		}
-		return "wallet";
+		return "rePurchaseWallet";
 	}
 
 	@RequestMapping(value = "/userlisting", method = RequestMethod.GET)

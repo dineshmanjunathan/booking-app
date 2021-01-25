@@ -8,12 +8,13 @@
 <!-- <link rel="stylesheet" href="../../css/bootstrap.css"> -->
 </head>
 <body> 
+   	<form action="/wallet/rePurchase" method="post" onsubmit="return validateForm(this);">
 		   <div class="col-md-10 col-md-offset-2 row">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="product-payment-inner-st">
 					<ul id="myTabedu1" class="tab-review-design">
-						<center><li class="active"><a href="">MY WALLET</a></li></center>
+						<center><li class="active"><a href="">RE-PURCHASE WALLET</a></li></center>
 					</ul>
 					<div class="payment-adress">
 						<a
@@ -39,55 +40,9 @@
 									<input type="hidden" name="repurcahse" id="repurcahse" value="${userwallet.repurcahse}">
 									
 									
-										<div class="well row">
-										
-								<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									  <div class="col-md-14">
-									    <div class="row">
-									      <div class="col-sm-11 btn btn-info">
-									        <div class="thumbnail">
-									          <div class="caption text-center" onclick="#">
-									            <!-- <div class="position-relative">
-									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
-									            </div> -->
-									            <h4 id="thumbnail-label" style="text-decoration: underline;">TOTAL POINTS</h4>
-									             <br>
-									            <h2>${userwallet.totalbalance}</h2>
-									            <br>
-									          </div>
-									        </div>
-									      </div>
-									    </div>
-									  </div>
-									</div>
-
-										<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									  <div class="col-md-14">
-									    <div class="row">
-									      <div class="col-sm-11 btn btn-warning">
-									        <div class="thumbnail">
-									          <div class="caption text-center" onclick="#">
-									           <!--  <div class="position-relative">
-									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
-									            </div> -->
-									            <h4 id="thumbnail-label" style="text-decoration: underline;">WITHDRAWN POINTS</h4>
-									             <br>
-									            <h1>${userwallet.walletWithdrawn}</h1>
-									            <br>
-									          </div>
-									        </div>
-									      </div>
-									    </div>
-									  </div>
-									</div>
-										
-									
-									
-									<!-- </div>
-									<div class="well row"> -->
-									
-									
-									<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+										<div class="well row">						
+																
+									<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
 									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-success">
@@ -97,15 +52,35 @@
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
 									            <h4 id="thumbnail-label" style="text-decoration: underline;">AVAILABLE POINTS</h4>
-									            <br>
 									            <h2>${userwallet.walletBalance}</h2>
-									            <br>
+									            <button class="btn btn-link" type="submit" name="submit" value="register">(ADD POINTS TO RE-PURCHASE)</button>
 									          </div>
 									        </div>
 									      </div>
 									    </div>
 									  </div>
-									</div>									
+									</div>
+									
+									<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									  <div class="col-md-14">
+									    <div class="row">
+									      <div class="col-sm-11 btn btn-danger">
+									        <div class="thumbnail">
+									          <div class="caption text-center" onclick="#">
+									            <!-- <div class="position-relative">
+									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
+									            </div> -->
+									            <h4 id="thumbnail-label" style="text-decoration: underline;">RE-PURCHASE POINTS</h4>
+									            <br>
+									            <h2>${userwallet.repurcahse}</h2>
+												<br>
+									          </div>
+									        </div>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+									
 									
 									</div>
 								</div>
@@ -118,5 +93,6 @@
 		</div>
 		<br><br>		
 		   </div>
+		   </form>
 </body>
 </html>

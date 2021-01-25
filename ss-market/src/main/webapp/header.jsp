@@ -239,7 +239,7 @@
 								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
 									My Wallet</a></li>
 							<br>
-							<li><a title="" href="/repurchase/wallet" aria-expanded="false"
+							<li><a title="" href="/member/repurchase/wallet" aria-expanded="false"
 								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
 									Re-Purchase Wallet</a></li>
 							<br>
