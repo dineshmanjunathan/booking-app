@@ -219,7 +219,7 @@ public class TransactionManagerController {
 		reward.setSponserId(sponserId);
 		RewardTransaction response = rewardTransactionRepository.save(reward);
 		
-		if(member!=null && response!=null && response.getMemberid()!=null) {
+		if(member!=null && member.getId()!=null && response!=null && response.getMemberid()!=null) {
 			if(member.getActive_days()!=null) {
 				member.setActive_days(member.getActive_days().plusDays(30));
 			}else {
