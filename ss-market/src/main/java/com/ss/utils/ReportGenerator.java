@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.mail.util.ByteArrayDataSource;
 
 import com.ss.app.entity.Member;
+import com.ss.app.entity.Purchase;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -59,6 +60,21 @@ public class ReportGenerator {
 		hm.put("gender", user.getGender());
 		hm.put("email",user.getEmail());
 		hm.put("mobile", user.getPhonenumber());
+        return hm;
+    }
+	
+	public Map<String, Object> getPurchaseReportData(Purchase purchase) {
+		Map<String, Object> hm = new HashMap<String, Object>();
+		hm.put("id", purchase.getId());
+		hm.put("total", purchase.getAmount()*purchase.getQuantity());
+		hm.put("amount", purchase.getAmount());
+		hm.put("memberid", purchase.getMemberid());
+		hm.put("ordernumber", purchase.getOrderNumber());
+		hm.put("orderstatus", purchase.getOrderStatus());
+		hm.put("purchasedon",purchase.getPurchasedOn());
+		hm.put("quantity", purchase.getQuantity());
+		hm.put("product", purchase.getProduct().getProdDesc()+" ["+purchase.getProduct().getCode()+"]");
+		hm.put("category", purchase.getProduct().getCategory().getDescription()+" ["+purchase.getProduct().getCategory().getCode()+"]");
         return hm;
     }
 	

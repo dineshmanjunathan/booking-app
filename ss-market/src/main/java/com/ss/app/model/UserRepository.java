@@ -29,7 +29,7 @@ public interface UserRepository extends CrudRepository<Member, String>{
 	@Transactional
 	void deleteById(String id);
 	
-	@Query(value="select * from t_member m where m.active_days  > current_date ", nativeQuery=true)
+	@Query(value="select * from t_member m where m.active_days  > CURRENT_TIMESTAMP ", nativeQuery=true)
 	List<Member> getActiveMembers();
 	
 	@Query(value="select case when active_days > CURRENT_TIMESTAMP THEN 'ACTIVE' ELSE 'INACTIVE' END member_status,* from t_member ", nativeQuery=true)

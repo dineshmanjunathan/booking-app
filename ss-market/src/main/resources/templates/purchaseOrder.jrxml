@@ -3,15 +3,13 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="name" class="java.lang.String"/>
-	<parameter name="dob" class="java.lang.String"/>
-	<parameter name="age" class="java.lang.String"/>
-	<parameter name="parameter1" class="java.lang.String"/>
-	<parameter name="gender" class="java.lang.String"/>
-	<parameter name="martialStatus" class="java.lang.String"/>
-	<parameter name="email" class="java.lang.String"/>
-	<parameter name="mobile" class="java.lang.String"/>
-	<parameter name="address" class="java.lang.String"/>
+	<parameter name="memberid" class="java.lang.String"/>
+	<parameter name="category" class="java.lang.String"/>
+	<parameter name="product" class="java.lang.String"/>
+	<parameter name="ordernumber" class="java.lang.Long"/>
+	<parameter name="quantity" class="java.lang.Long"/>
+	<parameter name="amount" class="java.lang.Double"/>
+	<parameter name="total" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -22,103 +20,91 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Health Care]]></text>
+				<text><![CDATA[SS Marketing]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="106" y="126" width="100" height="20" uuid="8d9a3f72-6ad7-4917-b947-322dfa0b51b0"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Patient Name :]]></text>
+				<text><![CDATA[Member Id :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="106" y="168" width="100" height="20" uuid="f9b07188-f071-4853-a9f0-27f4e38a9042"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Date of Birth :]]></text>
+				<text><![CDATA[Category :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="106" y="213" width="100" height="20" uuid="2b299a8f-5bb9-45dc-9fbd-1a1a63f6cbad"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Age]]></text>
+				<text><![CDATA[Product :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="106" y="299" width="100" height="20" uuid="378758b4-b18b-4b95-b96d-f767ee0f21d4"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Martial Status :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="106" y="394" width="100" height="20" uuid="91fdf816-36fa-4689-8fa9-5ed356690f03"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
-				</textElement>
-				<text><![CDATA[Mobile :]]></text>
+				<text><![CDATA[Quantity :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="106" y="259" width="100" height="20" uuid="86faec14-66db-4246-80a6-fd92ce6df66e"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[ Gender :]]></text>
+				<text><![CDATA[ Order Number :]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="267" y="126" width="256" height="20" uuid="74291567-df2b-4a08-9e5f-7126b9f7f80d"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{memberid}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="267" y="168" width="256" height="20" uuid="bdf42002-e5bc-4da1-81eb-f0723d1826b3"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{dob}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{category}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="267" y="213" width="256" height="20" uuid="6128c4cf-af01-4356-9158-2a9f4c24d2a5"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{age}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{product}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="267" y="259" width="256" height="20" uuid="7ba8e9ac-0f96-427f-94c9-85f4095fd1fe"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ordernumber}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="267" y="299" width="256" height="20" uuid="6a94e024-19c7-4cb8-b8d9-f9c3791a2525"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{martialStatus}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{quantity}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="267" y="341" width="256" height="20" uuid="71231e32-5218-4579-9b88-cc3c79f0b56c"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{amount}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="106" y="341" width="100" height="20" uuid="f0f6cf07-c91e-44c7-b978-d9895a6cabc4"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Email :]]></text>
+				<text><![CDATA[Item Price :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="106" y="430" width="100" height="20" uuid="5813521c-5ce2-491b-acd6-7ec38d14c956"/>
+				<reportElement x="106" y="394" width="100" height="20" uuid="f0f6cf07-c91e-44c7-b978-d9895a6cabc4"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[ Address :]]></text>
+				<text><![CDATA[Total Amount :]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="267" y="394" width="256" height="20" uuid="988639d2-f498-4e8a-a56d-312c967717de"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{mobile}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="267" y="430" width="256" height="20" uuid="a5e87fc9-adcd-498b-81ca-b176cda95372"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
 			</textField>
 			<frame>
 				<reportElement x="87" y="107" width="459" height="398" uuid="daa312d7-9ebc-4671-9ed1-de587d15941d"/>
@@ -135,7 +121,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<text><![CDATA[Registration Details :]]></text>
+				<text><![CDATA[Purchase Details :]]></text>
 			</staticText>
 			<frame>
 				<reportElement x="31" y="3" width="569" height="568" uuid="e676a5ed-c11c-45ac-9a06-b498d003e729"/>

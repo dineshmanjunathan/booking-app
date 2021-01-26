@@ -1,11 +1,13 @@
 package com.ss.app.controller;
 
+import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -37,7 +39,10 @@ import com.ss.app.model.SSConfigRepository;
 import com.ss.app.model.StockPointProuctRepository;
 import com.ss.app.model.StockPointPurchaseRepository;
 import com.ss.app.model.UserRepository;
+import com.ss.utils.ReportGenerator;
 import com.ss.utils.Utils;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 @Controller
 @Transactional(rollbackOn = Exception.class)
@@ -444,5 +449,22 @@ public class TransactionManagerController {
 		}
 		return "trasnactionApprove";
 	}
+	
+	@RequestMapping(value = "/purchase/order/generate/pdf", method = RequestMethod.GET)
+	public void export(@RequestParam("orderNumber")String orderNumber,ModelMap model, HttpServletResponse response){
+		try {
+			JasperPrint jasperPrint = null;
+			response.setContentType("application/x-download");
+			response.setHeader("Content-Disposition", String.format("attachment; filename=" + orderNumber +".pdf" ));
+			
+			Purchase purchase = purchaseRepository.findByOrderNumber(Long.parseLong(orderNumber));
 
+			OutputStream out = response.getOutputStream();
+			ReportGenerator reportGenerator = new ReportGenerator();
+			jasperPrint = reportGenerator.getJasperContext(reportGenerator.getPurchaseReportData(purchase),"templates/purchaseOrder.jrxml");
+			JasperExportManager.exportReportToPdfStream(jasperPrint, out);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
 }

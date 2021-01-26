@@ -3,6 +3,7 @@ package com.ss.utils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -108,22 +109,7 @@ public class Utils {
 	}
 
 	public static void main(String[] arg) {
-
-		Long rp = 40L;
-		Long remaningPoint = 540L;
-		Double config1 = Double.parseDouble(Utils.checkNull("10", "0.0"));
-		Double config2 = Double.parseDouble(Utils.checkNull("5", "0.0"));
-		Double deductAmt1 = (rp.doubleValue() / 100) * config1;
-		Double deductAmt2 = (rp.doubleValue() / 100) * config2;
-		Long totaldeduct = (long) (deductAmt1 + deductAmt2);
-
-		remaningPoint = remaningPoint - rp;
-
-		System.out.println("config1 -->" + config1);
-		System.out.println("config2 -->" + config2);
-		System.out.println("deductAmt1 -->" + deductAmt1);
-		System.out.println("deductAmt2 -->" + deductAmt2);
-		System.out.println("deductAmt2 -->" + deductAmt2);
-
+		
+		System.out.println(new Date(System.currentTimeMillis()));
 	}
 }

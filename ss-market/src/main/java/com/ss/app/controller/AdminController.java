@@ -3,6 +3,7 @@ package com.ss.app.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ import com.ss.app.vo.MemberVo;
 import com.ss.app.vo.ProductVo;
 import com.ss.app.vo.SSConfigurationVo;
 import com.ss.utils.Utils;
+
+import net.sf.jasperreports.engine.JasperPrint;
 
 @Controller
 public class AdminController {

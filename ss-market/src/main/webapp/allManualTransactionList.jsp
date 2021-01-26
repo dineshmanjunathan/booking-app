@@ -52,6 +52,7 @@
 											<th data-field="total" data-editable="false">Total</th>
 											<th data-field="purchasedOn" data-editable="false">Purchased On</th>
 											<th data-field="orderStatus" data-editable="false">Order Status</th>
+											<th data-field="attachment">Attachment</th>
 										</tr>
 									</thead>
                                         <tbody> 
@@ -66,7 +67,10 @@
 												<c:set var="total" value="${details.amount * details.quantity}" />
 												<td>${total}</td>
 												<td>${details.purchasedOn}</td>
-												<td>${details.orderStatus}</td>		 		     								 
+												<td>${details.orderStatus}</td>		
+											     <td>
+		        								  <a href="<c:url value='/purchase/order/generate/pdf?orderNumber=${details.orderNumber}' />" > <center><i class="fa fa-download" aria-hidden="true"></i></center></a>
+		        								 </td>	 		     								 
                                             </tr> 
                                         </c:forEach>
                                         </tbody>
