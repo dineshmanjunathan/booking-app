@@ -216,29 +216,29 @@ public class TransactionManagerController {
 	
 	private void rewardCustomer(String sponserId, Long orderNumber) {
 		RewardTransaction reward = new RewardTransaction();
-		Member member = userRepository.findByReferencecode(sponserId).get();
-		reward.setMemberid(member.getId());
-		SSConfiguration ssConfig = ssConfigRepository.findById("PR").get();
-		reward.setPoint(ssConfig.getValue());
-		reward.setOrderNumber(orderNumber);
-		reward.setSponserId(sponserId);
-		RewardTransaction response = rewardTransactionRepository.save(reward);
-		
-		if(member!=null && member.getId()!=null && response!=null && response.getMemberid()!=null) {
-			if(member.getActive_days()!=null) {
-				member.setActive_days(member.getActive_days().plusDays(30));
-			}else {
-				member.setActive_days(LocalDateTime.now().plusDays(30));
+		try {
+			Member member = userRepository.findByReferencecode(sponserId).get();
+			reward.setMemberid(member.getId());
+			SSConfiguration ssConfig = ssConfigRepository.findById("PR").get();
+			reward.setPoint(ssConfig.getValue());
+			reward.setOrderNumber(orderNumber);
+			reward.setSponserId(sponserId);
+			RewardTransaction response = rewardTransactionRepository.save(reward);
+			
+			if(member!=null && member.getId()!=null && response!=null && response.getMemberid()!=null) {
+				if(member.getActive_days()!=null) {
+					member.setActive_days(member.getActive_days().plusDays(30));
+				}else {
+					member.setActive_days(LocalDateTime.now().plusDays(30));
+				}
+				if(ssConfig.getValue()>0) {
+					member.setWalletBalance(member.getWalletBalance()+ssConfig.getValue().longValue());
+				}
+				userRepository.save(member);
 			}
-			if(ssConfig.getValue()>0) {
-				member.setWalletBalance(member.getWalletBalance()+ssConfig.getValue().longValue());
-			}
-			userRepository.save(member);
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-		
-		
-		
-		
 	}
 
 	@RequestMapping(value = "/purchase/detail", method = RequestMethod.GET)
