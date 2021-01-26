@@ -3,7 +3,6 @@ package com.ss.app.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ss.app.entity.Category;
 import com.ss.app.entity.Member;
@@ -29,8 +29,6 @@ import com.ss.app.vo.MemberVo;
 import com.ss.app.vo.ProductVo;
 import com.ss.app.vo.SSConfigurationVo;
 import com.ss.utils.Utils;
-
-import net.sf.jasperreports.engine.JasperPrint;
 
 @Controller
 public class AdminController {
@@ -258,10 +256,14 @@ public class AdminController {
 
 
 	@RequestMapping(value="/admin/product/edit",method=RequestMethod.POST)
-	public String productEditSubmit(HttpServletRequest request,ProductVo productVo,ModelMap model) {
+	public String productEditSubmit(HttpServletRequest request,ProductVo productVo,ModelMap model, @RequestParam(required = false) MultipartFile image) {
 		Product product=new Product();
 		try {
 			BeanUtils.copyProperties(productVo,product);
+			if(image != null) {
+				byte[] imageByte = image.getBytes();
+				product.setImage(imageByte);
+			}
 			productRepository.save(product);
 			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productListing", productList); 
@@ -282,11 +284,15 @@ public class AdminController {
 	} 
 	
 	@RequestMapping(value="/admin/product/save",method=RequestMethod.POST)
-	public String categoryCodeSubmit(HttpServletRequest request,ProductVo productVo,ModelMap model) {
+	public String categoryCodeSubmit(HttpServletRequest request,ProductVo productVo,ModelMap model, @RequestParam(required = false) MultipartFile image) {
 		try {
 			Product product=new Product();
 			
-			BeanUtils.copyProperties(productVo,product);			
+			BeanUtils.copyProperties(productVo,product);
+			if(image != null) {
+				byte[] imageByte = image.getBytes();
+				product.setImage(imageByte);
+			}
 			productRepository.save(product);
 			Iterable<Product> productList = productRepository.findAll();
 			model.addAttribute("productListing", productList); 

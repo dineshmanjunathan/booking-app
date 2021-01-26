@@ -1,7 +1,8 @@
 package com.ss.app.entity;
 
+import java.util.Base64;
+
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "t_product")
@@ -26,6 +28,20 @@ public class Product {
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] image;
+	
+	@Transient
+	private String base64Image;
+    
+	public String getBase64Image() {
+		if(this.image != null) {
+			this.base64Image = Base64.getEncoder().encodeToString(this.image);
+		}
+	    return base64Image;
+	}
+ 
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
 
 	public Category getCategory() {
 		return category;

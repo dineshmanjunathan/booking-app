@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.ss.app.entity.Member;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.MemberRewardTree;
+import com.ss.app.vo.MemberTree;
 
 public class DailyRewardScheduler {
 	
@@ -28,25 +29,42 @@ public class DailyRewardScheduler {
 		List<Member> memberList = userRepository.getActiveMembers();
 		for(Member member : memberList) {
 			MemberRewardTree tree = new MemberRewardTree();
-			recursionTree(tree, member.getReferencecode(), member.getId());
+			tree.setId(member.getId());
+			//recursionTree(tree, member.getReferencecode(), member.getId());
 			System.out.println(tree.toString());
 		}
 	}
 	
-	private List<String> recursionTree(MemberRewardTree tree, String basekeyCode, String memberId) {
-		List<Member> child = userRepository.findByReferedby(basekeyCode);
-		List<String> c = new ArrayList<>();
-		List<MemberRewardTree> subTreeList = new ArrayList<>();
-		MemberRewardTree subTree = null;
-		for (Member mem : child) {
-			subTree = new MemberRewardTree();
-			subTree.setId(mem.getId());
-			subTree.setParent(memberId);
-			subTree.setText(mem.getId());
-			recursionTree(subTree, mem.getReferencecode(), mem.getId());
-			subTreeList.add(subTree);
+	private void findTree(String basekeyCode, String level, List<MemberRewardTree> treeList) {
+		try {
+			List<Member> child = userRepository.findByReferedby(basekeyCode);
+			MemberRewardTree subTree = null;
+			for (Member mem : child) {
+				subTree = new MemberRewardTree();
+				subTree.setId(mem.getId());
+				subTree.setLevel(subTree.getLevel()+level);
+				treeList.add(subTree);
+				findTree(mem.getReferencecode(), mem.getId(), treeList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		tree.setChild(subTreeList);
-		return c;
 	}
+	
+//	private List<String> recursionTree(MemberRewardTree tree, String basekeyCode, String memberId) {
+//		List<Member> child = userRepository.findByReferedby(basekeyCode);
+//		List<String> c = new ArrayList<>();
+//		List<MemberRewardTree> subTreeList = new ArrayList<>();
+//		MemberRewardTree subTree = null;
+//		for (Member mem : child) {
+//			subTree = new MemberRewardTree();
+//			subTree.setId(mem.getId());
+//			subTree.setParent(memberId);
+//			subTree.setText(mem.getId());
+//			recursionTree(subTree, mem.getReferencecode(), mem.getId());
+//			subTreeList.add(subTree);
+//		}
+//		tree.setChild(subTreeList);
+//		return c;
+//	}
 }

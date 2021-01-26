@@ -37,7 +37,7 @@
 													<c:url var="action" value="/admin/product/save"/>
 												</c:otherwise>
 											</c:choose>
-											<form action="${action}" method="post" onsubmit="return ValidateForm(this);">
+											<form action="${action}" method="post" onsubmit="return ValidateForm(this);" enctype="multipart/form-data">
 											<div id="dropzone1" class="pro-ad">
 											
 													<p style="color: green" align="center">${successMessage}</p>
@@ -75,7 +75,7 @@
 															</div>
 															
 															<div class="form-group">
-																<input type="file" name="file" />
+																<input class="btn btn-primary" type="file" name="image" />
 															</div>
 															
 															
