@@ -196,6 +196,13 @@
 	color: white;
 	text-align: center;
 }
+
+.left-menu {
+	color: black;
+    padding: 5px 15px 5px 10px !important;
+    border-color: #007bff;
+    border: 3px solid #007bff;
+}
 </style>
 
  <script type="text/javascript">
@@ -205,7 +212,6 @@
 // 			history.go(1);
 // 		};
 // 	});
-
 
 		window.history.forward();
 		function noBack() {
@@ -236,20 +242,20 @@
 							</li>
 							<br>
 							<li><a title="" href="/wallet" aria-expanded="false"
-								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								class="btn btn-outline-primary left-menu">
 									My Wallet</a></li>
 							<br>
 							<li><a title="" href="/member/repurchase/wallet" aria-expanded="false"
-								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								class="btn btn-outline-primary left-menu">
 									Re-Purchase Wallet</a></li>
 							<br>
 							<li><a title="" href="/purchase/review/edit" aria-expanded="false"
-								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								class="btn btn-outline-primary left-menu">
 								Click to Purchase</a>
 							</li>
 							<br>
 							<li><a title="" href="/contactus" aria-expanded="false"
-								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								class="btn btn-outline-primary left-menu">
 									Contact Us</a></li>
 							<br>
 							<br>
@@ -273,12 +279,12 @@
 							</li>
 							<br>
 							<li><a title="" href="/purchase/review/edit" aria-expanded="false"
-								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								class="btn btn-outline-primary left-menu">
 								Stock Purchase</a>
 							</li>
 							<br>
 							<li><a title="" href="/contactus" aria-expanded="false"
-								style="background: #337ab7; color: white; padding: 5px 5px 5px 30px;">
+								class="btn btn-outline-primary left-menu">
 									Contact Us</a></li>
 							<br>
 							<br>

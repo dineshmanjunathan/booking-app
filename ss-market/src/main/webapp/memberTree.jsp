@@ -22,10 +22,15 @@
 				"check_callback" : true,
 				'data' : jsondata
 			},
-			"plugins" : [ "contextmenu", "search" ],
+			"plugins" : [ "contextmenu", "search", "types" ],
 			"search" : {
 				"case_insensitive" : true,
 				"show_only_matches" : true
+			},
+			"types" : {
+			      "default" : {
+			        "icon" : "glyphicon glyphicon-flash"
+			      }
 			}
 			
 		});
@@ -73,7 +78,7 @@
 							</div>
 							</div>
 							<div class="row">
-								<div class=" well col-md-offset-2 col-md-6">
+								<div class=" well col-md-offset-2 col-md-6" style="background-image: linear-gradient(#6868f1, white);">
 									<div id="memberTree"></div>
 								</div>
 							</div>
