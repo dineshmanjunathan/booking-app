@@ -57,6 +57,8 @@ public class Member implements Serializable {
 	
 	@Transient
 	private Long totalbalance= 0L;
+
+	private String memberStatus;
 		
 	public String getId() {
 		return id;
@@ -164,4 +166,11 @@ public class Member implements Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public String getMemberStatus() {
+		return memberStatus;
+	}
+	public void setMemberStatus(String memberStatus) {
+		this.memberStatus = memberStatus;
+	}
+	
 }

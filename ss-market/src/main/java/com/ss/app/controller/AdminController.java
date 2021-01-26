@@ -75,7 +75,7 @@ public class AdminController {
 	
 	@RequestMapping("/admin/member/listing")
 	public String adminListing(HttpServletRequest request,ModelMap model) {
-		Iterable<Member> memberList = userRepository.findAll();
+		Iterable<Member> memberList = userRepository.getAllMemberWithStatus();
 		model.addAttribute("memberList",memberList);
 		return "memberListing";
 	} 

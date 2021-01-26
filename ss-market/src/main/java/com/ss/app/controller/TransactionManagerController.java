@@ -225,6 +225,9 @@ public class TransactionManagerController {
 			}else {
 				member.setActive_days(LocalDateTime.now().plusDays(30));
 			}
+			if(ssConfig.getValue()>0) {
+				member.setWalletBalance(member.getWalletBalance()+ssConfig.getValue().longValue());
+			}
 			userRepository.save(member);
 		}
 		
