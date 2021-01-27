@@ -300,10 +300,15 @@ public class MemberController {
 			List<Member> child = userRepository.findByReferedby(basekeyCode);
 			MemberTree subTree = null;
 			for (Member mem : child) {
+				if(mem.getActive_days()!=null && mem.getActive_days().isAfter(LocalDateTime.now())) {
+					mem.setMemberStatus("ACTIVE");
+				}else {
+					mem.setMemberStatus("INACTIVE");
+				}
 				subTree = new MemberTree();
 				subTree.setId(mem.getId());
 				subTree.setParent(memberId);
-				subTree.setText(mem.getId() + "    [ " + mem.getName() + " ]");
+				subTree.setText(mem.getId() + "    [ " + mem.getName() +" - "+mem.getMemberStatus()+ " ]");
 				treeList.add(subTree);
 				findTree(mem.getReferencecode(), mem.getId(), treeList);
 			}
@@ -484,5 +489,4 @@ public class MemberController {
 		Member member = userRepository.findById(memberId).get();
 		return new ResponseEntity<String>(member.getName(), HttpStatus.OK);
 	}
-	
 }

@@ -6,6 +6,8 @@
 <head>
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
+<script type="text/javascript" charset="utf-8">
+</script>
 </head>
 <body>
 	<!-- Single pro tab review Start-->
@@ -32,20 +34,31 @@
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="review-content-section">
 										<form action="/register" method="post">
-										
+
 											<p style="color: red" align="center">${errormsg}</p>
-											
+
 											<input type="hidden" name="id" id="id" value="${member.id}">
 											<input type="hidden" name="role" id="role" value="MEMBER">
-											
+
 											<div id="dropzone1" class="pro-ad">
 
 												<p style="color: green" align="center">${successMessage}</p>
 												<p style="color: red" align="center">${deletesuccessmessage}</p>
-												
+
 												<div class="well row">
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
 														<div class="form-group"></div>
+														<div class="form-group">
+															<input name="referedby" id ="referedby" type="text"
+																class="form-control" placeholder="Sponser Id"
+																value="${member.referedby}">
+														</div>
+														<div class="form-group">
+															<input name="sponsername" id ="sponsername" type="text"
+																class="form-control" placeholder="Sponser Name"
+																value="${SPONSERNAME}" readonly>
+														</div>
+
 														<div class="form-group">
 															<input name="name" type="text" class="form-control"
 																placeholder="Member Name" value="${member.name}"
@@ -53,18 +66,9 @@
 														</div>
 
 														<div class="form-group">
-															<input name="email" type="text" class="form-control"
-																placeholder="Email" value="${member.email}" required>
-														</div>
-														<div class="form-group">
-															<input name="phonenumber" type="text"
-																class="form-control" placeholder="Phone Number"
-																value="${member.phonenumber}" required>
-														</div>
-														<div class="form-group">
-															<input name="password" type="password" class="form-control"
-																placeholder="Password" value="${member.password}"
-																required>
+															<input name="password" type="password"
+																class="form-control" placeholder="Password"
+																value="${member.password}" required>
 														</div>
 													</div>
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
@@ -83,10 +87,15 @@
 																type="radio" value="Female"
 																${member.gender eq 'Female' ?'Checked':''}>Female
 														</div>
+														
 														<div class="form-group">
-															<input name="referedby" type="numeric"
-																class="form-control" placeholder="Sponser Id"
-																value="${member.referedby}" >
+															<input name="email" type="text" class="form-control"
+																placeholder="Email" value="${member.email}" required>
+														</div>
+														<div class="form-group">
+															<input name="phonenumber" type="text"
+																class="form-control" placeholder="Phone Number"
+																value="${member.phonenumber}" required>
 														</div>
 													</div>
 

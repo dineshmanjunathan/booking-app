@@ -88,46 +88,7 @@
 												<div class="well row">
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
 														<div class="form-group"></div>
-														<div class="form-group">
-															<input name="name" type="text" class="form-control"
-																placeholder="Member Name" value="${member.name}"
-																required>
-														</div>
-
-														<div class="form-group">
-															<input name="email" type="text" class="form-control"
-																placeholder="Email" value="${member.email}" required>
-														</div>
-														<div class="form-group">
-															<input name="phonenumber" type="text"
-																class="form-control" placeholder="Phone Number"
-																value="${member.phonenumber}" required>
-														</div>
-														<div class="form-group">
-															<input name="password" type="password"
-																class="form-control" placeholder="Password"
-																value="${member.password}" required>
-														</div>
-													</div>
-													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
-														<div class="form-group">
-															<label>Date of Birth:</label> <input name="dob"
-																type="date" class="form-control"
-																placeholder="Date of Birth" value="${member.dob}"
-																required>
-														</div>
-
-														<div class="form-group">
-															<label>Gender :</label> <input name="gender"
-																class=" required " id="gender" type="radio" value="Male"
-																${member.gender eq 'Male' ?'Checked':''}>Male <input
-																name="gender" class=" required " id="gender"
-																type="radio" value="Female"
-																${member.gender eq 'Female' ?'Checked':''}>Female
-														</div>
-
-
-														<c:choose>
+												<c:choose>
 															<c:when test="${not empty member.id}">
 																<div class="form-group">
 																	<input name="referedby" type="text"
@@ -143,9 +104,30 @@
 																</div>
 
 															</c:otherwise>
-														</c:choose>
+												</c:choose>
+												
+												<c:choose>
+												<c:when test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
+																<div class="form-group">
+																	<input name="sponsername" id="sponsername" type="text"
+																		class="form-control" placeholder="Sponser Name"
+																		value="${SPONSERNAME}" readonly>
+																</div>
+												</c:when>
+											</c:choose>
+						
 
-														<c:choose>
+														<div class="form-group">
+															<input name="name" type="text" class="form-control"
+																placeholder="Member Name" value="${member.name}"
+																required>
+														</div>
+														<div class="form-group">
+															<input name="password" type="password"
+																class="form-control" placeholder="Password"
+																value="${member.password}" required>
+														</div>
+													<c:choose>
 															<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
 
 																<div class="form-group">
@@ -166,8 +148,32 @@
 																	value="${member.role}">
 															</c:otherwise>
 														</c:choose>
+													</div>
+													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
+														<div class="form-group">
+															<label>Date of Birth:</label> <input name="dob"
+																type="date" class="form-control"
+																placeholder="Date of Birth" value="${member.dob}"
+																required>
+														</div>
 
-
+														<div class="form-group">
+															<label>Gender :</label> <input name="gender"
+																class=" required " id="gender" type="radio" value="Male"
+																${member.gender eq 'Male' ?'Checked':''}>Male <input
+																name="gender" class=" required " id="gender"
+																type="radio" value="Female"
+																${member.gender eq 'Female' ?'Checked':''}>Female
+														</div>
+														<div class="form-group">
+															<input name="email" type="text" class="form-control"
+																placeholder="Email" value="${member.email}" required>
+														</div>
+														<div class="form-group">
+															<input name="phonenumber" type="text"
+																class="form-control" placeholder="Phone Number"
+																value="${member.phonenumber}" required>
+														</div>
 													</div>
 
 													<%-- <div class="form-group">
@@ -189,11 +195,11 @@
 														<c:choose>
 															<c:when test="${not empty member.id}">
 																<button class="btn btn-primary waves-effect waves-light"
-																	type="submit" name="submit" value="register">Create</button>
+																	type="submit" name="submit" value="register">Update</button>
 															</c:when>
 															<c:otherwise>
 																<button class="btn btn-primary waves-effect waves-light"
-																	type="submit" name="submit" value="register">Update</button>
+																	type="submit" name="submit" value="register">Create</button>
 															</c:otherwise>
 														</c:choose>
 														<button class="btn btn-primary waves-effect waves-light"

@@ -110,6 +110,11 @@ public class Utils {
 
 	public static void main(String[] arg) {
 		
-		System.out.println(new Date(System.currentTimeMillis()));
+		LocalDateTime m = LocalDateTime.now().plusDays(1);
+		LocalDateTime t = LocalDateTime.now();
+		if(t.isAfter(m)) {
+			System.out.println("check");
+		}
+		
 	}
 }
