@@ -59,19 +59,19 @@ public class TransactionManagerController {
 
 	@Autowired
 	private CartRepository cartRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private StockPointProuctRepository stockPointProuctRepository;
-	
+
 	@Autowired
 	private StockPointPurchaseRepository stockPointPurchaseRepository;
-	
+
 	@Autowired
 	private RewardTransactionRepository rewardTransactionRepository;
-	
+
 	@Autowired
 	private SSConfigRepository ssConfigRepository;
 
@@ -81,33 +81,30 @@ public class TransactionManagerController {
 			// update active days date in member table
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 			List<Cart> cart = cartRepository.findByMemberid(memberId);
-			//Get order number
+			// Get order number
 			Long orderNumber = Utils.getOrderNumber();
 			Purchase purchase = new Purchase();
-			Member member =userRepository.findById(memberId).get();
-			for(Cart c:cart) {
+			Member member = userRepository.findById(memberId).get();
+			for (Cart c : cart) {
 				// Update qty in product
 				Product prod = productRepository.findByCode(c.getCode());
-				if(prod.getQuantity() <= 0) {
+				if (prod.getQuantity() <= 0) {
 					cartRepository.deleteByCodeAndMemberid(prod.getCode(), memberId);
 					model.addAttribute("errormsg", "Item out of stock !");
 					return purchaseReview(request, model);
 				}
 				prod.setQuantity(prod.getQuantity() - c.getQuantity());
 				productRepository.save(prod);
-				
-				//Prepare purchase
+
+				// Prepare purchase
 				preparePurchase(request.getSession(), member, orderNumber, purchase, c, prod);
 			}
 			cartRepository.deleteByMemberid(memberId);
-			//TODO calculate date and update in DB.
-			//member.setActive_days(active_days);
-			//userRepository.save(member);
-			
-			//Reward Customer.
+
+			// Reward Customer.
 			rewardCustomer(member.getReferedby(), orderNumber);
-			
-			//TODO email to member email address
+
+			// TODO email to member email address
 			model.addAttribute("cartList", cart);
 			model.addAttribute("orderNumber", orderNumber);
 			model.addAttribute("successMessage", "Item Purchased Successfully");
@@ -116,61 +113,49 @@ public class TransactionManagerController {
 		}
 		return "purchaseConfirmation";
 	}
-	
+
 	@RequestMapping(value = "/purchase/manual/confirm", method = RequestMethod.GET)
-	public String saveManualPurchase(HttpServletRequest request, ModelMap model, @RequestParam(required = false) String memberid) {
+	public String saveManualPurchase(HttpServletRequest request, ModelMap model,
+			@RequestParam(required = true) String memberid) {
 		try {
-			// update active days date in member table
 			HttpSession session = request.getSession();
 			String memberId = (String) session.getAttribute("MEMBER_ID");
 			String role = (String) session.getAttribute("ROLE");
-			if("STOCK_POINT".equals(role)) {
-				memberId = memberid;
-			}
 			Member member = null;
 			try {
-				member = userRepository.findById(memberId).get();
-			} catch(Exception e) {
+				member = userRepository.findById(memberid).get();
+			} catch (Exception e) {
 				model.addAttribute("errorMessage", "Invalid member ID , Please provide a valid one.");
 				purchasemanualReview(request, model);
 			}
-			
+
 			List<Cart> cart = cartRepository.findByMemberid(memberId);
-			//Get order number
+			// Get order number
 			Long orderNumber = Utils.getOrderNumber();
 			Purchase purchase = new Purchase();
-			for(Cart c:cart) {
+			for (Cart c : cart) {
 				// Update qty in product
 				Product product = null;
-				if("STOCK_POINT".equals(role)) {
-					StockPointProduct prod = stockPointProuctRepository.findByCode(c.getCode());
-					if(prod.getQuantity() <= 0) {
-						cartRepository.deleteByCodeAndMemberid(prod.getCode(), memberId);
-						model.addAttribute("errormsg", "Item out of stock !");
-						return purchasemanualReview(request, model);
-					}
-					prod.setQuantity(prod.getQuantity() - c.getQuantity());
-					stockPointProuctRepository.save(prod);
-					
-					//Prepare purchase
-					product =new Product();
-					product.setCode(prod.getCode());
-					product.setProdDesc(prod.getProdDesc());
-				} else {
-					product = productRepository.findByCode(c.getCode());
-					product.setQuantity(product.getQuantity() - c.getQuantity());
-					productRepository.save(product);
+				StockPointProduct prod = stockPointProuctRepository.findByCode(c.getCode());
+				if (prod.getQuantity() <= 0) {
+					cartRepository.deleteByCodeAndMemberid(prod.getCode(), memberId);
+					model.addAttribute("errormsg", "Item out of stock !");
+					return purchasemanualReview(request, model);
 				}
-				preparePurchase(session, member, orderNumber, purchase, c, product);
+				prod.setQuantity(prod.getQuantity() - c.getQuantity());
+				stockPointProuctRepository.save(prod);
+
+				// Prepare purchase
+				product = new Product();
+				product.setCode(prod.getCode());
+				product.setProdDesc(prod.getProdDesc());
+				prepareManualPurchase(session, member, orderNumber, purchase, c, product);
 			}
 			cartRepository.deleteByMemberid(memberId);
-			//TODO calculate date and update in DB.
-			//member.setActive_days(active_days);
-			//userRepository.save(member);
-			
-			//Reward Customer.
+
+			// Reward Customer.
 			rewardCustomer(member.getReferedby(), orderNumber);
-			
+
 			model.addAttribute("cartList", cart);
 			model.addAttribute("orderNumber", orderNumber);
 			model.addAttribute("memberId", memberId);
@@ -181,26 +166,16 @@ public class TransactionManagerController {
 		return "purchaseManualConfirmation";
 	}
 
-	private void preparePurchase(HttpSession session,Member member, Long orderNumber, Purchase purchase, Cart c, Product prod) {
+	private void preparePurchase(HttpSession session, Member member, Long orderNumber, Purchase purchase, Cart c,
+			Product prod) {
 		purchase.setOrderNumber(orderNumber);
 		purchase.setAmount(c.getAmount());
-		String memberId = (String) session.getAttribute("MEMBER_ID");
 		purchase.setMemberid(member.getId());
-		if("STOCK_POINT".equals(member.getRole())) {
-			purchase.setOrderStatus("PENDING");
-			StockPointPurchase sp = new StockPointPurchase();
-			sp.setStockPointId(memberId);
-			sp.setPrice(c.getAmount());
-			sp.setMemberId(member.getId());
-			sp.setProductCode(prod);
-			sp.setQty(c.getQuantity());
-			sp.setCategoryCode(prod.getCategory());
-			stockPointPurchaseRepository.save(sp);
-			
+		if ("STOCK_POINT".equals(member.getRole())) {
 			StockPointProduct spp = new StockPointProduct();
 			spp.setCategory(prod.getCategory());
 			spp.setCode(prod.getCode());
-			spp.setMemberId(memberId);
+			spp.setMemberId(member.getId());
 			spp.setPrice(prod.getPrice());
 			spp.setProdDesc(prod.getProdDesc());
 			spp.setQuantity(c.getQuantity());
@@ -213,7 +188,21 @@ public class TransactionManagerController {
 		purchase.setQuantity(c.getQuantity());
 		purchaseRepository.save(purchase);
 	}
-	
+
+	private void prepareManualPurchase(HttpSession session, Member member, Long orderNumber, Purchase purchase, Cart c,
+			Product prod) {
+		String memberId = (String) session.getAttribute("MEMBER_ID");
+		purchase.setOrderStatus("PENDING");
+		StockPointPurchase sp = new StockPointPurchase();
+		sp.setStockPointId(memberId);
+		sp.setPrice(c.getAmount());
+		sp.setMemberId(member.getId());
+		sp.setProductCode(prod);
+		sp.setQty(c.getQuantity());
+		sp.setCategoryCode(prod.getCategory());
+		stockPointPurchaseRepository.save(sp);
+	}
+
 	private void rewardCustomer(String sponserId, Long orderNumber) {
 		RewardTransaction reward = new RewardTransaction();
 		try {
@@ -224,15 +213,15 @@ public class TransactionManagerController {
 			reward.setOrderNumber(orderNumber);
 			reward.setSponserId(sponserId);
 			RewardTransaction response = rewardTransactionRepository.save(reward);
-			
-			if(member!=null && member.getId()!=null && response!=null && response.getMemberid()!=null) {
-				if(member.getActive_days()!=null) {
+
+			if (member != null && member.getId() != null && response != null && response.getMemberid() != null) {
+				if (member.getActive_days() != null) {
 					member.setActive_days(member.getActive_days().plusDays(30));
-				}else {
+				} else {
 					member.setActive_days(LocalDateTime.now().plusDays(30));
 				}
-				if(ssConfig.getValue()>0) {
-					member.setWalletBalance(member.getWalletBalance()+ssConfig.getValue().longValue());
+				if (ssConfig.getValue() > 0) {
+					member.setWalletBalance(member.getWalletBalance() + ssConfig.getValue().longValue());
 				}
 				userRepository.save(member);
 			}
@@ -290,7 +279,7 @@ public class TransactionManagerController {
 		}
 		return "purchaseReview";
 	}
-	
+
 	@RequestMapping(value = "/purchase/manual/review", method = RequestMethod.GET)
 	public String purchasemanualReview(HttpServletRequest request, ModelMap model) {
 		try {
@@ -311,10 +300,11 @@ public class TransactionManagerController {
 			Double total = 0.0;
 			if (cart != null) {
 				Map<String, Long> map = new HashMap<>();
-				for(Cart c: cart) {
+				for (Cart c : cart) {
 					total = total + (c.getQuantity() * c.getAmount());
 					map.put(c.getCode(), c.getQuantity());
-				};
+				}
+				;
 				model.addAttribute("cartMap", map);
 				model.addAttribute("cartTotal", total);
 			}
@@ -325,7 +315,7 @@ public class TransactionManagerController {
 		}
 		return "purchaseProductList";
 	}
-	
+
 	@RequestMapping(value = "/purchase/manual/edit", method = RequestMethod.GET)
 	public String reviewManualEdit(HttpServletRequest request, ModelMap model) {
 		try {
@@ -334,10 +324,11 @@ public class TransactionManagerController {
 			Double total = 0.0;
 			if (cart != null) {
 				Map<String, Long> map = new HashMap<>();
-				for(Cart c: cart) {
+				for (Cart c : cart) {
 					total = total + (c.getQuantity() * c.getAmount());
 					map.put(c.getCode(), c.getQuantity());
-				};
+				}
+				;
 				model.addAttribute("cartMap", map);
 				model.addAttribute("cartTotal", total);
 			}
@@ -350,8 +341,8 @@ public class TransactionManagerController {
 	}
 
 	@RequestMapping(value = "/purchase/addToCart", method = RequestMethod.POST)
-	public ResponseEntity<String> addTocart(HttpServletRequest request, ModelMap model, @RequestParam("prodCode") String prodCode,
-			@RequestParam("qty") String qty) {
+	public ResponseEntity<String> addTocart(HttpServletRequest request, ModelMap model,
+			@RequestParam("prodCode") String prodCode, @RequestParam("qty") String qty) {
 		Double cartTotal = 0.0;
 		try {
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
@@ -374,7 +365,7 @@ public class TransactionManagerController {
 			e.printStackTrace();
 			return new ResponseEntity<String>("0.0", HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>(String.valueOf(cartTotal),HttpStatus.OK);
+		return new ResponseEntity<String>(String.valueOf(cartTotal), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/purchase/remove/cart", method = RequestMethod.POST)
@@ -384,15 +375,15 @@ public class TransactionManagerController {
 		try {
 			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
 			Long val = cartRepository.deleteByCodeAndMemberid(prodCode, memberId);
-			if(val <=0) {
-				return new ResponseEntity<String>("No product to remove",HttpStatus.BAD_REQUEST);
+			if (val <= 0) {
+				return new ResponseEntity<String>("No product to remove", HttpStatus.BAD_REQUEST);
 			}
 			cartTotal = cartRepository.getCartTotal(memberId);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("0.0",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("0.0", HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>(String.valueOf(cartTotal),HttpStatus.OK);
+		return new ResponseEntity<String>(String.valueOf(cartTotal), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/purchase/allmanual/list", method = RequestMethod.GET)
@@ -405,7 +396,7 @@ public class TransactionManagerController {
 		}
 		return "allManualTransactionList";
 	}
-	
+
 	@RequestMapping(value = "/purchase/allMember/list", method = RequestMethod.GET)
 	public String allMemberTxnList(HttpServletRequest request, ModelMap model) {
 		try {
@@ -435,8 +426,7 @@ public class TransactionManagerController {
 
 			if (purchase != null && purchase.getId() != null) {
 				purchase.setOrderStatus("APPROVED");
-				model.addAttribute("successMessage",
-						"Order " + purchase.getOrderNumber() + " Delivered Successfully.");
+				model.addAttribute("successMessage", "Order " + purchase.getOrderNumber() + " Delivered Successfully.");
 				purchase = purchaseRepository.save(purchase);
 				Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("PENDING");
 				model.addAttribute("purchaseList", purchaseList);
@@ -449,21 +439,22 @@ public class TransactionManagerController {
 		}
 		return "trasnactionApprove";
 	}
-	
+
 	@RequestMapping(value = "/purchase/order/generate/pdf", method = RequestMethod.GET)
-	public void export(@RequestParam("orderNumber")String orderNumber,ModelMap model, HttpServletResponse response){
+	public void export(@RequestParam("orderNumber") String orderNumber, ModelMap model, HttpServletResponse response) {
 		try {
 			JasperPrint jasperPrint = null;
 			response.setContentType("application/x-download");
-			response.setHeader("Content-Disposition", String.format("attachment; filename=" + orderNumber +".pdf" ));
-			
+			response.setHeader("Content-Disposition", String.format("attachment; filename=" + orderNumber + ".pdf"));
+
 			Purchase purchase = purchaseRepository.findByOrderNumber(Long.parseLong(orderNumber));
 
 			OutputStream out = response.getOutputStream();
 			ReportGenerator reportGenerator = new ReportGenerator();
-			jasperPrint = reportGenerator.getJasperContext(reportGenerator.getPurchaseReportData(purchase),"templates/purchaseOrder.jrxml");
+			jasperPrint = reportGenerator.getJasperContext(reportGenerator.getPurchaseReportData(purchase),
+					"templates/purchaseOrder.jrxml");
 			JasperExportManager.exportReportToPdfStream(jasperPrint, out);
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
