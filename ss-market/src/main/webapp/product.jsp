@@ -73,10 +73,13 @@
 																<input name="price" type="text" class="form-control"
 																	placeholder="Price Per-Item" value="${productCode.price}" required>
 															</div>
-															
+															<c:choose>
+															<c:when test="${not empty productCode.code}">
 															<div class="form-group">
 																<img alt="img" src="data:image/jpeg;base64,${productCode.base64Image}" style="width: 100px;height: 100px;"/>
 															</div>
+															</c:when>
+															</c:choose>
 															<div class="form-group">
 																<input class="btn btn-primary" type="file" name="image" />
 															</div>

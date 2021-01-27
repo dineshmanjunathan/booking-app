@@ -75,8 +75,16 @@
 													<div class="row">
 														<div class="col-lg-12">
 															<div class="payment-adress">
+																<c:choose>
+															<c:when test="${not empty categoryCode.code}">
 																<button class="btn btn-primary waves-effect waves-light"
-																	type="submit" name="submit" value="register">Submit</button>
+																	type="submit" name="submit" value="register">Update</button>
+															</c:when>
+															<c:otherwise>
+																<button class="btn btn-primary waves-effect waves-light"
+																	type="submit" name="submit" value="register">Create</button>
+															</c:otherwise>
+															</c:choose>
 																<button class="btn btn-primary waves-effect waves-light"
 																	type="reset" name="reset" value="reset">Clear</button>
 
