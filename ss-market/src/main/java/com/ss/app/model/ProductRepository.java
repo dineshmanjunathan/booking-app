@@ -14,6 +14,7 @@ public interface ProductRepository extends CrudRepository<Product, String> {
 
 	List<Product> findByCategory(String Category);
 
+	@Transactional
 	Product findByCode(String Code);
 	
 	@Transactional

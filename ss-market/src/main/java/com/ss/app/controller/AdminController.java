@@ -241,9 +241,7 @@ public class AdminController {
 	public String productEdit(@RequestParam("id")String id,HttpServletRequest request,ModelMap model) { 
 		try {
 			Product productCode = productRepository.findByCode(id);
-			ProductVo productVo=new ProductVo();
-			BeanUtils.copyProperties(productCode,productVo);
-			model.addAttribute("productCode", productVo); 
+			model.addAttribute("productCode", productCode); 
 			
 			Iterable<Category> categoryCodeList = categoryRepository.findAll();
 			model.addAttribute("categoryCodeList", categoryCodeList); 
