@@ -82,11 +82,20 @@ public class MemberController {
 
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request, ModelMap model) {
+		String redirectPath="login";
 		if (request.getSession() != null) {
+			if(request.getSession().getAttribute("ROLE").equals("ADMIN")) {
+				model.addAttribute("ROLE","ADMIN");
+				redirectPath = "commonLogin";
+			}else if(request.getSession().getAttribute("ROLE").equals("STOCK_POINT")) {
+				model.addAttribute("ROLE","STOCK_POINT");
+				redirectPath = "commonLogin";
+			}
+			
 			request.getSession().invalidate();
 			model.addAttribute("adminlogout", "Successfully logged out");
 		}
-		return "login";
+		return redirectPath;
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -363,6 +372,10 @@ public class MemberController {
 	public String edit(@RequestParam("user_id") String userId,HttpServletRequest request, ModelMap model) {
 		try {
 			Member user = userRepository.findById(userId).get();
+			if(user!=null && user.getReferedby()!=null) {
+				Member referedMember = userRepository.findByReferencecode(user.getReferedby()).get();
+				model.addAttribute("SPONSERNAME", referedMember.getName());
+			}
 			model.addAttribute("member", user);
 		} catch (Exception e) {
 			e.printStackTrace();

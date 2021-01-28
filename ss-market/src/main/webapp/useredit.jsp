@@ -166,7 +166,7 @@
 																${member.gender eq 'Female' ?'Checked':''}>Female
 														</div>
 														<div class="form-group">
-															<input name="email" type="text" class="form-control"
+															<input name="email" type="email" class="form-control"
 																placeholder="Email" value="${member.email}" required>
 														</div>
 														<div class="form-group">
