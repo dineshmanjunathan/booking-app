@@ -7,6 +7,29 @@
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
 </head>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+    $('#referedby').change(function(){
+    	$.ajax({
+            url: "/get/sponse",
+            data: {
+                "sponserId": $( "#referedby" ).val()
+            },
+            type: "get",
+            cache: false,
+            success: function (data) {
+                if(data) {
+                	  var s = document.getElementById("sponsername");
+                      s.value = data;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+            }
+        });
+    });
+});
+</script>
 <body>
 	<!-- Single pro tab review Start-->
 	<div class="col-md-10 col-md-offset-2 row">
