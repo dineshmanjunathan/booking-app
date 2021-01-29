@@ -32,7 +32,7 @@ public class SendEmail {
 	public static void main(String [] args) 
 	{	 
 		// email ID of Recipient. 
-		String sender = "dinesh@assistcornerstone.com"; 
+		String sender = "dineshmanjunathan@gmail.com"; 
 
 		// email ID of Sender. 
 		String  recipient= "dineshmanjunathan@gmail.com"; 

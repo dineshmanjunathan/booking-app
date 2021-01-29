@@ -114,7 +114,7 @@ public class Member implements Serializable {
 	}
 	public void setReferencecode(String referencecode) {
 		Random random = new Random();
-		int randomWithNextInt = random.nextInt(99999999);
+		int randomWithNextInt = random.nextInt(999999);
 		this.referencecode = "SS00"+Math.abs(randomWithNextInt);
 	}
 	public Date getCreateon() {

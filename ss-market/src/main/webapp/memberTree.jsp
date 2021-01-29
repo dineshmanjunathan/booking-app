@@ -78,7 +78,7 @@
 							</div>
 							</div>
 							<div class="row">
-								<div class=" well col-md-offset-2 col-md-6" style="background-image: linear-gradient(#6868f1, white);">
+								<div class=" well col-md-offset-2 col-md-6" style="background-image: linear-gradient(#337ab7,#ffe6c5);">
 									<div id="memberTree"></div>
 								</div>
 							</div>

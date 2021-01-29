@@ -28,7 +28,7 @@
 					<div id="myTabContent" class="tab-content custom-product-edit">
 						<div class="product-tab-list tab-pane fade active in"
 							id="description">
-							<div class="row">
+							<div class="row" >
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="review-content-section">
 									
@@ -39,9 +39,9 @@
 									<input type="hidden" name="repurcahse" id="repurcahse" value="${userwallet.repurcahse}">
 									
 									
-										<div class="well row">
+										<div class="well row" style="background-image: linear-gradient(#337ab7,#ffe6c5);">
 										
-								<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class=" col-lg-4 col-md-offset-4 col-md-4 col-sm-4 col-xs-12">
 									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-info">
@@ -50,18 +50,17 @@
 									            <!-- <div class="position-relative">
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
-									            <h4 id="thumbnail-label" style="text-decoration: underline;">TOTAL POINTS</h4>
-									             <br>
-									            <h2>${userwallet.totalbalance}</h2>
-									            <br>
+									            <h4 style="text-align: left;"id="thumbnail-label" style="text-decoration: underline;">TOTAL POINTS</h4>
+									            <h2 style="text-align: right;"><span class="fa fa-google-wallet">&nbsp;&nbsp;</span>${userwallet.totalbalance}</h2>
 									          </div>
 									        </div>
 									      </div>
 									    </div>
 									  </div>
 									</div>
-
-										<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+</div>
+<div class="well row"style="background-image: linear-gradient(#337ab7,#ffe6c5);">
+										<div class=" col-lg-4 col-md-offset-4 col-md-4 col-sm-4 col-xs-12">
 									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-warning">
@@ -70,10 +69,8 @@
 									           <!--  <div class="position-relative">
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
-									            <h4 id="thumbnail-label" style="text-decoration: underline;">WITHDRAWN POINTS</h4>
-									             <br>
-									            <h1>${userwallet.walletWithdrawn}</h1>
-									            <br>
+									            <h4 style="text-align: left;"id="thumbnail-label" style="text-decoration: underline;">WITHDRAWN POINTS</h4>
+									            <h2 style="text-align: right;"><span class="fa fa-credit-card">&nbsp;&nbsp;</span>${userwallet.walletWithdrawn}</h2>
 									          </div>
 									        </div>
 									      </div>
@@ -82,12 +79,13 @@
 									</div>
 										
 									
-									
+									</div>
+							<div class="well row" style="background-image: linear-gradient(#337ab7,#ffe6c5);">
 									<!-- </div>
 									<div class="well row"> -->
 									
 									
-									<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									<div class=" col-lg-4 col-md-offset-4 col-md-4 col-sm-4 col-xs-12">
 									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-success">
@@ -96,10 +94,8 @@
 									            <!-- <div class="position-relative">
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
-									            <h4 id="thumbnail-label" style="text-decoration: underline;">AVAILABLE POINTS</h4>
-									            <br>
-									            <h2>${userwallet.walletBalance}</h2>
-									            <br>
+									            <h4 style="text-align: left;"id="thumbnail-label" style="text-decoration: underline;">AVAILABLE POINTS</h4>
+									            <h2 style="text-align: right;"><span class="fa fa-codepen">&nbsp;&nbsp;</span>${userwallet.walletBalance}</h2>
 									          </div>
 									        </div>
 									      </div>

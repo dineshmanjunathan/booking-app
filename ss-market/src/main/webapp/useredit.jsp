@@ -11,7 +11,7 @@
 $(document).ready(function(){
     $('#referedby').change(function(){
     	$.ajax({
-            url: "/get/sponse",
+            url: "/get/sponser",
             data: {
                 "sponserId": $( "#referedby" ).val()
             },

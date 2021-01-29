@@ -504,6 +504,7 @@ public class MemberController {
 	}
 	@RequestMapping("/get/sponser")
 	public ResponseEntity<String> findSponser(@RequestParam("sponserId") String sponserId, HttpServletRequest request,ModelMap model) {
+		System.out.println("check");
 		Member member = userRepository.findByReferencecode(sponserId).get();
 		return new ResponseEntity<String>(member.getName(), HttpStatus.OK);
 	}

@@ -104,7 +104,7 @@ public class TransactionManagerController {
 			cartRepository.deleteByMemberid(memberId);
 
 			// Reward Customer.
-			rewardCustomer(member.getReferedby(), orderNumber, totalQty);
+			rewardCustomer(member.getId(),member.getReferedby(), orderNumber, totalQty);
 
 			// TODO email to member email address
 			model.addAttribute("cartList", cart);
@@ -158,7 +158,7 @@ public class TransactionManagerController {
 			cartRepository.deleteByMemberid(memberId);
 
 			// Reward Customer.
-			rewardCustomer(member.getReferedby(), orderNumber, totalQty);
+			rewardCustomer(member.getId(),member.getReferedby(), orderNumber, totalQty);
 
 			model.addAttribute("cartList", cart);
 			model.addAttribute("orderNumber", orderNumber);
@@ -207,15 +207,16 @@ public class TransactionManagerController {
 		stockPointPurchaseRepository.save(sp);
 	}
 
-	private void rewardCustomer(String sponserId, Long orderNumber, Long totalQty) {
+	private void rewardCustomer(String memId,String sponserId, Long orderNumber, Long totalQty) {
 		RewardTransaction reward = new RewardTransaction();
 		try {
 			Member member = userRepository.findByReferencecode(sponserId).get();
-			reward.setMemberid(member.getId());
+			reward.setMemberid(memId);
 			SSConfiguration ssConfig = ssConfigRepository.findById("PR").get();
 			reward.setPoint(ssConfig.getValue());
 			reward.setOrderNumber(orderNumber);
 			reward.setSponserId(sponserId);
+			reward.setRewardedMember(member.getId());
 			RewardTransaction response = rewardTransactionRepository.save(reward);
 
 			if (member != null && member.getId() != null && response != null && response.getMemberid() != null) {

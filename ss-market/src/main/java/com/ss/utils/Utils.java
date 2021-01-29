@@ -75,8 +75,10 @@ public class Utils {
 
 	public static Long getOrderNumber() {
 		Random random = new Random();
-		int randomWithNextInt = random.nextInt(999999999);
-		return (long) Math.abs(randomWithNextInt);
+		int firstRandomVal = random.nextInt(999);
+		int secRandomVal = random.nextInt(999);
+		String val = String.valueOf(firstRandomVal) + String.valueOf(secRandomVal);
+		return Long.parseLong(val);
 	}
 
 	public static Map<String, String> getSSConfigTypeMap() {
@@ -109,12 +111,6 @@ public class Utils {
 	}
 
 	public static void main(String[] arg) {
-		
-		LocalDateTime m = LocalDateTime.now().plusDays(1);
-		LocalDateTime t = LocalDateTime.now();
-		if(t.isAfter(m)) {
-			System.out.println("check");
-		}
 		
 	}
 }

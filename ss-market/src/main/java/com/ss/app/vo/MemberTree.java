@@ -1,11 +1,11 @@
 package com.ss.app.vo;
 
 public class MemberTree {
-	
+
 	private String id;
 	private String parent;
 	private String text;
-	
+
 	public String getId() {
 		return id;
 	}
@@ -30,13 +30,9 @@ public class MemberTree {
 		this.text = text;
 	}
 
-
 	@Override
 	public String toString() {
 		return "MemberTree [id=" + id + ", parent=" + parent + ", text=" + text + "]";
 	}
-	
-	
-	
 
 }

@@ -10,7 +10,7 @@
 
 <!-- <center class ="btn btn-primary"><b></b><p id="timmer"></p></b></center> -->
 <label 
-    style=' font-weight: bold; color: green;text-align: center;font-size: 182%;font-style: italic;'> Active days left!</label>
+    style=' font-weight: bold; color: #337ab7;text-align: center;font-size: 182%;font-style: italic;'> Active days left!</label>
 <center><p id="timmer"></p></center>
 <script>
 // Set the date we're counting down to
@@ -37,11 +37,11 @@ var x = setInterval(function() {
   // Output the result in an element with id="demo"
   if (days ==1) {
   
-  document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #268f63; font-weight: bold;'>"+days +"</div><div style='font-size: 30px;color: #268f63; font-weight: bold;'> Day</div>" ;
+  document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #337ab7; font-weight: bold;'>"+days +"</div><div style='font-size: 30px;color: #337ab7; font-weight: bold;'> Day</div>" ;
   
   }else{
   
-   document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #268f63; font-weight: bold;'>"+days +"</div><div style='font-size: 30px;color: #268f63; font-weight: bold;'> Days</div>" ;
+   document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #337ab7; font-weight: bold;'>"+days +"</div><div style='font-size: 30px;color: #337ab7; font-weight: bold;'> Days</div>" ;
    
   }
   /* document.getElementById("timmer").innerHTML = "<div style='font-size: 70px; font-weight: bold;'>"+days + "d</div> <div style='font-size: 28px;  font-weight: bold;'>" + hours + "h "

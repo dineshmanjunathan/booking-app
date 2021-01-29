@@ -40,9 +40,9 @@
 									<input type="hidden" name="repurcahse" id="repurcahse" value="${userwallet.repurcahse}">
 									
 									
-										<div class="well row">						
+										<div class="well row" style="background-image: linear-gradient(#337ab7,#ffe6c5);">						
 																
-									<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									<div class=" col-lg-4 col-md-offset-4 col-md-4 col-sm-4 col-xs-12">
 									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-success">
@@ -51,8 +51,8 @@
 									            <!-- <div class="position-relative">
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
-									            <h4 id="thumbnail-label" style="text-decoration: underline;">AVAILABLE POINTS</h4>
-									            <h2>${userwallet.walletBalance}</h2>
+									            <h4 style="text-align: left;" id="thumbnail-label" style="text-decoration: underline;">AVAILABLE POINTS</h4>
+									            <h2 style="text-align: right;"><span class="fa fa-codepen">&nbsp;&nbsp;</span> ${userwallet.walletBalance}</h2>
 									            <button class="btn btn-link" type="submit" name="submit" value="register">(ADD POINTS TO RE-PURCHASE)</button>
 									          </div>
 									        </div>
@@ -60,8 +60,9 @@
 									    </div>
 									  </div>
 									</div>
-									
-									<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									</div>
+									<div class="well row" style="background-image: linear-gradient(#337ab7,#ffe6c5);">
+									<div class=" col-lg-4 col-md-offset-4 col-md-4 col-sm-4 col-xs-12">
 									  <div class="col-md-14">
 									    <div class="row">
 									      <div class="col-sm-11 btn btn-danger">
@@ -70,10 +71,8 @@
 									            <!-- <div class="position-relative">
 									              <img src="https://az818438.vo.msecnd.net/icons/slack.png" style="width:72px;height:72px;" />
 									            </div> -->
-									            <h4 id="thumbnail-label" style="text-decoration: underline;">RE-PURCHASE POINTS</h4>
-									            <br>
-									            <h2>${userwallet.repurcahse}</h2>
-												<br>
+									            <h4 style="text-align: left;" id="thumbnail-label" style="text-decoration: underline;">RE-PURCHASE POINTS</h4>
+									            <h2 style="text-align: right;"><span class="fa fa-cc-mastercard">&nbsp;&nbsp;</span> ${userwallet.repurcahse}</h2>
 									          </div>
 									        </div>
 									      </div>
