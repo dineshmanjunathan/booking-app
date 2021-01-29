@@ -20,6 +20,6 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
 
 	List<Purchase> findByMember(String role);
 	
-	Purchase findByOrderNumber(Long orderNumber);	
+	List<Purchase> findByOrderNumber(Long orderNumber);	
 
 }

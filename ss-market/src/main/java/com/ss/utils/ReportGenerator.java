@@ -1,6 +1,7 @@
 package com.ss.utils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,8 @@ import javax.mail.util.ByteArrayDataSource;
 
 import com.ss.app.entity.Member;
 import com.ss.app.entity.Purchase;
+import com.ss.app.model.ProductRepository;
+import com.ss.app.vo.PurchaseReportVo;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -63,18 +66,27 @@ public class ReportGenerator {
         return hm;
     }
 	
-	public Map<String, Object> getPurchaseReportData(Purchase purchase) {
+	public Map<String, Object> getPurchaseReportData(List<Purchase> purchaseList) {
 		Map<String, Object> hm = new HashMap<String, Object>();
-		hm.put("id", purchase.getId());
-		hm.put("total", purchase.getAmount()*purchase.getQuantity());
-		hm.put("amount", purchase.getAmount());
-		hm.put("memberid", purchase.getMemberid());
-		hm.put("ordernumber", purchase.getOrderNumber());
-		hm.put("orderstatus", purchase.getOrderStatus());
-		hm.put("purchasedon",purchase.getPurchasedOn());
-		hm.put("quantity", purchase.getQuantity());
-		hm.put("product", purchase.getProduct().getProdDesc()+" ["+purchase.getProduct().getCode()+"]");
-		hm.put("category", purchase.getProduct().getCategory().getDescription()+" ["+purchase.getProduct().getCategory().getCode()+"]");
+		List<PurchaseReportVo> list = new ArrayList<>();
+		for(Purchase purchase : purchaseList) {
+			if(hm.get("total") != null) {
+				hm.put("total", (double)hm.get("total")+ purchase.getAmount()*purchase.getQuantity());
+			} else {
+				hm.put("total", purchase.getAmount()*purchase.getQuantity());
+			}
+			hm.put("ordernumber", purchase.getOrderNumber());
+			hm.put("purchasedon",purchase.getPurchasedOn());
+			hm.put("memberid", purchase.getMemberid());
+			PurchaseReportVo vo = new PurchaseReportVo();
+			vo.setCategory(purchase.getProduct().getCategory().getDescription()+" ["+purchase.getProduct().getCategory().getCode()+"]");
+			vo.setProductDesc(purchase.getProduct().getProdDesc()+" ["+purchase.getProduct().getCode()+"]");
+			vo.setQuantity(purchase.getQuantity());
+			vo.setPrice(purchase.getAmount());
+			list.add(vo);
+		}
+		JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(list);
+		hm.put("DETAILS", jrBeanCollectionDataSource);
         return hm;
     }
 	

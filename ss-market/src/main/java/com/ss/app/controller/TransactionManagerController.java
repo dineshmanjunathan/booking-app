@@ -283,6 +283,16 @@ public class TransactionManagerController {
 		}
 		return "purchaseReview";
 	}
+	
+	@RequestMapping(value = "/purchase/address", method = RequestMethod.GET)
+	public String purchaseAddress(HttpServletRequest request, ModelMap model) {
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "address";
+	}
 
 	@RequestMapping(value = "/purchase/manual/review", method = RequestMethod.GET)
 	public String purchasemanualReview(HttpServletRequest request, ModelMap model) {
@@ -451,11 +461,11 @@ public class TransactionManagerController {
 			response.setContentType("application/x-download");
 			response.setHeader("Content-Disposition", String.format("attachment; filename=" + orderNumber + ".pdf"));
 
-			Purchase purchase = purchaseRepository.findByOrderNumber(Long.parseLong(orderNumber));
+			List<Purchase> purchaseList = purchaseRepository.findByOrderNumber(Long.parseLong(orderNumber));
 
 			OutputStream out = response.getOutputStream();
 			ReportGenerator reportGenerator = new ReportGenerator();
-			jasperPrint = reportGenerator.getJasperContext(reportGenerator.getPurchaseReportData(purchase),
+			jasperPrint = reportGenerator.getJasperContext(reportGenerator.getPurchaseReportData(purchaseList),
 					"templates/purchaseOrder.jrxml");
 			JasperExportManager.exportReportToPdfStream(jasperPrint, out);
 		} catch (Exception e) {
