@@ -10,4 +10,5 @@ public interface RewardTransactionRepository extends CrudRepository<RewardTransa
 	
 	List<RewardTransaction> findByMemberid(String memberId);
 
+	List<RewardTransaction> findByRewardedMember(String rewardedMember);
 }
