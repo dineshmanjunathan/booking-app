@@ -9,7 +9,7 @@
 
 	<div class="row text-center">
 			<div class="text-center m-b-md custom-login">
-				<a href="/"><img class="main-logo" src="../../img/logo/logo.jpeg" alt="" /></a><br/><br/>
+				<a href="/"><img class="main-logo" src="../../img/logo/logo.png" alt="" /></a><br/><br/>
 			</div>
 			<div class="well col-md-4 col-md-offset-4">
 			 <h3 >Member Login</h3>  
@@ -38,7 +38,7 @@
                      	 <div class="col-md-3"></div>
                          <div class="col-md-6">
                               <button class="btn btn-success btn-block loginbtn" type="submit" name="submit" value="login">Login</button>
-                             <!--  <a class="btn btn-success btn-block loginbtn" href="/landingPage.jsp">Back</a> -->
+                             <a class="btn btn-success btn-block loginbtn" href="/landingPage.jsp">Back</a>
                               
                          </div>
                          <div class="col-md-3"></div>

@@ -8,7 +8,7 @@
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
 </head>
-<div class="col-md-10 col-md-offset-2 well row">
+<div class="col-md-11 col-md-offset-1 well row">
 	<h4>User Status</h4>
 	</br>
 	<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 btn btn-info" style="padding: inherit;">
@@ -76,7 +76,7 @@
 		</a>
 	</div>
 </div>
-<div class="col-md-10 col-md-offset-2 well row">
+<div class="col-md-11 col-md-offset-1 well row">
 	<h4>Management</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -117,7 +117,7 @@
 		</a>
 	</div>
 </div>
-<div class="col-md-10 col-md-offset-2 well row">
+<div class="col-md-11 col-md-offset-1 well row">
 	<h4>Product Management</h4>
 	</br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -147,7 +147,7 @@
 
 </div>
 
-<div class="col-md-10 col-md-offset-2 well row">
+<div class="col-md-11 col-md-offset-1 well row">
 	<h4>Transaction Management</h4>
 	<br>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">

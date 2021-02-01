@@ -34,7 +34,7 @@ var x = setInterval(function() {
    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
   // Output the result in an element with id="demo"
-  document.getElementById("timmer").innerHTML = "<div style='font-size: 40px;color: #337ab7; font-weight: bold;'>"+days + "d</div> <div style='font-size: 28px; color: #337ab7;  font-weight: bold;'>" + hours + "h "
+  document.getElementById("timmer").innerHTML = "<div style='font-size: 30px;color: #337ab7; font-weight: bold;'>"+days + "d</div> <div style='font-size: 20px; color: #337ab7;  font-weight: bold;'>" + hours + "h "
   + minutes + "m " + seconds + "s </div>";
     
   // If the count down is over, write some text 

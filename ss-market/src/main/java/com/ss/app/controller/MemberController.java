@@ -52,8 +52,13 @@ public class MemberController {
 	private SSConfigRepository ssConfigRepository;
 
 	@RequestMapping("/")
-	public String login(HttpServletRequest request, ModelMap model) {
-		return "login";
+	public String landingPage(HttpServletRequest request, ModelMap model) {
+		return "landingPage";
+	}
+	
+	@RequestMapping("/landingPage")
+	public String inLandingPage(HttpServletRequest request, ModelMap model) {
+		return "landingPage";
 	}
 
 	@RequestMapping("/login")

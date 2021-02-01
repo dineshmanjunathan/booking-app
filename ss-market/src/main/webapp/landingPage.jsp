@@ -33,7 +33,7 @@
 
                 <div class="col-xs-12 col-md-4" align="center">
                     <div class="shop-product">
-                        <a href="/login.jsp" target="_blank"><div class="image-holder">
+                        <a href="#" target="_blank"><div class="image-holder">
                                 <img src="/img/bg/login_icon.png" alt="" class="img-responsive zoom"> 
                             </div></a>
                     </div>
@@ -44,7 +44,7 @@
 
                 <div class="col-xs-12 col-md-4" align="center">
                     <div class="shop-product">
-                        <a href="/register" target="_blank"><div class="image-holder">
+                        <a href="#" target="_blank"><div class="image-holder">
                                 <img src="/img/bg/new_registrations_icon.png" alt="" class="img-responsive zoom"> 
                             </div></a>
                     </div>
@@ -54,7 +54,7 @@
 
                 <div class="col-xs-12 col-md-4" align="center">
                     <div class="shop-product">
-                        <a href="/stock/point/login" target="_blank"><div class="image-holder">
+                        <a href="#" target="_blank"><div class="image-holder">
                                 <img src="/img/bg/shopping_icon.png" alt="" class="img-responsive zoom"> 
                             </div></a>
                     </div>
@@ -78,7 +78,7 @@
 <br><br><br><br>
         <!--end section-->
         <div class="clearfix"></div>
-        <section class="section-copyrights sec-moreless-padding">
+        <section class="section-copyrights sec-moreless-padding" style="background-image: linear-gradient(#0f68b4,#4f5880)">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-3" align="left"> <span>Copyright @ 2021 | All rights reserved.</span> </div>

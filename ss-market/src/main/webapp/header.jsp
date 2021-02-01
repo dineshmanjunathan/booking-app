@@ -198,11 +198,16 @@
 }
 
 .left-menu {
-	color: black !important;
+	color: white !important;
     padding: 5px 15px 5px 10px !important;
     border-color: #007bff;
-    background-image: linear-gradient(#337ab7,#ffe6c5);
+    background-image: linear-gradient(#0f68b4,#4f5880);
     border: 1px solid #007bff;
+}
+
+body {
+	background-image:url(/img/bg/mainbg.jpg);
+	height:100%
 }
 </style>
 
@@ -223,14 +228,18 @@
 
 <!-- Start Left menu area -->
 <c:if test="${not empty sessionScope.LOGGED_ON}">
+	<c:choose>
+	<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
+	</c:when>
+	<c:otherwise>
 	<div class="left-sidebar-pro">
 		<nav id="sidebar" class="">
 			<div class="sidebar-header">
 				<a href="/home"><img class="main-logo"
-					src="../../img/logo/logo.jpeg" alt=""
-					style="height: 100px; width: 200px;" /></a> <strong><a
-					href="/home"><img src="../../img/logo/logo.jpeg" alt=""
-						style="height: 100px; width: 200px;"></a></strong>
+					src="../../img/logo/logo.png" alt=""
+					style="height: 50%; width: 75%;" /></a> <strong><a
+					href="/home"><img src="../../img/logo/logo.png" alt=""
+						style="height: 50%; width: 76%;"></a></strong>
 			</div>
 			<c:if test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
 				<div class="left-custom-menu-adp-wrap comment-scrollbar">
@@ -267,6 +276,7 @@
 					</nav>
 
 				</div>
+				
 			</c:if>
 			
 			<c:if test="${fn:contains(sessionScope.ROLE, 'STOCK_POINT')}">
@@ -299,9 +309,11 @@
 
 		</nav>
 	</div>
+	</c:otherwise>
+	</c:choose>
 </c:if>
 
-<nav class="navbar navbar-dark bg-primary">
+<nav style="background-image: linear-gradient(#0f68b4,#4f5880)" class="navbar navbar-dark bg-primary">
 
 	<div class="header-right-info">
 		<ul class="nav navbar-nav mai-top-nav header-right-menu"
@@ -343,7 +355,7 @@
 	</div>
 </nav>
 
-<!-- <div class="footer"><p>© 2021 Copyright: SS Marketing</p>
+<!-- <div class="footer" style="background-image: linear-gradient(#0f68b4,#4f5880)"><p>© 2021 Copyright: SS Marketing</p>
 </div>
  -->
 </html>
