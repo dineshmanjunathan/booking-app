@@ -14,8 +14,7 @@
 <center><p id="timmer"></p></center>
 <script>
 // Set the date we're counting down to
-var activeDaysLeft = new Date();
-activeDaysLeft.setDate(activeDaysLeft.getDate() + ${sessionScope.ACTIVE_DAYS});
+var activeDaysLeft = new Date("${sessionScope.ACTIVE_DAYS}");
  var countDownDate = activeDaysLeft.getTime();
 
 
@@ -30,22 +29,13 @@ var x = setInterval(function() {
     
   // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24))+1;
-   //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-   //var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-   //var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
   // Output the result in an element with id="demo"
-  if (days ==1) {
-  
-  document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #337ab7; font-weight: bold;'>"+days +"</div><div style='font-size: 30px;color: #337ab7; font-weight: bold;'> Day</div>" ;
-  
-  }else{
-  
-   document.getElementById("timmer").innerHTML = "<div style='font-size: 60px;color: #337ab7; font-weight: bold;'>"+days +"</div><div style='font-size: 30px;color: #337ab7; font-weight: bold;'> Days</div>" ;
-   
-  }
-  /* document.getElementById("timmer").innerHTML = "<div style='font-size: 70px; font-weight: bold;'>"+days + "d</div> <div style='font-size: 28px;  font-weight: bold;'>" + hours + "h "
-  + minutes + "m " + seconds + "s </div>"; */
+  document.getElementById("timmer").innerHTML = "<div style='font-size: 40px;color: #337ab7; font-weight: bold;'>"+days + "d</div> <div style='font-size: 28px; color: #337ab7;  font-weight: bold;'>" + hours + "h "
+  + minutes + "m " + seconds + "s </div>";
     
   // If the count down is over, write some text 
   if (distance < 0) {

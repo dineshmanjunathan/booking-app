@@ -2,7 +2,9 @@ package com.ss.app.controller;
 
 import java.io.OutputStream;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,10 +86,10 @@ public class MemberController {
 	public String logout(HttpServletRequest request, ModelMap model) {
 		String redirectPath="login";
 		if (request.getSession() != null) {
-			if(request.getSession().getAttribute("ROLE").equals("ADMIN")) {
+			if(request.getSession().getAttribute("ROLE")!=null && request.getSession().getAttribute("ROLE").equals("ADMIN")) {
 				model.addAttribute("ROLE","ADMIN");
 				redirectPath = "commonLogin";
-			}else if(request.getSession().getAttribute("ROLE").equals("STOCK_POINT")) {
+			}else if(request.getSession().getAttribute("ROLE")!=null && request.getSession().getAttribute("ROLE").equals("STOCK_POINT")) {
 				model.addAttribute("ROLE","STOCK_POINT");
 				redirectPath = "commonLogin";
 			}
@@ -112,10 +114,14 @@ public class MemberController {
 				request.getSession().setAttribute("MEMBER_NAME", member.getName());
 				request.getSession().setAttribute("ROLE", member.getRole());
 				if(member.getActive_days() !=null) {
-					long numOfDays = ChronoUnit.DAYS.between( LocalDateTime.now(), member.getActive_days())+1;
-					request.getSession().setAttribute("ACTIVE_DAYS", numOfDays);
+					SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss");
+					java.util.Date date = Date.from(member.getActive_days().atZone(ZoneId.systemDefault()).toInstant());
+					request.getSession().setAttribute("ACTIVE_DAYS", sdf.format(date));
 				} else {
-					request.getSession().setAttribute("ACTIVE_DAYS", 0);
+					LocalDateTime time = LocalDateTime.now();
+					SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss");
+					java.util.Date date = Date.from(time.atZone(ZoneId.systemDefault()).toInstant());
+					request.getSession().setAttribute("ACTIVE_DAYS", sdf.format(date));
 				}
 				return "menu";
 			} else {
