@@ -16,8 +16,8 @@
                   <form action="/login" method="post">
                       	<p style="color:red" align="center">${errormsg}</p>  
                       	<p style="color:green" align="center">${adminlogout}</p>
-                      	<p style="color:green" align="center">${registersuccess}</p> 
-                      	<input type="hidden" name="role" value="MEMBER">
+                      	<p style="color:green" align="center">${registersuccess}</p>                       	<input type="hidden" name="role" value="MEMBER">
+
                      <div class="row">
                          <div class="col-md-12">
                              <div class="form-group">
@@ -38,7 +38,7 @@
                      	 <div class="col-md-3"></div>
                          <div class="col-md-6">
                               <button class="btn btn-success btn-block loginbtn" type="submit" name="submit" value="login">Login</button>
-                              <a class="btn btn-success btn-block loginbtn" href="/register">Register</a>
+                             <!--  <a class="btn btn-success btn-block loginbtn" href="/landingPage.jsp">Back</a> -->
                               
                          </div>
                          <div class="col-md-3"></div>

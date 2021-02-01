@@ -30,7 +30,7 @@ public class SessionFilter implements Filter {
         ArrayList<String> skipList = getSkipList();
         String uri = req.getRequestURI();
         System.out.println();
-        if(!uri.equals("/") ||
+        if(!uri.equals("/") || 
         		!uri.equals("/login") ||
         		!uri.equals("/admin/login") ||
         		!uri.equals("/stock/point/login") ||

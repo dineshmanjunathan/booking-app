@@ -18,14 +18,12 @@
 					<ul id="myTabedu1" class="tab-review-design">
 						<li class="active"><a href="">Member Registration</a></li>
 					</ul>
-					<!-- <form action="/userlisting" method="get"> -->
-					<div class="payment-adress">
+					<!-- <div class="payment-adress">
 						<a
 							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
-							href="/login.jsp" type="submit" name="submit"
-							value="adminListing">Back to Login</a>
-					</div>
-					<!-- </form> -->
+							href="/landingPage.jsp" type="submit" name="submit"
+							value="adminListing">Back</a>
+					</div> -->
 
 					<div id="myTabContent" class="tab-content custom-product-edit">
 						<div class="product-tab-list tab-pane fade active in"

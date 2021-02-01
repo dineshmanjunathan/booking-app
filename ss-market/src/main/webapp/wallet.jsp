@@ -39,7 +39,7 @@
 									<input type="hidden" name="repurcahse" id="repurcahse" value="${userwallet.repurcahse}">
 									
 									
-										<div class="well row" style="background-image: linear-gradient(#337ab7,#ffe6c5);">
+								<div class="well row" style="background-image: linear-gradient(#337ab7,#ffe6c5);">
 										
 								<div class=" col-lg-4 col-md-offset-4 col-md-4 col-sm-4 col-xs-12">
 									  <div class="col-md-14">
