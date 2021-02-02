@@ -100,9 +100,11 @@ public class AdminController {
 				
 				return "adminMenu";
 			} else {
+				request.getSession().setAttribute("ROLE", "ADMIN");
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
 			}
 		} catch (Exception e) {
+			request.getSession().setAttribute("ROLE", "ADMIN");
 			model.addAttribute("errormsg","Admin does not Exists!");
 		}
 		return "commonLogin";

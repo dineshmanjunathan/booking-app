@@ -71,9 +71,11 @@ public class StockPointController {
 				request.getSession().setAttribute("ROLE", member.getRole());
 				return "stockPointMenu";
 			} else {
+				model.addAttribute("ROLE","STOCK_POINT");
 				model.addAttribute("errormsg","User Id or Password is incorrect!");
 			}
 		} catch (Exception e) {
+			model.addAttribute("ROLE","STOCK_POINT");
 			model.addAttribute("errormsg","Stock point does not Exists!");
 		}
 		return "commonLogin";
