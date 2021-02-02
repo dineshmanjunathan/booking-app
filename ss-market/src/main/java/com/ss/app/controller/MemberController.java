@@ -398,7 +398,11 @@ public class MemberController {
 	public String editSubmit(HttpServletRequest request, MemberVo user, ModelMap model) {
 		Member userEntity = new Member();
 		try {
+			Member actualmember = userRepository.findById(user.getId()).get();			
 			BeanUtils.copyProperties(user, userEntity);
+			if(actualmember!=null && actualmember.getId()!=null) {
+				userEntity.setActive_days(actualmember.getActive_days());
+			}
 			userEntity.setUpdatedon(new Date(System.currentTimeMillis()));
 
 			Member member = userRepository.save(userEntity);

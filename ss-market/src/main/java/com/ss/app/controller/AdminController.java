@@ -307,7 +307,7 @@ public class AdminController {
 	public String stockpurchaseListing(HttpServletRequest request,ModelMap model) {
 		Iterable<StockPointPurchase> purchaseList = stockPurchaseRepository.findAll();
 		model.addAttribute("stockPoitPurchaseList",purchaseList);
-		return "stockPointPurcahseList";
+		return "stockPointSalesHistory";
 	} 
 	
 	@RequestMapping("/admin/ssconfig/listing")

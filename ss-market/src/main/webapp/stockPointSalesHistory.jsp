@@ -22,13 +22,27 @@
 									<div class="row">
 									<table class="full-right">
 									<tr>
-									<td>
-										<a href="/stock/point/menu"
-											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
-											<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
-										</span>
-										</a>
-									</td>
+
+									<c:choose>
+									<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
+										<td>
+											<a href="/admin/menu"
+												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
+												<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
+											</span>
+											</a>
+										</td>
+									</c:when>
+									<c:otherwise>
+										<td>
+											<a href="/stock/point/menu"
+												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
+												<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
+											</span>
+											</a>
+										</td>
+									</c:otherwise>
+								</c:choose>
 									</tr> 
 									</table>
 									<p style="color: green" align="center">${successMessage}</p>

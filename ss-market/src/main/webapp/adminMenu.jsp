@@ -97,7 +97,7 @@
 		<a href="<c:url value='/admin/stockpurchase/listing' />">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
-					<h5>Stock Point Purchase List</h5>
+					<h5>Stock Point Sales History</h5>
 				</div>
 				<div class="stats-icon pull-right">
 					<i class="educate-icon educate-apps"></i>

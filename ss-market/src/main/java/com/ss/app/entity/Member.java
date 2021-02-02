@@ -47,9 +47,11 @@ public class Member implements Serializable {
 	@Column(columnDefinition="bigint default 0")
 	private Long repurcahse= 0L;
 	
+	@Column(updatable=false)
 	private String referencecode;
 	private Date createon = new Date(System.currentTimeMillis());
 	private Date updatedon = new Date(System.currentTimeMillis());
+	@Column(updatable=false)
 	private String referedby;
 	
 	private LocalDateTime active_days;

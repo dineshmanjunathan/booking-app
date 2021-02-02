@@ -86,8 +86,10 @@ $(document).ready(function(){
 											onsubmit="return ValidateForm(this);">
 											<p style="color: red" align="center">${errormsg}</p>
 											<input type="hidden" name="id" id="id" value="${member.id}">
-											<input type="hidden" name="active_days" id="active_days"
-												value="${member.active_days}">
+											<input type="hidden" name="walletBalance" id="walletBalance" value="${member.walletBalance}">
+											<input type="hidden" name="walletWithdrawn" id="walletWithdrawn" value="${member.walletWithdrawn}">
+											<input type="hidden" name="repurcahse" id="repurcahse" value="${member.repurcahse}">
+											<input type="hidden" name="referencecode" id="referencecode" value="${member.referencecode}">
 
 											<div id="dropzone1" class="pro-ad">
 
