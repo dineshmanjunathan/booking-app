@@ -17,7 +17,7 @@ import com.ss.app.model.RewardTransactionRepository;
 import com.ss.app.model.SSConfigRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.MemberRewardTree;
-import com.ss.utils.ParseJson;
+import com.ss.utils.BatchProcess;
 
 @Component
 public class DailyRewardScheduler {
@@ -48,7 +48,7 @@ public class DailyRewardScheduler {
 			memberRewardTree.setId(member.getId());
 			recursionTree(memberRewardTree, member.getReferencecode(), member.getId());
 			Gson f = new Gson();
-			Double awdVal = ParseJson.parse(f.toJson(memberRewardTree), map, rewardTransactionRepository);
+			Double awdVal = BatchProcess.parse(f.toJson(memberRewardTree), map, rewardTransactionRepository);
 			if(awdVal>0) {
 				member.setWalletBalance(member.getWalletBalance() + awdVal.longValue());
 				userRepository.save(member);
