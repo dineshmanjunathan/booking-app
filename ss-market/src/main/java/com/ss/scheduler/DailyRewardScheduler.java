@@ -41,7 +41,7 @@ public class DailyRewardScheduler {
 		for (SSConfiguration ssConfiguration : levels) {
 			map.put(ssConfiguration.getCode(), ssConfiguration.getValue());
 		}
-		List<Member> memberList = userRepository.getActiveMembers();
+		List<Member> memberList = userRepository.getActiveMembersOnly();
 
 		for (Member member : memberList) {
 			MemberRewardTree memberRewardTree = new MemberRewardTree();

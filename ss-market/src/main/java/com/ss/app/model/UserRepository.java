@@ -32,6 +32,9 @@ public interface UserRepository extends CrudRepository<Member, String>{
 	@Query(value="select * from t_member m where m.active_days  > CURRENT_TIMESTAMP ", nativeQuery=true)
 	List<Member> getActiveMembers();
 	
+	@Query(value="select * from t_member m where m.active_days  > CURRENT_TIMESTAMP and m.role='MEMBER'", nativeQuery=true)
+	List<Member> getActiveMembersOnly();
+	
 	@Query(value="select case when active_days > CURRENT_TIMESTAMP THEN 'ACTIVE' ELSE 'INACTIVE' END member_status,* from t_member ", nativeQuery=true)
 	List<Member> getAllMemberWithStatus();
 	
