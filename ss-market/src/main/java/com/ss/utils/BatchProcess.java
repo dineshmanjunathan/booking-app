@@ -29,7 +29,7 @@ public class BatchProcess {
 	}
 
 	private static void prepareMember(MemberRewardTree e) {
-		setParentAndLevel(e, 0, e.getId());
+		setParentAndLevel(e, -1, e.getId());
 	}
 
 	private static void setParentAndLevel(MemberRewardTree e, int lvl, String parent) {
@@ -51,7 +51,7 @@ public class BatchProcess {
 		try {
 			System.out.println(e);
 			Double rewardVal = 0.0;
-			if (e.getLevel() != 0) {
+			if (e.getLevel() > 0) {
 				rewardVal = configMap.get("L" + e.getLevel());
 			}
 			if (rewardVal != null && rewardVal > 0) {

@@ -78,7 +78,7 @@
 <br><br><br><br>
         <!--end section-->
         <div class="clearfix"></div>
-        <section class="section-copyrights sec-moreless-padding" style="background-image: linear-gradient(#0f68b4,#4f5880)">
+        <section class="section-copyrights sec-moreless-padding" style="background-image: linear-gradient(#0f68b4,#1a1e2c)">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-3" align="left"> <span>Copyright @ 2021 | All rights reserved.</span> </div>
@@ -88,7 +88,6 @@
                             <li><a href="#" data-toggle="modal" data-target="#About"> About Us </a>|</li>
                             <li><a href="#" data-toggle="modal" data-target="#Terms"> Terms &amp; Condition</a>|</li>
                             <li><a href="#" data-toggle="modal" data-target="#Privacypolicy"> Privacy Policy</a>|</li> 
-                            <li><a href="#" data-toggle="modal" data-target="#Grievance"> Grievance</a>|</li> 
                             <li><a href="#" data-toggle="modal" data-target="#Contactus"> Contact Us </a></li>
 
                         </ul>

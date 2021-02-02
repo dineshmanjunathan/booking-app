@@ -201,7 +201,7 @@
 	color: black !important;
     padding: 5px 15px 5px 10px !important;
     border-color: #007bff;
-    background-image: linear-gradient(#337ab7,#ffe6c5);
+    background-image: linear-gradient(#337ab7,#1a1e2c);
     border: 1px solid #007bff;
 }
 </style>

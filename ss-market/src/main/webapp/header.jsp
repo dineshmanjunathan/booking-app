@@ -307,7 +307,7 @@ body {
 	</div>
 </c:if>
 
-<nav style="background-image: linear-gradient(#0f68b4,#4f5880)" class="navbar navbar-dark bg-primary">
+<nav style="background-image: linear-gradient(#0f68b4,#1a1e2c)" class="navbar navbar-dark bg-primary">
 
 	<div class="header-right-info">
 		<ul class="nav navbar-nav mai-top-nav header-right-menu"
@@ -349,7 +349,7 @@ body {
 	</div>
 </nav>
 
-<!-- <div class="footer" style="background-image: linear-gradient(#0f68b4,#4f5880)"><p>© 2021 Copyright: SS Marketing</p>
+<!-- <div class="footer" style="background-image: linear-gradient(#0f68b4,#1a1e2c)"><p>© 2021 Copyright: SS Marketing</p>
 </div>
  -->
 </html>
