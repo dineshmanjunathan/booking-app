@@ -206,8 +206,8 @@
 }
 
 body {
-	background-image:url(/img/bg/mainbg.jpg);
-	height:100%
+	/* background-image:url(/img/bg/mainbg.jpg);
+	height: 120%; */
 }
 </style>
 
@@ -228,10 +228,6 @@ body {
 
 <!-- Start Left menu area -->
 <c:if test="${not empty sessionScope.LOGGED_ON}">
-	<c:choose>
-	<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
-	</c:when>
-	<c:otherwise>
 	<div class="left-sidebar-pro">
 		<nav id="sidebar" class="">
 			<div class="sidebar-header">
@@ -309,8 +305,6 @@ body {
 
 		</nav>
 	</div>
-	</c:otherwise>
-	</c:choose>
 </c:if>
 
 <nav style="background-image: linear-gradient(#0f68b4,#4f5880)" class="navbar navbar-dark bg-primary">
