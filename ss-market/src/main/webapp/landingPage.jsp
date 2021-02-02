@@ -75,7 +75,7 @@
         <div class="clearfix"></div>
 
 <br><br>
-<br><br><br><br><br><br><br>
+<br><br><br><br>
         <!--end section-->
         <div class="clearfix"></div>
         <section class="section-copyrights sec-moreless-padding" style="background-image: linear-gradient(#0f68b4,#4f5880)">
