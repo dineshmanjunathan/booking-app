@@ -12,14 +12,14 @@ public class BatchProcess {
 	static String awardMember = null;
 	static Double awdVal = 0.0;
 
-	public static Double parse(String a, Map<String, Double> configMap,
+	public static Double process(String a, Map<String, Double> configMap,
 			RewardTransactionRepository rewardTransactionRepository) {
 		Gson g = new Gson();
-		awdVal=0.0;
+		awdVal = 0.0;
 		try {
 			MemberRewardTree e = g.fromJson(a, MemberRewardTree.class);
 			awardMember = e.getId();
-			parseMember(e);
+			prepareMember(e);
 			rewardMember(e, configMap, rewardTransactionRepository);
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -28,21 +28,20 @@ public class BatchProcess {
 
 	}
 
-	private static void parseMember(MemberRewardTree e) {
+	private static void prepareMember(MemberRewardTree e) {
 		setParentAndLevel(e, 0, e.getId());
 	}
 
 	private static void setParentAndLevel(MemberRewardTree e, int lvl, String parent) {
 		try {
-		e.setLevel(lvl);
-		e.setParentId(parent);
-		if (e.getChildren() != null && e.getChildren().size() > 0) {
-			lvl++;
-			for (MemberRewardTree emp : e.getChildren()) {
-				setParentAndLevel(emp, lvl, e.getId());
+			e.setLevel(lvl);
+			if (e.getChildren() != null && e.getChildren().size() > 0) {
+				lvl++;
+				for (MemberRewardTree emp : e.getChildren()) {
+					setParentAndLevel(emp, lvl, e.getId());
+				}
 			}
-		}
-		}catch(Exception e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	}
@@ -55,17 +54,11 @@ public class BatchProcess {
 			if (e.getLevel() != 0) {
 				rewardVal = configMap.get("L" + e.getLevel());
 			}
-			RewardTransaction reward = new RewardTransaction();
-			reward.setMemberid(e.getId());
-			reward.setPoint(rewardVal);
-			reward.setOrderNumber(100001L);
-			reward.setRewardedMember(awardMember);
-			reward.setSponserId(e.getSponserId());
-			awdVal = awdVal + rewardVal;
-			if (rewardVal > 0) {
+			if (rewardVal != null && rewardVal > 0) {
+				RewardTransaction reward = prepareRewarTransaction(e, rewardVal);
+				awdVal = awdVal + rewardVal;
 				rewardTransactionRepository.save(reward);
 			}
-
 			if (e.getChildren() != null && e.getChildren().size() > 0) {
 				for (MemberRewardTree emp : e.getChildren()) {
 					rewardMember(emp, configMap, rewardTransactionRepository);
@@ -76,5 +69,15 @@ public class BatchProcess {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+	}
+
+	private static RewardTransaction prepareRewarTransaction(MemberRewardTree e, Double rewardVal) {
+		RewardTransaction reward = new RewardTransaction();
+		reward.setMemberid(e.getId());
+		reward.setPoint(rewardVal);
+		reward.setOrderNumber(100001L);
+		reward.setRewardedMember(awardMember);
+		reward.setSponserId(e.getSponserId());
+		return reward;
 	}
 }

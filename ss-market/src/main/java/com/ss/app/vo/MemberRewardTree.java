@@ -6,12 +6,8 @@ import java.util.List;
 public class MemberRewardTree {
 
 	private String id;
-	private String parentId;
 	private String sponserId;
-	private String text;
-	
 	private List<MemberRewardTree> children = new ArrayList<MemberRewardTree>();
-	
 	private int level;
 
 	public String getId() {
@@ -21,23 +17,6 @@ public class MemberRewardTree {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-	
 
 	public List<MemberRewardTree> getChildren() {
 		return children;
@@ -65,8 +44,11 @@ public class MemberRewardTree {
 
 	@Override
 	public String toString() {
-		return "MemberRewardTree [MemberId=" + id + ", parent=" + parentId + ", level=" + level + "]";
+		return "MemberRewardTree [id=" + id + ", sponserId=" + sponserId + ", children=" + children + ", level=" + level
+				+ "]";
 	}
+
+	
 
 	
 	

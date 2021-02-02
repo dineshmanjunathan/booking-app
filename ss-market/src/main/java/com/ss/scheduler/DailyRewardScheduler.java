@@ -48,7 +48,7 @@ public class DailyRewardScheduler {
 			memberRewardTree.setId(member.getId());
 			recursionTree(memberRewardTree, member.getReferencecode(), member.getId());
 			Gson f = new Gson();
-			Double awdVal = BatchProcess.parse(f.toJson(memberRewardTree), map, rewardTransactionRepository);
+			Double awdVal = BatchProcess.process(f.toJson(memberRewardTree), map, rewardTransactionRepository);
 			if(awdVal>0) {
 				member.setWalletBalance(member.getWalletBalance() + awdVal.longValue());
 				userRepository.save(member);
@@ -70,8 +70,6 @@ public class DailyRewardScheduler {
 			if (mem.getActive_days() != null && mem.getActive_days().isAfter(LocalDateTime.now())) {
 				subTree = new MemberRewardTree();
 				subTree.setId(mem.getId());
-				subTree.setParentId(memberId);
-				subTree.setText(mem.getId());
 				subTree.setSponserId(mem.getReferedby());
 				recursionTree(subTree, mem.getReferencecode(), mem.getId());
 				subTreeList.add(subTree);
