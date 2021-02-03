@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -519,7 +520,11 @@ public class MemberController {
 	}
 	@RequestMapping("/get/sponser")
 	public ResponseEntity<String> findSponser(HttpServletRequest request,ModelMap model,@RequestParam("sponserId") String sponserId) {
-		Member member = userRepository.findByReferencecode(sponserId).get();
-		return new ResponseEntity<String>(member.getName(), HttpStatus.OK);
+		try {
+			Member member = userRepository.findByReferencecode(sponserId).get();
+			return new ResponseEntity<String>(member.getName(), HttpStatus.OK);
+		}catch(NoSuchElementException e) {
+			return new ResponseEntity<String>("", HttpStatus.OK);
+		}
 	}
 }

@@ -10,23 +10,35 @@
 <script type="text/javascript" charset="utf-8">
 
 function getSponserName() {
-    	$.ajax({
-            url: "/get/sponser",
-            data: {
-                "sponserId": document.getElementById("referedby").value
-            },
-            type: "get",
-            cache: false,
-            success: function (data) {
-                if(data) {
-                	  var s = document.getElementById("sponsername");
-                      s.value = data;
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+	$.ajax({
+        url: "/get/sponser",
+        data: {
+            "sponserId": document.getElementById("referedby").value
+        },
+        type: "get",
+        cache: false,
+        success: function (data) {
+
+            if(data.length>0) {
+            	  var s = document.getElementById("sponsername"); s.value = data;
+
+                 var element = document.getElementById("errmsg");
+              	 element.classList.add("btn-success");
+              	 var msg = document.getElementById("errmsg"); msg.value = "Valid Sponser Id";
+                 document.getElementById("errmsg").style.visibility = "visible";
+            }else{
+            	var element = document.getElementById("errmsg");
+            	element.classList.add("btn-danger");
+            	
+            	var s = document.getElementById("errmsg"); s.value = "Invalid Sponser Id";
+                document.getElementById("errmsg").style.visibility = "visible";
+            	
             }
-        });
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+        }
+    });
 }
 </script>
 <body>
@@ -137,6 +149,7 @@ function getSponserName() {
 																		value="${SPONSERNAME}" readonly>
 												</div>
 												</div>
+												<center><input name="errmsg" id="errmsg" class="btn "style="visibility: hidden;" readonly></center>
 												</div>
 												<li class="active"><a href="">User Details:</a></li>
 													<div class="well row">
