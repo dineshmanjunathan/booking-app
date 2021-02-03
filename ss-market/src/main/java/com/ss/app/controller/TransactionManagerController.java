@@ -122,7 +122,7 @@ public class TransactionManagerController {
 		try {
 			HttpSession session = request.getSession();
 			String memberId = (String) session.getAttribute("MEMBER_ID");
-			String role = (String) session.getAttribute("ROLE");
+			//String role = (String) session.getAttribute("ROLE");
 			Member member = null;
 			try {
 				member = userRepository.findById(memberid).get();
@@ -183,6 +183,7 @@ public class TransactionManagerController {
 			spp.setPrice(prod.getPrice());
 			spp.setProdDesc(prod.getProdDesc());
 			spp.setQuantity(c.getQuantity());
+			spp.setImage(prod.getImage());
 			spp.setStatus("PENDING");
 			stockPointProuctRepository.save(spp);
 		} else {
@@ -347,7 +348,7 @@ public class TransactionManagerController {
 				model.addAttribute("cartMap", map);
 				model.addAttribute("cartTotal", total);
 			}
-			Iterable<StockPointProduct> productList = stockPointProuctRepository.findByMemberId(memberId);
+			Iterable<StockPointProduct> productList = stockPointProuctRepository.findByMemberIdAndStatus(memberId, "DELEVIERED");
 			model.addAttribute("productList", productList);
 		} catch (Exception e) {
 			e.printStackTrace();

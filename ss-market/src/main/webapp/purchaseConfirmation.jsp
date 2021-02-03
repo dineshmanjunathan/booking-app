@@ -27,7 +27,16 @@
 							id="description">
 							<div class="row">
 								<div class="row">
-									<a href="/menu"
+								<c:set var="url" value=""></c:set>
+								<c:choose>
+										<c:when test="${sessionScope.ROLE == 'MEMBER' }">
+											<c:set var="url" value="/menu"></c:set>
+										</c:when>
+										<c:otherwise>
+											<c:set var="url" value="/stock/point/menu"></c:set>
+										</c:otherwise>
+									</c:choose>
+									<a href="${url }"
 										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 										<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span> </span>
 									</a> 
