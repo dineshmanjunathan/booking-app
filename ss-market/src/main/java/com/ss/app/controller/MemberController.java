@@ -350,7 +350,7 @@ public class MemberController {
 				String referedBy = userRepository.checkSponserExists(user.getReferedby());
 				if (StringUtils.isEmpty(referedBy)) {
 					
-					model.addAttribute("errormsg", "Invalid Sponser Id.");
+					model.addAttribute("errormsg", "Invalid Sponser Id Provided.");
 					if(role!=null && role.equals("ADMIN")) {
 						model.addAttribute("member", userEntity);
 						return "useredit";
@@ -518,8 +518,7 @@ public class MemberController {
 		return new ResponseEntity<String>(member.getName(), HttpStatus.OK);
 	}
 	@RequestMapping("/get/sponser")
-	public ResponseEntity<String> findSponser(@RequestParam("sponserId") String sponserId, HttpServletRequest request,ModelMap model) {
-		System.out.println("check");
+	public ResponseEntity<String> findSponser(HttpServletRequest request,ModelMap model,@RequestParam("sponserId") String sponserId) {
 		Member member = userRepository.findByReferencecode(sponserId).get();
 		return new ResponseEntity<String>(member.getName(), HttpStatus.OK);
 	}

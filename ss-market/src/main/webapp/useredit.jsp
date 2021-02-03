@@ -8,12 +8,12 @@
 <meta charset="ISO-8859-1">
 </head>
 <script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-    $('#referedby').change(function(){
+
+function getSponserName() {
     	$.ajax({
             url: "/get/sponser",
             data: {
-                "sponserId": $( "#referedby" ).val()
+                "sponserId": document.getElementById("referedby").value
             },
             type: "get",
             cache: false,
@@ -27,8 +27,7 @@ $(document).ready(function(){
                 console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
             }
         });
-    });
-});
+}
 </script>
 <body>
 	<!-- Single pro tab review Start-->
@@ -110,38 +109,39 @@ $(document).ready(function(){
 
 													}
 												</script>
+												<li class="active"><a href="">Sponsor Details:</a></li>
+												
 												<div class="well row">
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
-														<div class="form-group"></div>
-												<c:choose>
-															<c:when test="${not empty member.id}">
-																<div class="form-group">
-																	<input name="referedby" type="text"
-																		class="form-control" placeholder="Sponser Id"
+													<c:choose>
+													<c:when test="${not empty member}">
+													<div class="form-group">
+																	<input name="referedby" id="referedby" type="text" onblur="getSponserName();"
+																		class="form-control" placeholder="Sponsor Id"
 																		value="${member.referedby}" readonly>
-																</div>
-															</c:when>
-															<c:otherwise>
-																<div class="form-group">
-																	<input name="referedby" type="text"
-																		class="form-control" placeholder="Sponser Id"
+													</div>
+													</c:when>
+													<c:otherwise>
+													<div class="form-group">
+																	<input name="referedby" id="referedby" type="text" onblur="getSponserName();"
+																		class="form-control" placeholder="Sponsor Id"
 																		value="${member.referedby}">
-																</div>
-
-															</c:otherwise>
-												</c:choose>
-												
-												<c:choose>
-												<c:when test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
-																<div class="form-group">
+													</div>
+													</c:otherwise>
+													</c:choose>
+													</div>
+												<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
+												<div class="form-group">
 																	<input name="sponsername" id="sponsername" type="text"
-																		class="form-control" placeholder="Sponser Name"
+																		class="form-control" placeholder="Sponsor Name"
 																		value="${SPONSERNAME}" readonly>
-																</div>
-												</c:when>
-											</c:choose>
-						
-
+												</div>
+												</div>
+												</div>
+												<li class="active"><a href="">User Details:</a></li>
+													<div class="well row">
+													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
+														<div class="form-group"></div>
 														<div class="form-group">
 															<input name="name" type="text" class="form-control"
 																placeholder="Member Name" value="${member.name}"
@@ -173,6 +173,12 @@ $(document).ready(function(){
 																	value="${member.role}">
 															</c:otherwise>
 														</c:choose>
+														
+														<div class="form-group">
+															<input name="email" type="email" class="form-control"
+																placeholder="Email" value="${member.email}" required>
+														</div>
+														
 													</div>
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
 														<div class="form-group">
@@ -189,10 +195,6 @@ $(document).ready(function(){
 																name="gender" class=" required " id="gender"
 																type="radio" value="Female"
 																${member.gender eq 'Female' ?'Checked':''}>Female
-														</div>
-														<div class="form-group">
-															<input name="email" type="email" class="form-control"
-																placeholder="Email" value="${member.email}" required>
 														</div>
 														<div class="form-group">
 															<input name="phonenumber" type="text"

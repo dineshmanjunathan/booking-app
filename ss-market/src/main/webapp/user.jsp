@@ -7,6 +7,26 @@
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
 <script type="text/javascript" charset="utf-8">
+
+function getSponserName() {
+    	$.ajax({
+            url: "/get/sponser",
+            data: {
+                "sponserId": document.getElementById("referedby").value
+            },
+            type: "get",
+            cache: false,
+            success: function (data) {
+                if(data) {
+                	  var s = document.getElementById("sponsername");
+                      s.value = data;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('ERROR:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+            }
+        });
+}
 </script>
 </head>
 <body>
@@ -42,21 +62,42 @@
 
 												<p style="color: green" align="center">${successMessage}</p>
 												<p style="color: red" align="center">${deletesuccessmessage}</p>
-
+												
+												<li class="active"><a href="">Sponsor Details:</a></li>
+												
 												<div class="well row">
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
-														<div class="form-group"></div>
-														<div class="form-group">
-															<input name="referedby" id ="referedby" type="text"
-																class="form-control" placeholder="Sponser Id"
-																value="${member.referedby}">
-														</div>
-														<div class="form-group">
-															<input name="sponsername" id ="sponsername" type="text"
-																class="form-control" placeholder="Sponser Name"
-																value="${SPONSERNAME}" readonly>
-														</div>
+													<c:choose>
+													<c:when test="${not empty member}">
+													<div class="form-group">
+																	<input name="referedby" id="referedby" type="text" onblur="getSponserName();"
+																		class="form-control" placeholder="Sponsor Id"
+																		value="${member.referedby}" readonly>
+													</div>
+													</c:when>
+													<c:otherwise>
+													<div class="form-group">
+																	<input name="referedby" id="referedby" type="text" onblur="getSponserName();"
+																		class="form-control" placeholder="Sponsor Id"
+																		value="${member.referedby}">
+													</div>
+													</c:otherwise>
+													</c:choose>
+													</div>
+												<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
+												<div class="form-group">
+																	<input name="sponsername" id="sponsername" type="text"
+																		class="form-control" placeholder="Sponsor Name"
+																		value="${SPONSERNAME}" readonly>
+												</div>
+												</div>
+												</div>
+												<li class="active"><a href="">User Details:</a></li>
+												
 
+												<div class="well row">
+														<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
+														<div class="form-group"></div>
 														<div class="form-group">
 															<input name="name" type="text" class="form-control"
 																placeholder="Member Name" value="${member.name}"
@@ -67,6 +108,10 @@
 															<input name="password" type="password"
 																class="form-control" placeholder="Password"
 																value="${member.password}" required>
+														</div>
+														<div class="form-group">
+															<input name="email" type="email" class="form-control"
+																placeholder="Email" value="${member.email}" required>
 														</div>
 													</div>
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
@@ -85,11 +130,7 @@
 																type="radio" value="Female"
 																${member.gender eq 'Female' ?'Checked':''}>Female
 														</div>
-														
-														<div class="form-group">
-															<input name="email" type="email" class="form-control"
-																placeholder="Email" value="${member.email}" required>
-														</div>
+
 														<div class="form-group">
 															<input name="phonenumber" type="text"
 																class="form-control" placeholder="Phone Number"
