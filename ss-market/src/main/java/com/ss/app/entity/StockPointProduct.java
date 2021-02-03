@@ -29,7 +29,8 @@ public class StockPointProduct {
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] image;
-	private String status;
+	private String status ="PENDING";
+	private Long orderNumber;
 	@Transient
 	private String base64Image;
     
@@ -107,7 +108,13 @@ public class StockPointProduct {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
+
+	public Long getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(Long orderNumber) {
+		this.orderNumber = orderNumber;
+	}
 
 }

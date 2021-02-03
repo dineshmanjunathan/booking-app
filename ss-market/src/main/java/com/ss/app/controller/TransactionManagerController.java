@@ -162,7 +162,7 @@ public class TransactionManagerController {
 
 			model.addAttribute("cartList", cart);
 			model.addAttribute("orderNumber", orderNumber);
-			model.addAttribute("memberId", memberId);
+			model.addAttribute("memberId", member.getId());
 			model.addAttribute("successMessage", "Item Purchased Successfully");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -185,6 +185,7 @@ public class TransactionManagerController {
 			spp.setQuantity(c.getQuantity());
 			spp.setImage(prod.getImage());
 			spp.setStatus("PENDING");
+			spp.setOrderNumber(orderNumber);
 			stockPointProuctRepository.save(spp);
 		} else {
 			purchase.setOrderStatus("DELIVERED");
@@ -444,6 +445,11 @@ public class TransactionManagerController {
 				purchase.setOrderStatus("DELIVERED");
 				model.addAttribute("successMessage", "Order " + purchase.getOrderNumber() + " Delivered Successfully.");
 				purchase = purchaseRepository.save(purchase);
+				
+				StockPointProduct stockPointProduct = stockPointProuctRepository.findByOrderNumber(purchase.getOrderNumber());
+				stockPointProduct.setStatus("DELIVERED");
+				stockPointProuctRepository.save(stockPointProduct);
+				
 				Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("PENDING");
 				model.addAttribute("purchaseList", purchaseList);
 

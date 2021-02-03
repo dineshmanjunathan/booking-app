@@ -2,6 +2,8 @@ package com.ss.app.model;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public interface StockPointProuctRepository extends CrudRepository<StockPointPro
 	
 	List<StockPointProduct> findByMemberIdAndStatus(String memberId, String status);
 	
+	@Transactional
 	List<StockPointProduct> findByMemberId(String memberId);
-
+	
+	StockPointProduct findByOrderNumber(Long orderNumber);
+	
 }

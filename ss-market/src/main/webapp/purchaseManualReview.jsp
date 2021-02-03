@@ -51,7 +51,7 @@ function removeFromCart(prodCode, price) {
 			    type: "post",
 			    cache: false,
 			    success: function (data) {
-			    	if(confirm("Are you placing this order for ::  [ "+data + "  ]")){
+			    	if(confirm("You are placing this order to "+data )){
 			    		window.location.href = "/purchase/manual/confirm?memberid=" + memberID;
 			    	}
 			    },
