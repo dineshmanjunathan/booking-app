@@ -19,7 +19,7 @@
 						</center>
 							<div class="payment-adress">
 								<a
-									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/ssconfig/listing"
+									class="rmk btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/ssconfig/listing"
 									type="submit" name="submit" value="adminListing">Back</a>
 							</div>
 						<!-- </form> -->
@@ -74,9 +74,9 @@
 													<div class="row">
 														<div class="col-lg-12">
 															<div class="payment-adress">
-																<button class="btn btn-primary waves-effect waves-light"
+																<button class="rmk btn btn-primary waves-effect waves-light"
 																	type="submit" name="submit" value="register">Submit</button>
-																<button class="btn btn-primary waves-effect waves-light"
+																<button class="rmk btn btn-primary waves-effect waves-light"
 																	type="reset" name="reset" value="reset">Clear</button>
 
 															</div>

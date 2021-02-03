@@ -7,6 +7,13 @@
 <head>
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
+<style type="text/css">
+
+.h5_color{
+ color:#000
+}
+</style>
+
 </head>
 <body >
 <div class="col-md-10 col-md-offset-2 well row">
@@ -16,7 +23,7 @@
 		<a href="<c:url value='#' />">
 			<div class="panel-body" style="padding-bottom: 15%;">
 				<div class="stats-title" style="text-align: center;">
-					<h4>TOTAL</h4>
+					<h5 class="h5_color">TOTAL MEMBER</h5>
 				</div>
 				<div class="stats-icon" style="text-align: center;">
 					<i class="educate-icon">${TOTAL_MEMBER}</i>
@@ -29,7 +36,7 @@
 		<a href="<c:url value='#' />">
 			<div class="panel-body" style="padding-bottom: 15%;">
 				<div class="stats-title" style="text-align: center;">
-					<h4>ACTIVE</h4>
+					<h5 class="h5_color">ACTIVE MEMBER</h5>
 				</div>
 				<div class="stats-icon" style="text-align: center;">
 					<i class="educate-icon">${ACTIVE_MEMBER}</i>
@@ -42,7 +49,7 @@
 		<a href="<c:url value='#' />">
 			<div class="panel-body" style="padding-bottom: 15%;">
 				<div class="stats-title" style="text-align: center;">
-					<h4>INACTIVE</h4>
+					<h5 class="h5_color">INACTIVE MEMBER</h5>
 				</div>
 				<div class="stats-icon" style="text-align: center;">
 				<i class="educate-icon" style="text-align: center;">${INACTIVE_MEMBER}</i>
@@ -55,7 +62,7 @@
 		<a href="<c:url value='#' />">
 			<div class="panel-body" style="padding-bottom: 15%;">
 				<div class="stats-title" style="text-align: center;">
-					<h4>TODAY</h4>
+					<h5 class="h5_color">DAILY REG COUNT</h5>
 				</div>
 				<div class="stats-icon" style="text-align: center;">
 					<i class="educate-icon">${TOTAY_MEMBER}</i>
@@ -68,7 +75,7 @@
 		<a href="<c:url value='#' />">
 			<div class="panel-body" style="padding-bottom: 15%;">
 				<div class="stats-title" style="text-align: center;">
-					<h4>STOCK POINT</h4>
+					<h5 class="h5_color">STOCK POINT USER</h5>
 				</div>
 				<div class="stats-icon" style="text-align: center;">
 					<i class="educate-icon">${STOCK_MEMBER}</i>

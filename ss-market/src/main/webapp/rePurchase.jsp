@@ -31,7 +31,7 @@ function review() {
 						<!-- <form action="/userlisting" method="get"> -->
 						<div class="payment-adress">
 						<a
-							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
+							class="rmk btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
 							href="/member/repurchase/wallet" type="submit" name="submit"
 							value="adminListing">Back</a>
 						</div>
@@ -99,7 +99,7 @@ function review() {
 													<div class="row">
 														<div class="col-lg-12">
 															<div class="payment-adress">
-																<button class="btn btn-primary waves-effect waves-light"
+																<button class="rmk btn btn-primary waves-effect waves-light"
 																	type="submit" name="submit" value="register">Submit</button>
 
 															</div>

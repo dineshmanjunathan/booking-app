@@ -18,7 +18,7 @@
 						</ul></center>
 							<div class="payment-adress">
 								<a
-									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/productListing"
+									class="rmk btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2" href="/admin/productListing"
 									type="submit" name="submit" value="adminListing">Back</a>
 							</div>
 						<!-- </form> -->
@@ -93,15 +93,15 @@
 															
 															<c:choose>
 															<c:when test="${not empty productCode.code}">
-																<button class="btn btn-primary waves-effect waves-light"
+																<button class="rmk btn btn-primary waves-effect waves-light"
 																	type="submit" name="submit" value="register">Update</button>
 															</c:when>
 															<c:otherwise>
-																<button class="btn btn-primary waves-effect waves-light"
+																<button class="rmk btn btn-primary waves-effect waves-light"
 																	type="submit" name="submit" value="register">Create</button>
 															</c:otherwise>
 															</c:choose>
-																<button class="btn btn-primary waves-effect waves-light"
+																<button class="rmk btn btn-primary waves-effect waves-light"
 																	type="reset" name="reset" value="reset">Clear</button>
 
 															</div>

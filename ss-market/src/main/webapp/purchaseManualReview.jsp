@@ -92,7 +92,7 @@ function removeFromCart(prodCode, price) {
 								</c:otherwise>
 								</c:choose>
 									<a href="${url}"
-										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
+										class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 										<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span> </span>
 									</a> 
 								</div>
@@ -152,12 +152,12 @@ function removeFromCart(prodCode, price) {
 											</div>
 										<div class="row">
 											<a href="/purchase/manual/edit"
-												class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
+												class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 												<span><i class="fa fa-arrow-left"></i> <span>Edit
 														cart</span> </span>
 											</a>
 											<a href="#" onclick="return submit();"
-														class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
+														class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
 														<span> <i class="fa fa-plus"></i> <span>Place you order</span>
 													</span>
 													</a>

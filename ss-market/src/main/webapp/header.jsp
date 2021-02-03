@@ -209,6 +209,10 @@ body {
 	/* background-image:url(/img/bg/mainbg.jpg);
 	height: 120%; */
 }
+ .rmk{
+ background-image: linear-gradient(#0f68b4,#4f5880) !important;
+ color:#fff !important;
+} 
 </style>
 
  <script type="text/javascript">

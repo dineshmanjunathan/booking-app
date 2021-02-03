@@ -24,7 +24,7 @@
 									<tr>
 									<td>
 										<a href="/stock/point/menu"
-											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
+											class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
 											<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
 										</span>
 										</a>

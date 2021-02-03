@@ -65,13 +65,13 @@ function getSponserName() {
 						<c:choose>
 							<c:when test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
 								<a
-									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
+									class="rmk btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
 									href="/menu" type="submit" name="submit" value="adminListing">Back
 									to Main</a>
 							</c:when>
 							<c:when test="${fn:contains(sessionScope.ROLE, 'ADMIN')}">
 								<a
-									class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
+									class="rmk btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
 									href="/admin/member/listing" type="submit" name="submit"
 									value="adminListing">Back to Main</a>
 							</c:when>
@@ -234,15 +234,15 @@ function getSponserName() {
 
 														<c:choose>
 															<c:when test="${not empty member.id}">
-																<button class="btn btn-primary waves-effect waves-light"
+																<button class="rmk btn btn-primary waves-effect waves-light"
 																	type="submit" name="submit" value="register">Update</button>
 															</c:when>
 															<c:otherwise>
-																<button class="btn btn-primary waves-effect waves-light"
+																<button class="rmk btn btn-primary waves-effect waves-light"
 																	type="submit" name="submit" value="register">Create</button>
 															</c:otherwise>
 														</c:choose>
-														<button class="btn btn-primary waves-effect waves-light"
+														<button class="rmk btn btn-primary waves-effect waves-light"
 															type="reset" name="reset" value="reset">Clear</button>
 
 													</div>

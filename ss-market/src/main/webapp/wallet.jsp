@@ -17,7 +17,7 @@
 					</ul>
 					<div class="payment-adress">
 						<a
-							class="btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
+							class="rmk btn btn-primary waves-effect waves-light col-md-offset-10 col-md-2"
 							href="/menu" type="submit" name="submit"
 							value="adminListing">Back to Main</a>
 					</div>

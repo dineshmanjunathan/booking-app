@@ -114,7 +114,7 @@
 										</c:otherwise>
 									</c:choose>
 									<a href="${url}"
-										class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
+										class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-2">
 										<span><i class="fa fa-arrow-left"></i> <span>Back
 												to Main</span> </span>
 									</a> <a href="#"
@@ -125,7 +125,7 @@
 										</span>
 									</span>
 									</a>
-									<button class="btn btn-primary col-md-offset-0 col-md-1"
+									<button class="rmk btn btn-primary col-md-offset-0 col-md-1"
 										type="button" onclick="return review();">
 										<i class="fa fa-plus"></i> Purchase
 									</button>

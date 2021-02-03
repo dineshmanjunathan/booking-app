@@ -46,7 +46,7 @@
                      <div class="row">
                      	 <div class="col-md-3"></div>
                          <div class="col-md-6">
-                              <button class="btn btn-success btn-block loginbtn" type="submit" name="submit" value="login">Login</button>
+                              <button class="rmk btn btn-success btn-block loginbtn" type="submit" name="submit" value="login">Login</button>
                          </div>
                          <div class="col-md-3"></div>
                      </div>

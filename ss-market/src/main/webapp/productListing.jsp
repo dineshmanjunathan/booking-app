@@ -26,12 +26,12 @@
 								<table class="full-right">
 									<tr>
 										<td><a href="/admin/menu"
-											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
+											class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
 												<span><i class="fa fa-arrow-left"></i> <span>Back
 														to Main</span> </span>
 										</a></td>
 										<td><a href="/admin/product"
-											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
+											class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-2 col-md-12">
 												<span> <i class="fa fa-plus"></i> <span>Product</span>
 											</span>
 										</a></td>

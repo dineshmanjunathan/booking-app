@@ -22,7 +22,7 @@
 									<tr>
 									<td>
 										<a href="/admin/menu"
-											class="btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
+											class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
 											<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
 										</span>
 										</a>
@@ -71,8 +71,8 @@
 													<c:when test="${details.orderStatus == 'PENDING'}">
 														 <td>
 												  <a href="<c:url value='/purchase/approve?id=${details.id}' />">
-												<button class="btn btn-primary" type="button">
-													<i class="fa fa-shopping-cart"> </i> Approve
+												<button class="rmk btn btn-primary" type="button">
+													<i class="fa fa-shopping-cart"> </i> Delivered
 												</button>
 												  </a>		</td>
 													</c:when>

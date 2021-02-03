@@ -187,7 +187,7 @@ public class TransactionManagerController {
 			spp.setStatus("PENDING");
 			stockPointProuctRepository.save(spp);
 		} else {
-			purchase.setOrderStatus("APPROVED");
+			purchase.setOrderStatus("DELIVERED");
 		}
 		purchase.setProduct(prod);
 		purchase.setQuantity(c.getQuantity());
@@ -348,7 +348,7 @@ public class TransactionManagerController {
 				model.addAttribute("cartMap", map);
 				model.addAttribute("cartTotal", total);
 			}
-			Iterable<StockPointProduct> productList = stockPointProuctRepository.findByMemberIdAndStatus(memberId, "DELEVIERED");
+			Iterable<StockPointProduct> productList = stockPointProuctRepository.findByMemberIdAndStatus(memberId, "DELIVERED");
 			model.addAttribute("productList", productList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -441,7 +441,7 @@ public class TransactionManagerController {
 			Purchase purchase = purchaseRepository.findById(Long.parseLong(id)).get();
 
 			if (purchase != null && purchase.getId() != null) {
-				purchase.setOrderStatus("APPROVED");
+				purchase.setOrderStatus("DELIVERED");
 				model.addAttribute("successMessage", "Order " + purchase.getOrderNumber() + " Delivered Successfully.");
 				purchase = purchaseRepository.save(purchase);
 				Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("PENDING");
