@@ -10,7 +10,6 @@ import javax.mail.util.ByteArrayDataSource;
 
 import com.ss.app.entity.Member;
 import com.ss.app.entity.Purchase;
-import com.ss.app.model.ProductRepository;
 import com.ss.app.vo.PurchaseReportVo;
 
 import net.sf.jasperreports.engine.JRDataSource;

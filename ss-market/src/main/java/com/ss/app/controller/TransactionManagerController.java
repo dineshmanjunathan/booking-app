@@ -1,5 +1,6 @@
 package com.ss.app.controller;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -16,11 +17,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lowagie.text.DocumentException;
 import com.ss.app.entity.Cart;
 import com.ss.app.entity.Category;
 import com.ss.app.entity.Member;
@@ -39,8 +42,10 @@ import com.ss.app.model.SSConfigRepository;
 import com.ss.app.model.StockPointProuctRepository;
 import com.ss.app.model.StockPointPurchaseRepository;
 import com.ss.app.model.UserRepository;
+import com.ss.utils.OrderPDFExporter;
 import com.ss.utils.ReportGenerator;
 import com.ss.utils.Utils;
+
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 
@@ -85,7 +90,7 @@ public class TransactionManagerController {
 			Long orderNumber = Utils.getOrderNumber();
 			Purchase purchase = new Purchase();
 			Member member = userRepository.findById(memberId).get();
-			Long totalQty =0L; 
+			Long totalQty = 0L;
 			for (Cart c : cart) {
 				// Update qty in product
 				Product prod = productRepository.findByCode(c.getCode());
@@ -99,12 +104,12 @@ public class TransactionManagerController {
 
 				// Prepare purchase
 				preparePurchase(request.getSession(), member, orderNumber, purchase, c, prod);
-				totalQty = totalQty+c.getQuantity();
+				totalQty = totalQty + c.getQuantity();
 			}
 			cartRepository.deleteByMemberid(memberId);
 
 			// Reward Customer.
-			rewardCustomer(member.getId(),member.getReferedby(), orderNumber, totalQty);
+			rewardCustomer(member.getId(), member.getReferedby(), orderNumber, totalQty);
 
 			// TODO email to member email address
 			model.addAttribute("cartList", cart);
@@ -122,7 +127,7 @@ public class TransactionManagerController {
 		try {
 			HttpSession session = request.getSession();
 			String memberId = (String) session.getAttribute("MEMBER_ID");
-			//String role = (String) session.getAttribute("ROLE");
+			// String role = (String) session.getAttribute("ROLE");
 			Member member = null;
 			try {
 				member = userRepository.findById(memberid).get();
@@ -135,7 +140,7 @@ public class TransactionManagerController {
 			// Get order number
 			Long orderNumber = Utils.getOrderNumber();
 			Purchase purchase = new Purchase();
-			Long totalQty =0L; 
+			Long totalQty = 0L;
 			for (Cart c : cart) {
 				// Update qty in product
 				Product product = null;
@@ -153,12 +158,12 @@ public class TransactionManagerController {
 				product.setCode(prod.getCode());
 				product.setProdDesc(prod.getProdDesc());
 				prepareManualPurchase(session, member, orderNumber, purchase, c, product);
-				totalQty = totalQty+c.getQuantity();
+				totalQty = totalQty + c.getQuantity();
 			}
 			cartRepository.deleteByMemberid(memberId);
 
 			// Reward Customer.
-			rewardCustomer(member.getId(),member.getReferedby(), orderNumber, totalQty);
+			rewardCustomer(member.getId(), member.getReferedby(), orderNumber, totalQty);
 
 			model.addAttribute("cartList", cart);
 			model.addAttribute("orderNumber", orderNumber);
@@ -209,7 +214,7 @@ public class TransactionManagerController {
 		stockPointPurchaseRepository.save(sp);
 	}
 
-	private void rewardCustomer(String memId,String sponserId, Long orderNumber, Long totalQty) {
+	private void rewardCustomer(String memId, String sponserId, Long orderNumber, Long totalQty) {
 		RewardTransaction reward = new RewardTransaction();
 		try {
 			Member member = userRepository.findByReferencecode(sponserId).get();
@@ -223,9 +228,9 @@ public class TransactionManagerController {
 
 			if (member != null && member.getId() != null && response != null && response.getMemberid() != null) {
 				if (member.getActive_days() != null) {
-					member.setActive_days(member.getActive_days().plusDays(totalQty*30));
+					member.setActive_days(member.getActive_days().plusDays(totalQty * 30));
 				} else {
-					member.setActive_days(LocalDateTime.now().plusDays(totalQty*30));
+					member.setActive_days(LocalDateTime.now().plusDays(totalQty * 30));
 				}
 				if (ssConfig.getValue() > 0) {
 					member.setWalletBalance(member.getWalletBalance() + ssConfig.getValue().longValue());
@@ -286,11 +291,11 @@ public class TransactionManagerController {
 		}
 		return "purchaseReview";
 	}
-	
+
 	@RequestMapping(value = "/purchase/address", method = RequestMethod.GET)
 	public String purchaseAddress(HttpServletRequest request, ModelMap model) {
 		try {
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -349,7 +354,8 @@ public class TransactionManagerController {
 				model.addAttribute("cartMap", map);
 				model.addAttribute("cartTotal", total);
 			}
-			Iterable<StockPointProduct> productList = stockPointProuctRepository.findByMemberIdAndStatus(memberId, "DELIVERED");
+			Iterable<StockPointProduct> productList = stockPointProuctRepository.findByMemberIdAndStatus(memberId,
+					"DELIVERED");
 			model.addAttribute("productList", productList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -445,11 +451,12 @@ public class TransactionManagerController {
 				purchase.setOrderStatus("DELIVERED");
 				model.addAttribute("successMessage", "Order " + purchase.getOrderNumber() + " Delivered Successfully.");
 				purchase = purchaseRepository.save(purchase);
-				
-				StockPointProduct stockPointProduct = stockPointProuctRepository.findByOrderNumber(purchase.getOrderNumber());
+
+				StockPointProduct stockPointProduct = stockPointProuctRepository
+						.findByOrderNumber(purchase.getOrderNumber());
 				stockPointProduct.setStatus("DELIVERED");
 				stockPointProuctRepository.save(stockPointProduct);
-				
+
 				Iterable<Purchase> purchaseList = purchaseRepository.findByOrderStatus("PENDING");
 				model.addAttribute("purchaseList", purchaseList);
 
@@ -462,7 +469,7 @@ public class TransactionManagerController {
 		return "trasnactionApprove";
 	}
 
-	@RequestMapping(value = "/purchase/order/generate/pdf", method = RequestMethod.GET)
+	//@RequestMapping(value = "/purchase/order/generate/pdf", method = RequestMethod.GET)
 	public void export(@RequestParam("orderNumber") String orderNumber, ModelMap model, HttpServletResponse response) {
 		try {
 			JasperPrint jasperPrint = null;
@@ -480,9 +487,30 @@ public class TransactionManagerController {
 			e.printStackTrace();
 		}
 	}
-	
+
+	@GetMapping("/purchase/order/generate/pdf")
+	public void exportToPDF(@RequestParam("orderNumber") String orderNumber, HttpServletResponse response)
+			throws DocumentException, IOException {
+		try {
+			response.setContentType("application/pdf");
+			
+			String headerKey = "Content-Disposition";
+			String headerValue = "attachment; filename=order_report_" + orderNumber + ".pdf";
+			response.setHeader(headerKey, headerValue);
+
+			List<Purchase> purchaseList = purchaseRepository.findByOrderNumber(Long.parseLong(orderNumber));
+
+			OrderPDFExporter exporter = new OrderPDFExporter(purchaseList);
+			Purchase purchase = purchaseList.get(0);
+			exporter.export(response, purchase.getMemberid(), orderNumber);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	@RequestMapping(value = "/purchase/reward/history", method = RequestMethod.GET)
-	public String getRewardHistory(@RequestParam("id") String memberId,HttpServletRequest request, ModelMap model) {
+	public String getRewardHistory(@RequestParam("id") String memberId, HttpServletRequest request, ModelMap model) {
 		try {
 			Iterable<RewardTransaction> rewardhistory = rewardTransactionRepository.findByRewardedMember(memberId);
 			model.addAttribute("REQMEMBERID", memberId);
