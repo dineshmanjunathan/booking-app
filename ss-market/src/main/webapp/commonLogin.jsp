@@ -12,7 +12,7 @@
 				<a href="/"><img class="main-logo" src="../../img/logo/logo.png" alt="" /></a><br/><br/>
 			</div>
 			<div class="well col-md-4 col-md-offset-4">
-			<!-- <h3 >SS MARKETING</h3>  -->
+			<!-- <h3 >SS MARKET</h3>  -->
 		<c:choose>
 			<c:when test="${ROLE == 'ADMIN'}">
 				<c:set var="url" scope="session" value="/admin/login" />

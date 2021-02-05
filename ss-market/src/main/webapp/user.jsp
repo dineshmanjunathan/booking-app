@@ -124,7 +124,7 @@ function getSponserName() {
 														</div>
 														<div class="form-group">
 															<input name="email" type="email" class="form-control"
-																placeholder="Email" value="${member.email}" required>
+																placeholder="Email" value="${member.email}">
 														</div>
 													</div>
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">

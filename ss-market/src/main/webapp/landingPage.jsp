@@ -1,6 +1,6 @@
 
 <html lang="en" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <title> Welcome to SS Marketing </title>
+        <title> Welcome to SS Market </title>
 
         <meta name="keywords" content="osmos">
         <meta name="author" content="osmos">
@@ -21,11 +21,11 @@
 
         <section class="sec-padding" style="background-image:url(/img/bg/mainbg.jpg);height: 100%;"> 
             <div class="container"> 
-<br><br>
+<br>
                 <div class="col-sm-12">
                     <div class="col-xs-12 text-center">
                         <!-- <p align="center"><img src="#" alt="" class="img-responsive zoom" width="320"> </p> -->
-                        <h4 class="paddtop1 dosis font-weight-5" style="font-weight: bold;">   Welcome to SS Marketing  </h4>
+                        <h4 class="paddtop1 dosis font-weight-5" style="font-weight: bold;">   Welcome to SS Market  </h4>
                         <p>&nbsp;</p> 
                     </div>
                 </div>
@@ -34,28 +34,28 @@
                 <div class="col-xs-12 col-md-4" align="center">
                     <div class="shop-product">
                         <a href="#" target="_blank"><div class="image-holder">
-                                <img src="/img/bg/login_icon.png" alt="" class="img-responsive zoom"> 
+                                <img src="/img/bg/login_icon.jpg" alt="" class="img-responsive zoom"> 
                             </div></a>
                     </div>
                     <div class="clearfix"></div>
-                <a class="btn btn-red-4 btn-small" href="/login.jsp"> Login Account </a> </div>
+                <a class="btn btn-red-4 btn-small" href="/login.jsp"> Member Login </a> </div>
 
 
 
                 <div class="col-xs-12 col-md-4" align="center">
                     <div class="shop-product">
                         <a href="#" target="_blank"><div class="image-holder">
-                                <img src="/img/bg/new_registrations_icon.png" alt="" class="img-responsive zoom"> 
+                                <img src="/img/bg/new_registrations_icon.jpeg" alt="" class="img-responsive zoom"> 
                             </div></a>
                     </div>
                     <div class="clearfix"></div>
-                <a class="btn btn-red-4 btn-small" href="/register"> New Registration </a> </div>
+                <a class="btn btn-red-4 btn-small" href="/register"> Member Registration </a> </div>
 
 
                 <div class="col-xs-12 col-md-4" align="center">
                     <div class="shop-product">
                         <a href="#" target="_blank"><div class="image-holder">
-                                <img src="/img/bg/shopping_icon.png" alt="" class="img-responsive zoom"> 
+                                <img src="/img/bg/shopping_icon.jpeg" alt="" class="img-responsive zoom" style=" height: 58%;"> 
                             </div></a>
                     </div>
                     <div class="clearfix"></div>
@@ -74,8 +74,7 @@
 
         <div class="clearfix"></div>
 
-<br><br>
-<br><br><br><br>
+<br><br><br>
         <!--end section-->
         <div class="clearfix"></div>
         <section class="section-copyrights sec-moreless-padding" style="background-image: linear-gradient(#0f68b4,#1a1e2c)">
@@ -87,7 +86,6 @@
                         <ul class="footer-links">
                             <li><a href="#" data-toggle="modal" data-target="#About"> About Us </a>|</li>
                             <li><a href="#" data-toggle="modal" data-target="#Terms"> Terms &amp; Condition</a>|</li>
-                            <li><a href="#" data-toggle="modal" data-target="#Privacypolicy"> Privacy Policy</a>|</li> 
                             <li><a href="#" data-toggle="modal" data-target="#Contactus"> Contact Us </a></li>
 
                         </ul>
@@ -237,7 +235,7 @@
                         <h4 class="modal-title">Grievance Redressal </h4>
                     </div>
                     <div class="modal-body">
-                        <p>SS Marketing</p>
+                        <p>SS Market</p>
 
                      <!--    <p>If any false post, video, message or commitment which has been circulated on Social Media stating affiliation with our Company is completely baseless. However, we will take strict action against that particular person.
                         </p>
