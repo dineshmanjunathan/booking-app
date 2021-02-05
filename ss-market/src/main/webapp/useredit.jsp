@@ -23,11 +23,13 @@ function getSponserName() {
             	  var s = document.getElementById("sponsername"); s.value = data;
 
                  var element = document.getElementById("errmsg");
+                 element.classList.remove("btn-danger");
               	 element.classList.add("btn-success");
               	 var msg = document.getElementById("errmsg"); msg.value = "Valid Sponser Id";
                  document.getElementById("errmsg").style.visibility = "visible";
             }else{
             	var element = document.getElementById("errmsg");
+            	element.classList.remove("btn-success");
             	element.classList.add("btn-danger");
             	
             	var s = document.getElementById("errmsg"); s.value = "Invalid Sponser Id";
