@@ -19,7 +19,7 @@
     <style type="text/css">.fancybox-margin{margin-right:17px;}</style></head>
     <body>
 
-        <section class="sec-padding" style="background-image:url(/img/bg/mainbg.jpg);height: 100%;"> 
+        <section class="sec-padding" style="background-image:url(/img/bg/B5-PixTeller.png);height: 100%;"> 
             <div class="container"> 
 <br>
                 <div class="col-sm-12">
@@ -34,7 +34,7 @@
                 <div class="col-xs-12 col-md-4" align="center">
                     <div class="shop-product">
                         <a href="#" target="_blank"><div class="image-holder">
-                                <img src="/img/bg/login_icon.jpg" alt="" class="img-responsive zoom"> 
+                                <img src="/img/bg/login_icon.png" alt="" class="img-responsive zoom"> 
                             </div></a>
                     </div>
                     <div class="clearfix"></div>
@@ -45,7 +45,7 @@
                 <div class="col-xs-12 col-md-4" align="center">
                     <div class="shop-product">
                         <a href="#" target="_blank"><div class="image-holder">
-                                <img src="/img/bg/new_registrations_icon.jpeg" alt="" class="img-responsive zoom"> 
+                                <img src="/img/bg/new_registrations_icon.png" alt="" class="img-responsive zoom"> 
                             </div></a>
                     </div>
                     <div class="clearfix"></div>
@@ -55,7 +55,7 @@
                 <div class="col-xs-12 col-md-4" align="center">
                     <div class="shop-product">
                         <a href="#" target="_blank"><div class="image-holder">
-                                <img src="/img/bg/shopping_icon.jpeg" alt="" class="img-responsive zoom" style=" height: 58%;"> 
+                                <img src="/img/bg/shopping_icon.png" alt="" class="img-responsive zoom"> 
                             </div></a>
                     </div>
                     <div class="clearfix"></div>

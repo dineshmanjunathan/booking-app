@@ -2,6 +2,7 @@ package com.ss.utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -111,6 +112,7 @@ public class Utils {
 	}
 
 	public static void main(String[] arg) {
-		
+		System.out.println(" LocalDateTime.now().plusDays(2)->"+ LocalDate.now().plusDays(2));
+		System.out.println(ChronoUnit.DAYS.between( LocalDate.now().plusDays(2).now(), LocalDate.now().plusDays(2)));
 	}
 }

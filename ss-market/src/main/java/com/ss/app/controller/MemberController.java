@@ -321,14 +321,20 @@ public class MemberController {
 			List<Member> child = userRepository.findByReferedby(basekeyCode);
 			MemberTree subTree = null;
 			for (Member mem : child) {
+				long numOfDays =0;
 				if(mem.getActive_days()!=null && mem.getActive_days().isAfter(LocalDateTime.now())) {
-					mem.setMemberStatus("ACTIVE");
+					numOfDays = ChronoUnit.DAYS.between(LocalDateTime.now(), mem.getActive_days())+1;
+					mem.setMemberStatus(numOfDays+" Active days left");
+
 				}else {
-					mem.setMemberStatus("INACTIVE");
+					mem.setMemberStatus("InActive");
 				}
 				subTree = new MemberTree();
 				subTree.setId(mem.getId());
 				subTree.setParent(memberId);
+				
+				
+				
 				subTree.setText(mem.getId() + "    [ " + mem.getName() +" - "+mem.getMemberStatus()+ " ]");
 				treeList.add(subTree);
 				findTree(mem.getReferencecode(), mem.getId(), treeList);

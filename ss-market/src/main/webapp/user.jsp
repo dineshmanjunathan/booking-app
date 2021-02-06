@@ -115,7 +115,7 @@ function getSponserName() {
 														<div class="form-group"></div>
 														<div class="form-group">
 															<input name="name" type="text" class="form-control"
-																placeholder="Member Name" value="${member.name}"
+																placeholder="As Pan Card Name" value="${member.name}"
 																required>
 														</div>
 
