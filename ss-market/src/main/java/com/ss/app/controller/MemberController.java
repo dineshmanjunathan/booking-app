@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +34,11 @@ import com.ss.app.model.CountryCodeRepository;
 import com.ss.app.model.SSConfigRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.CountryCodeVo;
+import com.ss.app.vo.MemberRewardTree;
+import com.ss.app.vo.MemberStat;
 import com.ss.app.vo.MemberTree;
 import com.ss.app.vo.MemberVo;
+import com.ss.utils.MemberLevel;
 import com.ss.utils.ReportGenerator;
 
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -313,6 +317,47 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		return "memberTree";
+	}
+	
+	@RequestMapping(value = "/member/stat", method = RequestMethod.GET)
+	public String memberStat(HttpServletRequest request, ModelMap model) {
+		try {
+			String memberId = (String) request.getSession().getAttribute("MEMBER_ID");
+			Member member = userRepository.findById(memberId).get();
+			MemberRewardTree memberRewardTree = new MemberRewardTree();
+			memberRewardTree.setId(member.getId());
+			recursionTree(memberRewardTree, member.getReferencecode(), member.getId());
+			System.out.println(memberRewardTree.toString());
+			MemberLevel.prepareMember(memberRewardTree);
+			System.out.println(memberRewardTree.toString());
+			Map<Integer, MemberStat> memberStat = MemberLevel.prepareLevelAndCount(memberRewardTree);
+			System.out.println(memberStat);
+			model.addAttribute("memberStat", memberStat);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "memberStat";
+	}
+	
+	private List<String> recursionTree(MemberRewardTree memberRewardTree, String basekeyCode, String memberId) {
+		List<Member> child = userRepository.findByReferedby(basekeyCode);
+		List<String> c = new ArrayList<>();
+		List<MemberRewardTree> subTreeList = new ArrayList<MemberRewardTree>();
+		MemberRewardTree subTree = null;
+		for (Member mem : child) {
+			subTree = new MemberRewardTree();
+			subTree.setId(mem.getId());
+			subTree.setSponserId(mem.getReferedby());
+			if (mem.getActive_days() != null && mem.getActive_days().isAfter(LocalDateTime.now())) {
+				subTree.setStatus("ACTIVE");
+			} else {
+				subTree.setStatus("INACTIVE");
+			}
+			recursionTree(subTree, mem.getReferencecode(), mem.getId());
+			subTreeList.add(subTree);
+		}
+		memberRewardTree.setChildren(subTreeList);
+		return c;
 	}
 
 

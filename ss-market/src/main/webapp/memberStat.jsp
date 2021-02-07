@@ -50,12 +50,12 @@
 										</tr>
 									</thead>
                                         <tbody> 
-                                        <c:forEach var="details" items="${purchaseList}" varStatus="status">
+                                        <c:forEach var="details" items="${memberStat}" varStatus="status">
                                             <tr>
-												<td>${details.memberid}</td>
-												<td>${details.orderNumber}</td>
-												<td>${details.quantity}</td>
-												<td>${details.amount}</td>   
+												<td>L${details.key}</td>
+												<td>${details.value.totalCount}</td>
+												<td>${details.value.activeCount}</td>
+												<td>${details.value.inActiveCount}</td>   
                                             </tr> 
                                         </c:forEach>
                                         </tbody>

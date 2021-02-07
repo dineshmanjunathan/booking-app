@@ -2,36 +2,41 @@ package com.ss.app.vo;
 
 public class MemberStat {
 
-	private String level;
-	private String totalCount;
-	private String activeCount;
-	private String inActiveCount;
-	
-	public String getLevel() {
+	private Long level = 0L;
+	private Long totalCount = 0L;
+	private Long activeCount = 0L;
+	private Long inActiveCount = 0L;
+
+	public Long getLevel() {
 		return level;
 	}
-	public void setLevel(String level) {
+
+	public void setLevel(Long level) {
 		this.level = level;
 	}
-	public String getTotalCount() {
+
+	public Long getTotalCount() {
 		return totalCount;
 	}
-	public void setTotalCount(String totalCount) {
+
+	public void setTotalCount(Long totalCount) {
 		this.totalCount = totalCount;
 	}
-	public String getActiveCount() {
+
+	public Long getActiveCount() {
 		return activeCount;
 	}
-	public void setActiveCount(String activeCount) {
+
+	public void setActiveCount(Long activeCount) {
 		this.activeCount = activeCount;
 	}
-	public String getInActiveCount() {
+
+	public Long getInActiveCount() {
 		return inActiveCount;
 	}
-	public void setInActiveCount(String inActiveCount) {
+
+	public void setInActiveCount(Long inActiveCount) {
 		this.inActiveCount = inActiveCount;
 	}
-
-	
 
 }

@@ -17,7 +17,7 @@ import com.ss.app.model.RewardTransactionRepository;
 import com.ss.app.model.SSConfigRepository;
 import com.ss.app.model.UserRepository;
 import com.ss.app.vo.MemberRewardTree;
-import com.ss.utils.BatchProcess;
+import com.ss.utils.MemberLevel;
 
 @Component
 public class DailyRewardScheduler {
@@ -48,7 +48,7 @@ public class DailyRewardScheduler {
 			memberRewardTree.setId(member.getId());
 			recursionTree(memberRewardTree, member.getReferencecode(), member.getId());
 			Gson f = new Gson();
-			Double awdVal = BatchProcess.process(f.toJson(memberRewardTree), map, rewardTransactionRepository);
+			Double awdVal = MemberLevel.process(f.toJson(memberRewardTree), map, rewardTransactionRepository);
 			if (awdVal > 0) {
 				member.setWalletBalance(member.getWalletBalance() + awdVal.longValue());
 				userRepository.save(member);
@@ -64,13 +64,16 @@ public class DailyRewardScheduler {
 		List<MemberRewardTree> subTreeList = new ArrayList<MemberRewardTree>();
 		MemberRewardTree subTree = null;
 		for (Member mem : child) {
+			subTree = new MemberRewardTree();
+			subTree.setId(mem.getId());
+			subTree.setSponserId(mem.getReferedby());
 			if (mem.getActive_days() != null && mem.getActive_days().isAfter(LocalDateTime.now())) {
-				subTree = new MemberRewardTree();
-				subTree.setId(mem.getId());
-				subTree.setSponserId(mem.getReferedby());
-				recursionTree(subTree, mem.getReferencecode(), mem.getId());
-				subTreeList.add(subTree);
+				subTree.setStatus("ACTIVE");
+			} else {
+				subTree.setStatus("INACTIVE");
 			}
+			recursionTree(subTree, mem.getReferencecode(), mem.getId());
+			subTreeList.add(subTree);
 		}
 		memberRewardTree.setChildren(subTreeList);
 		return c;
