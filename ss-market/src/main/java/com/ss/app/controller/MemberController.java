@@ -324,17 +324,13 @@ public class MemberController {
 				long numOfDays =0;
 				if(mem.getActive_days()!=null && mem.getActive_days().isAfter(LocalDateTime.now())) {
 					numOfDays = ChronoUnit.DAYS.between(LocalDateTime.now(), mem.getActive_days())+1;
-					mem.setMemberStatus(numOfDays+" Active days left");
-
+					mem.setMemberStatus("ACTIVE with" + numOfDays+" days left");
 				}else {
-					mem.setMemberStatus("InActive");
+					mem.setMemberStatus("INACTIVE");
 				}
 				subTree = new MemberTree();
 				subTree.setId(mem.getId());
 				subTree.setParent(memberId);
-				
-				
-				
 				subTree.setText(mem.getId() + "    [ " + mem.getName() +" - "+mem.getMemberStatus()+ " ]");
 				treeList.add(subTree);
 				findTree(mem.getReferencecode(), mem.getId(), treeList);

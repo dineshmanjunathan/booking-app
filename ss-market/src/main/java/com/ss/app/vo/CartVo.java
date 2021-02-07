@@ -55,11 +55,4 @@ public class CartVo {
 		this.purchasedon = purchasedon;
 	}
 	
-	
-	
-	
-	
-	
-	
-
 }
