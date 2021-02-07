@@ -7,13 +7,11 @@
 <meta charset="ISO-8859-1"> 
 </head>
 <body> 
-		<!-- Single pro tab review Start-->
-		<div class="col-md-10 col-md-offset-2 row">
-				<div class="row">
+				<div class="col-md-10 col-md-offset-2 row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="product-payment-inner-st">
 							<ul id="myTabedu1" class="tab-review-design">
-								<center><li class="active"><a href="">Stock Inventory</a></li></center>
+								<center><li class="active"><a href="">Member Stat</a></li></center>
 							</ul>
 
 							<div id="myTabContent" class="tab-content custom-product-edit">
@@ -23,7 +21,7 @@
 									<table class="full-right">
 									<tr>
 									<td>
-										<a href="/stock/point/menu"
+										<a href="/menu"
 											class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-1 col-md-12">
 											<span><i class="fa fa-arrow-left"></i> <span>Back to Main</span>
 										</span>
@@ -31,9 +29,8 @@
 									</td>
 									</tr> 
 									</table>
-									<p style="color: green" align="center">${successMessage}</p>
-								    <p style="color: green" align="center">${deletesuccessmessage}</p>
-										 <div class="sparkline13-graph">
+									<%-- <p style="color: red" align="center">${errormsg}</p> --%>
+							<div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
                                         <select class="form-control dt-tb">
@@ -46,20 +43,19 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 										<tr> 
-											<th data-field="category" data-editable="false">Category</th>
-											<th data-field="prodCode" data-editable="false">Product</th>
-											<th data-field="quantity" data-editable="false">Quantity</th>
-											<th data-field="price" data-editable="false">Price</th>
+											<th data-field="level" data-editable="false">Level</th>
+											<th data-field="total" data-editable="false">Total</th>
+											<th data-field="active" data-editable="false">Active</th>
+											<th data-field="inactive" data-editable="false">Inactive</th>
 										</tr>
 									</thead>
                                         <tbody> 
-                                        <c:forEach var="details" items="${stockPointInventory}" varStatus="status">
+                                        <c:forEach var="details" items="${purchaseList}" varStatus="status">
                                             <tr>
-												<%-- <td>${details.id}</td> --%>
-												<td>${details.category.description} [${details.category.code}]</td> 
-												<td>${details.prodDesc} [${details.code}]</td> 
+												<td>${details.memberid}</td>
+												<td>${details.orderNumber}</td>
 												<td>${details.quantity}</td>
-												<td>${details.price}</td>
+												<td>${details.amount}</td>   
                                             </tr> 
                                         </c:forEach>
                                         </tbody>
@@ -71,7 +67,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>   
+				</div>  
+	  						 
+		   
+		   
 </body>
 </html>
