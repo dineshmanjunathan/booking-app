@@ -9,6 +9,7 @@ public class ProductVo {
 	private String prodDesc;
 	private Long quantity;
 	private Double price;
+	private Double bvPrice;
 
 	public String getCode() {
 		return code;
@@ -50,4 +51,11 @@ public class ProductVo {
 		this.price = price;
 	}
 
+	public Double getBvPrice() {
+		return bvPrice;
+	}
+
+	public void setBvPrice(Double bvPrice) {
+		this.bvPrice = bvPrice;
+	}
 }

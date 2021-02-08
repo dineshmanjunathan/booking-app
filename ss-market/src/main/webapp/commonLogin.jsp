@@ -9,7 +9,7 @@
 
 	<div class="row text-center">
 			<div class="text-center m-b-md custom-login">
-				<a href="/"><img class="main-logo" src="../../img/logo/logo.png" alt="" /></a><br/><br/>
+				<a href="/"><img class="main-logo" src="../../img/logo/logo.jpg" alt="" /></a><br/><br/>
 			</div>
 			<div class="well col-md-4 col-md-offset-4">
 			<!-- <h3 >SS MARKET</h3>  -->

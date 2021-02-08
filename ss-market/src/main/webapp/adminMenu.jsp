@@ -116,7 +116,7 @@
 		<a href="<c:url value='/admin/ssconfig/listing' />">
 			<div class="panel-body">
 				<div class="stats-title pull-left">
-					<h5>SS Configuration</h5>
+					<h5>Deduction/Reward configuration</h5>
 				</div>
 				<div class="stats-icon pull-right">
 					<i class="educate-icon educate-apps"></i>

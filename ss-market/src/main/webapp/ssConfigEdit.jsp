@@ -14,7 +14,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="product-payment-inner-st">
 						<center><ul id="myTabedu1" class="tab-review-design">
-							<li class="active"><a href="">SS Configuration</a></li>
+							<li class="active"><a href="">Deduction and Level reward configuration</a></li>
 						</ul>
 						</center>
 							<div class="payment-adress">

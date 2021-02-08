@@ -65,6 +65,7 @@
 													<th data-field="prodDesc" data-editable="false">Product
 														Description</th>
 													<th data-field="quantity" data-editable="false">Quantity</th>
+													<th data-field="bv" data-editable="false">BV</th>
 													<th data-field="price" data-editable="false">Price</th>
 													<th data-field="action">Action</th>
 												</tr>
@@ -80,6 +81,7 @@
 														<td>${details.code}</td>
 														<td>${details.prodDesc}</td>
 														<td>${details.quantity}</td>
+														<td>${details.bvPrice}</td>
 														<td>${details.price}</td>
 														<td><a
 															href="<c:url value='/admin/product/edit?id=${details.code}' />"><center>

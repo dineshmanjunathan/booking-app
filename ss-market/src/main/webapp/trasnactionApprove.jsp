@@ -45,11 +45,12 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 										<tr> 
-											<th data-field="memberid" data-editable="false">Member Id</th>
+											<th data-field="memberid" data-editable="false">Stock Point Id</th>
 											<th data-field="orderNumber" data-editable="false">Order Number</th>
 											<th data-field="category" data-editable="false">Category</th>
 											<th data-field="product" data-editable="false">Product</th>
 											<th data-field="qty" data-editable="false">Quantity</th>
+											<th data-field="bv" data-editable="false">BV</th>
 											<th data-field="amount" data-editable="false">Amount</th>
 											<th data-field="purchasedOn" data-editable="false">Purchased On</th>
 											<th data-field="action">Action</th>
@@ -63,6 +64,8 @@
 												<td>${details.product.category.description} [${details.product.category.code}]</td>
 												<td>${details.product.prodDesc} [${details.product.code}]</td>												
 												<td>${details.quantity}</td>
+												<c:set var="bv" value="${details.product.bvPrice * details.quantity}" />
+												<td>${bv}</td>
 												<td>${details.amount}</td>  
 												<td>${details.purchasedOn}</td>	
 												

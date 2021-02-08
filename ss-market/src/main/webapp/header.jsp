@@ -213,6 +213,9 @@ body {
  background-image: linear-gradient(#0f68b4,#4f5880) !important;
  color:#fff !important;
 } 
+ .main-logo{
+ width: 15%;
+}
 </style>
 
  <script type="text/javascript">
@@ -236,10 +239,8 @@ body {
 		<nav id="sidebar" class="">
 			<div class="sidebar-header">
 				<a href="/home"><img class="main-logo"
-					src="../../img/logo/logo.png" alt=""
-					style="height: 50%; width: 75%;" /></a> <strong><a
-					href="/home"><img src="../../img/logo/logo.png" alt=""
-						style="height: 50%; width: 76%;"></a></strong>
+					src="../../img/logo/logo.logo.jpg" alt=""/></a> <strong><a
+					href="/home"><img class="main-logo" src="../../img/logo/logo.jpg" alt=""></a></strong>
 			</div>
 			<c:if test="${fn:contains(sessionScope.ROLE, 'MEMBER')}">
 				<div class="left-custom-menu-adp-wrap comment-scrollbar">

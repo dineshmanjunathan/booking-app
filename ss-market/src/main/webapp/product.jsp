@@ -70,6 +70,11 @@
 															</div>
 															
 															<div class="form-group">
+																<input name="bvPrice" type="number" class="form-control"
+																	placeholder="BV" value="${productCode.bvPrice}" required>
+															</div>
+															
+															<div class="form-group">
 																<input name="price" type="text" class="form-control"
 																	placeholder="Price Per-Item" value="${productCode.price}" required>
 															</div>

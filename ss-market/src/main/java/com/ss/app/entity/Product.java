@@ -31,6 +31,8 @@ public class Product {
 	
 	@Transient
 	private String base64Image;
+	
+	private Double bvPrice = 0.0;
     
 	public String getBase64Image() {
 		if(this.image != null) {
@@ -91,4 +93,11 @@ public class Product {
 		this.price = price;
 	}
 
+	public Double getBvPrice() {
+		return bvPrice;
+	}
+
+	public void setBvPrice(Double bvPrice) {
+		this.bvPrice = bvPrice;
+	}
 }

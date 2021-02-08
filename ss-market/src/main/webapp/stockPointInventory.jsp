@@ -50,6 +50,7 @@
 											<th data-field="prodCode" data-editable="false">Product</th>
 											<th data-field="quantity" data-editable="false">Quantity</th>
 											<th data-field="price" data-editable="false">Price</th>
+											<th data-field="status" data-editable="false">Status</th>
 										</tr>
 									</thead>
                                         <tbody> 
@@ -60,6 +61,15 @@
 												<td>${details.prodDesc} [${details.code}]</td> 
 												<td>${details.quantity}</td>
 												<td>${details.price}</td>
+												
+												<c:choose>
+												<c:when test="${fn:contains(details.status, 'DELIVERED')}">
+													<td>RECEIVED</td>
+												</c:when>
+												<c:otherwise>
+													<td>ORDERED</td>
+												</c:otherwise>
+												</c:choose>
                                             </tr> 
                                         </c:forEach>
                                         </tbody>

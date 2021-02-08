@@ -60,22 +60,29 @@
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                      <thead>
 											<tr>
-												<th data-field="stockPointId" data-editable="false">Stock
-													Point Id</th>
+												<th data-field="stockPointId" data-editable="false">Member Id</th>
 												<th data-field="categoryCode" data-editable="false">Category</th>
 												<th data-field="productCode" data-editable="false">Product</th>
 												<th data-field="qty" data-editable="false">Quantity</th>
+												<th data-field="bv" data-editable="false">BV</th>
+												<th data-field="price" data-editable="false">Price</th>
+											<th data-field="total" data-editable="false">Total</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="details" items="${stockPointPurchaseList}"
 												varStatus="status">
 												<tr>
-													<td>${details.stockPointId}</td>
+													<td>${details.memberId}</td>
 													<td>${details.categoryCode.description}
 														[${details.categoryCode.code}]</td>
 													<td>${details.productCode.prodDesc}</td>
 													<td>${details.qty}</td>
+													<c:set var="bv" value="${details.productCode.bvPrice * details.qty}" />
+													<td>${bv}</td>	
+													<td>${details.price}</td>
+													<c:set var="total" value="${details.price * details.qty}" />
+													<td>${total}</td>
 												</tr>
 											</c:forEach>
 										</tbody>

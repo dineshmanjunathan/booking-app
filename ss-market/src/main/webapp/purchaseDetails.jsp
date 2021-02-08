@@ -54,6 +54,7 @@
 											<th data-field="category" data-editable="false">Category</th>
 											<th data-field="product" data-editable="false">Product</th>
 											<th data-field="qty" data-editable="false">Quantity</th>
+											<th data-field="bv" data-editable="false">BV</th>
 											<th data-field="price" data-editable="false">Price</th>
 											<th data-field="total" data-editable="false">Total</th>
 											<th data-field="purchasedOn" data-editable="false">Purchased On</th>
@@ -68,6 +69,8 @@
 												<td>${details.product.category.description} [${details.product.category.code}]</td>
 												<td>${details.product.prodDesc} [${details.product.code}]</td>												
 												<td>${details.quantity}</td>
+												<c:set var="bv" value="${details.product.bvPrice * details.quantity}" />
+												<td>${bv}</td>	
 												<td>${details.amount}</td>
 												<c:set var="total" value="${details.amount * details.quantity}" />
 												<td>${total}</td>
