@@ -4,6 +4,7 @@ public class CategoryVo {
 
 	private String code;
 	private String description;
+	private long activedays;
 
 	public String getCode() {
 		return code;
@@ -19,6 +20,14 @@ public class CategoryVo {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public long getActivedays() {
+		return activedays;
+	}
+
+	public void setActivedays(long activedays) {
+		this.activedays = activedays;
 	}
 
 }

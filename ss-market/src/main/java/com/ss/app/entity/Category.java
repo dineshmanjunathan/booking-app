@@ -1,5 +1,6 @@
 package com.ss.app.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,6 +12,8 @@ public class Category {
 	@Id
 	private String code;
 	private String description;
+	@Column(columnDefinition="bigint default 0")
+	private long activedays;
 
 	public String getCode() {
 		return code;
@@ -28,4 +31,11 @@ public class Category {
 		this.description = description;
 	}
 
+	public long getActivedays() {
+		return activedays;
+	}
+
+	public void setActivedays(long activedays) {
+		this.activedays = activedays;
+	}
 }

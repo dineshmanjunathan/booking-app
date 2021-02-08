@@ -69,6 +69,10 @@
 																<input name="description" type="text" class="form-control"
 																	placeholder="Description" value="${categoryCode.description}" required>
 															</div>
+															<div class="form-group">
+																<input name="activedays" type="text" class="form-control"
+																	placeholder="Active Days" value="${categoryCode.activedays}" required>
+															</div>
 															
 													</div>
 													</div>

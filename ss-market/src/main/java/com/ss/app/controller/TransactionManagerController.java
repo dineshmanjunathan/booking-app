@@ -3,6 +3,7 @@ package com.ss.app.controller;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,6 +92,7 @@ public class TransactionManagerController {
 			Purchase purchase = new Purchase();
 			Member member = userRepository.findById(memberId).get();
 			Long totalQty = 0L;
+			Long activeDays = 0L;
 			for (Cart c : cart) {
 				// Update qty in product
 				Product prod = productRepository.findByCode(c.getCode());
@@ -105,11 +107,12 @@ public class TransactionManagerController {
 				// Prepare purchase
 				preparePurchase(request.getSession(), member, orderNumber, purchase, c, prod);
 				totalQty = totalQty + c.getQuantity();
+				activeDays = activeDays + prod.getCategory().getActivedays();
 			}
 			cartRepository.deleteByMemberid(memberId);
 
 			// Reward Customer.
-			rewardCustomer(member.getId(), member.getReferedby(), orderNumber, totalQty);
+			rewardCustomer(member.getId(), member.getReferedby(), orderNumber, totalQty, activeDays);
 
 			// TODO email to member email address
 			model.addAttribute("cartList", cart);
@@ -141,6 +144,8 @@ public class TransactionManagerController {
 			Long orderNumber = Utils.getOrderNumber();
 			Purchase purchase = new Purchase();
 			Long totalQty = 0L;
+			Long activeDays = 0L;
+			ArrayList<String> categoryCodelist = new ArrayList<String>();
 			for (Cart c : cart) {
 				// Update qty in product
 				Product product = null;
@@ -159,11 +164,16 @@ public class TransactionManagerController {
 				product.setProdDesc(prod.getProdDesc());
 				prepareManualPurchase(session, member, orderNumber, purchase, c, product);
 				totalQty = totalQty + c.getQuantity();
+				
+				if(!categoryCodelist.contains(prod.getCategory().getCode())) {
+					categoryCodelist.add(prod.getCategory().getCode());
+					activeDays = activeDays + prod.getCategory().getActivedays();
+				}
 			}
 			cartRepository.deleteByMemberid(memberId);
 
 			// Reward Customer.
-			rewardCustomer(member.getId(), member.getReferedby(), orderNumber, totalQty);
+			rewardCustomer(member.getId(), member.getReferedby(), orderNumber, totalQty, activeDays);
 
 			model.addAttribute("cartList", cart);
 			model.addAttribute("orderNumber", orderNumber);
@@ -214,7 +224,7 @@ public class TransactionManagerController {
 		stockPointPurchaseRepository.save(sp);
 	}
 
-	private void rewardCustomer(String memId, String sponserId, Long orderNumber, Long totalQty) {
+	private void rewardCustomer(String memId, String sponserId, Long orderNumber, Long totalQty, Long activeDays) {
 		RewardTransaction reward = new RewardTransaction();
 		try {
 			Member member = userRepository.findByReferencecode(sponserId).get();
@@ -228,9 +238,9 @@ public class TransactionManagerController {
 
 			if (member != null && member.getId() != null && response != null && response.getMemberid() != null) {
 				if (member.getActive_days() != null) {
-					member.setActive_days(member.getActive_days().plusDays(totalQty * 30));
+					member.setActive_days(member.getActive_days().plusDays(totalQty * activeDays));
 				} else {
-					member.setActive_days(LocalDateTime.now().plusDays(totalQty * 30));
+					member.setActive_days(LocalDateTime.now().plusDays(totalQty * activeDays));
 				}
 				if (ssConfig.getValue() > 0) {
 					member.setWalletBalance(member.getWalletBalance() + ssConfig.getValue().longValue());
