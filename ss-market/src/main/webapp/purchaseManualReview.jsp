@@ -160,7 +160,7 @@ function removeFromCart(prodCode, price) {
 											</a>
 											<a href="#" onclick="return submit();"
 														class="rmk btn btn-primary m-btn m-btn--custom m-btn--icon col-md-offset-5 col-md-3">
-														<span> <i class="fa fa-plus"></i> <span>Place you order</span>
+														<span> <i class="fa fa-plus"></i> <span>Purchase</span>
 													</span>
 													</a>
 

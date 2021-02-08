@@ -9,6 +9,7 @@ public class MemberRewardTree {
 	private String sponserId;
 	private List<MemberRewardTree> children = new ArrayList<MemberRewardTree>();
 	private int level;
+	private String status;
 
 	public String getId() {
 		return id;
@@ -41,12 +42,22 @@ public class MemberRewardTree {
 	public void setSponserId(String sponserId) {
 		this.sponserId = sponserId;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberRewardTree [id=" + id + ", sponserId=" + sponserId + ", children=" + children + ", level=" + level
-				+ "]";
+				+ ", status=" + status + "]";
 	}
+
+	
 
 	
 

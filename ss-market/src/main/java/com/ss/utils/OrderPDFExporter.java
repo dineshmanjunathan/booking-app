@@ -45,7 +45,7 @@ public class OrderPDFExporter {
     private void writeTableData(PdfPTable table) {
         for (Purchase purchase : purchaseList) {
         	PdfPCell cell = new PdfPCell();
-        	cell.setPhrase(new Phrase(purchase.getProduct().getProdDesc()+" ["+purchase.getProduct().getCode()+"]"));
+        	cell.setPhrase(new Phrase(purchase.getProduct().getProdDesc()));
         	table.addCell(cell);
         	cell.setPhrase(new Phrase(String.valueOf(purchase.getQuantity())));
         	table.addCell(cell);

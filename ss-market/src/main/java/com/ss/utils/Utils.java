@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -76,8 +75,8 @@ public class Utils {
 
 	public static Long getOrderNumber() {
 		Random random = new Random();
-		int firstRandomVal = random.nextInt(999);
-		int secRandomVal = random.nextInt(999);
+		int firstRandomVal = random.nextInt(9999);
+		int secRandomVal = random.nextInt(9999);
 		String val = String.valueOf(firstRandomVal) + String.valueOf(secRandomVal);
 		return Long.parseLong(val);
 	}
