@@ -41,6 +41,16 @@ function getSponserName() {
             }
         });
 }
+function enableTermsAndCond(){
+	var checker = document.getElementById('terms').checked;
+	var prichecker = document.getElementById('pripolicy').checked;
+	var bt = document.getElementById('btSubmit');
+	if(checker && prichecker){
+		bt.disabled = false;
+	} else {
+		bt.disabled = true;
+	}
+}
 </script>
 </head>
 <body>
@@ -128,6 +138,10 @@ function getSponserName() {
 															<input name="email" type="email" class="form-control"
 																placeholder="Email" value="${member.email}">
 														</div>
+														<div class="form-group">
+														<input type="checkbox" name="pripolicy" id="pripolicy" value="Privacy Policy" onclick="enableTermsAndCond();"> "I have read and agree to the following" 
+														<a target="_blank" href="/memberTermsCond.jsp" rel="nofollow noopener ugc" >Privacy Policy</a>
+													</div>
 													</div>
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
 														<div class="form-group">
@@ -151,8 +165,11 @@ function getSponserName() {
 																class="form-control" placeholder="Phone Number"
 																value="${member.phonenumber}" required>
 														</div>
+													<div class="form-group">
+														<input type="checkbox" name="terms" id="terms" value="Conditions" onclick="enableTermsAndCond();"> "I have read and agree to the following" 
+														<a target="_blank" href="/memberTermsCond.jsp" rel="nofollow noopener ugc" >Terms and conditions</a>
 													</div>
-
+													</div>
 													<%-- <div class="form-group">
 																<input name="password" type="password"
 																	class="form-control" placeholder="Password"
@@ -169,7 +186,7 @@ function getSponserName() {
 												<div class="col-lg-12">
 													<div class="payment-adress">
 														<button class="rmk btn btn-primary waves-effect waves-light"
-															type="submit" name="submit" value="register">Submit</button>
+															type="submit" name="submit" id="btSubmit" value="register" disabled>Submit</button>
 														<button class="rmk btn btn-primary waves-effect waves-light"
 															type="reset" name="reset" value="reset">Clear</button>
 
