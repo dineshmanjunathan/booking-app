@@ -138,9 +138,14 @@ function enableTermsAndCond(){
 															<input name="email" type="email" class="form-control"
 																placeholder="Email" value="${member.email}">
 														</div>
-														<div class="form-group">
-														<input type="checkbox" name="pripolicy" id="pripolicy" value="Privacy Policy" onclick="enableTermsAndCond();"> "I have read and agree to the following" 
+													<br>
+													<div class="form-group">
+														<input type="checkbox" name="pripolicy" id="pripolicy" value="Privacy Policy" onclick="enableTermsAndCond();"> I have read and agree to the following 
 														<a target="_blank" href="/memberTermsCond.jsp" rel="nofollow noopener ugc" >Privacy Policy</a>
+													</div>
+													<div class="form-group">
+														<input type="checkbox" name="terms" id="terms" value="Conditions" onclick="enableTermsAndCond();"> I have read and agree to the following 
+														<a target="_blank" href="/memberTermsCond.jsp" rel="nofollow noopener ugc" >Terms and conditions</a>
 													</div>
 													</div>
 													<div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
@@ -165,11 +170,9 @@ function enableTermsAndCond(){
 																class="form-control" placeholder="Phone Number"
 																value="${member.phonenumber}" required>
 														</div>
-													<div class="form-group">
-														<input type="checkbox" name="terms" id="terms" value="Conditions" onclick="enableTermsAndCond();"> "I have read and agree to the following" 
-														<a target="_blank" href="/memberTermsCond.jsp" rel="nofollow noopener ugc" >Terms and conditions</a>
+
 													</div>
-													</div>
+														</div>
 													<%-- <div class="form-group">
 																<input name="password" type="password"
 																	class="form-control" placeholder="Password"
@@ -180,7 +183,7 @@ function enableTermsAndCond(){
 																	class="form-control" placeholder="Confirm Password"
 																	required>
 															</div> --%>
-												</div>
+											
 											</div>
 											<div class="row">
 												<div class="col-lg-12">
