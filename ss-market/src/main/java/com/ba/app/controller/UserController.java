@@ -17,7 +17,7 @@ import com.ba.app.entity.User;
 import com.ba.app.model.CountryCodeRepository;
 import com.ba.app.model.UserRepository;
 import com.ba.app.vo.CountryCodeVo;
-import com.ba.app.vo.MemberVo;
+import com.ba.app.vo.UserVo;
 
 @Controller
 public class UserController {
@@ -50,7 +50,7 @@ public class UserController {
 
 	@RequestMapping("/home")
 	public String home(HttpServletRequest request, ModelMap model) {
-		MemberVo ab = (MemberVo) request.getSession().getAttribute("USER");
+		UserVo ab = (UserVo) request.getSession().getAttribute("USER");
 		model.addAttribute("CURRENT_USER", ab);
 		return "home";
 	}
@@ -85,7 +85,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginSubmit(HttpServletRequest request, MemberVo user, ModelMap model) {
+	public String loginSubmit(HttpServletRequest request, UserVo user, ModelMap model) {
 		try {
 			User member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), "MEMBER").get();
 			if (member != null && member.getId() != null) {
@@ -119,7 +119,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerSubmit(HttpServletRequest request, MemberVo user, ModelMap model) {
+	public String registerSubmit(HttpServletRequest request, UserVo user, ModelMap model) {
 		try {
 			String role = (String) request.getSession().getAttribute("ROLE");
 
