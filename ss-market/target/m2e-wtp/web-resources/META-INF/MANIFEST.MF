@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Built-By: cgvak
+Build-Jdk: 11.0.11
+Implementation-Title: bookingapp
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.hc
+Created-By: Maven Integration for Eclipse
+

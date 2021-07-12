@@ -6,10 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import com.ba.generator.DefaultCountryCodeGenerator;
-
 @Entity
 @Table(name = "t_country_code")
 public class CountryCode {
