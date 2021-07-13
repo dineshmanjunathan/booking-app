@@ -32,6 +32,8 @@ public class Booking implements Serializable {
 	private Long bookingNo;
 	private LocalDateTime bookedOn ;
 	private Long lrNumber;
+	private String fromName;
+	private String toName;
 	
 	private Long from_phone;
 	private String remarks;
@@ -56,7 +58,6 @@ public class Booking implements Serializable {
 	private BigDecimal topay;
 	private BigDecimal cash;
 	private BigDecimal refund;
+	private BigDecimal total;
 	
-	
-		
 }

@@ -18,12 +18,13 @@ public class BookingVo implements Serializable {
 	 */
 	private static final long serialVersionUID = -7187348510206952329L;
 
-	private String id;
 	private String from;
 	private String to ;
 	private Long bookingNo;
 	private LocalDateTime bookedOn ;
 	private Long lrNumber;
+	private String fromName;
+	private String toName;
 	
 	private Long from_phone;
 	private String remarks;
@@ -48,7 +49,5 @@ public class BookingVo implements Serializable {
 	private BigDecimal topay;
 	private BigDecimal cash;
 	private BigDecimal refund;
-	
-	
-		
+	private BigDecimal total;		
 }
