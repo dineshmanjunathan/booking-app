@@ -31,7 +31,7 @@
  
  
  
-  <body class="bg-light">    
+ <!--  <body  style="background-image: url('../../img/bg/Bg2.jpg');" class="bg-light">  -->   
   <br>
 	<center><h4>DELIVERY PAGE</h4></center>
   
@@ -295,7 +295,7 @@
 			<div class="col-md-5 control-margin">
 				<button type="button" class="btn btn-primary button-margin" id="btnSave">Save</button>
 				<button type="button" class="btn btn-primary button-margin" id="btnClear">Clear</button>
-				<a class="btn btn-primary button-margin" href="menu.jsp">Back</button>
+				<a class="btn btn-primary button-margin" href="menu.jsp">Back</a>
 			</div>
 			<div class="col-md-4 control-margin">
 				<button type="button" class="btn btn-primary button-margin" id="btnNext">Next</button>
@@ -311,5 +311,5 @@
 	</div>
 	</div></div></div></div>
 
-  </body>
+<!--   </body> -->
 </html>
