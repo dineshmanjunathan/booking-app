@@ -116,7 +116,7 @@
 			<div class="col-md-12">
 			<button type="button" class="btn btn-primary button-margin" id="btnClear">Save </button>
 				<button type="submit" class="btn btn-primary button-margin" name="submit">Clear</button>
-				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Quit</button>
+				<a class="btn btn-primary button-margin" href="menu.jsp">Back</a>
 				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Help</button>
 			</div>
 		</div>
