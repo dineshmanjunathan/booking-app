@@ -28,8 +28,8 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">Booking Page</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-         <p class="card-text"><small class="text-muted"><a href="booking.jsp">Click here</a></small></p>
+        <p class="card-text">Use this page to book your courier.</p>
+         <p class="card-text"><small class="text-muted"><a href="booking.jsp">Click here...</a></small></p>
       </div>
     </div>
   </div>
@@ -43,23 +43,8 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">Delivery Page</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"> Use this screen to get your product delivery status.</p>
          <p class="card-text"><small class="text-muted"><a href="delivery.jsp">Click here</a></small></p>
-      </div>
-    </div>
-  </div>
-</div>
-&nbsp;
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../img/product/Menu3.png" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Outgoing Parcels</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted"><a href="outgoingParcel.jsp">Click here</a></small></p>
       </div>
     </div>
   </div>
@@ -73,37 +58,52 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">Incoming Parcels</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-         <p class="card-text"><small class="text-muted"><a href="#">Click here</a></small></p>
+        <p class="card-text">To have all properly addressed mail that is received by us distributed appropriately after only one business day of being received.</p>
+         <p class="card-text"><small class="text-muted"><a href="#">Click here...</a></small></p>
       </div>
     </div>
   </div>
 </div>
-	
+&nbsp;
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../img/product/Menu3.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Outgoing Parcels</h5>
+        <p class="card-text">City Courier Services can make sending parcels and courier items easy for you and your department.</p>
+        <p class="card-text"><small class="text-muted"><a href="outgoingParcel.jsp">Click here...</a></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 	
 </div>
 
-<div class="col-md-12 offset-1 well row">
+<!-- <div class="col-md-12 offset-1 well row">
 <br>
-	<h4>Parameter Setup</h4>
+	<h4>Application Parameter</h4>
 	</br>
 	
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="../../img/product/Menu1.jpg" class="img-fluid rounded-start" alt="...">
+      <img src="../../img/product/setting.png" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">Booking Page</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-         <p class="card-text"><small class="text-muted"><a href="booking.jsp">Click here</a></small></p>
+        <h5 class="card-title">Location setup</h5>
+        <p class="card-text">Here you can configure the default location (Source & destination)</p>
+         <p class="card-text"><small class="text-muted"><a href="booking.jsp">Click here...</a></small></p>
       </div>
     </div>
   </div>
 </div>	
 	
-</div>
+</div> -->
 
 </div>
 </html>

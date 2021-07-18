@@ -33,7 +33,7 @@
  
  <!--  <body  style="background-image: url('../../img/bg/Bg2.jpg');" class="bg-light">  -->   
   <br>
-	<center><h4>DELIVERY PAGE</h4></center>
+	<center><h4>DELIVERY</h4></center>
   
 	<div class="blog-details-area mg-b-15">
             <div class="container-fluid" style="width: 90%;">
@@ -305,6 +305,7 @@
 			<div class="col-md-3 control-margin">
 				<button type="button" class="btn btn-primary button-margin" id="btnDeliver">Deliver</button>
 				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Print</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Help</button>
 			</div>
 		</div>
 	  </main>

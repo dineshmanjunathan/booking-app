@@ -1,307 +1,315 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Booking</title>
-        <link rel="stylesheet" href="../../css/bootstrap.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-12">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Booking</h3></div>
-                                    <div class="card-body">
-                                        <form action="/booking/save" method="post">
-										
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <div class="form-group">
-														  <label for="from">From:</label>
-														  <select class="form-control" id="from" name="from">
-															<option>Coimbatore</option>
-															<option>Chennai</option>
-															<option>Madurai</option>
-															<option>Salem</option>
-														  </select>
-														</div>
-                                                    </div>
-                                                </div> 
+  <head>
+    <title>BookingApp</title>
+	 <link rel="stylesheet" href="../../css/bootstrap.min.css">
+	
+	<style>
+		.control-margin{
+			margin-top: 20px;
+		}
+		.element-margin{
+			margin-bottom: 5px;
+		}
+		.button-margin{
+			margin-right: 5px;
+		}		
+	</style>
+	
+  </head>
+ 
+ <nav style="background-image: linear-gradient(#0f68b4,#1a1e2c)" class="navbar navbar-dark bg-primary">
 
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputBookNo" type="text" placeholder="Book No" name="bookingNo"/>
-														<label for="inputBookNo">Book No</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <div class="form-group">
-														  <label for="to">To:</label>
-														  <select class="form-control" id="to" name="to">
-															<option>Coimbatore</option>
-															<option>Chennai</option>
-															<option>Madurai</option>
-															<option>Salem</option>
-														  </select>
-														</div>
-                                                    </div>
-                                                </div> 
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputDateTime" type="text" placeholder="Date/ Time" name="bookedOn"/>
-                                                        <label for="inputDateTime">Date/ Time</label>
-													</div>
-                                                </div>  
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputFrom" type="text" placeholder="From" name="fromName"/>
-                                                        <label for="inputFirstName">From Name</label>
-                                                    </div>
-                                                </div> 
+	<div class="header-right-info">
+		<ul class="nav navbar-nav mai-top-nav header-right-menu" style="padding: 20px 60px;">
+			<li class="nav-item">
+					
+				</li>
+		</ul>
+	</div>
+</nav>
+ 
+ 
+ 
+ <!--  <body  style="background-image: url('../../img/bg/Bg2.jpg');" class="bg-light">  -->   
+  <br>
+	<center><h4>BOOKING</h4></center>
+  
+	<div class="blog-details-area mg-b-15">
+            <div class="container-fluid" style="width: 90%;">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="blog-details-inner">
+	  <main>
+		<div class="row">
+		  <div class="col-md-4 control-margin">
+			 <div class="row element-margin">
+				  <div class="input-group">
+					<input type="text" class="form-control" placeholder="Parcel" id="txtSearch">
+					<button type="submit" class="btn btn-secondary" id="btnSearch">Search</button>				
+				  </div>
+				  <div class="mt-0">
+					<label for="txtSearch" class="form-label"><small>(Type LR No. or Party Name and press Search)</small></label>
+				  </div>
+			 </div> 
+			 <div class="row element-margin">
+				  <div class="col-sm-6">
+					<input type="checkbox" class="form-check-input" id="chkDeliveredParcel">
+					<label class="form-check-label" for="chkDeliveredParcel">Include Delivered Parcels</label>
+				  </div>
+				  <div class="col-sm-6">
+					<input type="checkbox" class="form-check-input" id="chkDeliveredParcel">
+					<label class="form-check-label" for="chkDeliveredParcel">Search Bill</label>
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="deliverySelection">Delivery Section</label>
+				  </div>
+				  <div class="col-sm-8">
+					<select class="form-select" id="deliverySelection">
+					  <option selected disabled value="">Choose...</option>
+					  <option>...</option>
+					</select>
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtName">Name</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtName">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtPaid">Paid</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtPaid">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtNoofItem">No. of Items</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtNoofItem">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtddVehicle">DD Vehicle</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtddVehicle">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<input type="checkbox" class="form-check-input" id="chkHold">
+					<label class="form-check-label" for="chkHold">Hold</label>
+				  </div>
+				   <div class="col-sm-4">
+					<input type="checkbox" class="form-check-input" id="chkDelivered">
+					<label class="form-check-label" for="chkDelivered">Delivered</label>
+				  </div>
+				  <div class="col-sm-4">
+					<input type="checkbox" class="form-check-input" id="chkPrinted">
+					<label class="form-check-label" for="chkPrinted">Printed</label>
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtDeliveredBy">Delivered By</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtDeliveredBy">
+				  </div>
+			  </div>
+		  </div>
+		  <div class="col-md-4 control-margin">
+			  <div class="row element-margin">
+					<div class="col-sm-4">
+					  <label for="txtNo" class="form-label">No</label>
+					</div>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="txtNo">
+				    </div>					
+			  </div>
+			  <div class="row element-margin">
+					<div class="col-sm-4">
+						<label for="txtOGPL" class="form-label">OGPL</label>
+					</div>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="txtOGPL">
+					</div>
+			  </div>
+			  <div class="row element-margin">
+					<div class="col-sm-4">
+						<label for="dtFromDate" class="form-label">Date</label>
+					</div>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="dtFromDate" placeholder="">
+					</div>
+			  </div>
+			  <div class="row element-margin">	
+					<div class="col-sm-4">
+						<label for="dtToDate" class="form-label">Date</label>
+					</div>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="dtToDate" placeholder="">
+					</div>				
+			  </div>
+			  <div class="row element-margin">
+				<div class="col-sm-4">
+				  <label for="dtFrom" class="form-label">From</label>
+				</div>
 
-												<div class="col-md-4">
-												<div class="row mb-3">
-                                                    <div class="form-floating mb-2 mb-md-0">
-                                                        <input class="form-control" id="inputLRNo" type="text" placeholder="LR No" name="lrNumber"/>
-                                                        <label for="inputLRNo">LR No</label>												
-													</div>
-												</div>
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <a class="btn btn-primary">Search</a>
-                                                    </div>
-                                                </div> 
-                                                </div>  												
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPhone" type="text" placeholder="Phone" name="from_phone"/>
-                                                        <label for="inputPhone">Phone</label>
-                                                    </div>
-                                                </div> 
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputTo" type="text" placeholder="To" name="toName"/>
-                                                        <label for="inputTo">To</label>
-                                                    </div>
-                                                </div>												
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputRemarks" type="email" placeholder="Remarks" name="remarks"/>
-														<label for="inputRemarks">Remarks</label>
-                                                    </div>
-                                                </div>  
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputToPhone" name = "to_phone" type="text" placeholder="Phone" />
-                                                        <label for="inputToPhone">Phone</label>
-                                                    </div>
-                                                </div> 
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputValue" type="text" placeholder="Value" name = "fromValue" />
-														<label for="inputValue">Value</label>
-                                                    </div>
-                                                </div> 
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputNoOfItems" name = "item_count" type="number" placeholder="No Of Items" />
-                                                        <label for="inputNoOfItems">No Of Items</label>
-                                                    </div>
-                                                </div> 												
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputConsInvNo" type="text" placeholder="Cons. INV No." name="invNo"/>
-														<label for="inputConsInvNo">Cons. INV No.</label>
-                                                    </div>
-                                                </div>
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputWeight" name = "weight" type="number" placeholder="Weight (KG)" />
-                                                        <label for="inputWeight">Weight (KG)</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputConsTinNo" type="text" placeholder="Cons. TIN No." />
-														<label for="inputConsTinNo">Cons. TIN No.</label>
-                                                    </div>
-                                                </div>
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputFrieght" name = "freight_status" type="number" placeholder="Freight (TOPAY)" />
-                                                        <label for="inputFrieght">Freight (TOPAY)</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputBillDesc" type="text" placeholder="Bill Desc" name="billDesc"/>
-														<label for="inputBillDesc">Bill Desc</label>
-                                                    </div>
-                                                </div> 
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputLoadingCharges" name = "loading_charges" type="number" placeholder="Loading Charges (TOPAY)" />
-                                                        <label for="inputLoadingCharges">Loading Charges (TOPAY)</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputBillValue" type="text" placeholder="Bill Value" name="billValue" />
-														<label for="inputBillvalue">Bill Value</label>
-                                                    </div>
-                                                </div>   
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPickupCharges" name = "door_pick_charges" type="number" placeholder="Door Pickup Charges (TOPAY)" />
-                                                        <label for="inputPickupCharges">Door Pickup Charges (TOPAY)</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-													<div class="checkbox disabled">
-													  <label><input type="checkbox" value="" disabled name="isPrinted"> Printed</label>
-													</div>
-                                                    </div>
-                                                </div>   
-												<div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputOthers" name = "other_charges" type="number" placeholder="Others" />
-                                                        <label for="inputOthers">Others</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-											
-											<div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputBookedBy" type="text" placeholder="Booked By" name="bookedBy" />
-														<label for="inputBookedBy">Booked By</label>
-                                                    </div>
-                                                </div>  
-                                            </div>
-                                          
-                                            <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPaid" name = "paid" type="number" placeholder="Paid" />
-                                                        <label for="inputPaid">Paid</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputToPay" name = "topay" type="number" placeholder="To Pay" />
-                                                        <label for="inputToPay">To Pay</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-											<div class="row mb-3">
-											<div class="col-md-2">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputTotal" name = "total" type="number" placeholder="Total" />
-                                                        <label for="inputTotal">Total</label>
-                                                    </div>
-                                             </div>
-											 <div class="col-md-2">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputCash" name = "cash" type="number" placeholder="Cash" />
-                                                        <label for="inputCash">Cash</label>
-                                                    </div>
-                                             </div>
-											 
-											 <div class="col-md-2">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputRefund" name = "refund" type="number" placeholder="Refund" />
-                                                        <label for="inputRefund">Refund</label>
-                                                    </div>
-                                             </div>
-											 </div>
-                                            <div class="row mb-1">
-											<div class="col-md-1">
-                                                <div class="d-grid"><button class="btn btn-primary btn-block" type="submit" name="submit" value="save">Save</button></div>
-											</div>
-												
-											<div class="col-md-1">
-                                                <div class="d-grid"><button class="btn btn-primary btn-block">Clear</button></div>
-											</div>
-												
-											<div class="col-md-1">
-                                                <div class="d-grid"><button class="btn btn-primary btn-block">Quit</button></div>
-											</div>
-												
-											<div class="col-md-1">
-                                                <div class="d-grid"><button class="btn btn-primary btn-block">Help</button></div>
-											</div>
-												
-											<div class="col-md-1">
-                                                <div class="d-grid"><button class="btn btn-primary btn-block">New</button></div>
-											</div>
-											<div class="col-md-1">
-                                                <div class="d-grid"><button class="btn btn-primary btn-block">Edit</button></div>
-											</div>
-											<div class="col-md-1">
-                                                <div class="d-grid"><button class="btn btn-primary btn-block">Delete</button></div>
-											</div>
-											
-											<div class="col-md-1">
-                                                <div class="d-grid"><button class="btn btn-primary btn-block">Bill..</button></div>
-											</div>
-											
-											<div class="col-md-1">
-                                                <div class="d-grid"><button class="btn btn-primary btn-block">Print</button></div>
-											</div>
-                                            </div>
-                                        </form>
-                                    </div>                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
-        </div>
-		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../../js/scripts.js"></script>
-    </body>
+				<div class="col-sm-8">
+					<select class="form-select" id="dtFrom">
+					  <option selected disabled value="">Choose...</option>
+					  <option>...</option>
+					</select>
+				</div>				
+			  </div>
+			  <div class="row element-margin">	
+				<div class="col-sm-4">
+				  <label for="dtTo" class="form-label">To</label>
+				</div>
+
+				<div class="col-sm-8">
+				    <select class="form-select" id="dtTo">
+					  <option selected disabled value="">Choose...</option>
+					  <option>...</option>
+					</select>
+				</div>				
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtLRNo">LR No.</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtLRNo">
+				  </div>
+			   </div>
+			   <div class="row element-margin">	
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtDeliveryBillNo">Delivery Bill No.</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtDeliveryBillNo">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="dtDeliveryDate">Delivery Date</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="dtDeliveryDate">
+				  </div>
+			   </div>
+			  <div class="row element-margin">			   
+				<div class="col-sm-4">
+					<label class="form-label" for="txtToPay">To Pay</label>
+				</div>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" id="txtToPay">
+				</div>
+			  </div>
+		  </div>
+		  <div class="col-md-4 control-margin">
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtHamali">Hamali</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtHamali">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtUnloadingCharges">Unloading Charges</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtUnloadingCharges">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtDoorDeliveryCharges">Door Delivery Charges</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtDoorDeliveryCharges">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtDemurrage">Demurrage</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtDemurrage">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtOthers">Others</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="txtOthers">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-8">
+					<label class="form-label" for="txtTotal">TOTAL</label>
+				  </div>
+				  <div class="col-sm-4">
+					<input type="text" class="form-control" id="txtTotal">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-2">
+					<label class="form-label" for="txtPaidTotal">Paid</label>
+				  </div>
+				  <div class="col-sm-6">
+					<input type="text" class="form-control" id="txtPaidBy">
+				  </div>
+				  <div class="col-sm-4">
+					<input type="text" class="form-control" id="txtPaidTotal">
+				  </div>
+				  <div class="mt-0" style="padding-left:80px">
+					<label for="txtPaidBy" class="form-label"><small>(Cheque No;Bank;Branch)</small></label>
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-8">
+					<label class="form-label" for="txtRefund">Refund</label>
+				  </div>
+				  <div class="col-sm-4">
+					<input type="text" class="form-control" id="txtRefund">
+				  </div>
+			  </div>
+		  </div>
+		</div>
+		<div class="row control-margin">
+			<div class="col-md-5 control-margin">
+				<button type="button" class="btn btn-primary button-margin" id="btnSave">Save</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnClear">Clear</button>
+				<a class="btn btn-primary button-margin" href="menu.jsp">Back</a>
+			</div>
+			<div class="col-md-4 control-margin">
+				<button type="button" class="btn btn-primary button-margin" id="btnNext">Next</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnPrevious">Previous</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnCurrent">Current</button>
+			</div>
+			<div class="col-md-3 control-margin">
+				<button type="button" class="btn btn-primary button-margin" id="btnDeliver">Book Now</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Print</button>
+			</div>
+		</div>
+	  </main>
+	</div>
+	</div></div></div></div>
+
+<!--   </body> -->
 </html>
