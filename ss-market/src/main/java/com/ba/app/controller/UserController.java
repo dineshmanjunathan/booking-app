@@ -30,12 +30,7 @@ public class UserController {
 
 	@RequestMapping("/")
 	public String landingPage(HttpServletRequest request, ModelMap model) {
-		return "landingPage";
-	}
-
-	@RequestMapping("/landingPage")
-	public String inLandingPage(HttpServletRequest request, ModelMap model) {
-		return "landingPage";
+		return "login";
 	}
 
 	@RequestMapping("/login")
@@ -84,28 +79,21 @@ public class UserController {
 		return redirectPath;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginSubmit(HttpServletRequest request, UserVo user, ModelMap model) {
-		try {
-			User member = userRepository.findByIdAndPasswordAndRole(user.getId(), user.getPassword(), "MEMBER").get();
-			if (member != null && member.getId() != null) {
-				if (!user.getPassword().equals(member.getPassword())) {
-					model.addAttribute("errormsg", "Password is incorrect!");
-					return "login";
-				}
-				request.getSession().setAttribute("LOGGED_ON", "true");
-				request.getSession().setAttribute("MEMBER_ID", user.getId());
-				request.getSession().setAttribute("MEMBER_NAME", member.getName());
-				request.getSession().setAttribute("ROLE", member.getRole());
-				return "menu";
-			} else {
-				model.addAttribute("errormsg", "User Id or Password is incorrect!");
-			}
-		} catch (Exception e) {
-			model.addAttribute("errormsg", "Member does not Exists!");
-		}
-		return "login";
-	}
+	/*
+	 * @RequestMapping(value = "/login", method = RequestMethod.POST) public String
+	 * loginSubmit(HttpServletRequest request, UserVo user, ModelMap model) { try {
+	 * User member = userRepository.findByIdAndPasswordAndRole(user.getId(),
+	 * user.getPassword(), "MEMBER").get(); if (member != null && member.getId() !=
+	 * null) { if (!user.getPassword().equals(member.getPassword())) {
+	 * model.addAttribute("errormsg", "Password is incorrect!"); return "login"; }
+	 * request.getSession().setAttribute("LOGGED_ON", "true");
+	 * request.getSession().setAttribute("MEMBER_ID", user.getId());
+	 * request.getSession().setAttribute("MEMBER_NAME", member.getName());
+	 * request.getSession().setAttribute("ROLE", member.getRole()); return "menu"; }
+	 * else { model.addAttribute("errormsg", "User Id or Password is incorrect!"); }
+	 * } catch (Exception e) { model.addAttribute("errormsg",
+	 * "Member does not Exists!"); } return "login"; }
+	 */
 
 	@RequestMapping(value = "/userlisting", method = RequestMethod.GET)
 	public String adminListingSubmit(HttpServletRequest request, ModelMap model) {
@@ -229,10 +217,11 @@ public class UserController {
 		return "contactus";
 	}
 
-	@RequestMapping("/get/member")
-	public ResponseEntity<String> findMember(@RequestParam("memberId") String memberId, HttpServletRequest request,
-			ModelMap model) {
-		User member = userRepository.findById(memberId).get();
-		return new ResponseEntity<String>(member.getName(), HttpStatus.OK);
-	}
+	/*
+	 * @RequestMapping("/get/member") public ResponseEntity<String>
+	 * findMember(@RequestParam("memberId") String memberId, HttpServletRequest
+	 * request, ModelMap model) { User member =
+	 * userRepository.findById(memberId).get(); return new
+	 * ResponseEntity<String>(member.getName(), HttpStatus.OK); }
+	 */
 }

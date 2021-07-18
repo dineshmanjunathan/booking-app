@@ -15,7 +15,7 @@
                         <div class="blog-details-inner">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                           <center><h2>Imagine a reward every time you redeem</h2></center>
+                                           <center><h2></h2></center>
                                 </div>
                             </div> 
                         </div>
