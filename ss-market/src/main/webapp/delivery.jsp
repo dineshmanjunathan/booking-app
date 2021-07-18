@@ -17,8 +17,29 @@
 	</style>
 	
   </head>
+ 
+ <nav style="background-image: linear-gradient(#0f68b4,#1a1e2c)" class="navbar navbar-dark bg-primary">
+
+	<div class="header-right-info">
+		<ul class="nav navbar-nav mai-top-nav header-right-menu" style="padding: 20px 60px;">
+			<li class="nav-item">
+					
+				</li>
+		</ul>
+	</div>
+</nav>
+ 
+ 
+ 
   <body class="bg-light">    
-	<div class="container">
+  <br>
+	<center><h4>DELIVERY PAGE</h4></center>
+  
+	<div class="blog-details-area mg-b-15">
+            <div class="container-fluid" style="width: 90%;">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="blog-details-inner">
 	  <main>
 		<div class="row">
 		  <div class="col-md-4 control-margin">
@@ -274,8 +295,7 @@
 			<div class="col-md-5 control-margin">
 				<button type="button" class="btn btn-primary button-margin" id="btnSave">Save</button>
 				<button type="button" class="btn btn-primary button-margin" id="btnClear">Clear</button>
-				<button type="button" class="btn btn-primary button-margin" id="btnQuit">Quit</button>
-				<button type="button" class="btn btn-primary button-margin" id="btnHelp">Help</button>
+				<a class="btn btn-primary button-margin" href="menu.jsp">Back</button>
 			</div>
 			<div class="col-md-4 control-margin">
 				<button type="button" class="btn btn-primary button-margin" id="btnNext">Next</button>
@@ -289,7 +309,7 @@
 		</div>
 	  </main>
 	</div>
-	
+	</div></div></div></div>
 
   </body>
 </html>

@@ -8,65 +8,73 @@
 <%@ include file="header.jsp"%>
 <meta charset="ISO-8859-1">
 </head>
-<div class="col-md-10 col-md-offset-2 well row">
-	<h4>Member Details</h4>
+<br>
+<div class="col-md-12 offset-1 well row">
+<br>
+	<h4>Courier Details</h4>
 	</br>
-	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="<c:url value='/user/edit?user_id=${sessionScope.MEMBER_ID}' />">
-			<div class="panel-body">
-				<div class="stats-title pull-left">
-					<h5>Member Profile</h5>
-				</div>
-				<div class="stats-icon pull-right">
-					<i class="educate-icon educate-apps"></i>
-				</div>
-			</div>
-		</a>
-	</div>
-
-	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/member/tree">
-			<div class="panel-body">
-				<div class="stats-title pull-left">
-					<h5>Member Tree</h5>
-				</div>
-				<div class="stats-icon pull-right">
-					<i class="educate-icon educate-apps"></i>
-				</div>
-			</div>
-		</a>
-	</div>
 	
-	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/member/stat">
-			<div class="panel-body">
-				<div class="stats-title pull-left">
-					<h5>Member Status</h5>
-				</div>
-				<div class="stats-icon pull-right">
-					<i class="educate-icon educate-apps"></i>
-				</div>
-			</div>
-		</a>
-	</div>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Booking Page</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+         <p class="card-text"><small class="text-muted"><a href="#">Move to</a></small></p>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="col-md-10 col-md-offset-2 well row">
-	<h4>Transaction Management</h4>
-	<br>
-	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="/purchase/detail">
-			<div class="panel-body">
-				<div class="stats-title pull-left">
-					<h5>Purchase Details</h5>
-				</div>
-				<div class="stats-icon pull-right">
-					<i class="educate-icon educate-apps"></i>
-				</div>
-			</div>
-		</a>
-	</div>	
-
+&nbsp;
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Delivery Page</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+         <p class="card-text"><small class="text-muted"><a href="delivery.jsp">Move to</a></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+&nbsp;
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Outgoing Parcels</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted"><a href="#">Move to</a></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+&nbsp;
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Incoming Parcels</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+         <p class="card-text"><small class="text-muted"><a href="#">Move to</a></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
 </div>
 
 </html>

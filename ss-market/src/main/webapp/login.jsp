@@ -1,50 +1,84 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%> 
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
+  <head>
+    <title>BookingApp</title>
+	 <link rel="stylesheet" href="../../css/bootstrap.min.css">
+	
+	<style>
+		.control-margin{
+			margin-top: 20px;
+		}
+		.element-margin{
+			margin-bottom: 5px;
+		}
+		.button-margin{
+			margin-right: 5px;
+		}		
+	</style>
+	
+  </head>
+ 
+ <nav style="background-image: linear-gradient(#0f68b4,#1a1e2c)" class="navbar navbar-dark bg-primary">
 
-<head>
-    <%@ include file = "header.jsp" %> 
-</head>
-
-	<div class="row text-center">
-			<div class="text-center m-b-md custom-login">
-				<a href="/"><img class="main-logo" src="../../img/logo/logo.jpg" alt="" /></a><br/><br/>
-			</div>
-			<div class="well col-md-4 col-md-offset-4">
-			 <h3 >Member Login</h3>  
-                  <form action="/login" method="post">
+	<div class="header-right-info">
+		<ul class="nav navbar-nav mai-top-nav header-right-menu" style="padding: 20px 60px;">
+			<li class="nav-item">
+					
+				</li>
+		</ul>
+	</div>
+</nav>
+ 
+   <body class="bg-light">    
+   <form action="/login" method="post">
                       	<p style="color:red" align="center">${errormsg}</p>  
                       	<p style="color:green" align="center">${adminlogout}</p>
-                      	<p style="color:green" align="center">${registersuccess}</p>                       	<input type="hidden" name="role" value="MEMBER">
+                      	<p style="color:green" align="center">${registersuccess}</p>        
+	<div class="blog-details-area mg-b-15">
+            <div class="container-fluid" style="width: 90%;">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="blog-details-inner">
+	  <main>
+		<div class="row">
+		  <div class="col-md-4 control-margin" style="width: 50%;">
+			
+				<div class="image-holder">
+					<img src="../../img/product/parcel.jpg" alt="">
+				</div>
+		  </div>
+		  
+		  <div class="col-md-6 " style="margin-top: 20%;">
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtHamali">User ID</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="userId">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="txtUnloadingCharges">Password</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="password" class="form-control" id="password">
+				  </div>
+			  </div>
+			  <div class="row control-margin">
+			<div class="col-md-6 offset-4 control-margin">
+			<button type="button" class="btn btn-primary button-margin" id="btnClear">Clear</button>
+				<button type="submit" class="btn btn-primary button-margin" name="submit">Login</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Register</button>
+			</div>
+		</div>
+		  </div>
+		
 
-                     <div class="row">
-                         <div class="col-md-12">
-                             <div class="form-group">
-                                 <input type="text" placeholder="SS************" title="Please enter you username" 
-                                 required="Enter your Card Number" value="" name="id" id="id" class="form-control">
-                             </div>
-                         </div>
-                     </div>
-					<div class="row">
-                         <div class="col-md-12">
-                             <div class="form-group">
-                                 <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password-field" class="form-control"
-                                 required>
-                             </div>
-                         </div>
-                     </div> 
-                     <div class="row">
-                     	 <div class="col-md-3"></div>
-                         <div class="col-md-6">
-                              <button class="rmk btn btn-success btn-block loginbtn" type="submit" name="submit" value="login">Login</button>
-                             <a class="rmk btn btn-success btn-block loginbtn" href="/landingPage.jsp">Back</a>
-                              
-                         </div>
-                         <div class="col-md-3"></div>
-                     </div>
-                 </form> 
-             </div>
-    </div>
-   
+		</div>
+	  </main>
+	</div>
+	</div></div></div></div>
+</form>
+  </body>
 </html>
