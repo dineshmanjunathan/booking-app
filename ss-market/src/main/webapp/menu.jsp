@@ -59,7 +59,7 @@
       <div class="card-body">
         <h5 class="card-title">Outgoing Parcels</h5>
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted"><a href="#">Click here</a></small></p>
+        <p class="card-text"><small class="text-muted"><a href="outgoingParcel.jsp">Click here</a></small></p>
       </div>
     </div>
   </div>

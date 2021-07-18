@@ -26,7 +26,7 @@
 				<h3>Outgoing Parcel</h3>
 				<div class="form-row">
 					<input type="text" class="form-control" placeholder="OGPL NO">
-					<input type="text" class="form-control" placeholder="Date">
+					<input type="date" class="form-control" placeholder="Date">
 				</div>
 				<div class="form-row">
 					<div class="form-holder">
