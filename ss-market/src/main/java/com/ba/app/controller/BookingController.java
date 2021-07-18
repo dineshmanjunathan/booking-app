@@ -26,5 +26,9 @@ public class BookingController {
 		bookingRepository.save(booking);
 		return "booking";
 	}
+	@RequestMapping("/incomingParcel")
+	public String incomingParcel() {
+		return "incomingParcel";
+	}
 
 }
