@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>RegistrationForm_v6 by Colorlib</title>
+<title>Outgoing Parcel</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MATERIAL DESIGN ICONIC FONT -->
@@ -116,8 +116,9 @@
 			<div class="col-md-12">
 			<button type="button" class="btn btn-primary button-margin" id="btnClear">Save </button>
 				<button type="submit" class="btn btn-primary button-margin" name="submit">Clear</button>
-				<a class="btn btn-primary button-margin" href="menu.jsp">Back</a>
+				
 				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Help</button>
+				<a class="btn btn-link" href="menu.jsp">Back</a>
 			</div>
 		</div>
 			</form>
