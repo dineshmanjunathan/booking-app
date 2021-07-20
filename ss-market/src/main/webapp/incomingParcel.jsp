@@ -137,7 +137,7 @@
 							
 							<button type="button" class="btn btn-primary button-margin"
 								id="btnPrint">Help</button>
-								<a class="btn btn-link" href="menu.jsp">Back</a>
+								<a class="btn btn-primary button-margin" href="menu.jsp">Back</a>
 						</div>
 					</div>
 			</form>
