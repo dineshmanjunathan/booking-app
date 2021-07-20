@@ -48,7 +48,12 @@
 				</div>
 		  </div>
 		  
-		  <div class="col-md-6 " style="margin-top: 20%;">
+		  <div class="col-md-6 " style="margin-top: 14%;">
+		   <div class="row element-margin">
+				 <div class="col-sm-8" style="margin-left: 50%;">
+					<h4><b>LOGIN</b></h4>
+				  </div>
+			  </div>
 			  <div class="row element-margin">
 				  <div class="col-sm-4">
 					<label class="form-label" for="txtHamali">User ID</label>
