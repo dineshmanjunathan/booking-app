@@ -59,7 +59,7 @@
       <div class="card-body">
         <h5 class="card-title">Incoming Parcels</h5>
         <p class="card-text">To have all properly addressed mail that is received by us distributed appropriately after only one business day of being received.</p>
-         <p class="card-text"><small class="text-muted"><a href="#">Click here...</a></small></p>
+         <p class="card-text"><small class="text-muted"><a href="incomingParcel.jsp">Click here...</a></small></p>
       </div>
     </div>
   </div>

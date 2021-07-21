@@ -27,13 +27,19 @@ public class BookingController {
 		return "booking";
 	}
 	@RequestMapping("/outgoingParcel")
-	public String incomingParcel() {
+	public String outgoingParcel() {
 		return "outgoingParcel";
 	}
+
 	
 	@RequestMapping("/booking")
 	public String booking() {
 		return "booking";
+	}
+	
+	@RequestMapping("/incomingParcel")
+	public String incomingParcel() {
+		return "incomingParcel";
 	}
 
 }
