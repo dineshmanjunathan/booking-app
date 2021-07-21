@@ -30,5 +30,10 @@ public class BookingController {
 	public String incomingParcel() {
 		return "outgoingParcel";
 	}
+	
+	@RequestMapping("/booking")
+	public String booking() {
+		return "booking";
+	}
 
 }

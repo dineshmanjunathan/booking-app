@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>BookingApp</title>
@@ -30,255 +32,421 @@
 </nav>
  
  
- 
- <!--  <body  style="background-image: url('../../img/bg/Bg2.jpg');" class="bg-light">  -->   
+  <body class="bg-light">     
   <br>
 	<center><h4>BOOKING</h4></center>
+	
+	
   
 	<div class="blog-details-area mg-b-15">
             <div class="container-fluid" style="width: 90%;">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="blog-details-inner">
+      <form action="/booking/save" method="POST">
 	  <main>
 		<div class="row">
 		  <div class="col-md-4 control-margin">
+			<div class="well">
 			 <div class="row element-margin">
+				<div class="col-sm-4">
+				  <label for="from" class="form-label">From</label>
+				</div>
+
+				<div class="col-sm-8">
+					<select class="form-select bg-info text-dark" id="from" name="from">
+					  <option selected disabled value="">Choose...</option>
+					  <option>...</option>
+					</select>
+				</div>				
+			  </div>
+			  <div class="row element-margin">	
+				<div class="col-sm-4">
+				  <label for="to" class="form-label">To</label>
+				</div>
+
+				<div class="col-sm-8">
+				    <select class="form-select bg-info text-dark" id="to" name ="to">
+					  <option selected disabled value="">Choose...</option>
+					  <option>...</option>
+					</select>
+				</div>				
+			  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" ></label>
+				  </div>
+				  <div class="col-sm-8">
+					
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" ></label>
+				  </div>
+				  <div class="col-sm-8">
+					
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="fromName">From Name</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="fromName" name="fromName">
+				  </div>
+			  </div>
+			  
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="from_phone">From Phone No</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="number" class="form-control" id="from_phone" name="from_phone">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="remarks">Remarks</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="remarks" name="remarks">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="fromValue">Value</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="fromValue" name="fromValue">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="invNo">Cons INV No</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="invNo" name="invNo">
+				  </div>
+			  </div>
+			  
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="tinNo">Cons TIN No</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="tinNo" name="tinNo">
+				  </div>
+			  </div>
+			   <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="billDesc">Bill Desc</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="billDesc" name="billDesc">
+				  </div>
+			  </div>
+			   <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="billValue">Bill Value</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="number" class="form-control" id="billValue" name="billValue">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<input type="checkbox" class="form-check-input" id="isPrinted" name="isPrinted" disabled>
+					<label class="form-check-label" for="isPrinted">Printed</label>
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="bookedBy">Booked By</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="bookedBy" name="bookedBy">
+				  </div>
+			  </div>
+		  </div>
+		  <div class="col-md-4 control-margin">
+		  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" ></label>
+				  </div>
+				  <div class="col-sm-8">
+					
+				  </div>
+			  </div>
+    
+    		<div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" ></label>
+				  </div>
+				  <div class="col-sm-8">
+					
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label"></label>
+				  </div>
+				  <div class="col-sm-8">
+					
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label"></label>
+				  </div>
+				  <div class="col-sm-8">
+					
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label"></label>
+				  </div>
+				  <div class="col-sm-8">
+					
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="toName">To Name</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="text" class="form-control" id="toName" name="toName">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="to_phone">To Phone No</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="number" class="form-control" id="to_phone" name="to_phone">
+				  </div>
+			  </div>
+			  
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="item_count">No Of Items</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="number" class="form-control" id="item_count" name="item_count">
+				  </div>
+			   </div>
+			   
+			   <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="weight">Weight</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="number" class="form-control" id="weight" name="weight">
+				  </div>
+			   </div>
+			   <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="freight_value">Freight</label>
+				  </div>
+				  <div class="col-sm-4">
+					<input type="text" class="form-control" id="freight_value_topay" disabled value="TOPAY">
+				  </div>
+				  <div class="col-sm-4">
+					<input type="text" class="form-control" id="freight_value" name="freight_value">
+				  </div>
+				  
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="loading_charges">Loading Charges</label>
+				  </div>
+				  <div class="col-sm-4">
+					<input type="text" class="form-control" id="loading_charges_topay" disabled value="TOPAY">
+				  </div>
+				  <div class="col-sm-4">
+					<input type="text" class="form-control" id="loading_charges" name="loading_charges">
+				  </div>
+				  
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="door_pick_charges">Door Pickup Charges</label>
+				  </div>
+				  <div class="col-sm-4">
+					<input type="text" class="form-control" id="door_pick_charges_topay" disabled value="TOPAY">
+				  </div>
+				  <div class="col-sm-4">
+					<input type="number" class="form-control" id="door_pick_charges" name="door_pick_charges">
+				  </div>
+				  
+			  </div>
+			  
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="other_charges">Others</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="number" class="form-control" id="other_charges" name ="other_charges">
+				  </div>
+			   </div>
+			  
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="paid">Paid</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="number" class="form-control" id="paid" name="paid">
+				  </div>
+			  </div>
+			  <div class="row element-margin">
+				  <div class="col-sm-4">
+					<label class="form-label" for="topay">To Pay</label>
+				  </div>
+				  <div class="col-sm-8">
+					<input type="number" class="form-control" id="topay" name="topay">
+				  </div>
+			  </div>
+			  
+			  
+		  </div>
+		  <div class="col-md-4 control-margin">
+			  <div class="well">
+			  <div class="row element-margin">
+					<div class="col-sm-4">
+					  <label for="bookingNo" class="form-label">Book No</label>
+					</div>
+					<div class="col-sm-8">
+						<input type="text" class="form-control bg-info text-dark" id="bookingNo" name="bookingNo">
+				    </div>					
+			  </div>
+			  <div class="row element-margin">	
+					<div class="col-sm-4">
+						<label for="bookedOn" class="form-label">Date</label>
+					</div>
+					<div class="col-sm-8">
+						<input type="datetime" class="form-control bg-info text-dark" id="bookedOn" placeholder="" name="bookedOn">
+					</div>				
+			  </div>
+			   <div class="row element-margin">
 				  <div class="input-group">
-					<input type="text" class="form-control" placeholder="Parcel" id="txtSearch">
+					<input type="text" class="form-control bg-info text-dark" placeholder="LR No" id="lrNumber" name="lrNumber">
 					<button type="submit" class="btn btn-secondary" id="btnSearch">Search</button>				
 				  </div>
 				  <div class="mt-0">
-					<label for="txtSearch" class="form-label"><small>(Type LR No. or Party Name and press Search)</small></label>
+					<label for="txtSearch" class="form-label"><small>(Type LR No and press Search)</small></label>
 				  </div>
 			 </div> 
-			 <div class="row element-margin">
-				  <div class="col-sm-6">
-					<input type="checkbox" class="form-check-input" id="chkDeliveredParcel">
-					<label class="form-check-label" for="chkDeliveredParcel">Include Delivered Parcels</label>
-				  </div>
-				  <div class="col-sm-6">
-					<input type="checkbox" class="form-check-input" id="chkDeliveredParcel">
-					<label class="form-check-label" for="chkDeliveredParcel">Search Bill</label>
-				  </div>
 			  </div>
+			  
+			  
 			  <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="deliverySelection">Delivery Section</label>
+					<label class="form-label" ></label>
 				  </div>
 				  <div class="col-sm-8">
-					<select class="form-select" id="deliverySelection">
-					  <option selected disabled value="">Choose...</option>
-					  <option>...</option>
-					</select>
+					
 				  </div>
 			  </div>
 			  <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="txtName">Name</label>
+					<label class="form-label" ></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtName">
+					
 				  </div>
 			  </div>
 			  <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="txtPaid">Paid</label>
+					<label class="form-label" ></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtPaid">
+					
 				  </div>
 			  </div>
 			  <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="txtNoofItem">No. of Items</label>
+					<label class="form-label" ></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtNoofItem">
+					
 				  </div>
 			  </div>
 			  <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="txtddVehicle">DD Vehicle</label>
+					<label class="form-label" ></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtddVehicle">
+					
 				  </div>
 			  </div>
-			  <div class="row element-margin">
+			  
+			   <div class="row element-margin">
 				  <div class="col-sm-4">
-					<input type="checkbox" class="form-check-input" id="chkHold">
-					<label class="form-check-label" for="chkHold">Hold</label>
-				  </div>
-				   <div class="col-sm-4">
-					<input type="checkbox" class="form-check-input" id="chkDelivered">
-					<label class="form-check-label" for="chkDelivered">Delivered</label>
-				  </div>
-				  <div class="col-sm-4">
-					<input type="checkbox" class="form-check-input" id="chkPrinted">
-					<label class="form-check-label" for="chkPrinted">Printed</label>
-				  </div>
-			  </div>
-			  <div class="row element-margin">
-				  <div class="col-sm-4">
-					<label class="form-label" for="txtDeliveredBy">Delivered By</label>
+					<label class="form-label"></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtDeliveredBy">
+					
 				  </div>
 			  </div>
-		  </div>
-		  <div class="col-md-4 control-margin">
-			  <div class="row element-margin">
-					<div class="col-sm-4">
-					  <label for="txtNo" class="form-label">No</label>
-					</div>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="txtNo">
-				    </div>					
-			  </div>
-			  <div class="row element-margin">
-					<div class="col-sm-4">
-						<label for="txtOGPL" class="form-label">OGPL</label>
-					</div>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="txtOGPL">
-					</div>
-			  </div>
-			  <div class="row element-margin">
-					<div class="col-sm-4">
-						<label for="dtFromDate" class="form-label">Date</label>
-					</div>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="dtFromDate" placeholder="">
-					</div>
-			  </div>
-			  <div class="row element-margin">	
-					<div class="col-sm-4">
-						<label for="dtToDate" class="form-label">Date</label>
-					</div>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="dtToDate" placeholder="">
-					</div>				
-			  </div>
-			  <div class="row element-margin">
-				<div class="col-sm-4">
-				  <label for="dtFrom" class="form-label">From</label>
-				</div>
-
-				<div class="col-sm-8">
-					<select class="form-select" id="dtFrom">
-					  <option selected disabled value="">Choose...</option>
-					  <option>...</option>
-					</select>
-				</div>				
-			  </div>
-			  <div class="row element-margin">	
-				<div class="col-sm-4">
-				  <label for="dtTo" class="form-label">To</label>
-				</div>
-
-				<div class="col-sm-8">
-				    <select class="form-select" id="dtTo">
-					  <option selected disabled value="">Choose...</option>
-					  <option>...</option>
-					</select>
-				</div>				
-			  </div>
-			  <div class="row element-margin">
+			   <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="txtLRNo">LR No.</label>
+					<label class="form-label" ></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtLRNo">
-				  </div>
-			   </div>
-			   <div class="row element-margin">	
-				  <div class="col-sm-4">
-					<label class="form-label" for="txtDeliveryBillNo">Delivery Bill No.</label>
-				  </div>
-				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtDeliveryBillNo">
+					
 				  </div>
 			  </div>
-			  <div class="row element-margin">
+			   <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="dtDeliveryDate">Delivery Date</label>
+					<label class="form-label" ></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="dtDeliveryDate">
-				  </div>
-			   </div>
-			  <div class="row element-margin">			   
-				<div class="col-sm-4">
-					<label class="form-label" for="txtToPay">To Pay</label>
-				</div>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" id="txtToPay">
-				</div>
-			  </div>
-		  </div>
-		  <div class="col-md-4 control-margin">
-			  <div class="row element-margin">
-				  <div class="col-sm-4">
-					<label class="form-label" for="txtHamali">Hamali</label>
-				  </div>
-				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtHamali">
+					
 				  </div>
 			  </div>
-			  <div class="row element-margin">
+			   <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="txtUnloadingCharges">Unloading Charges</label>
+					<label class="form-label"></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtUnloadingCharges">
+					
 				  </div>
 			  </div>
-			  <div class="row element-margin">
+			   <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="txtDoorDeliveryCharges">Door Delivery Charges</label>
+					<label class="form-label" ></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtDoorDeliveryCharges">
+					
 				  </div>
 			  </div>
-			  <div class="row element-margin">
+			   <div class="row element-margin">
 				  <div class="col-sm-4">
-					<label class="form-label" for="txtDemurrage">Demurrage</label>
+					<label class="form-label" ></label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtDemurrage">
+					
 				  </div>
-			  </div>
+			 
+			  
+			  
+			  
 			  <div class="row element-margin">
-				  <div class="col-sm-4">
-					<label class="form-label" for="txtOthers">Others</label>
-				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="txtOthers">
+					<label class="form-label" for="txtTotal">Total</label>
+				  </div>
+				  <div class="col-sm-4">
+					<input type="text" class="form-control" id="total" name="total">
 				  </div>
 			  </div>
 			  <div class="row element-margin">
 				  <div class="col-sm-8">
-					<label class="form-label" for="txtTotal">TOTAL</label>
+					<label class="form-label" for="txtTotal">Cash</label>
 				  </div>
 				  <div class="col-sm-4">
-					<input type="text" class="form-control" id="txtTotal">
-				  </div>
-			  </div>
-			  <div class="row element-margin">
-				  <div class="col-sm-2">
-					<label class="form-label" for="txtPaidTotal">Paid</label>
-				  </div>
-				  <div class="col-sm-6">
-					<input type="text" class="form-control" id="txtPaidBy">
-				  </div>
-				  <div class="col-sm-4">
-					<input type="text" class="form-control" id="txtPaidTotal">
-				  </div>
-				  <div class="mt-0" style="padding-left:80px">
-					<label for="txtPaidBy" class="form-label"><small>(Cheque No;Bank;Branch)</small></label>
+					<input type="text" class="form-control" id="cash" name="cash">
 				  </div>
 			  </div>
 			  <div class="row element-margin">
@@ -286,30 +454,39 @@
 					<label class="form-label" for="txtRefund">Refund</label>
 				  </div>
 				  <div class="col-sm-4">
-					<input type="text" class="form-control" id="txtRefund">
+					<input type="text" class="form-control" id="refund" name="refund">
 				  </div>
 			  </div>
+			  
 		  </div>
 		</div>
 		<div class="row control-margin">
 			<div class="col-md-5 control-margin">
-				<button type="button" class="btn btn-primary button-margin" id="btnSave">Save</button>
-				<button type="button" class="btn btn-primary button-margin" id="btnClear">Clear</button>
-				<a class="btn btn-primary button-margin" href="menu.jsp">Back</a>
+				<button type="button" class="btn btn-primary button-margin" id="btnNew">New</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnEdit">Edit</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnDelete">Delete</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnBill">Bill..</button>
+				
 			</div>
 			<div class="col-md-4 control-margin">
+			<button type="button" class="btn btn-primary button-margin" id="btnHelp">Help</button>
 				<button type="button" class="btn btn-primary button-margin" id="btnNext">Next</button>
 				<button type="button" class="btn btn-primary button-margin" id="btnPrevious">Previous</button>
 				<button type="button" class="btn btn-primary button-margin" id="btnCurrent">Current</button>
 			</div>
 			<div class="col-md-3 control-margin">
-				<button type="button" class="btn btn-primary button-margin" id="btnDeliver">Book Now</button>
+				
+				<button type="submit" class="btn btn-primary button-margin" id="btnSave">Save</button>
+				<button type="button" class="btn btn-primary button-margin" id="btnClear">Clear</button>
+				<a class="btn btn-primary button-margin" href="menu.jsp">Quit</a>
 				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Print</button>
 			</div>
 		</div>
+		</div>
 	  </main>
+	  </form>
 	</div>
 	</div></div></div></div>
 
-<!--   </body> -->
+ </body> 
 </html>
