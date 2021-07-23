@@ -79,6 +79,21 @@
     </div>
   </div>
 </div>
+&nbsp;
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../img/product/Menu3.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Add Location</h5>
+        <p class="card-text">Add location to deliver.</p>
+        <p class="card-text"><small class="text-muted"><a href="addLocation.jsp">Click here...</a></small></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 	
 </div>
