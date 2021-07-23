@@ -44,7 +44,7 @@ public class BookingController {
 		return "booking";
 	}
 
-	@RequestMapping("/configure")
+	@RequestMapping("/addLocation")
 	public void saveConfigure(@RequestBody Location location) {
 		locationService.saveLocation(location);
 		//return "configure";
