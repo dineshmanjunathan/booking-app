@@ -27,8 +27,8 @@ public class Booking implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String from;
-	private String to ;
+	private String fromLocation;
+	private String toLocation ;
 	private Long bookingNo;
 	private LocalDateTime bookedOn ;
 	private Long lrNumber;
