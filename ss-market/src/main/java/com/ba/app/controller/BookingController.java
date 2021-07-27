@@ -22,10 +22,12 @@ public class BookingController {
 	@Autowired
 	private BookingRepository bookingRepository;
 	LocationService locationService;
+	
+	
 	@RequestMapping(value = "/booking/save", method = RequestMethod.POST)
 	private String saveBookingDetails(HttpServletRequest request, BookingVo bookingVo, ModelMap model) {
 		Booking booking = new Booking();
-		BeanUtils.copyProperties(booking, bookingVo);
+		BeanUtils.copyProperties(bookingVo, booking);
 		bookingRepository.save(booking);
 		return "booking";
 	}
