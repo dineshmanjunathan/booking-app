@@ -3,122 +3,138 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!doctype html>
-<html class="no-js" lang="en">
-<head>
- <title>BookingApp</title>
-<%@ include file="header.jsp"%>
-<meta charset="ISO-8859-1">
-</head>
-<!-- Background image -->
-<div class="bg-image" style="
-      background-image: url('../../img/bg/Bg2.jpg');
-      height: 100%;
-    ">
-<br>
-<div class="col-md-12 offset-1 well row">
-<br>
-	<h4>Main Menu</h4>
-	</br>
-	
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../img/product/Menu1.jpg" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Booking Page</h5>
-        <p class="card-text">Use this page to book your courier.</p>
-         <p class="card-text"><small class="text-muted"><a href="booking.jsp">Click here...</a></small></p>
-      </div>
-    </div>
-  </div>
-</div>
-&nbsp;
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../img/product/Menu2.jpg" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Delivery Page</h5>
-        <p class="card-text"> Use this screen to get your product delivery status.</p>
-         <p class="card-text"><small class="text-muted"><a href="delivery.jsp">Click here</a></small></p>
-      </div>
-    </div>
-  </div>
-</div>
-&nbsp;
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../img/product/Menu4.jpg" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Incoming Parcels</h5>
-        <p class="card-text">To have all properly addressed mail that is received by us distributed appropriately after only one business day of being received.</p>
-         <p class="card-text"><small class="text-muted"><a href="incomingParcel.jsp">Click here...</a></small></p>
-      </div>
-    </div>
-  </div>
-</div>
-&nbsp;
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../img/product/Menu3.jpg" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Outgoing Parcels</h5>
-        <p class="card-text">City Courier Services can make sending parcels and courier items easy for you and your department.</p>
-        <p class="card-text"><small class="text-muted"><a href="outgoingParcel.jsp">Click here...</a></small></p>
-      </div>
-    </div>
-  </div>
-</div>
-&nbsp;
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../img/product/Menu3.jpg" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Add Location</h5>
-        <p class="card-text">Add location to deliver.</p>
-        <p class="card-text"><small class="text-muted"><a href="addLocation.jsp">Click here...</a></small></p>
-      </div>
-    </div>
-  </div>
-</div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>BookingApp</title>
 
-	
-</div>
+    
 
-<!-- <div class="col-md-12 offset-1 well row">
-<br>
-	<h4>Application Parameter</h4>
-	</br>
-	
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../img/product/setting.png" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Location setup</h5>
-        <p class="card-text">Here you can configure the default location (Source & destination)</p>
-         <p class="card-text"><small class="text-muted"><a href="booking.jsp">Click here...</a></small></p>
+    <!-- Bootstrap core CSS -->
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="../../dist/css/font-awesome.min.css">
+    <link href="../../dist/css/features.css" rel="stylesheet">
+  </head>
+<!--   <body style="
+    background-image: URL('../../img/bg/Bg2.jpg');
+"> -->
+<body>
+    
+    
+    <nav style="background-image: linear-gradient(#0f68b4,#1a1e2c)" class="navbar navbar-dark bg-primary">
+
+	<div class="header-right-info">
+		<ul class="nav navbar-nav mai-top-nav header-right-menu" style="padding: 20px 60px;">
+			<li class="nav-item">					
+				</li>
+		</ul>
+	</div>
+</nav>
+    
+<svg style="display: none;">
+  <symbol id="collection" viewBox="0 0 16 16">
+    <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
+  </symbol>
+   <symbol id="chevron-right" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+  </symbol>
+</svg>
+<main>
+  <div class="container px-4 py-1" style="background-color: whitesmoke;" id="featured-3">
+    <h3 class="pb-2 border-bottom">Parcel Management</h3>
+    <div class="row g-4 py-2 row-cols-1 row-cols-lg-4">
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
+        </div>
+        <h5>Booking Page</h5>
+        <p></p>
+        <a href="booking.jsp" class="icon-link">
+          Check here
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
+        </div>
+        <h5>Delivery Page</h5>
+        <p></p>
+        <a href="delivery.jsp" class="icon-link">
+          Check here
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
+        </div>
+        <h5>Incoming Parcels</h5>
+        <p></p>
+        <a href="incomingParcel.jsp" class="icon-link">
+          Check here
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
+        </div>
+        <h5>Outgoing Parcels</h5>
+        <p></p>
+        <a href="outgoingParcel.jsp" class="icon-link">
+          Check here
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
       </div>
     </div>
   </div>
-</div>	
-	
-</div> -->
+  <br>
+  <div class="container px-4 py-1" style="background-color: whitesmoke;" id="featured-3">
+    <h3 class="pb-2 border-bottom">Admin Management</h3>
+    <div class="row g-4 py-2 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
+        </div>
+        <h5>Location</h5>
+        <p></p>
+        <a href="addLocation.jsp" class="icon-link">
+          Check here
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
 
-</div>
+</main>
+
+
+    <script src="../../dist/js/bootstrap.bundle.min.js"></script>
+      
+  </body>
 </html>
+
