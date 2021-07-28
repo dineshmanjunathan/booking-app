@@ -73,7 +73,7 @@
         <h5>Booking Page</h5>
         <p></p>
         <a href="booking.jsp" class="icon-link">
-          Check here
+          Click here
           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
         </a>
       </div>
@@ -84,7 +84,7 @@
         <h5>Delivery Page</h5>
         <p></p>
         <a href="delivery.jsp" class="icon-link">
-          Check here
+          Click here
           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
         </a>
       </div>
@@ -95,7 +95,7 @@
         <h5>Incoming Parcels</h5>
         <p></p>
         <a href="incomingParcel.jsp" class="icon-link">
-          Check here
+          Click here
           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
         </a>
       </div>
@@ -106,7 +106,7 @@
         <h5>Outgoing Parcels</h5>
         <p></p>
         <a href="outgoingParcel.jsp" class="icon-link">
-          Check here
+          Click here
           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
         </a>
       </div>
@@ -123,7 +123,7 @@
         <h5>Location</h5>
         <p></p>
         <a href="addLocation.jsp" class="icon-link">
-          Check here
+          Click here
           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
         </a>
       </div>
