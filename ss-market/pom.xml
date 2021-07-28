@@ -34,23 +34,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
-		<!-- <dependency> <groupId>postgresql</groupId> <artifactId>postgresql</artifactId> 
-			<version>9.1-901-1.jdbc4</version> </dependency> -->
-
-		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>6.7.0</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
-		<!-- <dependency> <groupId>org.codehaus.groovy</groupId> <artifactId>groovy-all</artifactId> 
-			<version>3.0.0-alpha-4</version> <type>pom</type> </dependency> -->
-
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -93,13 +81,6 @@
 			<version>5.0.6</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.itextpdf.tool/xmlworker -->
-		<dependency>
-			<groupId>com.itextpdf.tool</groupId>
-			<artifactId>xmlworker</artifactId>
-			<version>5.5.13</version>
-		</dependency>
-
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
@@ -115,9 +96,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-thymeleaf</artifactId> 
-			</dependency> -->
 
 		<!-- Apache Commons IO -->
 		<dependency>
