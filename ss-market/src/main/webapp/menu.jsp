@@ -129,7 +129,22 @@
       </div>
     </div>
   </div>
-
+	<div class="container px-4 py-1" style="background-color: whitesmoke;" id="featured-3">
+    <h3 class="pb-2 border-bottom">Admin Management</h3>
+    <div class="row g-4 py-2 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
+        </div>
+        <h5>Payout</h5>
+        <p></p>
+        <a href="addPayout.jsp" class="icon-link">
+          Click here
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
 </main>
 
 

@@ -47,9 +47,15 @@ public class BookingController {
 	}
 
 	@RequestMapping("/addLocation")
-	public void saveConfigure(@RequestBody Location location) {
+	public String saveConfigure(@RequestBody Location location) {
 		locationService.saveLocation(location);
-		//return "configure";
+		return "addLocation";
+	}
+	
+	@RequestMapping("/addPayout")
+	public String savePayout(@RequestBody Location location) {
+		locationService.saveLocation(location);
+		return "addPayout";
 	}
 
 }
