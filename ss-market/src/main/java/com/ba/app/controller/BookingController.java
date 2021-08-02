@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ba.app.entity.Booking;
 import com.ba.app.entity.CountryCode;
@@ -78,7 +79,20 @@ public class BookingController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "locationList";
+		return "locationListing";
+	}
+	
+	@RequestMapping(value = "/location/delete", method = RequestMethod.GET)
+	public String locationDelete(@RequestParam("id") String id, HttpServletRequest request, ModelMap model) {
+		try {
+			locationRepository.deleteById(id);
+			model.addAttribute("deletesuccessmessage", "Deleted Successfully");
+			Iterable<Location> locaIterable = locationRepository.findAll();
+			model.addAttribute("locationListing", locaIterable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "locationListing";
 	}
 
 }
