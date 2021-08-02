@@ -11,17 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ba.app.entity.Booking;
+import com.ba.app.entity.CountryCode;
 import com.ba.app.entity.Location;
+import com.ba.app.entity.User;
 import com.ba.app.model.BookingRepository;
+import com.ba.app.model.LocationRepository;
 import com.ba.app.service.LocationService;
 import com.ba.app.vo.BookingVo;
+import com.ba.app.vo.LocationVo;
+import com.ba.app.vo.UserVo;
 
 @Controller
 public class BookingController {
 	
 	@Autowired
 	private BookingRepository bookingRepository;
-	LocationService locationService;
+	@Autowired
+	private LocationRepository locationRepository;
 	
 	
 	@RequestMapping(value = "/booking/save", method = RequestMethod.POST)
@@ -46,16 +52,33 @@ public class BookingController {
 		return "booking";
 	}
 
-	@RequestMapping("/addLocation")
-	public String saveConfigure(@RequestBody Location location) {
-		locationService.saveLocation(location);
+	@RequestMapping(value = "/addLocation", method = RequestMethod.POST)
+	public String saveConfigure(HttpServletRequest request, LocationVo locationVo, ModelMap model) {
+		try {			
+			Location locationEntity = new Location();
+
+			BeanUtils.copyProperties(locationVo, locationEntity, "createon", "updatedon");
+			locationEntity=	locationRepository.save(locationEntity);
+			model.addAttribute("successMessage", locationEntity.getLocation()+" - location added! ");
+			//model.addAttribute("location", locationEntity);
+
+			// TODO SMS to member mobile number
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errormsg", "Failed to add new location! ");
+			return "addLocation";
+		}
 		return "addLocation";
 	}
-	
-	@RequestMapping("/addPayout")
-	public String savePayout(@RequestBody Location location) {
-		locationService.saveLocation(location);
-		return "addPayout";
+	@RequestMapping("/locationListing")
+	public String countryCodeListing(HttpServletRequest request, ModelMap model) {
+		try {
+			Iterable<Location> locaIterable = locationRepository.findAll();
+			model.addAttribute("locationListing", locaIterable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "locationList";
 	}
 
 }
