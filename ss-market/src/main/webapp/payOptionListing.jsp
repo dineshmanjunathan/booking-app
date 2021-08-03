@@ -18,7 +18,15 @@
 </head>
 
 <body>
+  <nav style="background-image: linear-gradient(#0f68b4,#1a1e2c)" class="navbar navbar-dark bg-primary">
 
+	<div class="header-right-info">
+		<ul class="nav navbar-nav mai-top-nav header-right-menu" style="padding: 20px 60px;">
+			<li class="nav-item">					
+				</li>
+		</ul>
+	</div>
+</nav>
 	<div class="wrapper">
 		<div class="inner">
 			<div class="image-holder">
