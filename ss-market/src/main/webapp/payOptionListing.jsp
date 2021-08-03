@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Incoming Parcel</title>
+<title>BookingApp</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MATERIAL DESIGN ICONIC FONT -->
