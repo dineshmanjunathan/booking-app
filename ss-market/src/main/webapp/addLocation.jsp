@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Incoming Parcel</title>
+<title>Location</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MATERIAL DESIGN ICONIC FONT -->
@@ -44,7 +44,7 @@
 							<button type="reset" class="btn btn-primary button-margin" id="btnClear">Clear</button>
 						</div>
 						<div class="col-md-4">
-							<button href="/menu" type="button" class="btn btn-primary button-margin" id="btnClear">Back</button>
+							<button href="menu.jsp" type="button" class="btn btn-primary button-margin" id="btnClear">Back</button>
 						</div>
 					</div>
 			</form>

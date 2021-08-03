@@ -122,7 +122,7 @@
         </div>
         <h5>Location</h5>
         <p></p>
-        <a href="addLocation.jsp" class="icon-link">
+        <a href="/locationListing" class="icon-link">
           Click here
           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
         </a>
@@ -132,9 +132,9 @@
         <div class="feature-icon bg-primary bg-gradient">
           <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
         </div>
-        <h5>Payout</h5>
+        <h5>Pay Option</h5>
         <p></p>
-        <a href="addPayout.jsp" class="icon-link">
+        <a href="/payOptionListing" class="icon-link">
           Click here
           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
         </a>

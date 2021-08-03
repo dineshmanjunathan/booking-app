@@ -1,8 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Incoming Parcel</title>
+<meta charset="ISO-8859-1">
+<title>PayOut</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MATERIAL DESIGN ICONIC FONT -->
@@ -13,13 +16,6 @@
 <link rel="stylesheet" href="../../css/incoming/style.css">
 <link rel="stylesheet" href="../../css/style.css">
 <link rel="stylesheet" href="../../css/bootstrap.min.css">
-<script type="text/javascript" charset="utf-8">
-function savepayout(prodCode, price) {
-	
-	//Need to write for save
-
-}
-</script>
 </head>
 
 <body>
@@ -29,19 +25,26 @@ function savepayout(prodCode, price) {
 			<div class="image-holder">
 				<img src="../../img/product/parcel.jpg" alt="">
 			</div>
-			<form action="">
-				<h3>Payout Details</h3>
+			<form action="/payOption" method="post">
+				<h3> Pay Option</h3>
+				<p style="color: green" align="center">${successMessage}</p>
+				
 					<div class="form-row">
-						<input type="text" class="form-control" name="payout" id="payout" placeholder="Payout">
+						<input type="text" class="form-control" name="payOption" id="payOption" placeholder="Pay Type">
 					</div>
 					<br>
-					<textarea name="payoutDetails" id="payoutDetails" placeholder="Details" class="form-control"
+					<textarea name="details" id="details" placeholder="Pay Description" class="form-control"
 						style="height: 130px;"></textarea>
 					<br>
 					<div class="row control-margin">
-						<div class="col-md-12">
-							<button type="button" class="btn btn-primary button-margin"
-								id="btnClear" onclick="return savepayout'', '');">Save</button>
+						<div class="col-md-4">
+							<button type="submit" class="btn btn-primary button-margin" id="btnClear">Save</button>
+						</div>
+						<div class="col-md-4">
+							<button type="reset" class="btn btn-primary button-margin" id="btnClear">Clear</button>
+						</div>
+						<div class="col-md-4">
+							<button href="menu.jsp" type="button" class="btn btn-primary button-margin" id="btnClear">Back</button>
 						</div>
 					</div>
 			</form>
