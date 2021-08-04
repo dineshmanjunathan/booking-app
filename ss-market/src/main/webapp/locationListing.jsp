@@ -34,6 +34,7 @@
 			</div>
 			<form action="">
 				<h3>Location</h3>
+				<p style="color: green" align="center">${successMessage}</p>
 				<div class="row control-margin">
 					<div class="col-md-12">
 						<a class="btn btn-primary button-margin" href="addLocation.jsp">Add</a>
@@ -43,18 +44,20 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">No.</th>
+							
 							<th scope="col">Location</th>
 							<th scope="col">Address</th>
+							<th scope="col">Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="details" items="${locationListing}"
 							varStatus="status">
 							<tr>
-								<td>${details.id}</td>
+								
 								<td>${details.location}</td>
 								<td>${details.address}</td>
+								<td><a class="btn btn-primary button-margin" href="/location/edit/${details.id}" id="${details.id}">Edit</a> <a class="btn btn-primary button-margin" href="/location/delete/${details.id}">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

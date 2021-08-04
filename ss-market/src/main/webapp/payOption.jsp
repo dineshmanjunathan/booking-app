@@ -33,16 +33,18 @@
 			<div class="image-holder">
 				<img src="../../img/product/parcel.jpg" alt="">
 			</div>
+			
 			<form action="/payOption" method="post">
-				<h3> Pay Option</h3>
-				<p style="color: green" align="center">${successMessage}</p>
+			
+				<h3> Pay Type</h3>
 				
+				<input type="hidden" class="form-control" name="id" id="id" value="${payOption.id}" required>
 					<div class="form-row">
-						<input type="text" class="form-control" name="payOption" id="payOption" placeholder="Pay Type">
+						<input type="text" class="form-control" name="payOption" id="payOption" placeholder="Pay Type" value="${payOption.payOption}" required>
 					</div>
 					<br>
 					<textarea name="details" id="details" placeholder="Pay Description" class="form-control"
-						style="height: 130px;"></textarea>
+						style="height: 130px;" >${payOption.details}</textarea>
 					<br>
 					<div class="row control-margin">
 						<div class="col-md-4">

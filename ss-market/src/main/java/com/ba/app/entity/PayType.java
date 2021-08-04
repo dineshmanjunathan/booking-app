@@ -19,14 +19,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "t_payoption")
-public class PayOption implements Serializable {
+@Table(name = "t_pay_option")
+public class PayType implements Serializable {
 
 	private static final long serialVersionUID = -7187348510206952329L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String payOption;
 	private String details ;
 	private LocalDateTime createon = LocalDateTime.now();

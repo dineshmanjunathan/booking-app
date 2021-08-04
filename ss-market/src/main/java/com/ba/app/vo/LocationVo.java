@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class LocationVo implements Serializable {
 	private static final long serialVersionUID = -7187348510206952329L;
-	private long id;
+	private Long id;
 	private String location;
 	private String address;
 	private LocalDateTime createon = LocalDateTime.now();

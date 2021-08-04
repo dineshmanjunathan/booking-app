@@ -35,14 +35,14 @@
 			</div>
 			<form action="/addLocation" method="post">
 				<h3> Location</h3>
-				<p style="color: green" align="center">${successMessage}</p>
+				<input type="hidden" class="form-control" name="id" id="id" value="${location.id}" required>
 				
 					<div class="form-row">
-						<input type="text" class="form-control" name="location" id="location" placeholder="Location">
+						<input type="text" class="form-control" name="location" id="location" placeholder="Location" value="${location.location}" required>
 					</div>
 					<br>
 					<textarea name="address" id="address" placeholder="Address" class="form-control"
-						style="height: 130px;"></textarea>
+						style="height: 130px;">${location.address}</textarea>
 					<br>
 					<div class="row control-margin">
 						<div class="col-md-4">

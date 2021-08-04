@@ -32,8 +32,9 @@
 			<div class="image-holder">
 				<img src="../../img/product/parcel.jpg" alt="">
 			</div>
-			<form action="">
-				<h3>Pay Option</h3>
+			<form action="" >
+				<h3>Pay Type</h3>
+				<p style="color: green" align="center">${successMessage}</p>
 				<div class="row control-margin">
 					<div class="col-md-12">
 						<a class="btn btn-primary button-margin" href="payOption.jsp">Add</a>
@@ -43,18 +44,18 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">No.</th>
-							<th scope="col">Pay Options</th>
+							<th scope="col">Pay Type</th>
 							<th scope="col">Description</th>
+							<th scope="col">Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="details" items="${payOptionListing}"
 							varStatus="status">
 							<tr>
-								<td>${details.id}</td>
 								<td>${details.payOption}</td>
 								<td>${details.details}</td>
+								<td><a class="btn btn-primary button-margin" href="/payOption/edit/${details.id}" id="${details.id}">edit</a> <a class="btn btn-primary button-margin" href="/payOption/delete/${details.id}">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
