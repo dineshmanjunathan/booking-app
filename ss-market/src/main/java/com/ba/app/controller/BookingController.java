@@ -73,7 +73,7 @@ public class BookingController {
 			model.addAttribute("errormsg", "Failed to add new location! ");
 			return "addLocation";
 		}
-		return "addLocation";
+		return "locationListing";
 	}
 	@RequestMapping("/locationListing")
 	public String countryCodeListing(HttpServletRequest request, ModelMap model) {
