@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,21 +33,23 @@
 				</div>
 				<div class="form-row">
 					<div class="form-holder">
-						<select name="" id="" class="form-control">
-							<option value="" disabled selected>From</option>
-							<option value="class 01">Class 01</option>
-							<option value="class 02">Class 02</option>
-							<option value="class 03">Class 03</option>
-						</select> <i class="zmdi zmdi-chevron-down"></i>
+						<select name="from" id="from" class="form-control">
+						<option value="">-Select From Location-</option>
+						<c:forEach var="options" items="${locationList}"
+							varStatus="status">
+							<option value="${options.id}">${options.location}</option>
+						</c:forEach>
+					</select><i class="zmdi zmdi-chevron-down"></i>
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="form-holder">
-						<select name="" id="" class="form-control">
-							<option value="" disabled selected>To</option>
-							<option value="class 01">Class 01</option>
-							<option value="class 02">Class 02</option>
-							<option value="class 03">Class 03</option>
-						</select> <i class="zmdi zmdi-chevron-down"></i>
+						<select name="from" id="from" class="form-control">
+						<option value="">-Select To Location-</option>
+						<c:forEach var="options" items="${locationList}"
+							varStatus="status">
+							<option value="${options.id}">${options.location}</option>
+						</c:forEach>
+					</select><i class="zmdi zmdi-chevron-down"></i>
 					</div>
 				</div>
 				<div class="form-row">

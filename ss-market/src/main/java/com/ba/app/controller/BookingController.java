@@ -1,5 +1,8 @@
 package com.ba.app.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeanUtils;
@@ -38,14 +41,16 @@ public class BookingController {
 		return "booking";
 	}
 	@RequestMapping("/outgoingParcel")
-	public String outgoingParcel() {
+	public String outgoingParcel(HttpServletRequest request, ModelMap model) {
+		setAllLocationListInModel(model);
 		return "outgoingParcel";
 	}
+	
 	@RequestMapping("/incomingParcel")
-	public String incomingParcel() {
+	public String incomingParcel(HttpServletRequest request, ModelMap model) {
+		setAllLocationListInModel(model);
 		return "incomingParcel";
 	}
-	
 	
 	@RequestMapping("/booking")
 	public String booking() {
@@ -132,5 +137,10 @@ public class BookingController {
 			e.printStackTrace();
 		}
 		return "payOptionListing";
+	}
+	
+	private void setAllLocationListInModel(ModelMap model) {
+		Iterable<Location> locaIterable = locationRepository.findAll();
+		model.addAttribute("locationList", locaIterable);
 	}
 }
