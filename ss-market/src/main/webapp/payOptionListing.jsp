@@ -38,7 +38,7 @@
 				<div class="row control-margin">
 					<div class="col-md-12">
 						<a class="btn btn-primary button-margin" href="payOption.jsp">Add</a>
-						<a class="btn btn-primary button-margin" href="menu.jsp">Back</a>
+						<a class="btn btn-primary button-margin" href="/menu">Back</a>
 					</div>
 				</div>
 				<table class="table">
