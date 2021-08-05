@@ -96,12 +96,13 @@
 				<br>
 				<div class="form-row">
 					<div class="form-holder">
-						<select name="" id="" class="form-control">
-							<option value="" disabled selected>Vechile No</option>
-							<option value="class 01">Class 01</option>
-							<option value="class 02">Class 02</option>
-							<option value="class 03">Class 03</option>
-						</select> <i class="zmdi zmdi-chevron-down"></i>
+						<select name="from" id="from" class="form-control">
+						<option value="">-Vehicle No-</option>
+						<c:forEach var="options1" items="${vehicleList}"
+							varStatus="status">
+							<option value="${options1.id}">${options1.vehicle}</option>
+						</c:forEach>
+					</select><i class="zmdi zmdi-chevron-down"></i>
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="form-holder">

@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ba.app.entity.Booking;
 import com.ba.app.entity.Location;
 import com.ba.app.entity.PayType;
+import com.ba.app.entity.Vehicle;
 import com.ba.app.model.BookingRepository;
 import com.ba.app.model.LocationRepository;
 import com.ba.app.model.PayOptionRepository;
+import com.ba.app.model.VehicleRepository;
 import com.ba.app.vo.BookingVo;
 import com.ba.app.vo.LocationVo;
 import com.ba.app.vo.PayOptionVo;
+import com.ba.app.vo.VehicleVo;
 
 @Controller
 public class BookingController {
@@ -32,6 +35,8 @@ public class BookingController {
 	private LocationRepository locationRepository;
 	@Autowired
 	private PayOptionRepository payOptionRepository;
+	@Autowired
+	private VehicleRepository vehicleRepository;
 	
 	@RequestMapping(value = "/booking/save", method = RequestMethod.POST)
 	private String saveBookingDetails(HttpServletRequest request, BookingVo bookingVo, ModelMap model) {
@@ -43,12 +48,14 @@ public class BookingController {
 	@RequestMapping("/outgoingParcel")
 	public String outgoingParcel(HttpServletRequest request, ModelMap model) {
 		setAllLocationListInModel(model);
+		setAllVehileListInModel(model);
 		return "outgoingParcel";
 	}
 	
 	@RequestMapping("/incomingParcel")
 	public String incomingParcel(HttpServletRequest request, ModelMap model) {
 		setAllLocationListInModel(model);
+		setAllVehileListInModel(model);
 		return "incomingParcel";
 	}
 	
@@ -156,6 +163,10 @@ public class BookingController {
 		Iterable<Location> locaIterable = locationRepository.findAll();
 		model.addAttribute("locationList", locaIterable);
 	}
+	private void setAllVehileListInModel(ModelMap model) {
+		Iterable<Vehicle> vechileIterable = vehicleRepository.findAll();
+		model.addAttribute("vehicleList", vechileIterable);
+	}
 	
 	@RequestMapping(value = "/payOption/edit/{id}", method = RequestMethod.GET)
 	public String payOptionEdit(@PathVariable("id") Long id, HttpServletRequest request, ModelMap model) {
@@ -168,5 +179,58 @@ public class BookingController {
 			e.printStackTrace();
 		}
 		return "payOption";
+	}
+	@RequestMapping(value = "/vehicle", method = RequestMethod.POST)
+	public String saveVehicle(HttpServletRequest request, VehicleVo vehicleVo, ModelMap model) {
+		try {			
+			Vehicle vehicleEntity = new Vehicle();
+			BeanUtils.copyProperties(vehicleVo, vehicleEntity, "createon", "updatedon");
+			vehicleEntity=	vehicleRepository.save(vehicleEntity);
+			model.addAttribute("successMessage", vehicleEntity.getVehicle()+" - Vehicle added! ");
+			Iterable<Vehicle> vehicleIterable = vehicleRepository.findAll();
+			model.addAttribute("vehicleListing", vehicleIterable);
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errormsg", "Failed to Pay Option! ");
+			return "vehicleDetails";
+		}
+		return "vehicleListing";
+	}
+	
+	@RequestMapping("/vehicleListing")
+	public String saveVehicleListing(HttpServletRequest request, ModelMap model) {
+		try {
+			Iterable<Vehicle> locaIterable = vehicleRepository.findAll();
+			model.addAttribute("vehicleListing", locaIterable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "vehicleListing";
+	}
+	
+	@RequestMapping(value = "/vehicle/delete/{id}", method = RequestMethod.GET)
+	public String vehicleDelete(@PathVariable ("id") Long id, HttpServletRequest request, ModelMap model) {
+		try {
+			vehicleRepository.deleteById(id);
+			model.addAttribute("deletesuccessmessage", "Deleted Successfully");
+			Iterable<Vehicle> vehicleIterable = vehicleRepository.findAll();
+			model.addAttribute("vehicleListing", vehicleIterable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "vehicleListing";
+	}
+	
+	@RequestMapping(value = "/vehicle/edit/{id}", method = RequestMethod.GET)
+	public String vehicleEdit(@PathVariable("id") Long id, HttpServletRequest request, ModelMap model) {
+		try {
+			Vehicle vehicle = vehicleRepository.findById(id).get();
+			VehicleVo vehicleVo = new VehicleVo();
+			BeanUtils.copyProperties(vehicle, vehicleVo);
+			model.addAttribute("vehicle", vehicleVo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "vehicleDetails";
 	}
 }
