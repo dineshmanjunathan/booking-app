@@ -30,7 +30,7 @@ public class Booking implements Serializable {
 	private String fromLocation;
 	private String toLocation ;
 	private Long bookingNo;
-	private LocalDateTime bookedOn ;
+	private String bookedOn ;
 	private Long lrNumber;
 	private String fromName;
 	private String toName;

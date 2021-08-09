@@ -16,6 +16,24 @@
 <link rel="stylesheet" href="../../css/incoming/style.css">
 <link rel="stylesheet" href="../../css/style.css">
 <link rel="stylesheet" href="../../css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+	function getSearchParcel() {
+		let from = $("#fromLocation").val();
+		if (!from) {
+			alert("Please select From Location");
+			return false;
+		}
+		let to = $("#toLocation").val();
+		if (!to) {
+			alert("Please select To Location");
+			return false;
+		}
+		window.location.href = "/get/outgoingParcel?fromLocation=" + from
+				+ "&toLocation=" + to;
+	}
+</script>
 </head>
 
 <body>
@@ -28,12 +46,8 @@
 			<form action="">
 				<h3>Outgoing Parcel</h3>
 				<div class="form-row">
-					<input type="text" class="form-control" placeholder="OGPL NO">
-					<input type="date" class="form-control" placeholder="Date">
-				</div>
-				<div class="form-row">
 					<div class="form-holder">
-						<select name="from" id="from" class="form-control">
+						<select name="fromLocation" id="fromLocation" class="form-control">
 						<option value="">-Select From Location-</option>
 						<c:forEach var="options" items="${locationList}"
 							varStatus="status">
@@ -43,14 +57,22 @@
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="form-holder">
-						<select name="from" id="from" class="form-control">
+						<select name="toLocation" id="toLocation" class="form-control">
 						<option value="">-Select To Location-</option>
 						<c:forEach var="options" items="${locationList}"
 							varStatus="status">
 							<option value="${options.id}">${options.location}</option>
 						</c:forEach>
 					</select><i class="zmdi zmdi-chevron-down"></i>
+				
 					</div>
+						&nbsp;&nbsp;
+					<a class="btn btn-primary button-margin"
+						id="import" onclick="return getSearchParcel();">Import</a>
+				</div>
+							<div class="form-row">
+					<input type="text" class="form-control" placeholder="OGPL NO">
+					<input type="date" class="form-control" placeholder="Date">
 				</div>
 				<div class="form-row">
 					<div class="form-holder">
@@ -83,24 +105,29 @@
 							<th scope="col">Paid</th>
 							<th scope="col">To Pay</th>
 							<th scope="col">Charges</th>
-							<th scope="col">Date</th>
+							<th scope="col">Booked Date</th>
 							<th scope="col">Br</th>
 						</tr>
 					</thead>
-					<tbody>
+										<tbody>
+					<c:forEach var="outgoingList" items="${outgoingList}"
+							varStatus="status">
 						<tr>
-							<th scope="row">1</th>
-							<td>OGP</td>
-							<td>To Name</td>
-							<td>NOs</td>
-							<td>Remarks</td>
-							<td>Paid</td>
-							<td>To Pay</td>
-							<td>Charges</td>
-							<td>Date</td>
-							<td>Br</td>
+<!-- 							<th scope="row">1</th>
+ -->							
+ 							<td>${outgoingList.lrNumber}</td>
+ 							<td>dummy ogpl</td>
+ 							<td>${outgoingList.toName}</td>
+							<td>${outgoingList.bookingNo}</td>
+							<td>${outgoingList.remarks}</td>
+							<td>${outgoingList.paid}</td>
+							<td>${outgoingList.topay}</td>
+							<td>${outgoingList.total_charges}</td>
+							<td>${outgoingList.bookedOn}</td>
+							<td>dummy br</td>
+						
 						</tr>
-					</tbody>
+						</c:forEach>
 				</table>
 				<br>
 				<div class="form-row">
@@ -124,7 +151,7 @@
 				<button type="submit" class="btn btn-primary button-margin" name="submit">Clear</button>
 				
 				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Help</button>
-				<a class="btn btn-primary button-margin" href="menu.jsp">Back</a>
+				<a class="btn btn-primary button-margin" href="/menu">Back</a>
 			</div>
 		</div>
 			</form>

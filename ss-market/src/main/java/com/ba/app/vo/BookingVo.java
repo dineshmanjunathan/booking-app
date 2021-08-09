@@ -2,6 +2,7 @@ package com.ba.app.vo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.Data;
@@ -18,10 +19,11 @@ public class BookingVo implements Serializable {
 	 */
 	private static final long serialVersionUID = -7187348510206952329L;
 
-	private String from;
-	private String to ;
+	private long id;
+	private String fromLocation;
+	private String toLocation ;
 	private Long bookingNo;
-	private LocalDateTime bookedOn ;
+	private String bookedOn ;
 	private Long lrNumber;
 	private String fromName;
 	private String toName;
@@ -49,5 +51,5 @@ public class BookingVo implements Serializable {
 	private BigDecimal topay;
 	private BigDecimal cash;
 	private BigDecimal refund;
-	private BigDecimal total;		
+	private BigDecimal total;	
 }

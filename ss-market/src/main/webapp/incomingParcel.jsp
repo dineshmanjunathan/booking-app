@@ -16,8 +16,25 @@
 <link rel="stylesheet" href="../../css/incoming/style.css">
 <link rel="stylesheet" href="../../css/style.css">
 <link rel="stylesheet" href="../../css/bootstrap.min.css">
-</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
 
+	function getSearchParcel() {
+		let from = $("#fromLocation").val();
+		if (!from) {
+			alert("Please select From Location");
+			return false;
+		}
+		let to = $("#toLocation").val();
+		if (!to) {
+			alert("Please select To Location");
+			return false;
+		}
+		window.location.href = "/get/incomingParcel?fromLocation=" + from
+				+ "&toLocation=" + to;
+	}
+</script>
+</head>
 <body>
 
 	<div class="wrapper">
@@ -29,7 +46,7 @@
 				<h3>Incoming Parcel</h3>
 				<div class="form-row">
 					<div class="form-holder">
-					<select name="from" id="from" class="form-control">
+					<select name="fromLocation" id="fromLocation" class="form-control">
 						<option value="">-Select From Location-</option>
 						<c:forEach var="options" items="${locationList}"
 							varStatus="status">
@@ -40,7 +57,7 @@
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="form-holder">
-						<select name="to" id="to" class="form-control">
+						<select name="toLocation" id="toLocation" class="form-control">
 						<option value="">-Select To Location-</option>
 						<c:forEach var="options" items="${locationList}"
 							varStatus="status">
@@ -49,16 +66,16 @@
 					</select><i class="zmdi zmdi-chevron-down"></i>
 					</div>
 					&nbsp;&nbsp;
-					<button type="button" class="btn btn-primary button-margin"
-						id="import">Import</button>
+					<a class="btn btn-primary button-margin"
+						id="import" onclick="return getSearchParcel();">Import</a>
 				</div>
 				<div class="form-row">
-					<input type="text" class="form-control" placeholder="No"> <input
-						type="date" class="form-control" placeholder="Date">
+					<input type="text" class="form-control" id="no" placeholder="No"> <input
+						type="date" class="form-control" id="date" placeholder="Date">
 				</div>
 				<div class="form-row">
-					<input type="text" class="form-control" placeholder="OGPL No">
-					<input type="date" class="form-control" placeholder="OGPL Date">
+					<input type="text" class="form-control" id="ogplno"  placeholder="OGPL No">
+					<input type="date" class="form-control" id="ogpldate" placeholder="OGPL Date">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value=""
@@ -81,16 +98,20 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach var="incomelist" items="${incomeList}"
+							varStatus="status">
 						<tr>
 							<th scope="row">1</th>
-							<td>Name</td>
-							<td>NOs LR</td>
-							<td>Paid</td>
-							<td>To Pay</td>
-							<td>Charges</td>
+							<td>${incomelist.toName}</td>
+							<td>${incomelist.lrNumber}</td>
+							<td>${incomelist.paid}</td>
+							<td>${incomelist.topay}</td>
+							<td>${incomelist.total_charges}</td>
 							<td>Hamali Rem</td>
 							<td>Free Hold Status To</td>
 						</tr>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 				<br>
@@ -144,7 +165,7 @@
 							
 							<button type="button" class="btn btn-primary button-margin"
 								id="btnPrint">Help</button>
-								<a class="btn btn-primary button-margin" href="menu.jsp">Back</a>
+								<a class="btn btn-primary button-margin" href="/menu">Back</a>
 						</div>
 					</div>
 			</form>

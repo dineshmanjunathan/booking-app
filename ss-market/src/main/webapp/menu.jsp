@@ -72,7 +72,7 @@
         </div>
         <h5>Booking Page</h5>
         <p></p>
-        <a href="booking.jsp" class="icon-link">
+        <a href="/booking" class="icon-link">
           Click here
           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
         </a>

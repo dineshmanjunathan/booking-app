@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +19,11 @@
 			margin-right: 5px;
 		}		
 	</style>
-	
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
   </head>
  
  <nav style="background-image: linear-gradient(#0f68b4,#1a1e2c)" class="navbar navbar-dark bg-primary">
@@ -44,6 +50,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="blog-details-inner">
       <form action="/booking/save" method="POST">
+      <p style="color: green" align="center">${bookingsuccessmessage}</p>
 	  <main>
 		<div class="row">
 		  <div class="col-md-4 control-margin">
@@ -54,9 +61,14 @@
 				</div>
 
 				<div class="col-sm-8">
-					<select class="form-select bg-info text-dark" id="from" name="from">
-					  <option selected disabled value="">Choose...</option>
-					  <option>...</option>
+					<select class="form-select bg-info text-dark" id="fromLocation" name="fromLocation">
+					 <!--  <option selected disabled value="">Choose...</option>
+					  <option>...</option> -->
+					  <option value="">-Select From Location-</option>
+					  <c:forEach var="options" items="${locationList}"
+							varStatus="status">
+							<option value="${options.id}">${options.location}</option>
+						</c:forEach>
 					</select>
 				</div>				
 			  </div>
@@ -66,9 +78,14 @@
 				</div>
 
 				<div class="col-sm-8">
-				    <select class="form-select bg-info text-dark" id="to" name ="to">
-					  <option selected disabled value="">Choose...</option>
-					  <option>...</option>
+				    <select class="form-select bg-info text-dark" id="toLocation" name ="toLocation">
+					 <!--  <option selected disabled value="">Choose...</option>
+					  <option>...</option> -->
+					  	<option value="">-Select To Location-</option>
+					    <c:forEach var="options" items="${locationList}"
+							varStatus="status">
+							<option value="${options.id}">${options.location}</option>
+						</c:forEach>
 					</select>
 				</div>				
 			  </div>
@@ -326,7 +343,7 @@
 						<label for="bookedOn" class="form-label">Date</label>
 					</div>
 					<div class="col-sm-8">
-						<input type="datetime" class="form-control bg-info text-dark" id="bookedOn" placeholder="" name="bookedOn">
+						<input type="date" class="form-control bg-info text-dark" id="bookedOn" placeholder="" name="bookedOn">
 					</div>				
 			  </div>
 			   <div class="row element-margin">
@@ -478,7 +495,7 @@
 				
 				<button type="submit" class="btn btn-primary button-margin" id="btnSave">Save</button>
 				<button type="button" class="btn btn-primary button-margin" id="btnClear">Clear</button>
-				<a class="btn btn-primary button-margin" href="menu.jsp">Quit</a>
+				<a class="btn btn-primary button-margin" href="/menu">Quit</a>
 				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Print</button>
 			</div>
 		</div>

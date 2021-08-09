@@ -1,6 +1,5 @@
 package com.ba.app.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ba.app.entity.Booking;
 import com.ba.app.entity.Location;
@@ -39,10 +39,17 @@ public class BookingController {
 	private VehicleRepository vehicleRepository;
 	
 	@RequestMapping(value = "/booking/save", method = RequestMethod.POST)
-	private String saveBookingDetails(HttpServletRequest request, BookingVo bookingVo, ModelMap model) {
+	public String saveBookingDetails(HttpServletRequest request, BookingVo bookingVo, ModelMap model) {
+		try {
 		Booking booking = new Booking();
 		BeanUtils.copyProperties(bookingVo, booking);
+		model.addAttribute("bookingsuccessmessage", "Booked Successfully");
 		bookingRepository.save(booking);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			model.addAttribute("errormsg", "Failed to Book ");
+			return "booking";
+		}
 		return "booking";
 	}
 	@RequestMapping("/outgoingParcel")
@@ -60,7 +67,8 @@ public class BookingController {
 	}
 	
 	@RequestMapping("/booking")
-	public String booking() {
+	public String booking(ModelMap model) {
+		setAllLocationListInModel(model);
 		return "booking";
 	}
 
@@ -162,6 +170,19 @@ public class BookingController {
 	private void setAllLocationListInModel(ModelMap model) {
 		Iterable<Location> locaIterable = locationRepository.findAll();
 		model.addAttribute("locationList", locaIterable);
+	}
+	
+	@RequestMapping(value = "get/incomingParcel", method = RequestMethod.GET)
+	public String importIncomingParcel(@RequestParam("fromLocation") String fromLocation,@RequestParam("toLocation") String toLocation,HttpServletRequest request, ModelMap model) {
+		List<Booking> incomeList= bookingRepository.findByFromLocationAndToLocation(fromLocation,toLocation);
+		model.addAttribute("incomeList", incomeList);
+		return "incomingParcel";
+	}
+	@RequestMapping(value = "get/outgoingParcel", method = RequestMethod.GET)
+	public String importOutgoingParcel(@RequestParam("fromLocation") String fromLocation,@RequestParam("toLocation") String toLocation,HttpServletRequest request, ModelMap model) {
+		List<Booking> outgoingList= bookingRepository.findByFromLocationAndToLocation(fromLocation,toLocation);
+		model.addAttribute("outgoingList", outgoingList);
+		return "outgoingParcel";
 	}
 	private void setAllVehileListInModel(ModelMap model) {
 		Iterable<Vehicle> vechileIterable = vehicleRepository.findAll();
