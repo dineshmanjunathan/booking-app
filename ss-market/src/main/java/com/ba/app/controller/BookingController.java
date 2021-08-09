@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ba.app.entity.Booking;
+import com.ba.app.entity.Delivery;
 import com.ba.app.entity.Location;
 import com.ba.app.entity.PayType;
 import com.ba.app.entity.Vehicle;
 import com.ba.app.model.BookingRepository;
+import com.ba.app.model.DeliveryRepository;
 import com.ba.app.model.LocationRepository;
 import com.ba.app.model.PayOptionRepository;
 import com.ba.app.model.VehicleRepository;
 import com.ba.app.vo.BookingVo;
+import com.ba.app.vo.DeliveryVo;
 import com.ba.app.vo.LocationVo;
 import com.ba.app.vo.PayOptionVo;
 import com.ba.app.vo.VehicleVo;
@@ -37,6 +40,8 @@ public class BookingController {
 	private PayOptionRepository payOptionRepository;
 	@Autowired
 	private VehicleRepository vehicleRepository;
+	@Autowired
+	private DeliveryRepository deliveryRepository;
 	
 	@RequestMapping(value = "/booking/save", method = RequestMethod.POST)
 	public String saveBookingDetails(HttpServletRequest request, BookingVo bookingVo, ModelMap model) {
@@ -253,5 +258,54 @@ public class BookingController {
 			e.printStackTrace();
 		}
 		return "vehicleDetails";
+	}
+	@RequestMapping(value = "/addDelivery", method = RequestMethod.POST)
+	public String saveDelivery(HttpServletRequest request, DeliveryVo deliveryVo, ModelMap model) {
+		try {			
+			Delivery deliveryEntity = new Delivery();
+
+			BeanUtils.copyProperties(deliveryVo, deliveryEntity, "createon", "updatedon");
+			deliveryEntity=	deliveryRepository.save(deliveryEntity);
+			model.addAttribute("delivery", deliveryEntity);
+			//Iterable<Delivery> locaIterable = locationRepository.findAll();
+			//model.addAttribute("locationListing", locaIterable);
+			// TODO SMS to member mobile number
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errormsg", "Failed to add new location! ");
+			return "delivery";
+		}
+		return "delivery";
+	}
+	
+	@RequestMapping(value = "/searchParcelLRNO/{lRNo}", method = RequestMethod.GET)
+	public String searchParcelLRNO(@PathVariable("lRNo") String lRNo, HttpServletRequest request, ModelMap model) {
+		try {
+			Delivery deliveryEntity = deliveryRepository.findByLRNo(Long.parseLong(lRNo));
+			DeliveryVo deliveryVo=new DeliveryVo();
+			BeanUtils.copyProperties(deliveryEntity, deliveryVo);
+			model.addAttribute("delivery", deliveryVo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errormsg", "Failed To search LRNO ");
+			return "delivery";
+		}
+		return "delivery";
+	}
+	@RequestMapping(value = "/searchParcelName/{name}", method = RequestMethod.GET)
+	public String searchParcelName(@PathVariable("name") String name, HttpServletRequest request, ModelMap model) {
+		try {
+			Delivery deliveryEntity = deliveryRepository.findByName(name);
+			DeliveryVo deliveryVo=new DeliveryVo();
+			BeanUtils.copyProperties(deliveryEntity, deliveryVo);
+			model.addAttribute("delivery", deliveryVo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errormsg", "Failed To search Party Name ");
+			return "delivery";
+		}
+		return "delivery";
 	}
 }
