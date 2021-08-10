@@ -495,7 +495,7 @@
 				
 				<button type="submit" class="btn btn-primary button-margin" id="btnSave">Save</button>
 				<button type="button" class="btn btn-primary button-margin" id="btnClear">Clear</button>
-				<a class="btn btn-primary button-margin" href="/menu">Quit</a>
+				<a class="btn btn-primary button-margin" href="/menu">Back</a>
 				<button type="button" class="btn btn-primary button-margin" id="btnPrint">Print</button>
 			</div>
 		</div>

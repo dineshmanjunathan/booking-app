@@ -81,17 +81,6 @@
         <div class="feature-icon bg-primary bg-gradient">
           <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
         </div>
-        <h5>Delivery Page</h5>
-        <p></p>
-        <a href="delivery.jsp" class="icon-link">
-          Click here
-          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
-        </a>
-      </div>
-      <div class="feature col">
-        <div class="feature-icon bg-primary bg-gradient">
-          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
-        </div>
         <h5>Incoming Parcels</h5>
         <p></p>
         <a href="/incomingParcel" class="icon-link">
@@ -106,6 +95,17 @@
         <h5>Outgoing Parcels</h5>
         <p></p>
         <a href="/outgoingParcel" class="icon-link">
+          Click here
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+        </a>
+      </div>
+            <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
+        </div>
+        <h5>Delivery Page</h5>
+        <p></p>
+        <a href="delivery.jsp" class="icon-link">
           Click here
           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
         </a>
