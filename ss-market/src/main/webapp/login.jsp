@@ -30,8 +30,7 @@
 </nav>
  
    <body class="bg-light">    
-   <form action="/login" method="post">
-                      	<p style="color:red" align="center">${errormsg}</p>  
+   <form action="/login" method="post">  
                       	<p style="color:green" align="center">${adminlogout}</p>
                       	<p style="color:green" align="center">${registersuccess}</p>        
 	<div class="blog-details-area mg-b-15">
@@ -53,13 +52,16 @@
 				 <div class="col-sm-8" style="margin-left: 50%;">
 					<h4><b>LOGIN</b></h4>
 				  </div>
+				<div class="col-sm-4" style="margin-left: 50%;">
+			  <p style="color:red">${errormsg}</p>
+			  </div>
 			  </div>
 			  <div class="row element-margin">
 				  <div class="col-sm-4">
 					<label class="form-label" for="txtHamali">User ID</label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="text" class="form-control" id="userId">
+					<input type="text" class="form-control" name ="id" id="id">
 				  </div>
 			  </div>
 			  <div class="row element-margin">
@@ -67,7 +69,7 @@
 					<label class="form-label" for="txtUnloadingCharges">Password</label>
 				  </div>
 				  <div class="col-sm-8">
-					<input type="password" class="form-control" id="password">
+					<input type="password" class="form-control" name ="password" id="password">
 				  </div>
 			  </div>
 			  <div class="row control-margin">
