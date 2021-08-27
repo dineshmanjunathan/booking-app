@@ -83,10 +83,16 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginSubmit(HttpServletRequest request, UserVo user, ModelMap model) {
 		try {
-			return "menu";
+			if(user!=null && ((user.getId().equalsIgnoreCase("ADMIN") && user.getPassword().equalsIgnoreCase("ADMIN"))||
+					(user.getId().equalsIgnoreCase("PRABA") && user.getPassword().equalsIgnoreCase("PRABA")))) {
+				return "menu";
+			}else {
+				model.addAttribute("errormsg", "User does not exists!");
+				return "login";
+			}
 
 		} catch (Exception e) {
-			model.addAttribute("errormsg", "Member does not Exists!");
+			model.addAttribute("errormsg", "User does not exists!");
 		}
 		return "login";
 	}
